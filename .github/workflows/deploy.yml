@@ -1,0 +1,30 @@
+# Deploy automático na Vercel a cada push na main.
+# Necessário porque o plano Hobby não conecta repo privado de organização
+# (a integração Git nativa exige Pro) — então o gatilho vive aqui.
+#
+# Secrets do repo (Settings → Secrets and variables → Actions):
+#   VERCEL_TOKEN       — token criado em vercel.com/account/tokens
+#   VERCEL_ORG_ID      — id do time/conta na Vercel
+#   VERCEL_PROJECT_ID  — id do projeto site-origami
+name: Deploy Vercel (produção)
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: {}
+
+concurrency:
+  group: production-deploy
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Deploy
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+        run: npx vercel@latest deploy --prod --yes --token=${{ secrets.VERCEL_TOKEN }}
