@@ -1,0 +1,33 @@
+# https://www.origamilab.com.br/
+
+User-agent: *
+Allow: /
+
+# Crawlers de IA liberados: é o que permite a Origami ser citada como fonte
+# em respostas do ChatGPT, Perplexity, Claude e do AI Overviews do Google.
+# Para bloquear qualquer um deles, troque o Allow por Disallow: /
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+Sitemap: https://www.origamilab.com.br/sitemap.xml

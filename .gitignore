@@ -11,3 +11,5 @@
 _qa*.html
 _test.html
 _probe.html
+.vercel
+.env*
