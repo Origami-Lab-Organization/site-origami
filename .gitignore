@@ -1,0 +1,13 @@
+# macOS
+.DS_Store
+._*
+
+# Editores
+.vscode/
+.idea/
+*.swp
+
+# Arquivos temporários de QA (gerados ao inspecionar seções isoladas)
+_qa*.html
+_test.html
+_probe.html
