@@ -204,20 +204,46 @@
   }
 
   /* ----------------------------------------------------------------------
-     Formulário da apresentação institucional
+     Menu mobile — abaixo de 860px a lista horizontal não cabe
      ---------------------------------------------------------------------- */
 
-  function pdfForm() {
-    var form = document.querySelector("[data-pdf-form]");
-    if (!form) return;
+  function mobileMenu() {
+    var toggle = document.querySelector(".ol-nav__toggle");
+    var panel = document.getElementById("ol-menu");
+    if (!toggle || !panel) return;
 
-    form.addEventListener("submit", function (event) {
-      // Sem back-end nesta entrega: aponte o `action` para o seu endpoint
-      // (ou integre com o CRM) e remova o preventDefault abaixo.
-      event.preventDefault();
-      var msg = form.querySelector("[data-pdf-msg]");
-      if (msg) msg.classList.add("is-on");
-      form.reset();
+    function setOpen(open) {
+      panel.classList.toggle("is-open", open);
+      toggle.setAttribute("aria-expanded", String(open));
+      toggle.setAttribute("aria-label", open ? "Fechar menu" : "Abrir menu");
+    }
+
+    toggle.addEventListener("click", function (event) {
+      event.stopPropagation();
+      setOpen(toggle.getAttribute("aria-expanded") !== "true");
+    });
+
+    // Navegar para uma âncora fecha o painel.
+    panel.addEventListener("click", function (event) {
+      if (event.target.closest("a")) setOpen(false);
+    });
+
+    document.addEventListener("click", function (event) {
+      if (toggle.getAttribute("aria-expanded") !== "true") return;
+      if (panel.contains(event.target) || toggle.contains(event.target)) return;
+      setOpen(false);
+    });
+
+    document.addEventListener("keydown", function (event) {
+      if (event.key !== "Escape") return;
+      if (toggle.getAttribute("aria-expanded") !== "true") return;
+      setOpen(false);
+      toggle.focus();
+    });
+
+    // Ao voltar para desktop o painel não deve continuar aberto por baixo.
+    window.addEventListener("resize", function () {
+      if (window.innerWidth > 860) setOpen(false);
     });
   }
 
@@ -227,12 +253,12 @@
 
   function init() {
     applyOptions();
+    mobileMenu();
     reveal();
     parallax();
     backgroundVideo();
     chart();
     faq();
-    pdfForm();
   }
 
   if (document.readyState === "loading") {

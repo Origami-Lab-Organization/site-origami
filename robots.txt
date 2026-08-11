@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://origamilab.com.br/sitemap.xml

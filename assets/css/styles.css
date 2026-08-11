@@ -50,7 +50,7 @@
   /* Layout */
   --ol-max: 1160px;
   --ol-gutter: 24px;
-  --ol-block: clamp(80px, 9vw, 120px);
+  --ol-block: clamp(56px, 6vw, 88px);
   --ol-radius: 16px;
 }
 
@@ -64,9 +64,9 @@
 
 html {
   scroll-behavior: smooth;
-  /* Cada seção ocupa ao menos uma tela e o scroll "encosta" no topo dela.
-     `proximity` (e não `mandatory`) para não prender seções mais altas que a janela. */
-  scroll-snap-type: y proximity;
+  /* Sem scroll-snap: "uma seção por tela" é ergonomia de apresentação e
+     impede o visitante de escanear a página. */
+  scroll-padding-top: 88px; /* a nav é sticky: âncora não fica escondida atrás dela */
 }
 
 body {
@@ -141,13 +141,10 @@ li {
   max-width: 900px;
 }
 
+/* Seção dimensionada pelo conteúdo, não pela altura da tela. */
 .ol-section {
   position: relative;
   z-index: 2;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  scroll-snap-align: start;
   background: var(--ol-bg);
 }
 
@@ -204,6 +201,7 @@ li {
   letter-spacing: -0.03em;
   color: var(--ol-text);
   text-wrap: pretty;
+  margin-bottom: clamp(20px, 2.4vw, 32px);
 }
 .ol-h2--sm {
   font-size: clamp(1.8rem, 3.3vw, 2.7rem);
@@ -359,11 +357,12 @@ li {
   position: relative;
   display: block;
   background: var(--ol-bg);
-  scroll-snap-align: start;
 }
 .ol-hero__stage {
   position: relative;
-  min-height: 100vh;
+  /* Alto o bastante para ter presença, sem ocupar a tela toda: o visitante
+     precisa ver que existe conteúdo abaixo. */
+  min-height: min(86vh, 760px);
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -652,10 +651,6 @@ li {
    Manifesto
    -------------------------------------------------------------------------- */
 
-.ol-section--manifesto {
-  min-height: 60vh;
-  justify-content: center;
-}
 .ol-manifesto {
   font-family: var(--ol-serif);
   font-weight: 400;
@@ -1066,7 +1061,13 @@ li {
   position: absolute;
   inset: auto 0 0 0;
   padding: 20px;
-  background: linear-gradient(to top, rgb(6 11 20 / 0.94), transparent);
+  background: linear-gradient(
+    to top,
+    rgb(6 11 20 / 0.96) 0%,
+    rgb(6 11 20 / 0.82) 46%,
+    transparent 100%
+  );
+  text-shadow: 0 1px 3px rgb(6 11 20 / 0.7);
 }
 .ol-shot__title {
   font-size: 0.9375rem;
@@ -1341,7 +1342,6 @@ li {
 .ol-footer {
   background: var(--ol-bg);
   border-top: 1px solid rgb(255 255 255 / 0.07);
-  scroll-snap-align: start;
 }
 .ol-footer__inner {
   max-width: var(--ol-max);
@@ -1457,6 +1457,523 @@ li {
    Responsivo — o design original não previa breakpoints.
    -------------------------------------------------------------------------- */
 
+/* ==========================================================================
+   Evolução pitch -> site
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Menu mobile (antes os links simplesmente desapareciam abaixo de 860px)
+   -------------------------------------------------------------------------- */
+
+.ol-nav__toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border: 1px solid var(--ol-border);
+  border-radius: 10px;
+  background: transparent;
+  color: var(--ol-text);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.ol-nav__toggle:hover {
+  border-color: var(--ol-green);
+  color: var(--ol-green);
+}
+.ol-nav__toggle .ol-nav__x {
+  display: none;
+}
+.ol-nav__toggle[aria-expanded="true"] .ol-nav__x {
+  display: block;
+}
+.ol-nav__toggle[aria-expanded="true"] .ol-nav__bars {
+  display: none;
+}
+
+.ol-nav__panel {
+  display: none;
+}
+
+/* --------------------------------------------------------------------------
+   Faixa de prova logo abaixo do hero
+   -------------------------------------------------------------------------- */
+
+.ol-section--proof {
+  background: var(--ol-bg);
+  border-bottom: 1px solid rgb(255 255 255 / 0.06);
+}
+.ol-section--proof .ol-container {
+  padding-top: clamp(36px, 4vw, 52px);
+  padding-bottom: clamp(36px, 4vw, 52px);
+}
+.ol-proof__label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ol-text-5);
+  text-align: center;
+  margin-bottom: 26px;
+}
+.ol-proof__logos {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 12px 20px;
+  align-items: center;
+  margin-bottom: 26px;
+}
+.ol-proof__logos li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+}
+/* Logos coloridos sobre fundo escuro: normaliza em monocromático e revela a
+   cor no hover, para a faixa não competir com o hero. */
+.ol-proof__logos img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  filter: grayscale(1) brightness(0) invert(1) opacity(0.62);
+  transition: filter 0.25s ease;
+}
+.ol-proof__logos img:hover {
+  filter: none;
+}
+.ol-proof__stats {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px 28px;
+  padding-top: 22px;
+  border-top: 1px solid rgb(255 255 255 / 0.07);
+}
+.ol-proof__stats li {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-size: 0.9375rem;
+  color: var(--ol-text-3);
+}
+.ol-proof__stats strong {
+  font-family: var(--ol-serif);
+  font-weight: 400;
+  font-size: 1.6rem;
+  line-height: 1;
+  color: var(--ol-green);
+}
+
+/* --------------------------------------------------------------------------
+   Serviços com profundidade (agora no topo da página)
+   -------------------------------------------------------------------------- */
+
+.ol-offer {
+  display: grid;
+  gap: 16px;
+}
+.ol-offer__item {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: clamp(20px, 3vw, 40px);
+  background: var(--ol-surface);
+  border: 1px solid var(--ol-border);
+  border-radius: 18px;
+  padding: clamp(24px, 3vw, 38px);
+  overflow: hidden;
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+.ol-offer__item:hover {
+  border-color: rgb(46 232 168 / 0.42);
+  transform: translateY(-2px);
+}
+.ol-offer__item::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(180deg, var(--ol-green), var(--ol-green-deep));
+}
+.ol-offer__num {
+  font-family: var(--ol-serif);
+  font-size: 2.2rem;
+  line-height: 1;
+  color: var(--ol-green);
+}
+.ol-offer__title {
+  font-size: clamp(1.15rem, 1.9vw, 1.5rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 10px;
+}
+.ol-offer__lead {
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  color: var(--ol-text-1);
+  max-width: 62ch;
+}
+.ol-offer__lead strong {
+  color: var(--ol-text);
+  font-weight: 600;
+}
+.ol-offer__list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px 24px;
+  margin-top: 18px;
+}
+.ol-offer__list li {
+  position: relative;
+  padding-left: 15px;
+  line-height: 1.5;
+}
+.ol-offer__list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.52em;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--ol-green);
+}
+.ol-offer__list strong {
+  display: block;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--ol-text);
+  margin-bottom: 1px;
+}
+.ol-offer__list span {
+  display: block;
+  font-size: 0.875rem;
+  color: var(--ol-text-3);
+}
+
+/* Reversão de risco: estava enterrada no FAQ. */
+.ol-offer__hook {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: 18px;
+  background: rgb(29 122 98 / 0.18);
+  border: 1px solid rgb(46 232 168 / 0.4);
+  border-radius: 100px;
+  padding: 10px 20px;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--ol-text-quote);
+}
+.ol-offer__hook svg {
+  flex-shrink: 0;
+  color: var(--ol-green);
+}
+
+/* --------------------------------------------------------------------------
+   Para quem é (auto-seleção de ICP)
+   -------------------------------------------------------------------------- */
+
+.ol-section--icp {
+  background: var(--ol-bg-deep);
+  border-top: 1px solid rgb(255 255 255 / 0.06);
+}
+.ol-icp {
+  display: grid;
+  grid-template-columns: 0.95fr 1.05fr;
+  gap: clamp(32px, 5vw, 64px);
+  align-items: start;
+}
+.ol-icp__lead {
+  font-family: var(--ol-serif);
+  font-weight: 400;
+  font-size: clamp(1.3rem, 2.2vw, 1.85rem);
+  line-height: 1.32;
+  max-width: 30ch;
+}
+.ol-icp__note {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--ol-text-3);
+  margin-top: 20px;
+  max-width: 46ch;
+}
+.ol-icp__note strong {
+  color: var(--ol-text);
+  font-weight: 600;
+}
+.ol-icp__cols {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 26px 32px;
+}
+.ol-icp__group h3 {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ol-green);
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--ol-border);
+}
+.ol-icp__group ul {
+  display: grid;
+  gap: 9px;
+}
+.ol-icp__group li {
+  font-size: 0.9375rem;
+  color: var(--ol-text-2);
+  line-height: 1.45;
+}
+
+/* --------------------------------------------------------------------------
+   Seção do problema, agora única e densa (eram 4 seções / ~5 telas)
+   -------------------------------------------------------------------------- */
+
+.ol-problem {
+  display: grid;
+  grid-template-columns: 1fr 0.85fr;
+  gap: clamp(32px, 5vw, 60px);
+  align-items: center;
+  margin-bottom: clamp(32px, 4vw, 48px);
+}
+.ol-problem__quotes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.ol-problem__quotes li {
+  background: rgb(29 122 98 / 0.16);
+  border: 1px solid rgb(46 232 168 / 0.3);
+  border-radius: 100px;
+  padding: 10px 18px;
+  font-size: 0.875rem;
+  font-style: italic;
+  color: var(--ol-text-quote);
+  line-height: 1.3;
+}
+/* Cards de sistema mais compactos que na versão deck. */
+.ol-systems {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+.ol-systems__item {
+  background: var(--ol-surface);
+  border: 1px solid rgb(255 174 107 / 0.28);
+  border-radius: 12px;
+  padding: 18px 20px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 14px;
+  align-items: start;
+}
+.ol-systems__icon {
+  display: inline-flex;
+  width: 34px;
+  height: 34px;
+  border-radius: 9px;
+  background: rgb(255 174 107 / 0.12);
+  border: 1px solid rgb(255 174 107 / 0.32);
+  align-items: center;
+  justify-content: center;
+}
+.ol-systems__item h3 {
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: -0.015em;
+  margin-bottom: 6px;
+}
+.ol-systems__item ul {
+  display: grid;
+  gap: 4px;
+}
+.ol-systems__item li {
+  font-size: 0.8125rem;
+  color: var(--ol-text-warm);
+  line-height: 1.4;
+}
+.ol-problem__close {
+  margin-top: clamp(28px, 3.5vw, 40px);
+  padding-top: 24px;
+  border-top: 1px dashed rgb(255 174 107 / 0.35);
+  display: grid;
+  gap: 10px;
+}
+.ol-problem__dark {
+  font-family: var(--ol-serif);
+  font-style: italic;
+  font-size: clamp(1.25rem, 2.1vw, 1.6rem);
+  color: var(--ol-orange);
+}
+.ol-problem__cost {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--ol-text-3);
+  max-width: 74ch;
+}
+.ol-problem__cost strong {
+  color: var(--ol-orange);
+  font-weight: 600;
+}
+
+/* --------------------------------------------------------------------------
+   Depoimento (slot: o toggle existia no design, sem markup)
+   -------------------------------------------------------------------------- */
+
+.ol-quote {
+  background: var(--ol-surface);
+  border: 1px solid var(--ol-border);
+  border-left: 3px solid var(--ol-green);
+  border-radius: 16px;
+  padding: clamp(28px, 4vw, 44px);
+}
+.ol-quote blockquote {
+  font-family: var(--ol-serif);
+  font-size: clamp(1.3rem, 2.3vw, 1.9rem);
+  line-height: 1.35;
+  color: var(--ol-text);
+  max-width: 46ch;
+  margin-bottom: 20px;
+}
+.ol-quote figcaption {
+  font-size: 0.9375rem;
+  color: var(--ol-text-3);
+}
+.ol-quote figcaption strong {
+  color: var(--ol-text);
+  font-weight: 600;
+}
+
+/* Marcador visível de conteúdo que só o cliente pode fornecer. */
+[data-todo] {
+  position: relative;
+}
+[data-todo]::after {
+  content: "a preencher";
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  font-family: var(--ol-sans);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ol-orange);
+  background: rgb(255 174 107 / 0.12);
+  border: 1px dashed rgb(255 174 107 / 0.5);
+  border-radius: 100px;
+  padding: 3px 10px;
+  pointer-events: none;
+}
+
+/* Nota de pendência: padding-top extra para o selo não cair sobre o texto. */
+.ol-todo-note {
+  margin-top: 28px;
+  text-align: left;
+  max-width: 64ch;
+  border: 1px dashed rgb(255 174 107 / 0.35);
+  border-radius: 12px;
+  padding: 40px 24px 22px;
+}
+.ol-hub__lead {
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  color: var(--ol-ink-2);
+  max-width: 46ch;
+}
+.ol-btn--xs {
+  padding: 9px 18px;
+  font-size: 0.875rem;
+}
+
+/* Pendência inline: discreta, sem selo flutuante. */
+[data-todo-inline] {
+  color: var(--ol-text-5);
+  border-bottom: 1px dashed rgb(255 174 107 / 0.45);
+}
+
+/* --------------------------------------------------------------------------
+   Conversão: formulário embutido
+   -------------------------------------------------------------------------- */
+
+.ol-convert {
+  display: grid;
+  grid-template-columns: 0.92fr 1.08fr;
+  gap: clamp(32px, 5vw, 56px);
+  align-items: start;
+}
+.ol-convert__promise {
+  display: grid;
+  gap: 12px;
+  margin: 26px 0 28px;
+}
+.ol-convert__promise li {
+  display: flex;
+  gap: 11px;
+  align-items: baseline;
+  font-size: 1rem;
+  color: var(--ol-text-2);
+  line-height: 1.5;
+}
+.ol-convert__promise li::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--ol-green);
+  flex-shrink: 0;
+  transform: translateY(-0.25em);
+}
+.ol-formbox {
+  background: var(--ol-surface);
+  border: 1px solid var(--ol-border);
+  border-radius: 18px;
+  padding: 14px;
+  box-shadow: 0 30px 70px rgb(0 0 0 / 0.35);
+}
+.ol-formbox iframe {
+  width: 100%;
+  height: 640px;
+  border: 0;
+  border-radius: 12px;
+  background: var(--ol-surface-alt);
+  display: block;
+}
+.ol-formbox__fallback {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  justify-content: space-between;
+  padding: 14px 6px 4px;
+  font-size: 0.8125rem;
+  color: var(--ol-text-5);
+}
+.ol-alt-contact {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 24px;
+  margin-top: 22px;
+  padding-top: 20px;
+  border-top: 1px solid rgb(255 255 255 / 0.07);
+}
+.ol-alt-contact a,
+.ol-alt-contact span {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 0.9375rem;
+  color: var(--ol-text-2);
+}
+.ol-alt-contact a:hover {
+  color: var(--ol-green);
+}
+
 @media (max-width: 1024px) {
   .ol-clients {
     grid-template-columns: repeat(3, 1fr);
@@ -1478,9 +1995,70 @@ li {
 }
 
 @media (max-width: 860px) {
-  /* Sem espaço para a lista completa: logo + CTA seguram a barra. */
+  /* Sem espaço para a lista horizontal: entra o menu de verdade. */
   .ol-nav__links {
     display: none;
+  }
+  .ol-nav__right .ol-btn--nav {
+    display: none;
+  }
+  .ol-nav__toggle {
+    display: inline-flex;
+  }
+  .ol-nav__panel {
+    display: block;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: rgb(6 11 20 / 0.98);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgb(255 255 255 / 0.08);
+    padding: 8px var(--ol-gutter) 20px;
+    /* Fechado: sem altura e fora da ordem de foco. */
+    max-height: 0;
+    overflow: hidden;
+    visibility: hidden;
+    transition: max-height 0.28s ease, visibility 0.28s;
+  }
+  .ol-nav__panel.is-open {
+    max-height: 70vh;
+    overflow-y: auto;
+    visibility: visible;
+  }
+  .ol-nav__panel a {
+    display: block;
+    padding: 14px 4px;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--ol-text-1);
+    border-bottom: 1px solid rgb(255 255 255 / 0.07);
+  }
+  .ol-nav__panel a:hover {
+    color: var(--ol-green);
+  }
+  .ol-nav__panel .ol-btn--primary {
+    display: flex;
+    justify-content: center;
+    margin-top: 18px;
+    border-bottom: 0;
+    color: var(--ol-on-green);
+  }
+
+  .ol-proof__logos {
+    grid-template-columns: repeat(5, 1fr);
+  }
+  .ol-offer__item {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  .ol-icp,
+  .ol-problem,
+  .ol-convert {
+    grid-template-columns: 1fr;
+  }
+  .ol-systems {
+    grid-template-columns: repeat(2, 1fr);
   }
   .ol-grid-3,
   .ol-services,
@@ -1498,16 +2076,29 @@ li {
 }
 
 @media (max-width: 640px) {
-  html {
-    /* Seções mais altas que a tela: o snap deixa de ajudar. */
-    scroll-snap-type: none;
-  }
-  .ol-section,
   .ol-hero__stage {
     min-height: 0;
+    padding: 64px 0 76px;
   }
-  .ol-hero__stage {
-    padding: 72px 0 88px;
+  .ol-proof__logos {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .ol-offer__list,
+  .ol-icp__cols {
+    grid-template-columns: 1fr;
+  }
+  .ol-systems {
+    grid-template-columns: 1fr;
+  }
+  .ol-formbox iframe {
+    height: 560px;
+  }
+  /* O selo de pendência atrapalha em tela estreita. */
+  [data-todo]::after {
+    position: static;
+    display: inline-block;
+    margin-bottom: 10px;
   }
   .ol-clients,
   .ol-grid-3,
@@ -1532,7 +2123,6 @@ li {
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
-    scroll-snap-type: none;
   }
   *,
   *::before,
