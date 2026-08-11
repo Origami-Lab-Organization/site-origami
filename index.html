@@ -35,7 +35,7 @@
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "Organization",
+      "@type": ["Organization", "ProfessionalService"],
       "@id": "https://www.origamilab.com.br/#org",
       "name": "Origami Lab",
       "url": "https://www.origamilab.com.br/",
@@ -45,6 +45,18 @@
       },
       "image": "https://www.origamilab.com.br/assets/og-cover.jpg",
       "email": "contato@origamilab.com.br",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "R. Silviano Brandão, 156, 2º andar, Centro",
+        "addressLocality": "Formiga",
+        "addressRegion": "MG",
+        "postalCode": "35570-112",
+        "addressCountry": "BR"
+      },
+      "sameAs": [
+        "https://www.instagram.com/origamilab_br/",
+        "https://www.linkedin.com/company/origamilab-br"
+      ],
       "description": "Modernizamos a operação de grandes empresas tradicionais — processo, informação e tecnologia de ponta a ponta.",
       "areaServed": {
         "@type": "State",
@@ -724,12 +736,11 @@
         <div class="ol-footer__title">Contato</div>
         <ul class="ol-footer__list">
           <li><a href="mailto:contato@origamilab.com.br">contato@origamilab.com.br</a></li>
-          <li><a href="#contato">WhatsApp · (37) 0000-0000</a></li>
-          <li><span>Rua · nº · Bairro<br>Formiga, MG · CEP 35570-000</span></li>
+          <li><span>R. Silviano Brandão, 156 · 2º andar · Centro<br>Formiga, MG · CEP 35570-112</span></li>
         </ul>
         <ul class="ol-social">
-          <li><a href="#contato" aria-label="LinkedIn"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"></path><rect width="4" height="12" x="2" y="9"></rect><circle cx="4" cy="4" r="2"></circle></svg></a></li>
-          <li><a href="#contato" aria-label="Instagram"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="20" x="2" y="2" rx="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line></svg></a></li>
+          <li><a href="https://www.linkedin.com/company/origamilab-br" target="_blank" rel="noopener" aria-label="LinkedIn"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"></path><rect width="4" height="12" x="2" y="9"></rect><circle cx="4" cy="4" r="2"></circle></svg></a></li>
+          <li><a href="https://www.instagram.com/origamilab_br/" target="_blank" rel="noopener" aria-label="Instagram"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="20" x="2" y="2" rx="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line></svg></a></li>
         </ul>
       </div>
     </div>
