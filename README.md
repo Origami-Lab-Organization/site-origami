@@ -10,15 +10,15 @@ python3 -m http.server 8000
 # abre http://localhost:8000
 ```
 
-Prefira o servidor a abrir o `index.html` por `file://` — o vídeo do hero e o
-formulário embutido dependem de origem HTTP.
+Prefira o servidor a abrir o `index.html` por `file://` — o vídeo do hero depende
+de origem HTTP.
 
 ## Estrutura
 
 ```
-index.html                 a página (12 seções)
+index.html                 a página (9 seções + rodapé)
 assets/css/styles.css      estilos; design tokens em :root
-assets/js/main.js          menu mobile, reveal, parallax, gráfico, FAQ
+assets/js/main.js          motor de scroll (nav, hero, marquees, pin, reveal, FAQ)
 assets/                    imagens, logos, vídeo e poster do hero
 robots.txt, sitemap.xml    SEO
 LP Origami Lab.dc.html     arquivo de design original (referência)
@@ -27,133 +27,126 @@ support.js                 runtime do Claude Design, usado só pelo .dc.html
 
 Os dois últimos não são carregados pela página e podem sair do deploy.
 
-## O que preciso de você para fechar as pendências
+## Seções
 
-### Links sem destino
+1. **Hero** — fica preso (`position: sticky`) enquanto o resto da página desliza
+   por cima. O vídeo dá zoom e o texto sobe e desaparece conforme o scroll.
+2. **Marquee de clientes** — faixa branca com os 10 logos, rolando em laço
+   contínuo. A velocidade e o **sentido** acompanham o scroll do visitante.
+3. **Serviços** — três cartões que se empilham por `position: sticky`, cada um
+   com um painel de interface simulado (painel da operação, matriz de
+   priorização, destino do capital).
+4. **Como trabalhamos** — quatro fases numa trilha horizontal *pinada*: o bloco
+   trava na tela e a trilha anda para o lado conforme você rola para baixo.
+5. **Galeria** — seis fotos em deriva, com zoom conforme entram em cena.
+6. **Clientes** — grade com setor de cada cliente.
+7. **Quem somos** — retrato dos sócios em coluna fixa e as empresas de origem.
+8. **FAQ** — oito perguntas, com a coluna do título fixa ao lado.
+9. **Chamada final** — cresce e aparece ao entrar em cena.
 
-| Onde | Estado hoje | Preciso de |
-|---|---|---|
-| Seção de contato | "WhatsApp — a definir" | número → viro `https://wa.me/55DDD...` |
-| Rodapé | "WhatsApp, endereço e redes sociais: a definir" | número, endereço, URL do LinkedIn e do Instagram |
+## Comportamento e degradação
 
-Os links quebrados que existiam foram removidos, não deixados apontando para o
-lugar errado: antes **"Falar no WhatsApp", "LinkedIn", "Instagram" e o telefone
-do rodapé apontavam todos para `#contato`** — o próprio bloco onde já estavam.
+Tudo o que é movimento degrada com elegância:
 
-### Conteúdo marcado com `data-todo` (aparece na página com o selo "a preencher")
+| Situação | O que acontece |
+|---|---|
+| **Sem JavaScript** | A página fica legível e navegável. A trilha de "Como trabalhamos" vira uma **rolagem horizontal comum** (é o padrão do CSS; o pin é que é adicionado pelo JS). |
+| **`prefers-reduced-motion`** | Sem marquee, sem parallax, sem zoom, sem pin. O hero deixa de ser sticky e as barras do painel já aparecem preenchidas. |
+| **Abaixo de 900px** | A trilha horizontal volta a ser rolagem comum com `scroll-snap`. |
+| **Abaixo de 860px** | Entra o menu mobile (painel com `aria-expanded`, fecha com `Esc`, com clique fora e ao navegar). Os cartões de serviço deixam de empilhar e viram lista. |
+| **Vídeo do hero ausente** | O poster de 48 KB e o degradê assumem; nada quebra. |
+| **Vídeo fora de vista** | É pausado, para não consumir CPU à toa. |
 
-1. **Entregáveis e prazo de cada serviço** — ex.: "diagnóstico em 3 semanas, com
-   mapa de processo e plano priorizado". É o que o visitante mais procura antes
-   de agendar e o maior ganho de conversão que falta.
-2. **Depoimento de cliente** — frase, nome, cargo e empresa. O slot está pronto.
+O reveal por `IntersectionObserver` tem rede de segurança: se uma notificação não
+chegar, um sweep no `scroll` libera o que já passou da borda inferior — texto
+escondido não fica invisível para sempre.
 
-### Outros
-
-3. Endereço completo, CNPJ e razão social (procurement B2B costuma pedir).
-4. Confirmar que `contato@origamilab.com.br` é monitorado.
-5. Imagem de Open Graph 1200×630 própria — hoje usa o poster do hero.
-6. Política de privacidade / LGPD: o formulário coleta dados pessoais.
-7. **Cases com resultado.** Optamos por prova só com logos e setores. Enquanto
-   não houver problema → intervenção → resultado de dois ou três clientes, esta
-   é a maior lacuna para ticket de R$ 50–500 mil.
-8. O formulário promete "contato em até 24 horas" e a página diz "resposta em até
-   1 dia útil". Vale alinhar os dois.
-
-## Conversão
-
-Todos os CTAs levam à seção `#contato`, que **embute o Microsoft Forms** num
-iframe (`https://forms.cloud.microsoft/r/f2GGyr2vZT`) — o visitante converte sem
-sair do site. Há botão "abrir em nova aba" como fallback caso o tenant passe a
-bloquear embed via `X-Frame-Options` ou `frame-ancestors`.
-
-Antes desta versão o site **não conseguia captar um lead**: o único formulário
-não tinha `action` e chamava `preventDefault`.
-
-## Pontos abertos do design (props editáveis)
+## Ajuste de intensidade
 
 No topo de `assets/js/main.js`:
 
 ```js
-var OPTIONS = {
-  precoNaFaq: false,       // faixa "R$ 50 mil a R$ 500 mil" na FAQ "Quanto custa?"
-  depoimentoCabral: false, // reservado; o depoimento agora tem seção própria
+var CONFIG = {
+  intensidadeMovimento: 1,   // 0 desliga o movimento, 1 é o padrão, até 1.6 exagera
+  mostrarGaleria: true,      // false esconde a seção de fotos
 };
 ```
 
-O texto de `precoNaFaq` já está no HTML com `data-opt="preco"`, oculto por CSS.
+## Conversão
+
+Todos os 8 CTAs vão para o mesmo formulário do Microsoft Forms
+(`https://forms.cloud.microsoft/r/f2GGyr2vZT`), em nova aba com `rel="noopener"`.
+
+> Nota: a versão anterior do site **embutia** esse formulário num iframe, para o
+> visitante converter sem sair da página (o formulário permite embed — não manda
+> `X-Frame-Options` nem `frame-ancestors`). Este design abre em nova aba. Se
+> quiser voltar ao formulário embutido, é uma mudança pequena e localizada.
+
+## Dados de contato
+
+Todos reais, vindos do design — **não há link sem destino**:
+
+- **E-mail:** contato@origamilab.com.br
+- **Endereço:** R. Silviano Brandão, 156 — 2º andar, Centro, Formiga — MG, 35570-112 (com link para o Google Maps)
+- **LinkedIn:** linkedin.com/company/origamilab-br
+- **Instagram:** instagram.com/origamilab_br
+
+## Pendências
+
+1. **CNPJ e razão social** no rodapé — procurement B2B costuma pedir.
+2. **Política de privacidade / LGPD** — o formulário coleta dados pessoais.
+3. **Imagem de Open Graph 1200×630** própria — hoje usa o poster do hero.
+4. **Cases com resultado.** A prova hoje é logo + setor + pedigree dos sócios.
+   Enquanto não houver problema → intervenção → resultado de dois ou três
+   clientes, essa é a maior lacuna para ticket dessa faixa.
 
 ## Decisões de implementação
 
-### De pitch para site
-
-O site era a conversão fiel de um pitch deck. A auditoria mediu o desalinhamento:
-**199 palavras agitando o problema em 4 seções de tela cheia contra 81 palavras
-descrevendo o que se vende**, na posição 11 de 14. A seção `#cases` — prometida
-no menu, no rodapé e num botão do hero — não tinha um único case. O conteúdo mais
-profundo da página era o FAQ.
-
-O que mudou:
-
-- **Serviços saíram da posição 11 para a 3** e passaram de 81 para 345 palavras,
-  absorvendo os 5 pontos que estavam órfãos na falsa seção de cases.
-- **As 4 seções de problema viraram 1**, densa e escaneável, sem descartar as
-  falas de cliente nem os 6 cards de sistema.
-- **"Só cobramos se o capital for liberado"** subiu do FAQ para a seção de
-  serviços: é reversão de risco e responde à objeção nº 1.
-- **Seção "Para quem é"** nova, construída só com conteúdo que já existia (a lista
-  de clientes define o ICP; a frase sobre empresas de 1962–1980 estava dentro de
-  um acordeão).
-- Saíram os dispositivos de deck: o slide "É por isso que a Origami Lab existe",
-  a seção que só tinha um título e o callout de tela cheia.
-- **Sem `scroll-snap` e sem `min-height: 100vh`.** "Uma seção por tela" é
-  ergonomia de apresentação e impedia escanear. O documento caiu de 13.146 para
-  10.910px *ganhando* seções.
-
-### Técnico
-
-- **Menu mobile.** Abaixo de 860px os links do nav simplesmente desapareciam sem
-  substituto. Agora há painel com `aria-expanded`, fecha com `Esc`, com clique
-  fora e ao navegar.
-- **Poster do hero.** O `hero-bg.webm` tem 12 MB. Um frame extraído dele
+- **`<x-dc>` → HTML semântico.** O design era um template renderizado por React
+  via `support.js`, com estilo inline e atributos `style-hover`. Como inline não
+  suporta pseudo-classes, tudo virou CSS com `:hover`, `:focus` e
+  `:focus-visible` reais. A classe `DCLogic` virou um módulo vanilla.
+- **Pin horizontal invertido.** O design assumia o modo pinado e degradava para
+  rolagem. Aqui é o contrário: a rolagem horizontal é o padrão do CSS e o JS
+  *adiciona* o pin quando há espaço. Sem JS a seção continua utilizável.
+- **Menu mobile.** O design deixava os links do nav com `flex-wrap`, o que em
+  tela estreita empilharia a barra fixa em várias linhas e comeria a viewport.
+- **Sublinhado da seção ativa.** O design marcava os links com `data-navlink` e
+  `position: relative` sem usá-los; a página é longa, então o indicador entrou.
+- **Retrato dos sócios.** O original (`img_9448-3-msgohzbl-l378.jpg`, 2 MB,
+  2219×3945) estourava o limite de 256 KiB por arquivo do MCP e vinha truncado.
+  Foi reconstruído do `IMG_9448.jpg` local e otimizado para
+  `assets/socios.webp` — **112 KB**, 1100 px de largura.
+- **Poster do hero.** O `hero-bg.webm` tem 12 MB; um frame extraído dele
   (`assets/hero-poster.webp`, 48 KB) cobre a primeira pintura e o vídeo entra com
   `preload="none"`.
-- **Overflow do logo.** Os atributos `width`/`height` do `<img>` valem como
-  presentational hint: sem `width:auto` a largura intrínseca (7811px) esticava o
-  flex do nav e empurrava o `body`.
-- **Rede de segurança no reveal.** Se uma notificação do `IntersectionObserver`
-  não chegasse, o texto ficaria invisível para sempre. Um sweep no `scroll`
-  revela os pendentes já visíveis e se desliga quando não há mais nenhum.
-- **SEO.** `title`/`description` com proposta de valor e localização, `canonical`,
-  JSON-LD com `Organization`, `WebSite` e `FAQPage` (7 perguntas), `robots.txt` e
-  `sitemap.xml`. O `FAQPage` é o que tem chance real de rich result.
-- **Acessibilidade.** `aria-expanded`/`aria-controls` na FAQ e no menu, link "pular
-  para o conteúdo", `role="img"` com `aria-label` nos dois gráficos, `title` no
-  iframe do formulário, `aria-hidden` nos SVGs decorativos.
-
-### Limite conhecido
-
-Página única foi decisão do cliente. O custo é não ter URL para mandar a um
-prospect ("a página da Lei do Bem") nem ganho de SEO por página; mitigado com SEO
-on-page e `FAQPage` schema.
+- **Grades à prova de tela estreita.** `repeat(auto-fit, minmax(290px, 1fr))`
+  estoura quando a caixa é menor que 290px. Todas as 8 ocorrências passaram a
+  usar `minmax(min(290px, 100%), 1fr)`.
+- **Correções de texto do design:** "acompanhando validando" → "acompanhando e
+  validando"; `&nbsp;` solto que criava espaço duplo na frase do CTA.
+- **Acessibilidade.** Link "pular para o conteúdo", `aria-expanded`/
+  `aria-controls` na FAQ e no menu, `aria-hidden` nos SVGs decorativos e nos
+  clones dos marquees (para leitor de tela não ler os logos duas vezes),
+  `role="img"` com `aria-label` nos dois painéis simulados.
+- **SEO.** `title`/`description`/`canonical`, JSON-LD com `ProfessionalService`
+  (com endereço e `sameAs` das redes), `WebSite` e `FAQPage` com as 8 perguntas.
 
 ## Verificações feitas
 
-- Todas as 24 referências locais resolvendo; HTML balanceado; sem id duplicado,
-  âncora quebrada, `aria-controls` órfão ou classe sem regra CSS.
-- **Ordem no DOM confirmada por script:** "O que fazemos" na posição 3, "O que
-  está travando" na 5.
-- Sem overflow horizontal de 320 a 1440px; menu mobile aparecendo exatamente
-  até 860px.
-- Nenhuma seção presa a `100vh` (`min-height: 0` em todas); as 4 mais altas são
-  altas por conteúdo real.
-- Render conferido em 1440px (serviços, ICP, problema, operação integrada,
-  conversão) e em 360px.
-- Funcional: menu abre/fecha por clique, `Esc` e clique fora; FAQ preservado;
-  iframe do formulário carregando; reveal revelando tudo ao percorrer a página;
-  gráfico animando; `h1` único e sem salto de heading. Sem erro de console.
-- `prefers-reduced-motion` desliga animações e reveal e força o gráfico ao estado
-  final.
+- 22 referências locais resolvendo (todas 200); HTML balanceado; sem id
+  duplicado, âncora quebrada, `aria-controls` órfão ou classe sem regra CSS.
+- `h1` único e hierarquia de heading sem salto.
+- **Sem overflow horizontal de 320 a 1440px.**
+- Hero sticky com o overlay acima; marquees clonados (20 e 12 itens) com os
+  clones marcados `aria-hidden`; trilha pinada a partir de 900px com altura
+  calculada (`vh + distância`) e rolagem horizontal abaixo disso; menu mobile
+  aparecendo até 860px.
+- FAQ abre e fecha com `aria-expanded`; os 8 CTAs com `target="_blank"` e
+  `rel="noopener"`. Sem erro de console.
+- Render conferido em 1440px (hero com vídeo, serviços, trilha, quem somos) e em
+  380px.
 
-O parallax das fotos não é exercitável no headless (depende de
-`requestAnimationFrame`, que não dispara sob virtual-time) — precisa de conferência
-no navegador.
+O parallax, o zoom e a translação da trilha dependem de `requestAnimationFrame`,
+que não dispara no Chrome headless sob virtual-time — precisam de conferência no
+navegador.

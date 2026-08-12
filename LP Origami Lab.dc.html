@@ -9,594 +9,535 @@
 <x-dc>
 <helmet>
 <title>Origami Lab — Modernização da operação de empresas tradicionais | Formiga, MG</title>
-<meta name="description" content="Modernizamos a operação de grandes empresas tradicionais de Minas — processo, informação e tecnologia de ponta a ponta. Cases em transporte, engenharia e manufatura.">
+<meta name="description" content="Consultoria e desenvolvimento para modernizar a operação de grandes empresas tradicionais: processo, informação e tecnologia de ponta a ponta. Base em Formiga, MG.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="crossorigin">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=Instrument+Serif:ital@0;1&amp;display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
-body{font-family:'Inter',system-ui,sans-serif;background:#060B14;color:#fff;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;line-height:1.6;overflow-x:clip;}
+body{font-family:'Inter',system-ui,sans-serif;background:#04070E;color:#fff;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;line-height:1.6;overflow-x:clip;}
 a{color:#2EE8A8;text-decoration:none;}
 a:hover{color:#7ff0c4;}
 input,button{font-family:inherit;}
 ::selection{background:#2EE8A8;color:#04231A;}
-@keyframes olGlow{0%,100%{opacity:.42;}50%{opacity:.62;}}
+::-webkit-scrollbar{width:10px;height:10px;}
+::-webkit-scrollbar-track{background:#04070E;}
+::-webkit-scrollbar-thumb{background:#1A2540;border-radius:20px;}
+@keyframes olGlow{0%,100%{opacity:.4;}50%{opacity:.66;}}
+@keyframes olCue{0%{transform:translateY(0);opacity:.25;}45%{opacity:1;}100%{transform:translateY(16px);opacity:0;}}
+@keyframes olBlink{0%,100%{opacity:1;}50%{opacity:.25;}}
+@keyframes olRise{from{opacity:0;transform:translateY(28px);}to{opacity:1;transform:none;}}
 @media (prefers-reduced-motion:reduce){*{transition:none !important;animation:none !important;}}
 </style>
 </helmet>
 
-<div data-ol-root="1" style="background:#060B14">
+<div data-ol-root="1" style="position:relative;background:#04070E">
 
-<nav style="position:sticky;top:0;z-index:60;background:rgba(6,11,20,.88);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.07)">
-  <div style="max-width:1160px;margin:0 auto;padding:0 24px;height:72px;display:flex;align-items:center;justify-content:space-between;gap:24px">
+<nav data-nav="1" style="position:fixed;top:0;left:0;right:0;z-index:80;transition:background .35s ease,border-color .35s ease,backdrop-filter .35s ease;background:transparent;border-bottom:1px solid transparent">
+  <div data-nav-inner="1" style="max-width:1280px;margin:0 auto;padding:20px 24px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px 24px;transition:padding .35s ease">
     <a href="#topo" style="display:flex;align-items:center"><img src="assets/logo-horizontal-white.svg" alt="Origami Lab" style="height:26px;display:block"></a>
-    <div style="display:flex;align-items:center;gap:32px">
-      <div style="display:flex;align-items:center;gap:28px">
-        <a href="#contexto" style="font-size:.875rem;font-weight:500;color:#94A3B8;transition:color .15s" style-hover="color:#fff">O contexto</a>
-        <a href="#cases" style="font-size:.875rem;font-weight:500;color:#94A3B8;transition:color .15s" style-hover="color:#fff">Cases</a>
-        <a href="#como" style="font-size:.875rem;font-weight:500;color:#94A3B8;transition:color .15s" style-hover="color:#fff">Como trabalhamos</a>
-        <a href="#faq" style="font-size:.875rem;font-weight:500;color:#94A3B8;transition:color .15s" style-hover="color:#fff">Perguntas</a>
+    <div style="display:flex;flex-wrap:wrap;align-items:center;gap:12px 30px">
+      <div style="display:flex;flex-wrap:wrap;align-items:center;gap:10px 26px">
+        <a href="#servicos" data-navlink="1" style="position:relative;font-size:.875rem;font-weight:500;color:#94A3B8;transition:color .2s" style-hover="color:#fff">Serviços</a>
+        <a href="#como" data-navlink="1" style="position:relative;font-size:.875rem;font-weight:500;color:#94A3B8;transition:color .2s" style-hover="color:#fff">Como trabalhamos</a>
+        <a href="#clientes" data-navlink="1" style="position:relative;font-size:.875rem;font-weight:500;color:#94A3B8;transition:color .2s" style-hover="color:#fff">Clientes</a>
+        <a href="#quem-somos" data-navlink="1" style="position:relative;font-size:.875rem;font-weight:500;color:#94A3B8;transition:color .2s" style-hover="color:#fff">Quem somos</a>
+        <a href="#faq" data-navlink="1" style="position:relative;font-size:.875rem;font-weight:500;color:#94A3B8;transition:color .2s" style-hover="color:#fff">Perguntas</a>
       </div>
-      <a href="#contato" style="display:inline-flex;align-items:center;gap:8px;background:#2EE8A8;color:#04231A;font-size:.85rem;font-weight:600;padding:11px 22px;border-radius:100px;transition:opacity .15s,transform .15s" style-hover="opacity:.88;color:#04231A" style-active="transform:scale(.97)">Agendar conversa</a>
+      <a href="https://forms.cloud.microsoft/r/f2GGyr2vZT" target="_blank" rel="noopener" data-magnet="1" style="display:inline-flex;align-items:center;gap:8px;background:#2EE8A8;color:#04231A;font-size:.85rem;font-weight:600;padding:11px 22px;border-radius:100px;transition:box-shadow .3s ease,transform .25s cubic-bezier(.2,.7,.2,1)" style-hover="color:#04231A;box-shadow:0 0 0 4px rgba(46,232,168,.16)">Agendar conversa</a>
     </div>
   </div>
+  <div style="height:2px;background:transparent"><div data-progress="1" style="height:100%;width:0%;background:linear-gradient(90deg,#1D7A62,#2EE8A8);box-shadow:0 0 12px rgba(46,232,168,.6)"></div></div>
 </nav>
 
-<section id="topo" style="position:relative;background:#060B14;display:block">
-  <div style="position:relative;min-height:100vh;overflow:hidden;display:flex;align-items:center;background:#060B14">
-    <video src="assets/hero-bg.webm" autoPlay="{{ true }}" loop="{{ true }}" muted="{{ true }}" playsInline="{{ true }}" data-bg-video="1" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0"></video>
-    <div style="position:absolute;inset:0;z-index:1;background:radial-gradient(120% 90% at 50% 45%,rgba(9,15,30,.62) 0%,rgba(9,15,30,.86) 55%,rgba(9,15,30,.96) 100%)"></div>
-    <div style="position:absolute;inset:auto 0 0 0;height:34%;z-index:1;background:linear-gradient(to top,#060B14,transparent)"></div>
-    <div data-reveal-text="1" style="position:relative;z-index:2;max-width:1160px;margin:0 auto;padding:0 24px;width:100%;display:flex;flex-direction:column;align-items:center;text-align:center;will-change:opacity,transform">
-      <h1 data-anim="1" data-d="1" style="font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:clamp(2.8rem,6.2vw,5.2rem);line-height:1.03;letter-spacing:-.015em;color:#fff;max-width:20ch;margin-bottom:26px;text-wrap:balance">Modernizamos a <em style="font-style:italic;color:#2EE8A8">operação</em> das grandes empresas tradicionais.</h1>
-      <p data-anim="1" data-d="2" style="font-size:clamp(1.05rem,1.6vw,1.3rem);line-height:1.55;color:#C3D0DE;max-width:56ch;margin-bottom:40px;text-wrap:pretty">Sua empresa foi construída para durar. A operação precisa acompanhar. Estruturamos processo, informação e tecnologia de ponta a ponta — sem mudar o que já deu certo.</p>
-      <div data-anim="1" data-d="3" style="display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:center">
-        <a href="#contato" style="display:inline-flex;align-items:center;gap:10px;background:#2EE8A8;color:#04231A;font-size:1rem;font-weight:600;padding:16px 30px;border-radius:100px;box-shadow:0 0 32px rgba(46,232,168,.25);transition:opacity .15s,transform .15s" style-hover="opacity:.88;color:#04231A" style-active="transform:scale(.97)">Conversar sobre a minha operação
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
-        </a>
-        <a href="#cases" style="display:inline-flex;align-items:center;gap:10px;border:1px solid rgba(255,255,255,.26);color:#fff;font-size:1rem;font-weight:500;padding:15px 28px;border-radius:100px;transition:background .15s,border-color .15s" style-hover="background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.5);color:#fff">Ver o que já entregamos</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="contexto" style="position:relative;background:#060B14">
-  <div style="max-width:1160px;margin:0 auto;padding:clamp(80px,9vw,120px) 24px">
-    <div data-anim="1" style="display:flex;align-items:center;gap:12px;margin-bottom:24px">
-      <span style="width:28px;height:1.5px;background:#2EE8A8"></span>
-      <span style="font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#2EE8A8">O que está em jogo</span>
-    </div>
-    <h2 data-anim="1" data-d="1" style="font-weight:800;font-size:clamp(2rem,4.2vw,3.4rem);line-height:1.08;letter-spacing:-.03em;color:#fff;max-width:22ch;margin-bottom:clamp(48px,6vw,72px);text-wrap:pretty">O mundo mudou desde que a sua empresa foi fundada.</h2>
-    <div style="display:grid;grid-template-columns:1.3fr 1fr;gap:clamp(40px,6vw,72px);align-items:center">
-      <div data-anim="1" data-d="2" data-chart="1">
-        
-      <svg viewBox="0 0 600 380" style="width:100%;height:auto;display:block;overflow:visible">
-          <defs>
-            <linearGradient id="olGapGrad" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#2EE8A8" stop-opacity="0.22"></stop>
-              <stop offset="100%" stop-color="#2EE8A8" stop-opacity="0.02"></stop>
-            </linearGradient>
-          </defs>
-          <line x1="58" y1="336" x2="580" y2="336" stroke="#1F2C46" stroke-width="1.5"></line>
-          <line x1="58" y1="24" x2="58" y2="336" stroke="#1F2C46" stroke-width="1.5"></line>
-          <path data-chart-gap="1" d="M58.0,332.0 L68.8,330.9 L79.7,329.8 L90.5,328.6 L101.3,327.5 L112.2,326.2 L123.0,324.9 L133.8,323.4 L144.7,321.9 L155.5,320.3 L166.3,318.5 L177.2,316.6 L188.0,314.5 L198.8,312.2 L209.7,309.8 L220.5,307.1 L231.3,304.2 L242.2,301.1 L253.0,297.8 L263.8,294.2 L274.7,290.2 L285.5,286.1 L296.3,281.7 L307.2,276.8 L318.0,271.8 L328.8,266.3 L339.7,260.5 L350.5,254.3 L361.3,247.7 L372.2,240.8 L383.0,233.4 L393.8,225.6 L404.7,217.3 L415.5,208.7 L426.3,199.5 L437.2,189.8 L448.0,179.7 L458.8,169.1 L469.7,157.8 L480.5,146.1 L491.3,133.8 L502.2,120.9 L513.0,107.6 L523.8,93.6 L534.7,78.8 L545.5,63.6 L556.3,47.8 L567.2,31.1 L578.0,14.0 L578.0,272.0 L567.2,273.4 L556.3,274.8 L545.5,276.2 L534.7,277.6 L523.8,279.0 L513.0,280.4 L502.2,281.7 L491.3,283.1 L480.5,284.5 L469.7,285.8 L458.8,287.2 L448.0,288.5 L437.2,289.8 L426.3,291.2 L415.5,292.5 L404.7,293.8 L393.8,295.1 L383.0,296.4 L372.2,297.7 L361.3,298.9 L350.5,300.2 L339.7,301.5 L328.8,302.7 L318.0,304.0 L307.2,305.2 L296.3,306.5 L285.5,307.7 L274.7,308.9 L263.8,310.2 L253.0,311.4 L242.2,312.6 L231.3,313.8 L220.5,315.0 L209.7,316.2 L198.8,317.3 L188.0,318.5 L177.2,319.7 L166.3,320.8 L155.5,322.0 L144.7,323.1 L133.8,324.2 L123.0,325.4 L112.2,326.5 L101.3,327.6 L90.5,328.7 L79.7,329.8 L68.8,330.9 L58.0,332.0 Z" fill="url(#olGapGrad)" opacity="0" style="transition:opacity 1s ease .5s"></path>
-          <path data-chart-curve="biz" d="M58.0,332.0 L68.8,330.9 L79.7,329.8 L90.5,328.7 L101.3,327.6 L112.2,326.5 L123.0,325.4 L133.8,324.2 L144.7,323.1 L155.5,322.0 L166.3,320.8 L177.2,319.7 L188.0,318.5 L198.8,317.3 L209.7,316.2 L220.5,315.0 L231.3,313.8 L242.2,312.6 L253.0,311.4 L263.8,310.2 L274.7,308.9 L285.5,307.7 L296.3,306.5 L307.2,305.2 L318.0,304.0 L328.8,302.7 L339.7,301.5 L350.5,300.2 L361.3,298.9 L372.2,297.7 L383.0,296.4 L393.8,295.1 L404.7,293.8 L415.5,292.5 L426.3,291.2 L437.2,289.8 L448.0,288.5 L458.8,287.2 L469.7,285.8 L480.5,284.5 L491.3,283.1 L502.2,281.7 L513.0,280.4 L523.8,279.0 L534.7,277.6 L545.5,276.2 L556.3,274.8 L567.2,273.4 L578.0,272.0" fill="none" stroke="#E0996A" stroke-width="3" stroke-linecap="round" stroke-dasharray="700" stroke-dashoffset="700" style="transition:stroke-dashoffset 1.6s cubic-bezier(.3,.7,.3,1)"></path>
-          <path data-chart-curve="tech" d="M58.0,332.0 L68.8,330.9 L79.7,329.8 L90.5,328.6 L101.3,327.5 L112.2,326.2 L123.0,324.9 L133.8,323.4 L144.7,321.9 L155.5,320.3 L166.3,318.5 L177.2,316.6 L188.0,314.5 L198.8,312.2 L209.7,309.8 L220.5,307.1 L231.3,304.2 L242.2,301.1 L253.0,297.8 L263.8,294.2 L274.7,290.2 L285.5,286.1 L296.3,281.7 L307.2,276.8 L318.0,271.8 L328.8,266.3 L339.7,260.5 L350.5,254.3 L361.3,247.7 L372.2,240.8 L383.0,233.4 L393.8,225.6 L404.7,217.3 L415.5,208.7 L426.3,199.5 L437.2,189.8 L448.0,179.7 L458.8,169.1 L469.7,157.8 L480.5,146.1 L491.3,133.8 L502.2,120.9 L513.0,107.6 L523.8,93.6 L534.7,78.8 L545.5,63.6 L556.3,47.8 L567.2,31.1 L578.0,14.0" fill="none" stroke="#2EE8A8" stroke-width="3.5" stroke-linecap="round" stroke-dasharray="1600" stroke-dashoffset="1600" style="filter:drop-shadow(0 0 8px rgba(46,232,168,.5));transition:stroke-dashoffset 1.8s cubic-bezier(.3,.7,.3,1) .2s"></path>
-          <circle data-chart-dot="1" cx="415.5" cy="254.6" r="5" fill="#2EE8A8" opacity="0" style="transition:opacity .5s ease 1.8s"></circle>
-          <text x="478" y="30" style="font-family:'Inter',sans-serif;font-size:15px;font-weight:700;fill:#2EE8A8">Tecnologia</text>
-          <text x="486" y="298" style="font-family:'Inter',sans-serif;font-size:15px;font-weight:700;fill:#E0996A">Negócios</text>
-          <text x="18" y="180" transform="rotate(-90,18,180)" style="font-family:'Inter',sans-serif;font-size:11px;font-weight:800;letter-spacing:.16em;fill:#71839B">MUDANÇA</text>
-          <text x="300" y="366" style="font-family:'Inter',sans-serif;font-size:11px;font-weight:800;letter-spacing:.16em;fill:#71839B">TEMPO</text>
-        </svg></div>
-      <div data-anim="1" data-d="3" style="border-left:1.5px solid rgba(255,255,255,.18);padding-left:clamp(24px,3vw,40px)">
-        <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px">
-          <span style="width:24px;height:1.5px;background:#2EE8A8"></span>
-          <span style="font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#2EE8A8">O gap de adoção</span>
-        </div>
-        <p style="font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:clamp(1.3rem,2vw,1.7rem);line-height:1.4;color:#fff;max-width:34ch">A tecnologia evoluiu em <em style="font-style:italic;color:#2EE8A8">ritmo exponencial</em> e o gap de adoção faz com que surjam ineficiências que <em style="font-style:italic;color:#2EE8A8">sugam a margem</em> dos negócios.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section style="position:relative;z-index:2;background:#060B14;color:#fff">
-  <div style="max-width:920px;margin:0 auto;padding:clamp(88px,10vw,132px) 24px;display:flex;flex-direction:column;align-items:center;text-align:center">
-    <div data-anim="1" style="display:flex;align-items:center;gap:12px;margin-bottom:32px">
-      <span style="width:28px;height:1.5px;background:#2EE8A8"></span>
-      <span style="font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#2EE8A8">Onde a operação trava</span>
-    </div>
-    <h2 data-anim="1" data-d="1" style="font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:clamp(2.2rem,4.6vw,3.6rem);line-height:1.14;letter-spacing:-.01em;color:#fff;max-width:26ch;margin-bottom:clamp(40px,5vw,56px);text-wrap:balance">A margem não some de repente. Ela <em style="font-style:italic;color:#2EE8A8">vaza nas frestas</em> entre sistemas que não conversam.</h2>
-    <div data-anim="1" data-d="2" style="display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-bottom:clamp(40px,5vw,56px)">
-      <span style="background:rgba(29,122,98,.16);border:1px solid rgba(46,232,168,.35);border-radius:100px;padding:14px 26px;font-size:.9375rem;font-style:italic;color:#EAF3EF;line-height:1.3;white-space:nowrap">“A gente controla isso numa planilha.”</span>
-      <span style="background:rgba(29,122,98,.16);border:1px solid rgba(46,232,168,.35);border-radius:100px;padding:14px 26px;font-size:.9375rem;font-style:italic;color:#EAF3EF;line-height:1.3;white-space:nowrap">“Isso aí tá na cabeça do meu gerente.”</span>
-      <span style="background:rgba(29,122,98,.16);border:1px solid rgba(46,232,168,.35);border-radius:100px;padding:14px 26px;font-size:.9375rem;font-style:italic;color:#EAF3EF;line-height:1.3;white-space:nowrap">“Passo de um sistema pro outro na mão.”</span>
-      <span style="background:rgba(29,122,98,.16);border:1px solid rgba(46,232,168,.35);border-radius:100px;padding:14px 26px;font-size:.9375rem;font-style:italic;color:#EAF3EF;line-height:1.3;white-space:nowrap">“Tô crescendo, mas a operação não acompanha.”</span>
-      <span style="background:rgba(29,122,98,.16);border:1px solid rgba(46,232,168,.35);border-radius:100px;padding:14px 26px;font-size:.9375rem;font-style:italic;color:#EAF3EF;line-height:1.3;white-space:nowrap">“O ERP não me dá esse relatório.”</span>
-      <span style="background:rgba(29,122,98,.16);border:1px solid rgba(46,232,168,.35);border-radius:100px;padding:14px 26px;font-size:.9375rem;font-style:italic;color:#EAF3EF;line-height:1.3;white-space:nowrap">“Paguei caro por um sistema e não ficou bom.”</span>
-    </div>
-  </div>
-</section>
-
-<section style="position:relative;z-index:2;background:#060B14;overflow:hidden">
-  <div style="position:absolute;inset:0;z-index:0;opacity:.6;background:radial-gradient(56% 46% at 82% 10%,rgba(255,174,107,.14),transparent 62%)"></div>
-  <div style="position:relative;z-index:1;max-width:1160px;margin:0 auto;padding:clamp(80px,9vw,120px) 24px">
-    <div data-anim="1" style="display:flex;align-items:center;gap:12px;margin-bottom:24px">
-      <span style="width:28px;height:1.5px;background:#FFAE6B"></span>
-      <span style="font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#FFAE6B">Além do chão de fábrica</span>
-    </div>
-    <h2 data-anim="1" data-d="1" style="font-weight:800;font-size:clamp(1.8rem,3.3vw,2.7rem);line-height:1.1;letter-spacing:-.03em;color:#fff;margin-bottom:clamp(40px,5vw,56px);max-width:22ch">Assim é o cenário de muitas empresas.</h2>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:20px">
-      <div data-anim="1" data-d="1" style="background:#0D1426;border:1px solid rgba(255,174,107,.32);border-radius:14px;padding:24px">
-        <span style="display:inline-flex;width:40px;height:40px;border-radius:10px;background:rgba(255,174,107,.12);border:1px solid rgba(255,174,107,.35);align-items:center;justify-content:center;margin-bottom:16px"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#FFAE6B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path><path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3"></path></svg></span>
-        <div style="font-size:1.0625rem;font-weight:800;color:#fff;letter-spacing:-.015em;margin-bottom:12px">ERP</div>
-        <div style="display:grid;gap:7px">
-          <div style="display:flex;gap:8px;align-items:baseline"><span style="width:4px;height:4px;border-radius:50%;background:#FFAE6B;flex-shrink:0"></span><span style="font-size:.875rem;color:#E8B892">faltam relatórios</span></div>
-          <div style="display:flex;gap:8px;align-items:baseline"><span style="width:4px;height:4px;border-radius:50%;background:#FFAE6B;flex-shrink:0"></span><span style="font-size:.875rem;color:#E8B892">informação chega atrasada</span></div>
-        </div>
-      </div>
-      <div data-anim="1" data-d="2" style="background:#0D1426;border:1px solid rgba(255,174,107,.32);border-radius:14px;padding:24px">
-        <span style="display:inline-flex;width:40px;height:40px;border-radius:10px;background:rgba(255,174,107,.12);border:1px solid rgba(255,174,107,.35);align-items:center;justify-content:center;margin-bottom:16px"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#FFAE6B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="18" rx="2"></rect><path d="M2 9h20M2 15h20M9 3v18M15 3v18"></path></svg></span>
-        <div style="font-size:1.0625rem;font-weight:800;color:#fff;letter-spacing:-.015em;margin-bottom:12px">Planilhas</div>
-        <div style="display:grid;gap:7px">
-          <div style="display:flex;gap:8px;align-items:baseline"><span style="width:4px;height:4px;border-radius:50%;background:#FFAE6B;flex-shrink:0"></span><span style="font-size:.875rem;color:#E8B892">arquivos perdidos</span></div>
-          <div style="display:flex;gap:8px;align-items:baseline"><span style="width:4px;height:4px;border-radius:50%;background:#FFAE6B;flex-shrink:0"></span><span style="font-size:.875rem;color:#E8B892">erros de fórmula e digitação</span></div>
-        </div>
-      </div>
-      <div data-anim="1" data-d="3" style="background:#0D1426;border:1px solid rgba(255,174,107,.32);border-radius:14px;padding:24px">
-        <span style="display:inline-flex;width:40px;height:40px;border-radius:10px;background:rgba(255,174,107,.12);border:1px solid rgba(255,174,107,.35);align-items:center;justify-content:center;margin-bottom:16px"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#FFAE6B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-8.5 8.4 8.5 8.5 0 0 1-4-1L3 20l1.3-3.9a8.5 8.5 0 0 1-1-4A8.38 8.38 0 0 1 11.8 4a8.5 8.5 0 0 1 9.2 7.5Z"></path></svg></span>
-        <div style="font-size:1.0625rem;font-weight:800;color:#fff;letter-spacing:-.015em;margin-bottom:12px">WhatsApp</div>
-        <div style="display:grid;gap:7px">
-          <div style="display:flex;gap:8px;align-items:baseline"><span style="width:4px;height:4px;border-radius:50%;background:#FFAE6B;flex-shrink:0"></span><span style="font-size:.875rem;color:#E8B892">áudio que vira OS</span></div>
-          <div style="display:flex;gap:8px;align-items:baseline"><span style="width:4px;height:4px;border-radius:50%;background:#FFAE6B;flex-shrink:0"></span><span style="font-size:.875rem;color:#E8B892">decisões sem registro</span></div>
-        </div>
-      </div>
-      <div data-anim="1" data-d="4" style="background:#0D1426;border:1px solid rgba(255,174,107,.32);border-radius:14px;padding:24px">
-        <span style="display:inline-flex;width:40px;height:40px;border-radius:10px;background:rgba(255,174,107,.12);border:1px solid rgba(255,174,107,.35);align-items:center;justify-content:center;margin-bottom:16px"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#FFAE6B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m2 7 10 6 10-6"></path></svg></span>
-        <div style="font-size:1.0625rem;font-weight:800;color:#fff;letter-spacing:-.015em;margin-bottom:12px">E-mail</div>
-        <div style="display:grid;gap:7px">
-          <div style="display:flex;gap:8px;align-items:baseline"><span style="width:4px;height:4px;border-radius:50%;background:#FFAE6B;flex-shrink:0"></span><span style="font-size:.875rem;color:#E8B892">decisões perdidas</span></div>
-          <div style="display:flex;gap:8px;align-items:baseline"><span style="width:4px;height:4px;border-radius:50%;background:#FFAE6B;flex-shrink:0"></span><span style="font-size:.875rem;color:#E8B892">responsáveis de férias</span></div>
-        </div>
-      </div>
-      <div data-anim="1" data-d="5" style="background:#0D1426;border:1px solid rgba(255,174,107,.32);border-radius:14px;padding:24px">
-        <span style="display:inline-flex;width:40px;height:40px;border-radius:10px;background:rgba(255,174,107,.12);border:1px solid rgba(255,174,107,.35);align-items:center;justify-content:center;margin-bottom:16px"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#FFAE6B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M6 21V10M11 21V6M16 21v-8M21 21V3"></path></svg></span>
-        <div style="font-size:1.0625rem;font-weight:800;color:#fff;letter-spacing:-.015em;margin-bottom:12px">BI</div>
-        <div style="display:grid;gap:7px">
-          <div style="display:flex;gap:8px;align-items:baseline"><span style="width:4px;height:4px;border-radius:50%;background:#FFAE6B;flex-shrink:0"></span><span style="font-size:.875rem;color:#E8B892">dashboard com dados não confiáveis</span></div>
-          <div style="display:flex;gap:8px;align-items:baseline"><span style="width:4px;height:4px;border-radius:50%;background:#FFAE6B;flex-shrink:0"></span><span style="font-size:.875rem;color:#E8B892">dados desatualizados</span></div>
-        </div>
-      </div>
-      <div data-anim="1" data-d="6" style="background:#0D1426;border:1px solid rgba(255,174,107,.32);border-radius:14px;padding:24px">
-        <span style="display:inline-flex;width:40px;height:40px;border-radius:10px;background:rgba(255,174,107,.12);border:1px solid rgba(255,174,107,.35);align-items:center;justify-content:center;margin-bottom:16px"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#FFAE6B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></span>
-        <div style="font-size:1.0625rem;font-weight:800;color:#fff;letter-spacing:-.015em;margin-bottom:12px">Pessoas</div>
-        <div style="display:grid;gap:7px">
-          <div style="display:flex;gap:8px;align-items:baseline"><span style="width:4px;height:4px;border-radius:50%;background:#FFAE6B;flex-shrink:0"></span><span style="font-size:.875rem;color:#E8B892">conhecimento centralizado</span></div>
-          <div style="display:flex;gap:8px;align-items:baseline"><span style="width:4px;height:4px;border-radius:50%;background:#FFAE6B;flex-shrink:0"></span><span style="font-size:.875rem;color:#E8B892">qualidade cai nas férias dele</span></div>
-        </div>
-      </div>
-    </div>
-    <div data-anim="1" data-d="2" style="border:1px dashed rgba(255,174,107,.45);background:rgba(255,174,107,.05);border-radius:16px;padding:clamp(26px,3.5vw,36px);text-align:center;margin-bottom:clamp(32px,4vw,44px)">
-      <p style="font-family:'Instrument Serif',Georgia,serif;font-style:italic;font-size:clamp(1.3rem,2.2vw,1.7rem);color:#FFAE6B">A operação roda no escuro.</p>
-    </div>
-    <p data-anim="1" style="font-size:1rem;line-height:1.7;color:#94A3B8;max-width:70ch;text-align:center;margin:0 auto">Nada disso aparece como prejuízo no balanço. Aparece como <strong style="color:#FFAE6B;font-weight:600">retrabalho</strong>, <strong style="color:#FFAE6B;font-weight:600">hora extra</strong>, <strong style="color:#FFAE6B;font-weight:600">entrega atrasada</strong> — e <strong style="color:#FFAE6B;font-weight:600">atrito no relacionamento com o cliente</strong>.</p>
-  </div>
-</section>
-
-<section style="position:relative;z-index:2;background:#060B14;min-height:60vh;display:flex;align-items:center;justify-content:center;padding:80px 24px">
-  <p data-anim="1" style="font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:clamp(2rem,4.4vw,3.4rem);line-height:1.15;letter-spacing:-.01em;color:#fff;text-align:center;max-width:820px;text-wrap:balance">É por isso que a <em style="font-style:italic;color:#2EE8A8">Origami Lab</em> existe.</p>
-</section>
-
-
-<section style="position:relative;background:linear-gradient(168deg,#17564A 0%,#12463A 28%,#0D3229 55%,#091C1B 78%,#05070D 100%)">
-  <div style="position:absolute;inset:0;z-index:0;opacity:.16;background:radial-gradient(60% 50% at 78% 18%,rgba(46,232,168,.55),transparent 70%)"></div>
-  <div style="position:relative;z-index:1;max-width:1160px;margin:0 auto;padding:clamp(96px,11vw,150px) 24px clamp(104px,12vw,168px)">
-    <div style="display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(40px,6vw,72px);align-items:center">
-      <div>
-        <div data-anim="1" style="display:flex;align-items:center;gap:12px;margin-bottom:26px">
-          <span style="width:28px;height:1.5px;background:#2EE8A8"></span>
-          <span style="font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#2EE8A8">Quem somos</span>
-        </div>
-        <h2 data-anim="1" data-d="1" style="font-weight:800;font-size:clamp(2rem,4vw,3.1rem);line-height:1.1;letter-spacing:-.03em;color:#fff;max-width:16ch;margin-bottom:26px">Somos o parceiro que moderniza a operação das grandes empresas tradicionais.</h2>
-        <p data-anim="1" data-d="2" style="font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:clamp(1.35rem,2.5vw,2rem);line-height:1.3;color:#fff;max-width:26ch">Modernizar não é abrir mão do que deu certo. É <em style="font-style:italic;color:#2EE8A8">fortalecer o legado.</em></p>
-      </div>
-      <figure data-anim="1" data-d="3" style="border-radius:20px;overflow:hidden;aspect-ratio:4/5;box-shadow:0 0 0 1px rgba(255,255,255,.24),0 32px 80px rgba(0,0,0,.42);margin:0">
-        <img src="assets/pitch-09.webp" alt="Time da Origami Lab em reunião de trabalho" style="width:100%;height:100%;object-fit:cover;display:block">
-      </figure>
-    </div>
-  </div>
-</section>
-
-<section style="position:relative;z-index:2;background:#05070D">
-  <div style="max-width:1160px;margin:0 auto;padding:clamp(88px,10vw,132px) 24px">
-    <div style="display:grid;grid-template-columns:.82fr 1.18fr;gap:clamp(40px,6vw,72px);align-items:center">
-      <figure data-anim="1" style="border-radius:20px;overflow:hidden;aspect-ratio:4/5;box-shadow:0 0 0 1px rgba(255,255,255,.22),0 40px 80px rgba(0,0,0,.5);margin:0">
-        <img src="./img_9448-3-msgohzbl-l378.jpg" alt="img_9448-3" width="2219" height="3945" style="max-width: 100%; height: auto; display: block; object-fit: cover; width: 2219px; aspect-ratio: 2219 / 3945"><img src="assets/pitch-10.webp" alt="Sócios e time da Origami Lab" style="width:100%;height:100%;object-fit:cover;display:block">
-      </figure>
-      <div>
-        <div data-anim="1" style="display:flex;align-items:center;gap:12px;margin-bottom:24px">
-          <span style="width:28px;height:1.5px;background:#2EE8A8"></span>
-          <span style="font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#2EE8A8">O seu legado em boas mãos</span>
-        </div>
-        <h2 data-anim="1" data-d="1" style="font-weight:800;font-size:clamp(2rem,3.6vw,2.9rem);line-height:1.1;letter-spacing:-.03em;color:#fff;margin-bottom:20px">A experiência das gigantes<br><span style="color:#2EE8A8;font-style:italic;font-family:'Instrument Serif',Georgia,serif;font-weight:400">aqui do seu lado.</span></h2>
-        <p data-anim="1" data-d="2" style="font-size:1.0625rem;line-height:1.65;color:#C3D0DE;max-width:42ch;margin-bottom:clamp(28px,3vw,36px)">Antes da Origami, os nossos sócios construíram soluções dentro de <strong style="color:#fff;font-weight:600">algumas das maiores operações do país</strong>.</p>
-        <div data-anim="1" data-d="3" style="display:flex;flex-direction:column;gap:10px;margin-bottom:24px">
-          <div style="display:flex;gap:10px">
-            <span style="flex:1;text-align:center;font-size:.9375rem;font-weight:700;color:#fff;background:#0D1426;border:1px solid #1A2540;border-radius:9px;padding:11px 14px">Vale</span>
-            <span style="flex:1;text-align:center;font-size:.9375rem;font-weight:700;color:#fff;background:#0D1426;border:1px solid #1A2540;border-radius:9px;padding:11px 14px">AB InBev</span>
-            <span style="flex:1;text-align:center;font-size:.9375rem;font-weight:700;color:#fff;background:#0D1426;border:1px solid #1A2540;border-radius:9px;padding:11px 14px">Deloitte</span>
-            <span style="flex:1;text-align:center;font-size:.9375rem;font-weight:700;color:#fff;background:#0D1426;border:1px solid #1A2540;border-radius:9px;padding:11px 14px">Localiza</span>
-          </div>
-          <div style="display:flex;gap:10px">
-            <span style="flex:1;text-align:center;font-size:.9375rem;font-weight:700;color:#fff;background:#0D1426;border:1px solid #1A2540;border-radius:9px;padding:11px 14px">MRV</span>
-            <span style="flex:1;text-align:center;font-size:.9375rem;font-weight:700;color:#fff;background:#0D1426;border:1px solid #1A2540;border-radius:9px;padding:11px 14px">Inter</span>
-            <span style="flex:1;text-align:center;font-size:.9375rem;font-weight:700;color:#fff;background:#0D1426;border:1px solid #1A2540;border-radius:9px;padding:11px 14px">ESAB</span>
-            <span style="flex:1;text-align:center;font-size:.9375rem;font-weight:700;color:#fff;background:#0D1426;border:1px solid #1A2540;border-radius:9px;padding:11px 14px">Thoughtworks</span>
-          </div>
-        </div>
-        <div data-anim="1" data-d="4" style="display:flex;flex-wrap:wrap;gap:10px 24px">
-          <span style="display:flex;align-items:center;gap:9px;font-size:.9rem;color:#94A3B8;font-weight:500"><span style="width:6px;height:6px;border-radius:50%;background:#2EE8A8;flex-shrink:0"></span>Fundação Dom Cabral</span>
-          <span style="display:flex;align-items:center;gap:9px;font-size:.9rem;color:#94A3B8;font-weight:500"><span style="width:6px;height:6px;border-radius:50%;background:#2EE8A8;flex-shrink:0"></span>Credenciados AWS</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="cases" style="position:relative;z-index:2;background:#F2F4F3;color:#0D1426">
-  <div style="max-width:1160px;margin:0 auto;padding:clamp(80px,9vw,120px) 24px">
-    <div data-anim="1" style="display:flex;align-items:center;gap:12px;margin-bottom:24px">
-      <span style="width:28px;height:1.5px;background:#1D7A62"></span>
-      <span style="font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#1D7A62">Desenvolvimento e implantação</span>
-    </div>
-    <h2 data-anim="1" data-d="1" style="font-weight:800;font-size:clamp(2rem,3.6vw,3rem);line-height:1.08;letter-spacing:-.03em;color:#0D1426;margin-bottom:clamp(48px,6vw,72px)">Tiramos a operação do escuro.</h2>
-    <div style="display:grid;grid-template-columns:.86fr 1.14fr;gap:clamp(32px,5vw,64px);align-items:center">
-      <div data-anim="1" data-d="2">
-        <svg viewBox="0 0 560 420" style="width:100%;height:auto;display:block">
-          <circle cx="280" cy="205" r="96" fill="none" stroke="#1D7A62" stroke-opacity=".18" stroke-width="12"></circle>
-          <circle cx="280" cy="205" r="80" fill="#1D7A62"></circle>
-          <text x="280" y="198" text-anchor="middle" style="font-family:'Instrument Serif',Georgia,serif;font-style:italic;font-size:24px;fill:#fff">Operação</text>
-          <text x="280" y="226" text-anchor="middle" style="font-family:'Instrument Serif',Georgia,serif;font-style:italic;font-size:24px;fill:#fff">Integrada</text>
-          <path d="M142,45 L221.9,137.6" fill="none" stroke="#1D7A62" stroke-opacity=".5" stroke-width="1.8"></path>
-          <path d="M418,45 L338.1,137.6" fill="none" stroke="#1D7A62" stroke-opacity=".5" stroke-width="1.8"></path>
-          <path d="M142,205 L191,205" fill="none" stroke="#1D7A62" stroke-opacity=".5" stroke-width="1.8"></path>
-          <path d="M418,205 L369,205" fill="none" stroke="#1D7A62" stroke-opacity=".5" stroke-width="1.8"></path>
-          <path d="M142,365 L221.9,272.4" fill="none" stroke="#1D7A62" stroke-opacity=".5" stroke-width="1.8"></path>
-          <path d="M418,365 L338.1,272.4" fill="none" stroke="#1D7A62" stroke-opacity=".5" stroke-width="1.8"></path>
-          <text x="118" y="51" text-anchor="end" style="font-family:'Inter',sans-serif;font-size:17px;font-weight:700;fill:#0D1426">ERP</text>
-          <circle cx="130" cy="45" r="3" fill="#1D7A62"></circle>
-          <text x="442" y="51" text-anchor="start" style="font-family:'Inter',sans-serif;font-size:17px;font-weight:700;fill:#0D1426">Planilhas</text>
-          <circle cx="430" cy="45" r="3" fill="#1D7A62"></circle>
-          <text x="118" y="211" text-anchor="end" style="font-family:'Inter',sans-serif;font-size:17px;font-weight:700;fill:#0D1426">WhatsApp</text>
-          <circle cx="130" cy="205" r="3" fill="#1D7A62"></circle>
-          <text x="442" y="211" text-anchor="start" style="font-family:'Inter',sans-serif;font-size:17px;font-weight:700;fill:#0D1426">E-mail</text>
-          <circle cx="430" cy="205" r="3" fill="#1D7A62"></circle>
-          <text x="118" y="371" text-anchor="end" style="font-family:'Inter',sans-serif;font-size:17px;font-weight:700;fill:#0D1426">BI</text>
-          <circle cx="130" cy="365" r="3" fill="#1D7A62"></circle>
-          <text x="442" y="371" text-anchor="start" style="font-family:'Inter',sans-serif;font-size:17px;font-weight:700;fill:#0D1426">Pessoas</text>
-          <circle cx="430" cy="365" r="3" fill="#1D7A62"></circle>
-        </svg>
-      </div>
-      <div data-anim="1" data-d="3" style="display:grid;gap:0">
-        <div style="display:flex;gap:14px;padding:14px 0"><span style="font-family:'Instrument Serif',Georgia,serif;font-size:1.1rem;color:#1D7A62;width:22px;flex-shrink:0">01</span><div><h4 style="font-size:1.0625rem;font-weight:800;letter-spacing:-.02em;color:#0D1426;margin-bottom:4px">Gestão da operação em tempo real</h4><p style="font-size:.9375rem;color:#3C4B44;line-height:1.55">O que acontece na ponta chega na hora, sem papel nem digitação no caminho.</p></div></div>
-        <div style="display:flex;gap:14px;padding:14px 0;border-top:1px solid #D9D9D9"><span style="font-family:'Instrument Serif',Georgia,serif;font-size:1.1rem;color:#1D7A62;width:22px;flex-shrink:0">02</span><div><h4 style="font-size:1.0625rem;font-weight:800;letter-spacing:-.02em;color:#0D1426;margin-bottom:4px">Processo digitalizado de ponta a ponta</h4><p style="font-size:.9375rem;color:#3C4B44;line-height:1.55">Do pedido à expedição, num fluxo só — com rastro de quem fez e quando.</p></div></div>
-        <div style="display:flex;gap:14px;padding:14px 0;border-top:1px solid #D9D9D9"><span style="font-family:'Instrument Serif',Georgia,serif;font-size:1.1rem;color:#1D7A62;width:22px;flex-shrink:0">03</span><div><h4 style="font-size:1.0625rem;font-weight:800;letter-spacing:-.02em;color:#0D1426;margin-bottom:4px">Os sistemas passam a conversar</h4><p style="font-size:.9375rem;color:#3C4B44;line-height:1.55">O que já funciona continua de pé. O retrabalho entre um e outro acaba.</p></div></div>
-        <div style="display:flex;gap:14px;padding:14px 0;border-top:1px solid #D9D9D9"><span style="font-family:'Instrument Serif',Georgia,serif;font-size:1.1rem;color:#1D7A62;width:22px;flex-shrink:0">04</span><div><h4 style="font-size:1.0625rem;font-weight:800;letter-spacing:-.02em;color:#0D1426;margin-bottom:4px">Autonomia total</h4><p style="font-size:.9375rem;color:#3C4B44;line-height:1.55">Construímos, implantamos, treinamos pessoas e acompanhamos até a operação rodar sozinha.</p></div></div>
-        <div style="display:flex;gap:14px;padding:14px 0;border-top:1px solid #D9D9D9"><span style="font-family:'Instrument Serif',Georgia,serif;font-size:1.1rem;color:#1D7A62;width:22px;flex-shrink:0">05</span><div><h4 style="font-size:1.0625rem;font-weight:800;letter-spacing:-.02em;color:#0D1426">Você escolhe onde vamos atuar.</h4></div></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section style="position:relative;z-index:2;background:#fff;color:#0D1426;border-top:1px solid #E1E5E3">
-  <div style="max-width:1160px;margin:0 auto;padding:clamp(80px,9vw,120px) 24px">
-    <div data-anim="1" style="display:flex;align-items:center;gap:12px;margin-bottom:24px">
-      <span style="width:28px;height:1.5px;background:#1D7A62"></span>
-      <span style="font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#1D7A62">Quem já confia</span>
-    </div>
-    <h2 data-anim="1" data-d="1" style="font-weight:800;font-size:clamp(1.9rem,3.4vw,2.8rem);line-height:1.15;letter-spacing:-.03em;color:#0D1426;margin-bottom:clamp(40px,5vw,56px)">Indústria, engenharia e serviços —<br><em style="font-style:italic;color:#1D7A62;font-family:'Instrument Serif',Georgia,serif;font-weight:400">operações reais, transformadas.</em></h2>
-    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:16px">
-      <div data-anim="1" data-d="1" style="border:1px solid #E1E5E3;border-radius:16px;background:#fff;padding:20px;display:flex;flex-direction:column;gap:14px;transition:border-color .3s ease,box-shadow .3s ease,transform .3s ease" style-hover="border-color:rgba(29,122,98,.4);box-shadow:0 20px 40px rgba(9,15,30,.1);transform:translateY(-3px)">
-        <div style="height:56px;display:flex;align-items:center;justify-content:center"><img src="assets/clients/tecno2000.png" alt="Tecno 2000" style="max-width:88%;max-height:100%;object-fit:contain"></div>
-        <div><div style="font-family:'Instrument Serif',Georgia,serif;font-size:1.05rem;color:#0D1426">Tecno 2000</div><div style="font-size:.7rem;letter-spacing:.09em;text-transform:uppercase;color:#6C7B73;font-weight:600;margin-top:4px">Mobiliário corporativo</div></div>
-      </div>
-      <div data-anim="1" data-d="2" style="border:1px solid #E1E5E3;border-radius:16px;background:#fff;padding:20px;display:flex;flex-direction:column;gap:14px;transition:border-color .3s ease,box-shadow .3s ease,transform .3s ease" style-hover="border-color:rgba(29,122,98,.4);box-shadow:0 20px 40px rgba(9,15,30,.1);transform:translateY(-3px)">
-        <div style="height:56px;display:flex;align-items:center;justify-content:center"><img src="assets/clients/prumo.webp" alt="Prumo Engenharia" style="max-width:88%;max-height:100%;object-fit:contain"></div>
-        <div><div style="font-family:'Instrument Serif',Georgia,serif;font-size:1.05rem;color:#0D1426">Prumo Engenharia</div><div style="font-size:.7rem;letter-spacing:.09em;text-transform:uppercase;color:#6C7B73;font-weight:600;margin-top:4px">Engenharia e manutenção</div></div>
-      </div>
-      <div data-anim="1" data-d="4" style="border:1px solid #E1E5E3;border-radius:16px;background:#fff;padding:20px;display:flex;flex-direction:column;gap:14px;transition:border-color .3s ease,box-shadow .3s ease,transform .3s ease" style-hover="border-color:rgba(29,122,98,.4);box-shadow:0 20px 40px rgba(9,15,30,.1);transform:translateY(-3px)">
-        <div style="height:56px;display:flex;align-items:center;justify-content:center"><img src="assets/clients/retifica.jpg" alt="Retífica Formiguense" style="max-width:88%;max-height:100%;object-fit:contain"></div>
-        <div><div style="font-family:'Instrument Serif',Georgia,serif;font-size:1.05rem;color:#0D1426">Retífica Formiguense</div><div style="font-size:.7rem;letter-spacing:.09em;text-transform:uppercase;color:#6C7B73;font-weight:600;margin-top:4px">Retífica e usinagem</div></div>
-      </div>
-      <div data-anim="1" data-d="5" style="border:1px solid #E1E5E3;border-radius:16px;background:#fff;padding:20px;display:flex;flex-direction:column;gap:14px;transition:border-color .3s ease,box-shadow .3s ease,transform .3s ease" style-hover="border-color:rgba(29,122,98,.4);box-shadow:0 20px 40px rgba(9,15,30,.1);transform:translateY(-3px)">
-        <div style="height:56px;display:flex;align-items:center;justify-content:center"><img src="assets/clients/cabral.png" alt="Transportadora Cabral" style="max-width:88%;max-height:100%;object-fit:contain"></div>
-        <div><div style="font-family:'Instrument Serif',Georgia,serif;font-size:1.05rem;color:#0D1426">Transportadora Cabral</div><div style="font-size:.7rem;letter-spacing:.09em;text-transform:uppercase;color:#6C7B73;font-weight:600;margin-top:4px">Transporte e logística</div></div>
-      </div>
-      <div data-anim="1" data-d="6" style="border:1px solid #E1E5E3;border-radius:16px;background:#fff;padding:20px;display:flex;flex-direction:column;gap:14px;transition:border-color .3s ease,box-shadow .3s ease,transform .3s ease" style-hover="border-color:rgba(29,122,98,.4);box-shadow:0 20px 40px rgba(9,15,30,.1);transform:translateY(-3px)">
-        <div style="height:56px;display:flex;align-items:center;justify-content:center"><img src="assets/clients/bry.png" alt="Bry" style="max-width:88%;max-height:100%;object-fit:contain"></div>
-        <div><div style="font-family:'Instrument Serif',Georgia,serif;font-size:1.05rem;color:#0D1426">Bry</div><div style="font-size:.7rem;letter-spacing:.09em;text-transform:uppercase;color:#6C7B73;font-weight:600;margin-top:4px">Tecnologia</div></div>
-      </div>
-      <div data-anim="1" data-d="7" style="border:1px solid #E1E5E3;border-radius:16px;background:#fff;padding:20px;display:flex;flex-direction:column;gap:14px;transition:border-color .3s ease,box-shadow .3s ease,transform .3s ease" style-hover="border-color:rgba(29,122,98,.4);box-shadow:0 20px 40px rgba(9,15,30,.1);transform:translateY(-3px)">
-        <div style="height:56px;display:flex;align-items:center;justify-content:center"><img src="assets/clients/sebrae.svg" alt="Sebrae" style="max-width:88%;max-height:100%;object-fit:contain"></div>
-        <div><div style="font-family:'Instrument Serif',Georgia,serif;font-size:1.05rem;color:#0D1426">Sebrae</div><div style="font-size:.7rem;letter-spacing:.09em;text-transform:uppercase;color:#6C7B73;font-weight:600;margin-top:4px">Programas de inovação</div></div>
-      </div>
-      <div data-anim="1" data-d="8" style="border:1px solid #E1E5E3;border-radius:16px;background:#fff;padding:20px;display:flex;flex-direction:column;gap:14px;transition:border-color .3s ease,box-shadow .3s ease,transform .3s ease" style-hover="border-color:rgba(29,122,98,.4);box-shadow:0 20px 40px rgba(9,15,30,.1);transform:translateY(-3px)">
-        <div style="height:56px;display:flex;align-items:center;justify-content:center"><img src="assets/clients/syngular.png" alt="Syngular ID" style="max-width:88%;max-height:100%;object-fit:contain"></div>
-        <div><div style="font-family:'Instrument Serif',Georgia,serif;font-size:1.05rem;color:#0D1426">Syngular ID</div><div style="font-size:.7rem;letter-spacing:.09em;text-transform:uppercase;color:#6C7B73;font-weight:600;margin-top:4px">Identidade digital</div></div>
-      </div>
-      <div data-anim="1" data-d="9" style="border:1px solid #E1E5E3;border-radius:16px;background:#fff;padding:20px;display:flex;flex-direction:column;gap:14px;transition:border-color .3s ease,box-shadow .3s ease,transform .3s ease" style-hover="border-color:rgba(29,122,98,.4);box-shadow:0 20px 40px rgba(9,15,30,.1);transform:translateY(-3px)">
-        <div style="height:56px;display:flex;align-items:center;justify-content:center"><img src="assets/clients/avante.png" alt="Avante" style="max-width:88%;max-height:100%;object-fit:contain"></div>
-        <div><div style="font-family:'Instrument Serif',Georgia,serif;font-size:1.05rem;color:#0D1426">Avante</div><div style="font-size:.7rem;letter-spacing:.09em;text-transform:uppercase;color:#6C7B73;font-weight:600;margin-top:4px">Tecnologia</div></div>
-      </div>
-      <div data-anim="1" data-d="10" style="border:1px solid #E1E5E3;border-radius:16px;background:#fff;padding:20px;display:flex;flex-direction:column;gap:14px;transition:border-color .3s ease,box-shadow .3s ease,transform .3s ease" style-hover="border-color:rgba(29,122,98,.4);box-shadow:0 20px 40px rgba(9,15,30,.1);transform:translateY(-3px)">
-        <div style="height:56px;display:flex;align-items:center;justify-content:center"><img src="assets/clients/sindinova.png" alt="Sindinova" style="max-width:88%;max-height:100%;object-fit:contain;border-radius:5px"></div>
-        <div><div style="font-family:'Instrument Serif',Georgia,serif;font-size:1.05rem;color:#0D1426">Sindinova</div><div style="font-size:.7rem;letter-spacing:.09em;text-transform:uppercase;color:#6C7B73;font-weight:600;margin-top:4px">Sindicato · polo calçadista</div></div>
-      </div>
-      <div data-anim="1" data-d="11" style="border:1px solid #E1E5E3;border-radius:16px;background:#fff;padding:20px;display:flex;flex-direction:column;gap:14px;transition:border-color .3s ease,box-shadow .3s ease,transform .3s ease" style-hover="border-color:rgba(29,122,98,.4);box-shadow:0 20px 40px rgba(9,15,30,.1);transform:translateY(-3px)">
-        <div style="height:56px;display:flex;align-items:center;justify-content:center"><img src="assets/clients/integrar.jpg" alt="Integrar Clínica" style="max-width:88%;max-height:100%;object-fit:contain;border-radius:5px"></div>
-        <div><div style="font-family:'Instrument Serif',Georgia,serif;font-size:1.05rem;color:#0D1426">Integrar Clínica</div><div style="font-size:.7rem;letter-spacing:.09em;text-transform:uppercase;color:#6C7B73;font-weight:600;margin-top:4px">Saúde</div></div>
-      </div>
-    </div>
-    <div data-anim="1" data-d="12" style="display:flex;flex-wrap:wrap;align-items:center;gap:12px 30px;margin-top:clamp(36px,4vw,48px);padding-top:26px;border-top:1px solid #E1E5E3">
-      <div style="display:flex;align-items:baseline;gap:9px"><strong style="font-family:'Instrument Serif',Georgia,serif;font-size:1.7rem;color:#1D7A62;line-height:1">9</strong><span style="font-size:.9375rem;color:#3C4B44">setores atendidos</span></div>
-      <div style="display:flex;align-items:baseline;gap:9px"><strong style="font-family:'Instrument Serif',Georgia,serif;font-size:1.7rem;color:#1D7A62;line-height:1">+20</strong><span style="font-size:.9375rem;color:#3C4B44">projetos entregues</span></div>
-      <div style="display:flex;align-items:baseline;gap:9px"><strong style="font-family:'Instrument Serif',Georgia,serif;font-size:1.7rem;color:#1D7A62;line-height:1">MG</strong><span style="font-size:.9375rem;color:#3C4B44">base em Formiga, atuação nacional</span></div>
-    </div>
-  </div>
-</section>
-
-<section id="como" style="position:relative;z-index:2;border-top:1px solid #E1E5E3;background:#F2F4F3;color:#0D1426">
-  <div style="max-width:1160px;margin:0 auto;padding:clamp(80px,9vw,120px) 24px">
-    <div data-anim="1" style="display:flex;align-items:center;gap:12px;margin-bottom:24px">
-      <span style="width:28px;height:1.5px;background:#1D7A62"></span>
-      <span style="font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#1D7A62">Três frentes, uma só operação</span>
-    </div>
-    <h2 data-anim="1" data-d="1" style="font-weight:800;font-size:clamp(1.8rem,3.3vw,2.7rem);line-height:1.1;letter-spacing:-.03em;color:#0D1426;max-width:26ch;margin-bottom:clamp(44px,5vw,64px)">Serviços de ponta a ponta para otimizar a sua operação.</h2>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
-      <div data-anim="1" data-d="2" style="position:relative;border:1px solid #D9D9D9;border-radius:18px;background:#fff;padding:clamp(26px,3vw,38px);display:flex;flex-direction:column;gap:16px;overflow:hidden;transition:border-color .3s ease,box-shadow .3s ease,transform .3s ease" style-hover="border-color:rgba(29,122,98,.4);box-shadow:0 24px 48px rgba(9,15,30,.12);transform:translateY(-4px)">
-        <span style="position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,#2EE8A8,#1D7A62)"></span>
-        <div style="font-family:'Instrument Serif',Georgia,serif;font-size:2.2rem;line-height:1;color:#1D7A62">01</div>
-        <h4 style="font-size:1.2rem;font-weight:700;letter-spacing:-.01em;color:#0D1426;line-height:1.25">Desenvolvimento e Implantação</h4>
-        <p style="font-size:1rem;color:#3C4B44;line-height:1.6">Desenvolvimento de software do <strong style="font-weight:700;color:#0D1426">Pedido ao Pós-vendas</strong>, para que a liderança faça gestão em tempo real.</p>
-      </div>
-      <div data-anim="1" data-d="3" style="position:relative;border:1px solid #D9D9D9;border-radius:18px;background:#fff;padding:clamp(26px,3vw,38px);display:flex;flex-direction:column;gap:16px;overflow:hidden;transition:border-color .3s ease,box-shadow .3s ease,transform .3s ease" style-hover="border-color:rgba(29,122,98,.4);box-shadow:0 24px 48px rgba(9,15,30,.12);transform:translateY(-4px)">
-        <span style="position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,#2EE8A8,#1D7A62)"></span>
-        <div style="font-family:'Instrument Serif',Georgia,serif;font-size:2.2rem;line-height:1;color:#1D7A62">02</div>
-        <h4 style="font-size:1.2rem;font-weight:700;letter-spacing:-.01em;color:#0D1426;line-height:1.25">Consultoria</h4>
-        <p style="font-size:1rem;color:#3C4B44;line-height:1.6">Diagnóstico da operação, priorização de portfólio, estratégia de produto e governança — para <strong style="font-weight:700;color:#0D1426">investir tecnologia onde ela move o resultado</strong>.</p>
-      </div>
-      <div data-anim="1" data-d="4" style="position:relative;border:1px solid #D9D9D9;border-radius:18px;background:#fff;padding:clamp(26px,3vw,38px);display:flex;flex-direction:column;gap:16px;overflow:hidden;transition:border-color .3s ease,box-shadow .3s ease,transform .3s ease" style-hover="border-color:rgba(29,122,98,.4);box-shadow:0 24px 48px rgba(9,15,30,.12);transform:translateY(-4px)">
-        <span style="position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,#2EE8A8,#1D7A62)"></span>
-        <div style="font-family:'Instrument Serif',Georgia,serif;font-size:2.2rem;line-height:1;color:#1D7A62">03</div>
-        <h4 style="font-size:1.2rem;font-weight:700;letter-spacing:-.01em;color:#0D1426;line-height:1.25">Acesso a Capital</h4>
-        <p style="font-size:1rem;color:#3C4B44;line-height:1.6">Captamos recursos a partir da <strong style="font-weight:700;color:#0D1426">Lei do Bem, FINEP, FAPEMIG</strong>, para destravar o investimento na sua operação.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section style="position:relative;z-index:2;background:#060B14;border-top:1px solid rgba(255,255,255,.07);overflow:hidden">
-  <div style="max-width:1160px;margin:0 auto;padding:clamp(80px,9vw,120px) 24px">
-    <div data-anim="1" style="display:flex;align-items:center;gap:12px;margin-bottom:24px">
-      <span style="width:28px;height:1.5px;background:#2EE8A8"></span>
-      <span style="font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#2EE8A8">Presença</span>
-    </div>
-    <h2 data-anim="1" data-d="1" style="font-weight:800;font-size:clamp(1.8rem,3.3vw,2.7rem);line-height:1.1;letter-spacing:-.03em;color:#fff;margin-bottom:18px">Estamos onde a operação acontece.</h2>
-    <p data-anim="1" data-d="2" style="font-size:1.0625rem;line-height:1.7;color:#A9B8CA;max-width:58ch;margin-bottom:clamp(40px,5vw,60px)">Da sala de discovery ao chão da obra. Proximidade, para nós, não é discurso de site — é agenda.</p>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
-      <figure data-anim="1" data-d="1" style="border-radius:14px;overflow:hidden;border:1px solid #1A2540;position:relative;aspect-ratio:4/5;background:#0D1426">
-        <img src="assets/pitch-03.webp" alt="Equipe Origami em campo com a Prumo" data-px="0.05" style="width:100%;height:112%;object-fit:cover;display:block;will-change:transform">
-        <figcaption style="position:absolute;inset:auto 0 0 0;padding:20px;background:linear-gradient(to top,rgba(6,11,20,.94),transparent)">
-          <div style="font-size:.9375rem;font-weight:700;color:#fff">Prumo Engenharia</div>
-          <div style="font-size:.8125rem;color:#94A3B8">Implementação de software</div>
-        </figcaption>
-      </figure>
-      <figure data-anim="1" data-d="2" style="border-radius:14px;overflow:hidden;border:1px solid #1A2540;position:relative;aspect-ratio:4/5;background:#0D1426">
-        <img src="assets/pitch-04.webp" alt="Visita técnica na Injepol" data-px="0.07" style="width:100%;height:112%;object-fit:cover;display:block;will-change:transform">
-        <figcaption style="position:absolute;inset:auto 0 0 0;padding:20px;background:linear-gradient(to top,rgba(6,11,20,.94),transparent)">
-          <div style="font-size:.9375rem;font-weight:700;color:#fff">Injepol</div>
-          <div style="font-size:.8125rem;color:#94A3B8">Visita técnica</div>
-        </figcaption>
-      </figure>
-      <figure data-anim="1" data-d="3" style="border-radius:14px;overflow:hidden;border:1px solid #1A2540;position:relative;aspect-ratio:4/5;background:#0D1426">
-        <img src="assets/pitch-05.webp" alt="Discovery e estratégia de produto com a Bry" data-px="0.04" style="width:100%;height:112%;object-fit:cover;display:block;will-change:transform">
-        <figcaption style="position:absolute;inset:auto 0 0 0;padding:20px;background:linear-gradient(to top,rgba(6,11,20,.94),transparent)">
-          <div style="font-size:.9375rem;font-weight:700;color:#fff">Bry</div>
-          <div style="font-size:.8125rem;color:#94A3B8">Discovery e estratégia de produto</div>
-        </figcaption>
-      </figure>
-      <figure data-anim="1" data-d="1" style="border-radius:14px;overflow:hidden;border:1px solid #1A2540;position:relative;aspect-ratio:4/5;background:#0D1426">
-        <img src="assets/pitch-07.webp" alt="Acompanhamento de uso do software na obra da Prumo" data-px="0.06" style="width:100%;height:112%;object-fit:cover;display:block;will-change:transform">
-        <figcaption style="position:absolute;inset:auto 0 0 0;padding:20px;background:linear-gradient(to top,rgba(6,11,20,.94),transparent)">
-          <div style="font-size:.9375rem;font-weight:700;color:#fff">Prumo Engenharia</div>
-          <div style="font-size:.8125rem;color:#94A3B8">Acompanhamento de uso</div>
-        </figcaption>
-      </figure>
-      <figure data-anim="1" data-d="2" style="border-radius:14px;overflow:hidden;border:1px solid #1A2540;position:relative;aspect-ratio:4/5;background:#0D1426">
-        <img src="assets/pitch-08.webp" alt="Imersão no processo produtivo da Hayann" data-px="0.05" style="width:100%;height:112%;object-fit:cover;display:block;will-change:transform">
-        <figcaption style="position:absolute;inset:auto 0 0 0;padding:20px;background:linear-gradient(to top,rgba(6,11,20,.94),transparent)">
-          <div style="font-size:.9375rem;font-weight:700;color:#fff">Hayann</div>
-          <div style="font-size:.8125rem;color:#94A3B8">Imersão no processo</div>
-        </figcaption>
-      </figure>
-      <figure data-anim="1" data-d="3" style="border-radius:14px;overflow:hidden;border:1px solid #1A2540;position:relative;aspect-ratio:4/5;background:#0D1426">
-        <img src="assets/pitch-06.webp" alt="Programa de inovação do Sebrae" data-px="0.07" style="width:100%;height:112%;object-fit:cover;display:block;will-change:transform">
-        <figcaption style="position:absolute;inset:auto 0 0 0;padding:20px;background:linear-gradient(to top,rgba(6,11,20,.94),transparent)">
-          <div style="font-size:.9375rem;font-weight:700;color:#fff">Sebrae</div>
-          <div style="font-size:.8125rem;color:#94A3B8">Programa de inovação</div>
-        </figcaption>
-      </figure>
-    </div>
-  </div>
-</section>
-
-<section id="contato" style="position:relative;z-index:2;overflow:hidden;background:#060B14;border-top:1px solid rgba(255,255,255,.07)">
-  <div data-px="0.04" style="position:absolute;width:56vw;height:56vw;border-radius:50%;top:-22vw;left:50%;margin-left:-28vw;background:radial-gradient(circle,rgba(46,232,168,.18),transparent 62%);filter:blur(80px);animation:olGlow 10s ease-in-out infinite;z-index:0"></div>
-  <div style="position:relative;z-index:2;max-width:1160px;margin:0 auto;padding:clamp(80px,9vw,120px) 24px">
-    <div data-anim="1" style="display:flex;align-items:center;gap:12px;margin-bottom:26px">
-      <span style="width:28px;height:1.5px;background:#2EE8A8"></span>
-      <span style="font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#2EE8A8">O próximo passo</span>
-    </div>
-    <h2 data-anim="1" data-d="1" style="font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:clamp(2.1rem,4.6vw,3.7rem);line-height:1.06;letter-spacing:-.01em;color:#fff;max-width:24ch;margin-bottom:28px;text-wrap:pretty">Não vendemos tecnologia. Modernizamos <em style="font-style:italic;color:#2EE8A8">grandes negócios</em> — de ponta a ponta.</h2>
-    <p data-anim="1" data-d="2" style="font-size:1.0625rem;line-height:1.7;color:#A9B8CA;max-width:60ch;margin-bottom:clamp(44px,5vw,64px)">A primeira conversa é de 30 minutos e serve para uma coisa só: entender a sua necessidade e apontar onde estão as maiores oportunidades. Se fizer sentido para os dois lados, seguimos. Se não fizer, a gente diz.</p>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:clamp(44px,5vw,60px)">
-      <div data-anim="1" data-d="1" style="background:#0D1426;border:1px solid #1A2540;border-radius:16px;overflow:hidden">
-        <div style="aspect-ratio:16/10;overflow:hidden;background:#0B1120"><img src="assets/pitch-09.webp" alt="Discovery — entendendo a sua operação" style="width:100%;height:100%;object-fit:cover;display:block"></div>
-        <div style="padding:24px">
-          <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px">
-            <span style="font-family:'Instrument Serif',Georgia,serif;font-size:1.6rem;color:#2EE8A8;line-height:1">1</span>
-            <h3 style="font-size:1.125rem;font-weight:700;color:#fff;letter-spacing:-.02em">Discovery</h3>
-          </div>
-          <p style="font-size:.9375rem;color:#94A3B8;line-height:1.6">Entendemos a sua operação.</p>
-        </div>
-      </div>
-      <div data-anim="1" data-d="2" style="background:#0D1426;border:1px solid #1A2540;border-radius:16px;overflow:hidden">
-        <div style="aspect-ratio:16/10;overflow:hidden;background:#0B1120"><img src="assets/pitch-10.webp" alt="Estratégia — definindo o caminho juntos" style="width:100%;height:100%;object-fit:cover;display:block"></div>
-        <div style="padding:24px">
-          <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px">
-            <span style="font-family:'Instrument Serif',Georgia,serif;font-size:1.6rem;color:#2EE8A8;line-height:1">2</span>
-            <h3 style="font-size:1.125rem;font-weight:700;color:#fff;letter-spacing:-.02em">Estratégia</h3>
-          </div>
-          <p style="font-size:.9375rem;color:#94A3B8;line-height:1.6">Definimos o caminho juntos.</p>
-        </div>
-      </div>
-      <div data-anim="1" data-d="3" style="background:#0D1426;border:1px solid #1A2540;border-radius:16px;overflow:hidden">
-        <div style="aspect-ratio:16/10;overflow:hidden;background:#0B1120"><img src="assets/pitch-11.webp" alt="Execução — mão na massa, de ponta a ponta" style="width:100%;height:100%;object-fit:cover;display:block"></div>
-        <div style="padding:24px">
-          <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px">
-            <span style="font-family:'Instrument Serif',Georgia,serif;font-size:1.6rem;color:#2EE8A8;line-height:1">3</span>
-            <h3 style="font-size:1.125rem;font-weight:700;color:#fff;letter-spacing:-.02em">Execução</h3>
-          </div>
-          <p style="font-size:.9375rem;color:#94A3B8;line-height:1.6">Mão na massa, de ponta a ponta.</p>
-        </div>
-      </div>
-    </div>
-    <div data-anim="1" data-d="2" style="display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin-bottom:18px">
-      <a href="#contato" style="display:inline-flex;align-items:center;gap:10px;background:#2EE8A8;color:#04231A;font-size:1rem;font-weight:600;padding:16px 30px;border-radius:100px;box-shadow:0 0 32px rgba(46,232,168,.25);transition:opacity .15s,transform .15s" style-hover="opacity:.88;color:#04231A" style-active="transform:scale(.97)">Agendar conversa
+<section id="topo" data-hero="1" style="position:sticky;top:0;z-index:0;height:100vh;overflow:hidden;background:#04070E;display:flex;align-items:center;justify-content:center">
+  <video src="assets/hero-bg.webm" autoPlay="{{ true }}" loop="{{ true }}" muted="{{ true }}" playsInline="{{ true }}" data-bg-video="1" data-hero-video="1" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;will-change:transform"></video>
+  <div style="position:absolute;inset:0;z-index:1;background:radial-gradient(120% 90% at 50% 45%,rgba(4,7,14,.58) 0%,rgba(4,7,14,.84) 55%,rgba(4,7,14,.96) 100%)"></div>
+  <div style="position:absolute;inset:auto 0 0 0;height:38%;z-index:1;background:linear-gradient(to top,#04070E,transparent)"></div>
+  <div data-hero-content="1" style="position:relative;z-index:2;max-width:1280px;margin:0 auto;padding:0 24px;width:100%;display:flex;flex-direction:column;align-items:center;text-align:center;will-change:opacity,transform">
+    <h1 data-anim="1" data-d="1" style="font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:clamp(2.9rem,7vw,6rem);line-height:1;letter-spacing:-.02em;color:#fff;max-width:19ch;margin-bottom:28px;text-wrap:balance">Modernizamos a <em style="font-style:italic;color:#2EE8A8">operação</em> das grandes empresas tradicionais.</h1>
+    <p data-anim="1" data-d="2" style="font-size:clamp(1.05rem,1.6vw,1.3rem);line-height:1.55;color:#C3D0DE;max-width:56ch;margin-bottom:40px;text-wrap:pretty">Sua empresa foi construída para durar. A operação precisa acompanhar. Estruturamos processo, informação e tecnologia de ponta a ponta — sem mudar o que já deu certo.</p>
+    <div data-anim="1" data-d="3" style="display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:center">
+      <a href="https://forms.cloud.microsoft/r/f2GGyr2vZT" target="_blank" rel="noopener" data-magnet="1" style="display:inline-flex;align-items:center;gap:10px;background:#2EE8A8;color:#04231A;font-size:1rem;font-weight:600;padding:17px 32px;border-radius:100px;box-shadow:0 0 40px rgba(46,232,168,.3);transition:box-shadow .3s ease,transform .25s cubic-bezier(.2,.7,.2,1)" style-hover="color:#04231A;box-shadow:0 0 60px rgba(46,232,168,.5)">Agendar conversa de 30 minutos
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
       </a>
-      <a href="#contato" style="display:inline-flex;align-items:center;gap:10px;border:1px solid rgba(255,255,255,.26);color:#fff;font-size:1rem;font-weight:500;padding:15px 28px;border-radius:100px;transition:background .15s,border-color .15s" style-hover="background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.5);color:#fff">Falar no WhatsApp</a>
+      <a href="#servicos" style="display:inline-flex;align-items:center;gap:10px;border:1px solid rgba(255,255,255,.24);color:#fff;font-size:1rem;font-weight:500;padding:16px 30px;border-radius:100px;backdrop-filter:blur(6px);transition:background .25s,border-color .25s" style-hover="background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.55);color:#fff">Ver como atuamos</a>
     </div>
-    <p data-anim="1" data-d="3" style="font-size:.875rem;color:#8496AC;max-width:52ch">Resposta em até 1 dia útil. Falamos com você, com o seu diretor ou com os dois — como for melhor.</p>
+  </div>
+  <div data-hero-cue="1" style="position:absolute;left:50%;bottom:34px;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:10px">
+    <span style="font-size:.6875rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:#5C6E86">Role</span>
+    <span style="width:1px;height:34px;background:linear-gradient(to bottom,#2EE8A8,transparent);animation:olCue 2.2s ease-in-out infinite"></span>
   </div>
 </section>
 
-<section id="faq" style="position:relative;z-index:2;background:#060B14">
-  <div style="max-width:900px;margin:0 auto;padding:clamp(80px,9vw,120px) 24px">
-    <h2 data-anim="1" style="font-weight:800;font-size:clamp(1.8rem,3.3vw,2.7rem);line-height:1.1;letter-spacing:-.03em;color:#fff;margin-bottom:clamp(36px,4vw,52px)">Perguntas frequentes</h2>
-    <div style="display:grid;gap:12px">
-      <div data-faq="1" data-anim="1" style="background:#0D1426;border:1px solid #1A2540;border-radius:12px;transition:border-color .2s ease">
-        <button type="button" onClick="{{ toggleFaq }}" style="width:100%;display:flex;align-items:center;justify-content:space-between;gap:20px;text-align:left;background:transparent;border:0;padding:22px 26px;cursor:pointer;color:#fff;font-size:1.0625rem;font-weight:600;letter-spacing:-.01em">
-          <span>"De onde vem a experiênica dos sócios?"<br></span>
-          <span data-faq-icon="1" style="flex-shrink:0;color:#2EE8A8;transition:transform .25s ease;display:flex"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14"></path><path d="M5 12h14"></path></svg></span>
-        </button>
-        <div data-faq-body="1" style="max-height:0;overflow:hidden;opacity:0;transition:max-height .35s ease,opacity .3s ease">
-          <p style="padding:0 26px 24px;font-size:1rem;color:#A9B8CA;line-height:1.7">Nossos sócios passaram por Deloitte, AB InBev, Vale, Localiza, MRV, Inter e ESAB antes de fundar a Origami. E os nossos clientes são empresas de 1962, 1971, 1978 e 1980 — indústria antiga é o único tipo de empresa com que trabalhamos. Na primeira conversa a gente não apresenta slide: a gente pergunta sobre a sua operação.</p>
+<div data-over="1" style="position:relative;z-index:2">
+
+<section data-marquee="1" style="background:#fff;border-radius:clamp(24px,3vw,44px) clamp(24px,3vw,44px) 0 0;overflow:hidden;box-shadow:0 -40px 90px rgba(0,0,0,.55)">
+  <div style="position:relative;padding:clamp(44px,5vw,62px) 0">
+    <div data-mq-row="1" style="display:flex;width:max-content;gap:40px;will-change:transform">
+        <div data-mq-item="1" style="flex:0 0 auto;width:190px;display:flex;flex-direction:column;align-items:center;gap:12px;filter:grayscale(1);opacity:.62;transition:filter .35s ease,opacity .35s ease,transform .35s ease" style-hover="filter:grayscale(0);opacity:1;transform:translateY(-4px)">
+          <div style="width:100%;height:62px;display:flex;align-items:center;justify-content:center;padding:12px"><img src="assets/clients/tecno2000.png" alt="" style="max-width:84%;max-height:100%;object-fit:contain"></div>
+          <span style="font-size:.6875rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#6C7B73;text-align:center;line-height:1.35">Mobiliário corporativo</span>
         </div>
-      </div>
-      <div data-faq="1" data-anim="1" style="background:#0D1426;border:1px solid #1A2540;border-radius:12px;transition:border-color .2s ease">
-        <button type="button" onClick="{{ toggleFaq }}" style="width:100%;display:flex;align-items:center;justify-content:space-between;gap:20px;text-align:left;background:transparent;border:0;padding:22px 26px;cursor:pointer;color:#fff;font-size:1.0625rem;font-weight:600;letter-spacing:-.01em">
-          <span>“Não tenho orçamento para isso agora.”</span>
-          <span data-faq-icon="1" style="flex-shrink:0;color:#2EE8A8;transition:transform .25s ease;display:flex"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14"></path><path d="M5 12h14"></path></svg></span>
-        </button>
-        <div data-faq-body="1" style="max-height:0;overflow:hidden;opacity:0;transition:max-height .35s ease,opacity .3s ease">
-          <p style="padding:0 26px 24px;font-size:1rem;color:#A9B8CA;line-height:1.7">Provavelmente tem mais do que imagina. Lei do Bem, FINEP e FAPEMIG existem exatamente para financiar modernização, e a maioria das empresas do porte da sua não usa. Captamos junto com você, em parceria com a PIN — e só cobramos se o capital for liberado.</p>
+        <div data-mq-item="1" style="flex:0 0 auto;width:190px;display:flex;flex-direction:column;align-items:center;gap:12px;filter:grayscale(1);opacity:.62;transition:filter .35s ease,opacity .35s ease,transform .35s ease" style-hover="filter:grayscale(0);opacity:1;transform:translateY(-4px)">
+          <div style="width:100%;height:62px;display:flex;align-items:center;justify-content:center;padding:12px"><img src="assets/clients/prumo.webp" alt="" style="max-width:84%;max-height:100%;object-fit:contain"></div>
+          <span style="font-size:.6875rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#6C7B73;text-align:center;line-height:1.35">Engenharia e manutenção</span>
         </div>
-      </div>
-      <div data-faq="1" data-anim="1" style="background:#0D1426;border:1px solid #1A2540;border-radius:12px;transition:border-color .2s ease">
-        <button type="button" onClick="{{ toggleFaq }}" style="width:100%;display:flex;align-items:center;justify-content:space-between;gap:20px;text-align:left;background:transparent;border:0;padding:22px 26px;cursor:pointer;color:#fff;font-size:1.0625rem;font-weight:600;letter-spacing:-.01em">
-          <span>“Eu já tenho TI. E já tenho um sistema.”</span>
-          <span data-faq-icon="1" style="flex-shrink:0;color:#2EE8A8;transition:transform .25s ease;display:flex"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14"></path><path d="M5 12h14"></path></svg></span>
-        </button>
-        <div data-faq-body="1" style="max-height:0;overflow:hidden;opacity:0;transition:max-height .35s ease,opacity .3s ease">
-          <p style="padding:0 26px 24px;font-size:1rem;color:#A9B8CA;line-height:1.7">Ótimo — é mais fácil assim. Não viemos substituir o seu time nem o seu ERP. Viemos destravar o que o seu time já quer fazer há anos e não consegue por falta de braço ou de especialização.</p>
+        <div data-mq-item="1" style="flex:0 0 auto;width:190px;display:flex;flex-direction:column;align-items:center;gap:12px;filter:grayscale(1);opacity:.62;transition:filter .35s ease,opacity .35s ease,transform .35s ease" style-hover="filter:grayscale(0);opacity:1;transform:translateY(-4px)">
+          <div style="width:100%;height:62px;display:flex;align-items:center;justify-content:center;padding:12px"><img src="assets/clients/retifica.jpg" alt="" style="max-width:84%;max-height:100%;object-fit:contain"></div>
+          <span style="font-size:.6875rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#6C7B73;text-align:center;line-height:1.35">Retífica e usinagem</span>
         </div>
-      </div>
-      <div data-faq="1" data-anim="1" style="background:#0D1426;border:1px solid #1A2540;border-radius:12px;transition:border-color .2s ease">
-        <button type="button" onClick="{{ toggleFaq }}" style="width:100%;display:flex;align-items:center;justify-content:space-between;gap:20px;text-align:left;background:transparent;border:0;padding:22px 26px;cursor:pointer;color:#fff;font-size:1.0625rem;font-weight:600;letter-spacing:-.01em">
-          <span>“Já paguei caro por software e não ficou bom.”</span>
-          <span data-faq-icon="1" style="flex-shrink:0;color:#2EE8A8;transition:transform .25s ease;display:flex"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14"></path><path d="M5 12h14"></path></svg></span>
-        </button>
-        <div data-faq-body="1" style="max-height:0;overflow:hidden;opacity:0;transition:max-height .35s ease,opacity .3s ease">
-          <p style="padding:0 26px 24px;font-size:1rem;color:#A9B8CA;line-height:1.7">É a história mais comum que ouvimos. Quase sempre a causa é a mesma: alguém construiu o sistema sem entender o processo. A gente começa dentro da operação, não no código — e cada entrega precisa provar resultado antes de a próxima começar.</p>
+        <div data-mq-item="1" style="flex:0 0 auto;width:190px;display:flex;flex-direction:column;align-items:center;gap:12px;filter:grayscale(1);opacity:.62;transition:filter .35s ease,opacity .35s ease,transform .35s ease" style-hover="filter:grayscale(0);opacity:1;transform:translateY(-4px)">
+          <div style="width:100%;height:62px;display:flex;align-items:center;justify-content:center;padding:12px"><img src="assets/clients/cabral.png" alt="" style="max-width:84%;max-height:100%;object-fit:contain"></div>
+          <span style="font-size:.6875rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#6C7B73;text-align:center;line-height:1.35">Transporte e logística</span>
         </div>
-      </div>
-      <div data-faq="1" data-anim="1" style="background:#0D1426;border:1px solid #1A2540;border-radius:12px;transition:border-color .2s ease">
-        <button type="button" onClick="{{ toggleFaq }}" style="width:100%;display:flex;align-items:center;justify-content:space-between;gap:20px;text-align:left;background:transparent;border:0;padding:22px 26px;cursor:pointer;color:#fff;font-size:1.0625rem;font-weight:600;letter-spacing:-.01em">
-          <span>“Posso resolver isso com um time interno.”</span>
-          <span data-faq-icon="1" style="flex-shrink:0;color:#2EE8A8;transition:transform .25s ease;display:flex"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14"></path><path d="M5 12h14"></path></svg></span>
-        </button>
-        <div data-faq-body="1" style="max-height:0;overflow:hidden;opacity:0;transition:max-height .35s ease,opacity .3s ease">
-          <p style="padding:0 26px 24px;font-size:1rem;color:#A9B8CA;line-height:1.7">Pode. Montar esse time leva de 6 a 12 meses entre recrutar, treinar e acertar o passo — e depois você precisa segurar essas pessoas. A gente entra com o time pronto e a experiência já feita. É a comparação em que a gente ganha mais limpo.</p>
+        <div data-mq-item="1" style="flex:0 0 auto;width:190px;display:flex;flex-direction:column;align-items:center;gap:12px;filter:grayscale(1);opacity:.62;transition:filter .35s ease,opacity .35s ease,transform .35s ease" style-hover="filter:grayscale(0);opacity:1;transform:translateY(-4px)">
+          <div style="width:100%;height:62px;display:flex;align-items:center;justify-content:center;padding:12px"><img src="assets/clients/bry.png" alt="" style="max-width:84%;max-height:100%;object-fit:contain"></div>
+          <span style="font-size:.6875rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#6C7B73;text-align:center;line-height:1.35">Tecnologia</span>
         </div>
-      </div>
-      <div data-faq="1" data-anim="1" style="background:#0D1426;border:1px solid #1A2540;border-radius:12px;transition:border-color .2s ease">
-        <button type="button" onClick="{{ toggleFaq }}" style="width:100%;display:flex;align-items:center;justify-content:space-between;gap:20px;text-align:left;background:transparent;border:0;padding:22px 26px;cursor:pointer;color:#fff;font-size:1.0625rem;font-weight:600;letter-spacing:-.01em">
-          <span>“Está tudo funcionando. Por que mexer agora?”</span>
-          <span data-faq-icon="1" style="flex-shrink:0;color:#2EE8A8;transition:transform .25s ease;display:flex"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14"></path><path d="M5 12h14"></path></svg></span>
-        </button>
-        <div data-faq-body="1" style="max-height:0;overflow:hidden;opacity:0;transition:max-height .35s ease,opacity .3s ease">
-          <p style="padding:0 26px 24px;font-size:1rem;color:#A9B8CA;line-height:1.7">Porque o custo de não mexer é invisível até deixar de ser. O mesmo capital que você colocaria em mais uma máquina ou em mais gente, aplicado na operação, rende em eficiência recorrente — e não em ativo parado. A conversa de 30 minutos serve exatamente para você medir isso antes de decidir.</p>
+        <div data-mq-item="1" style="flex:0 0 auto;width:190px;display:flex;flex-direction:column;align-items:center;gap:12px;filter:grayscale(1);opacity:.62;transition:filter .35s ease,opacity .35s ease,transform .35s ease" style-hover="filter:grayscale(0);opacity:1;transform:translateY(-4px)">
+          <div style="width:100%;height:62px;display:flex;align-items:center;justify-content:center;padding:12px"><img src="assets/clients/sebrae.svg" alt="" style="max-width:84%;max-height:100%;object-fit:contain"></div>
+          <span style="font-size:.6875rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#6C7B73;text-align:center;line-height:1.35">Programas de inovação</span>
         </div>
-      </div>
-      <div data-faq="1" data-anim="1" style="background:#0D1426;border:1px solid #1A2540;border-radius:12px;transition:border-color .2s ease">
-        <button type="button" onClick="{{ toggleFaq }}" style="width:100%;display:flex;align-items:center;justify-content:space-between;gap:20px;text-align:left;background:transparent;border:0;padding:22px 26px;cursor:pointer;color:#fff;font-size:1.0625rem;font-weight:600;letter-spacing:-.01em">
-          <span>“Quanto custa?”</span>
-          <span data-faq-icon="1" style="flex-shrink:0;color:#2EE8A8;transition:transform .25s ease;display:flex"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14"></path><path d="M5 12h14"></path></svg></span>
-        </button>
-        <div data-faq-body="1" style="max-height:0;overflow:hidden;opacity:0;transition:max-height .35s ease,opacity .3s ease">
-          <div style="padding:0 26px 24px">
-            <p style="font-size:1rem;color:#A9B8CA;line-height:1.7">Depende do que o projeto destrava. Não competimos por preço; dimensionamos cada projeto pelo retorno que ele gera em margem, tempo e competitividade. Existe formato a partir de escopo curto e existe formato de modernização de fôlego — e existe a via em que o investimento é parcialmente financiado.</p>
-            <p data-opt="preco" style="display:none;margin-top:14px;font-size:1rem;color:#DCE6F0;line-height:1.7;border-left:0;padding-top:14px;border-top:1px solid #1A2540">Como referência: projetos de execução ficam entre <strong style="color:#fff;font-weight:600">R$ 50 mil e R$ 500 mil</strong>, dimensionados pelo escopo e pelo retorno esperado.</p>
+        <div data-mq-item="1" style="flex:0 0 auto;width:190px;display:flex;flex-direction:column;align-items:center;gap:12px;filter:grayscale(1);opacity:.62;transition:filter .35s ease,opacity .35s ease,transform .35s ease" style-hover="filter:grayscale(0);opacity:1;transform:translateY(-4px)">
+          <div style="width:100%;height:62px;display:flex;align-items:center;justify-content:center;padding:12px"><img src="assets/clients/syngular.png" alt="" style="max-width:84%;max-height:100%;object-fit:contain"></div>
+          <span style="font-size:.6875rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#6C7B73;text-align:center;line-height:1.35">Identidade digital</span>
+        </div>
+        <div data-mq-item="1" style="flex:0 0 auto;width:190px;display:flex;flex-direction:column;align-items:center;gap:12px;filter:grayscale(1);opacity:.62;transition:filter .35s ease,opacity .35s ease,transform .35s ease" style-hover="filter:grayscale(0);opacity:1;transform:translateY(-4px)">
+          <div style="width:100%;height:62px;display:flex;align-items:center;justify-content:center;padding:12px"><img src="assets/clients/avante.png" alt="" style="max-width:84%;max-height:100%;object-fit:contain"></div>
+          <span style="font-size:.6875rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#6C7B73;text-align:center;line-height:1.35">Tecnologia</span>
+        </div>
+        <div data-mq-item="1" style="flex:0 0 auto;width:190px;display:flex;flex-direction:column;align-items:center;gap:12px;filter:grayscale(1);opacity:.62;transition:filter .35s ease,opacity .35s ease,transform .35s ease" style-hover="filter:grayscale(0);opacity:1;transform:translateY(-4px)">
+          <div style="width:100%;height:62px;display:flex;align-items:center;justify-content:center;padding:12px"><img src="assets/clients/sindinova.png" alt="" style="max-width:84%;max-height:100%;object-fit:contain;border-radius:5px"></div>
+          <span style="font-size:.6875rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#6C7B73;text-align:center;line-height:1.35">Sindicato · polo calçadista</span>
+        </div>
+        <div data-mq-item="1" style="flex:0 0 auto;width:190px;display:flex;flex-direction:column;align-items:center;gap:12px;filter:grayscale(1);opacity:.62;transition:filter .35s ease,opacity .35s ease,transform .35s ease" style-hover="filter:grayscale(0);opacity:1;transform:translateY(-4px)">
+          <div style="width:100%;height:62px;display:flex;align-items:center;justify-content:center;padding:12px"><img src="assets/clients/integrar.jpg" alt="" style="max-width:84%;max-height:100%;object-fit:contain;border-radius:5px"></div>
+          <span style="font-size:.6875rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#6C7B73;text-align:center;line-height:1.35">Saúde</span>
+        </div>
+    </div>
+    <div style="position:absolute;inset:0 auto 0 0;width:clamp(48px,10vw,170px);background:linear-gradient(to right,#fff,transparent);pointer-events:none;z-index:2"></div>
+    <div style="position:absolute;inset:0 0 0 auto;width:clamp(48px,10vw,170px);background:linear-gradient(to left,#fff,transparent);pointer-events:none;z-index:2"></div>
+  </div>
+</section>
+
+<section id="servicos" style="position:relative;background:#F2F4F3;color:#0D1426">
+  <div style="max-width:1280px;margin:0 auto;padding:clamp(80px,9vw,120px) 24px clamp(40px,5vw,60px)">
+    <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:24px 32px;align-items:flex-end">
+      <h2 data-anim="1" style="font-weight:800;font-size:clamp(2rem,3.7vw,3rem);line-height:1.08;letter-spacing:-.035em;color:#0D1426;max-width:24ch;text-wrap:pretty">Soluções para aumentar a eficiência da sua operação — e reduzir custo.</h2>
+      <a data-anim="1" data-d="1" href="https://forms.cloud.microsoft/r/f2GGyr2vZT" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:9px;font-size:.9375rem;font-weight:600;color:#1D7A62;border-bottom:1px solid rgba(29,122,98,.35);padding-bottom:4px;transition:color .2s,border-color .2s,gap .2s" style-hover="color:#0D1426;border-color:#0D1426;gap:14px">Falar sobre o meu caso
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a>
+    </div>
+  </div>
+  <div style="max-width:1280px;margin:0 auto;padding:0 24px clamp(90px,10vw,150px)">
+    <article data-stack="1" style="position:sticky;top:110px;margin-bottom:38px;will-change:transform">
+      <div data-stack-inner="1" data-spot="1" style="position:relative;overflow:hidden;border:1px solid #1A2540;border-radius:24px;background:#0B1220;padding:clamp(30px,3.6vw,52px);display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:clamp(28px,4vw,56px);align-items:center;box-shadow:0 30px 70px rgba(4,7,14,.35)">
+        <div style="position:absolute;inset:0;pointer-events:none;background:radial-gradient(340px circle at var(--mx,70%) var(--my,20%),rgba(46,232,168,.12),transparent 70%);transition:opacity .3s"></div>
+        <div style="position:relative;z-index:1">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:18px"><span style="font-family:'Instrument Serif',Georgia,serif;font-size:1.6rem;color:#2EE8A8;line-height:1">01</span><span style="flex:1;height:1px;background:linear-gradient(90deg,#2EE8A8,transparent)"></span></div>
+          <h3 style="font-size:clamp(1.6rem,2.6vw,2.2rem);font-weight:800;letter-spacing:-.03em;color:#fff;line-height:1.1;margin-bottom:16px">Desenvolvimento e implantação</h3>
+          <p style="font-size:1.0625rem;color:#A9B8CA;line-height:1.65;max-width:42ch;margin-bottom:26px">Do pedido ao pós-vendas, transformamos dados, planilhas e retrabalho em operação conectada de ponta a ponta.</p>
+          <div style="display:grid;gap:0">
+            <div style="display:flex;gap:14px;align-items:center;padding:13px 0"><span style="width:16px;height:16px;border:2px solid #2EE8A8;border-radius:50%;flex-shrink:0"></span><div style="font-size:1rem;font-weight:700;color:#fff;letter-spacing:-.015em;line-height:1.35">Gestão da operação em tempo real</div></div>
+            <div style="display:flex;gap:14px;align-items:center;padding:13px 0;border-top:1px solid #1A2540"><span style="width:16px;height:16px;border:2px solid #2EE8A8;border-radius:50%;flex-shrink:0"></span><div style="font-size:1rem;font-weight:700;color:#fff;letter-spacing:-.015em;line-height:1.35">Processo digitalizado de ponta a ponta</div></div>
+            <div style="display:flex;gap:14px;align-items:center;padding:13px 0;border-top:1px solid #1A2540"><span style="width:16px;height:16px;border:2px solid #2EE8A8;border-radius:50%;flex-shrink:0"></span><div style="font-size:1rem;font-weight:700;color:#fff;letter-spacing:-.015em;line-height:1.35">Integração com o ERP e os sistemas atuais</div></div>
+            <div style="display:flex;gap:14px;align-items:center;padding:13px 0;border-top:1px solid #1A2540"><span style="width:16px;height:16px;border:2px solid #2EE8A8;border-radius:50%;flex-shrink:0"></span><div style="font-size:1rem;font-weight:700;color:#fff;letter-spacing:-.015em;line-height:1.35">Treinamento até a autonomia</div></div>
+          </div>
+        </div>
+        <div style="position:relative;z-index:1;border:1px solid #DCE3DF;border-radius:16px;background:#FFFFFF;padding:20px;box-shadow:0 18px 40px rgba(4,7,14,.35);display:flex;flex-direction:column;gap:14px;min-height:290px">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
+            <span style="font-size:.6875rem;letter-spacing:.14em;text-transform:uppercase;color:#6C7B73">Painel da operação</span>
+            <span style="display:flex;align-items:center;gap:7px;font-size:.6875rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#12795D"><span style="width:6px;height:6px;border-radius:50%;background:#17A97F;animation:olBlink 1.8s ease-in-out infinite"></span>tempo real</span>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px">
+            <div style="border:1px solid #E7EBE9;border-radius:10px;padding:10px 12px"><div style="font-size:1.35rem;font-weight:800;color:#0D1426;line-height:1;letter-spacing:-.02em">42</div><div style="font-size:.625rem;letter-spacing:.09em;text-transform:uppercase;color:#6C7B73;margin-top:5px">Em andamento</div></div>
+            <div style="border:1px solid rgba(23,169,127,.38);border-radius:10px;padding:10px 12px;background:rgba(23,169,127,.07)"><div style="font-size:1.35rem;font-weight:800;color:#12795D;line-height:1;letter-spacing:-.02em">94%</div><div style="font-size:.625rem;letter-spacing:.09em;text-transform:uppercase;color:#6C7B73;margin-top:5px">No prazo</div></div>
+            <div style="border:1px solid #E7EBE9;border-radius:10px;padding:10px 12px"><div style="font-size:1.35rem;font-weight:800;color:#0D1426;line-height:1;letter-spacing:-.02em">3</div><div style="font-size:.625rem;letter-spacing:.09em;text-transform:uppercase;color:#6C7B73;margin-top:5px">Atrasadas</div></div>
+          </div>
+          <div style="display:grid;gap:0">
+            <div style="display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 12px;align-items:center;padding:11px 0;border-top:1px solid #E7EBE9">
+              <div style="min-width:0"><div style="font-size:.8125rem;font-weight:700;color:#0D1426;letter-spacing:-.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Usinagem</div><div style="font-size:.6875rem;color:#6C7B73;margin-top:2px">Turno A</div></div>
+              <span style="font-size:.6875rem;font-weight:700;color:#12795D;white-space:nowrap">no prazo</span>
+              <span style="grid-column:1 / -1;height:6px;border-radius:20px;background:#ECF0EE;overflow:hidden"><span data-grow="1" data-w="86%" data-delay="0" style="display:block;height:100%;width:0;background:#17A97F;transition:width 1.1s cubic-bezier(.2,.7,.2,1)"></span></span>
+            </div>
+            <div style="display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 12px;align-items:center;padding:11px 0;border-top:1px solid #E7EBE9">
+              <div style="min-width:0"><div style="font-size:.8125rem;font-weight:700;color:#0D1426;letter-spacing:-.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Montagem</div><div style="font-size:.6875rem;color:#6C7B73;margin-top:2px">Turno B</div></div>
+              <span style="font-size:.6875rem;font-weight:700;color:#12795D;white-space:nowrap">no prazo</span>
+              <span style="grid-column:1 / -1;height:6px;border-radius:20px;background:#ECF0EE;overflow:hidden"><span data-grow="1" data-w="61%" data-delay="150" style="display:block;height:100%;width:0;background:#17A97F;transition:width 1.1s cubic-bezier(.2,.7,.2,1)"></span></span>
+            </div>
+            <div style="display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 12px;align-items:center;padding:11px 0;border-top:1px solid #E7EBE9">
+              <div style="min-width:0"><div style="font-size:.8125rem;font-weight:700;color:#0D1426;letter-spacing:-.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Expedição</div><div style="font-size:.6875rem;color:#6C7B73;margin-top:2px">Carregamento</div></div>
+              <span style="font-size:.6875rem;font-weight:700;color:#9A6B08;white-space:nowrap">atenção</span>
+              <span style="grid-column:1 / -1;height:6px;border-radius:20px;background:#ECF0EE;overflow:hidden"><span data-grow="1" data-w="38%" data-delay="300" style="display:block;height:100%;width:0;background:#C4901A;transition:width 1.1s cubic-bezier(.2,.7,.2,1)"></span></span>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-
-<section style="position:relative;z-index:2;background:#060B14;border-top:1px solid rgba(255,255,255,.07)">
-  <div style="max-width:1160px;margin:0 auto;padding:clamp(56px,6vw,80px) 24px">
-    <div data-anim="1" style="background:#0D1426;border:1px solid #1A2540;border-radius:16px;padding:clamp(28px,4vw,48px);display:grid;grid-template-columns:1.2fr 1fr;gap:clamp(28px,4vw,56px);align-items:center">
-      <div>
-        <h3 style="font-size:1.375rem;font-weight:700;letter-spacing:-.02em;color:#fff;margin-bottom:12px">Precisa apresentar isso para a diretoria?</h3>
-        <p style="font-size:1rem;color:#94A3B8;line-height:1.65;max-width:52ch">Enviamos a apresentação institucional da Origami em PDF — com os cases, os números e as credenciais. Feita para ser levada para a mesa, não para ficar num e-mail.</p>
+    </article>
+    <article data-stack="1" style="position:sticky;top:128px;margin-bottom:38px;will-change:transform">
+      <div data-stack-inner="1" data-spot="1" style="position:relative;overflow:hidden;border:1px solid #1A2540;border-radius:24px;background:#0B1220;padding:clamp(30px,3.6vw,52px);display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:clamp(28px,4vw,56px);align-items:center;box-shadow:0 30px 70px rgba(4,7,14,.35)">
+        <div style="position:absolute;inset:0;pointer-events:none;background:radial-gradient(340px circle at var(--mx,70%) var(--my,20%),rgba(46,232,168,.12),transparent 70%)"></div>
+        <div style="position:relative;z-index:1">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:18px"><span style="font-family:'Instrument Serif',Georgia,serif;font-size:1.6rem;color:#2EE8A8;line-height:1">02</span><span style="flex:1;height:1px;background:linear-gradient(90deg,#2EE8A8,transparent)"></span></div>
+          <h3 style="font-size:clamp(1.6rem,2.6vw,2.2rem);font-weight:800;letter-spacing:-.03em;color:#fff;line-height:1.1;margin-bottom:16px">Consultoria</h3>
+          <p style="font-size:1.0625rem;color:#A9B8CA;line-height:1.65;max-width:42ch;margin-bottom:26px">Decidimos com você onde a tecnologia devolve margem — antes de escrever a primeira linha de código.</p>
+          <div style="display:grid;gap:0">
+            <div style="display:flex;gap:14px;align-items:center;padding:13px 0"><span style="width:16px;height:16px;border:2px solid #2EE8A8;border-radius:50%;flex-shrink:0"></span><div style="font-size:1rem;font-weight:700;color:#fff;letter-spacing:-.015em;line-height:1.35">Diagnóstico e mapeamento de processo</div></div>
+            <div style="display:flex;gap:14px;align-items:center;padding:13px 0;border-top:1px solid #1A2540"><span style="width:16px;height:16px;border:2px solid #2EE8A8;border-radius:50%;flex-shrink:0"></span><div style="font-size:1rem;font-weight:700;color:#fff;letter-spacing:-.015em;line-height:1.35">Priorização de portfólio e roadmap</div></div>
+            <div style="display:flex;gap:14px;align-items:center;padding:13px 0;border-top:1px solid #1A2540"><span style="width:16px;height:16px;border:2px solid #2EE8A8;border-radius:50%;flex-shrink:0"></span><div style="font-size:1rem;font-weight:700;color:#fff;letter-spacing:-.015em;line-height:1.35">Estratégia de produto</div></div>
+            <div style="display:flex;gap:14px;align-items:center;padding:13px 0;border-top:1px solid #1A2540"><span style="width:16px;height:16px;border:2px solid #2EE8A8;border-radius:50%;flex-shrink:0"></span><div style="font-size:1rem;font-weight:700;color:#fff;letter-spacing:-.015em;line-height:1.35">Governança e indicadores de operação</div></div>
+          </div>
+        </div>
+        <div style="position:relative;z-index:1;border:1px solid #DCE3DF;border-radius:16px;background:#FFFFFF;padding:20px;box-shadow:0 18px 40px rgba(4,7,14,.35);display:flex;flex-direction:column;gap:14px;min-height:290px">
+          <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px"><span style="font-size:.6875rem;letter-spacing:.14em;text-transform:uppercase;color:#6C7B73">Priorização</span><span style="font-size:.6875rem;letter-spacing:.14em;text-transform:uppercase;color:#6C7B73">Impacto ×  esforço</span></div>
+          <div style="position:relative;flex:1;border:1px dashed #DCE3DF;border-radius:12px;min-height:220px">
+            <span style="position:absolute;left:0;right:0;top:50%;height:1px;background:#ECF0EE"></span>
+            <span style="position:absolute;top:0;bottom:0;left:50%;width:1px;background:#ECF0EE"></span>
+            <span data-anim="1" data-d="1" style="position:absolute;left:16%;top:64%;width:12px;height:12px;border-radius:50%;background:#C6CFCA"></span>
+            <span data-anim="1" data-d="2" style="position:absolute;left:36%;top:44%;width:14px;height:14px;border-radius:50%;background:#A9B5AF"></span>
+            <span data-anim="1" data-d="3" style="position:absolute;left:24%;top:24%;width:10px;height:10px;border-radius:50%;background:#C6CFCA"></span>
+            <span data-anim="1" data-d="4" style="position:absolute;left:66%;top:22%;width:22px;height:22px;border-radius:50%;background:#17A97F;box-shadow:0 0 0 8px rgba(23,169,127,.16)"></span>
+            <span data-anim="1" data-d="5" style="position:absolute;left:74%;top:60%;width:12px;height:12px;border-radius:50%;background:#C6CFCA"></span>
+            <span style="position:absolute;left:60%;top:2%;font-size:.6875rem;font-weight:700;color:#12795D;letter-spacing:.04em">faça primeiro</span>
+          </div>
+        </div>
       </div>
-      <form onSubmit="{{ submitPdf }}" style="display:flex;flex-direction:column;gap:12px">
-        <input type="email" required="required" placeholder="seu@email.com.br" style="background:#0B1120;border:1px solid #1A2540;border-radius:100px;padding:15px 22px;color:#fff;font-size:1rem;outline:none;transition:border-color .15s" style-focus="border-color:#2EE8A8">
-        <button type="submit" style="display:inline-flex;align-items:center;justify-content:center;gap:10px;background:#2EE8A8;color:#04231A;font-size:1rem;font-weight:600;padding:15px 28px;border-radius:100px;border:0;cursor:pointer;transition:opacity .15s,transform .15s" style-hover="opacity:.88" style-active="transform:scale(.97)">Receber a apresentação</button>
-        <span data-pdf-msg="1" style="display:none;font-size:.875rem;color:#2EE8A8;text-align:center">Enviamos para o seu e-mail. Confira a caixa de entrada.</span>
-      </form>
+    </article>
+    <article data-stack="1" style="position:sticky;top:146px;will-change:transform">
+      <div data-stack-inner="1" data-spot="1" style="position:relative;overflow:hidden;border:1px solid #1A2540;border-radius:24px;background:#0B1220;padding:clamp(30px,3.6vw,52px);display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:clamp(28px,4vw,56px);align-items:center;box-shadow:0 30px 70px rgba(4,7,14,.35)">
+        <div style="position:absolute;inset:0;pointer-events:none;background:radial-gradient(340px circle at var(--mx,70%) var(--my,20%),rgba(46,232,168,.12),transparent 70%)"></div>
+        <div style="position:relative;z-index:1">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:18px"><span style="font-family:'Instrument Serif',Georgia,serif;font-size:1.6rem;color:#2EE8A8;line-height:1">03</span><span style="flex:1;height:1px;background:linear-gradient(90deg,#2EE8A8,transparent)"></span></div>
+          <h3 style="font-size:clamp(1.6rem,2.6vw,2.2rem);font-weight:800;letter-spacing:-.03em;color:#fff;line-height:1.1;margin-bottom:16px">Acesso a capital</h3>
+          <p style="font-size:1.0625rem;color:#A9B8CA;line-height:1.65;max-width:42ch;margin-bottom:26px">Financiamos a modernização com recurso de incentivo, sem comprometer o caixa da operação.</p>
+          <div style="display:grid;gap:0">
+            <div style="display:flex;gap:14px;align-items:center;padding:13px 0"><span style="width:16px;height:16px;border:2px solid #2EE8A8;border-radius:50%;flex-shrink:0"></span><div style="font-size:1rem;font-weight:700;color:#fff;letter-spacing:-.015em;line-height:1.35">Enquadramento na Lei do Bem</div></div>
+            <div style="display:flex;gap:14px;align-items:center;padding:13px 0;border-top:1px solid #1A2540"><span style="width:16px;height:16px;border:2px solid #2EE8A8;border-radius:50%;flex-shrink:0"></span><div style="font-size:1rem;font-weight:700;color:#fff;letter-spacing:-.015em;line-height:1.35">Projetos FINEP e FAPEMIG</div></div>
+            <div style="display:flex;gap:14px;align-items:center;padding:13px 0;border-top:1px solid #1A2540"><span style="width:16px;height:16px;border:2px solid #2EE8A8;border-radius:50%;flex-shrink:0"></span><div style="font-size:1rem;font-weight:700;color:#fff;letter-spacing:-.015em;line-height:1.35">Estruturação técnica e documental</div></div>
+            <div style="display:flex;gap:14px;align-items:center;padding:13px 0;border-top:1px solid #1A2540"><span style="width:16px;height:16px;border:2px solid #2EE8A8;border-radius:50%;flex-shrink:0"></span><div style="font-size:1rem;font-weight:700;color:#fff;letter-spacing:-.015em;line-height:1.35">Acompanhamento da prestação de contas</div></div>
+          </div>
+        </div>
+        <div style="position:relative;z-index:1;border:1px solid #DCE3DF;border-radius:16px;background:#FFFFFF;padding:20px;box-shadow:0 18px 40px rgba(4,7,14,.35);display:flex;flex-direction:column;gap:16px;min-height:290px">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
+            <span style="font-size:.6875rem;letter-spacing:.14em;text-transform:uppercase;color:#6C7B73">Onde o capital vira resultado</span>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:7px">
+            <span style="display:flex;align-items:center;gap:7px;font-size:.6875rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#4A5A52;border:1px solid #DCE3DF;border-radius:100px;padding:6px 11px"><span style="width:5px;height:5px;border-radius:50%;background:#17A97F"></span>Lei do Bem</span>
+            <span style="display:flex;align-items:center;gap:7px;font-size:.6875rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#4A5A52;border:1px solid #DCE3DF;border-radius:100px;padding:6px 11px"><span style="width:5px;height:5px;border-radius:50%;background:#17A97F"></span>FINEP</span>
+            <span style="display:flex;align-items:center;gap:7px;font-size:.6875rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#4A5A52;border:1px solid #DCE3DF;border-radius:100px;padding:6px 11px"><span style="width:5px;height:5px;border-radius:50%;background:#17A97F"></span>FAPEMIG</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px"><span style="flex:1;height:1px;background:linear-gradient(90deg,transparent,#D6DEDA,transparent)"></span><span style="color:#12795D;display:flex"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"></path><path d="m19 12-7 7-7-7"></path></svg></span><span style="flex:1;height:1px;background:linear-gradient(90deg,transparent,#D6DEDA,transparent)"></span></div>
+          <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px">
+            <div data-anim="1" data-d="1" style="border:1px solid #E4E9E6;border-radius:12px;background:#F7F9F8;padding:14px;display:flex;flex-direction:column;gap:10px;transition:border-color .45s cubic-bezier(.4,0,.2,1),transform .45s cubic-bezier(.4,0,.2,1),background .45s cubic-bezier(.4,0,.2,1)" style-hover="border-color:rgba(23,169,127,.6);background:#FFFFFF;transform:translateY(-4px)">
+              <span style="width:30px;height:30px;border-radius:9px;border:1px solid rgba(23,169,127,.4);background:rgba(23,169,127,.09);display:flex;align-items:center;justify-content:center;color:#12795D"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5"></path><path d="m5 12 7-7 7 7"></path></svg></span>
+              <div><div style="font-size:.9rem;font-weight:700;color:#0D1426;letter-spacing:-.015em;line-height:1.25">Aumento de produtividade</div><div style="font-size:.6875rem;color:#6C7B73;margin-top:3px;line-height:1.35">Mais saída com a mesma estrutura</div></div>
+            </div>
+            <div data-anim="1" data-d="2" style="border:1px solid #E4E9E6;border-radius:12px;background:#F7F9F8;padding:14px;display:flex;flex-direction:column;gap:10px;transition:border-color .45s cubic-bezier(.4,0,.2,1),transform .45s cubic-bezier(.4,0,.2,1),background .45s cubic-bezier(.4,0,.2,1)" style-hover="border-color:rgba(23,169,127,.6);background:#FFFFFF;transform:translateY(-4px)">
+              <span style="width:30px;height:30px;border-radius:9px;border:1px solid rgba(23,169,127,.4);background:rgba(23,169,127,.09);display:flex;align-items:center;justify-content:center;color:#12795D"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"></path><path d="m19 12-7 7-7-7"></path></svg></span>
+              <div><div style="font-size:.9rem;font-weight:700;color:#0D1426;letter-spacing:-.015em;line-height:1.25">Redução de custos</div><div style="font-size:.6875rem;color:#6C7B73;margin-top:3px;line-height:1.35">Menos retrabalho e hora extra</div></div>
+            </div>
+            <div data-anim="1" data-d="3" style="border:1px solid #E4E9E6;border-radius:12px;background:#F7F9F8;padding:14px;display:flex;flex-direction:column;gap:10px;transition:border-color .45s cubic-bezier(.4,0,.2,1),transform .45s cubic-bezier(.4,0,.2,1),background .45s cubic-bezier(.4,0,.2,1)" style-hover="border-color:rgba(23,169,127,.6);background:#FFFFFF;transform:translateY(-4px)">
+              <span style="width:30px;height:30px;border-radius:9px;border:1px solid rgba(23,169,127,.4);background:rgba(23,169,127,.09);display:flex;align-items:center;justify-content:center;color:#12795D"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17 9 11l4 4 8-8"></path><path d="M21 7v6h-6"></path></svg></span>
+              <div><div style="font-size:.9rem;font-weight:700;color:#0D1426;letter-spacing:-.015em;line-height:1.25">Crescimento</div><div style="font-size:.6875rem;color:#6C7B73;margin-top:3px;line-height:1.35">Operação que acompanha a demanda</div></div>
+            </div>
+            <div data-anim="1" data-d="4" style="border:1px solid #E4E9E6;border-radius:12px;background:#F7F9F8;padding:14px;display:flex;flex-direction:column;gap:10px;transition:border-color .45s cubic-bezier(.4,0,.2,1),transform .45s cubic-bezier(.4,0,.2,1),background .45s cubic-bezier(.4,0,.2,1)" style-hover="border-color:rgba(23,169,127,.6);background:#FFFFFF;transform:translateY(-4px)">
+              <span style="width:30px;height:30px;border-radius:9px;border:1px solid rgba(23,169,127,.4);background:rgba(23,169,127,.09);display:flex;align-items:center;justify-content:center;color:#12795D"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v4"></path><path d="M12 17v4"></path><path d="M3 12h4"></path><path d="M17 12h4"></path><path d="m5.6 5.6 2.8 2.8"></path><path d="m15.6 15.6 2.8 2.8"></path><path d="m18.4 5.6-2.8 2.8"></path><path d="m8.4 15.6-2.8 2.8"></path></svg></span>
+              <div><div style="font-size:.9rem;font-weight:700;color:#0D1426;letter-spacing:-.015em;line-height:1.25">Inovação</div><div style="font-size:.6875rem;color:#6C7B73;margin-top:3px;line-height:1.35">Capacidade nova, não só manutenção</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section id="como" data-hpin-track="1" style="position:relative;background:#04070E">
+  <div data-hpin-vp="1" style="position:sticky;top:0;height:100vh;overflow:hidden;display:flex;flex-direction:column;justify-content:center;gap:clamp(18px,3vh,40px);padding:clamp(72px,11vh,100px) 0 clamp(28px,6vh,60px)">
+    <div style="max-width:1280px;width:100%;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px clamp(32px,5vw,64px);align-items:end">
+      <h2 style="font-weight:800;font-size:clamp(1.9rem,3.4vw,2.9rem);line-height:1.08;letter-spacing:-.035em;color:#fff;max-width:20ch;text-wrap:pretty">Como a Origami Lab <br>Trabalha</h2>
+      <p style="font-size:1.0625rem;line-height:1.7;color:#A9B8CA;max-width:46ch">Quatro fases, entregas curtas. Cada uma precisa provar resultado antes de a próxima começar — é assim que a modernização acontece sem parar a empresa.</p>
+    </div>
+    <div data-hpin-rail="1" style="display:flex;gap:20px;padding-left:max(24px,calc((100vw - 1280px)/2 + 24px));padding-right:12vw;will-change:transform">
+      <div data-hpanel="1" style="flex:0 0 auto;width:clamp(268px,33vw,440px);background:#0B1220;border:1px solid #1A2540;border-radius:22px;padding:clamp(24px,2.6vw,34px);display:flex;flex-direction:column;gap:16px;min-height:min(430px,max(300px,100vh - 320px));transition:border-color .35s ease,background .35s ease,transform .35s ease" style-hover="border-color:rgba(46,232,168,.5);background:#0D1426;transform:translateY(-6px)">
+        <div style="display:flex;align-items:baseline;gap:12px"><span style="font-family:'Instrument Serif',Georgia,serif;font-size:2.6rem;line-height:1;color:#2EE8A8">01</span></div>
+        <h3 style="font-size:1.5rem;font-weight:800;letter-spacing:-.025em;color:#fff">Diagnóstico</h3>
+        <p style="font-size:1rem;color:#94A3B8;line-height:1.6">Entramos na operação, mapeamos o processo real e mostramos onde a margem está vazando.</p>
+        <div style="margin-top:auto;display:flex;flex-wrap:wrap;gap:8px">
+          <span style="font-size:.75rem;font-weight:600;color:#A9B8CA;border:1px solid #1A2540;border-radius:100px;padding:6px 12px">Entrevistas em campo</span>
+          <span style="font-size:.75rem;font-weight:600;color:#A9B8CA;border:1px solid #1A2540;border-radius:100px;padding:6px 12px">Mapa do processo</span>
+        </div>
+      </div>
+      <div data-hpanel="1" style="flex:0 0 auto;width:clamp(268px,33vw,440px);background:#0B1220;border:1px solid #1A2540;border-radius:22px;padding:clamp(24px,2.6vw,34px);display:flex;flex-direction:column;gap:16px;min-height:min(430px,max(300px,100vh - 320px));transition:border-color .35s ease,background .35s ease,transform .35s ease" style-hover="border-color:rgba(46,232,168,.5);background:#0D1426;transform:translateY(-6px)">
+        <div style="display:flex;align-items:baseline;gap:12px"><span style="font-family:'Instrument Serif',Georgia,serif;font-size:2.6rem;line-height:1;color:#2EE8A8">02</span></div>
+        <h3 style="font-size:1.5rem;font-weight:800;letter-spacing:-.025em;color:#fff">Desenho</h3>
+        <p style="font-size:1rem;color:#94A3B8;line-height:1.6">Escolhemos o que move resultado primeiro e desenhamos o processo digital junto com quem executa.</p>
+        <div style="margin-top:auto;display:flex;flex-wrap:wrap;gap:8px">
+          <span style="font-size:.75rem;font-weight:600;color:#A9B8CA;border:1px solid #1A2540;border-radius:100px;padding:6px 12px">Roadmap por retorno</span>
+          <span style="font-size:.75rem;font-weight:600;color:#A9B8CA;border:1px solid #1A2540;border-radius:100px;padding:6px 12px">Protótipo validado</span>
+        </div>
+      </div>
+      <div data-hpanel="1" style="flex:0 0 auto;width:clamp(268px,33vw,440px);background:#0B1220;border:1px solid #1A2540;border-radius:22px;padding:clamp(24px,2.6vw,34px);display:flex;flex-direction:column;gap:16px;min-height:min(430px,max(300px,100vh - 320px));transition:border-color .35s ease,background .35s ease,transform .35s ease" style-hover="border-color:rgba(46,232,168,.5);background:#0D1426;transform:translateY(-6px)">
+        <div style="display:flex;align-items:baseline;gap:12px"><span style="font-family:'Instrument Serif',Georgia,serif;font-size:2.6rem;line-height:1;color:#2EE8A8">03</span></div>
+        <h3 style="font-size:1.5rem;font-weight:800;letter-spacing:-.025em;color:#fff">Construção</h3>
+        <p style="font-size:1rem;color:#94A3B8;line-height:1.6">Desenvolvemos o produto em ciclos curtos, com as lideranças acompanhando validando cada entrega antes da próxima.</p>
+        <div style="margin-top:auto;display:flex;flex-wrap:wrap;gap:8px">
+          <span style="font-size:.75rem;font-weight:600;color:#A9B8CA;border:1px solid #1A2540;border-radius:100px;padding:6px 12px">Integração com sistemas</span>
+          <span style="font-size:.75rem;font-weight:600;color:#A9B8CA;border:1px solid #1A2540;border-radius:100px;padding:6px 12px">Entrega quinzenal</span>
+        </div>
+      </div>
+      <div data-hpanel="1" style="flex:0 0 auto;width:clamp(268px,33vw,440px);background:#0B1220;border:1px solid #1A2540;border-radius:22px;padding:clamp(24px,2.6vw,34px);display:flex;flex-direction:column;gap:16px;min-height:min(430px,max(300px,100vh - 320px));transition:border-color .35s ease,background .35s ease,transform .35s ease" style-hover="border-color:rgba(46,232,168,.5);background:#0D1426;transform:translateY(-6px)">
+        <div style="display:flex;align-items:baseline;gap:12px"><span style="font-family:'Instrument Serif',Georgia,serif;font-size:2.6rem;line-height:1;color:#2EE8A8">04</span></div>
+        <h3 style="font-size:1.5rem;font-weight:800;letter-spacing:-.025em;color:#fff">Implantação</h3>
+        <p style="font-size:1rem;color:#94A3B8;line-height:1.6">Colocamos o software no ar, treinamos o time e acompanhamos até a sua equipe conduzir a operação com autonomia total.</p>
+        <div style="margin-top:auto;display:flex;flex-wrap:wrap;gap:8px">
+          <span style="font-size:.75rem;font-weight:600;color:#A9B8CA;border:1px solid #1A2540;border-radius:100px;padding:6px 12px">Software em produção</span>
+          <span style="font-size:.75rem;font-weight:600;color:#A9B8CA;border:1px solid #1A2540;border-radius:100px;padding:6px 12px">Treinamento do time</span>
+          <span style="font-size:.75rem;font-weight:600;color:#A9B8CA;border:1px solid #1A2540;border-radius:100px;padding:6px 12px">Autonomia da equipe</span>
+        </div>
+      </div>
+      <div style="flex:0 0 auto;width:clamp(268px,33vw,440px);background:linear-gradient(160deg,#17564A,#0B1220);border:1px solid rgba(46,232,168,.36);border-radius:22px;padding:clamp(24px,2.6vw,34px);display:flex;flex-direction:column;justify-content:space-between;gap:20px;min-height:min(430px,max(300px,100vh - 320px))">
+        <p style="font-family:'Instrument Serif',Georgia,serif;font-size:clamp(1.4rem,2vw,1.8rem);line-height:1.22;color:#fff">O primeiro passo é uma conversa de <em style="font-style: italic; color: rgb(46, 232, 168);">30 minutos</em>&nbsp;sobre a sua operação.</p>
+        <a href="https://forms.cloud.microsoft/r/f2GGyr2vZT" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;justify-content:space-between;gap:10px;background:#2EE8A8;color:#04231A;font-size:.9375rem;font-weight:700;padding:15px 22px;border-radius:100px;transition:box-shadow .3s ease" style-hover="color:#04231A;box-shadow:0 0 40px rgba(46,232,168,.45)">Agendar conversa
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+        </a>
+      </div>
     </div>
   </div>
 </section>
 
-<footer style="background:#060B14;border-top:1px solid rgba(255,255,255,.07)">
-  <div style="max-width:1160px;margin:0 auto;padding:clamp(56px,6vw,80px) 24px clamp(32px,4vw,44px)">
-    <div style="display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:clamp(32px,5vw,64px);margin-bottom:clamp(40px,5vw,56px)">
+<section data-galeria="1" style="position:relative;background:#04070E;overflow:hidden">
+  <div style="max-width:1280px;margin:0 auto;padding:clamp(80px,9vw,130px) 24px clamp(30px,4vw,46px);display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:24px clamp(36px,5vw,64px);align-items:end">
+    <h2 data-anim="1" data-d="1" style="font-weight:800;font-size:clamp(1.9rem,3.4vw,2.9rem);line-height:1.08;letter-spacing:-.035em;color:#fff;max-width:19ch">Estamos onde a operação acontece.</h2>
+    <p data-anim="1" data-d="2" style="font-size:1.0625rem;line-height:1.7;color:#A9B8CA;max-width:46ch">Da sala de discovery ao chão da obra. Proximidade, para nós, não é discurso de site — é agenda.</p>
+  </div>
+  <div data-drift="1" data-drift-dir="-1" style="display:flex;gap:18px;padding:0 24px clamp(80px,9vw,130px);width:max-content;will-change:transform">
+    <figure data-zoom="1" style="position:relative;margin:0;flex:0 0 auto;width:clamp(240px,26vw,340px);aspect-ratio:4/5;border-radius:18px;overflow:hidden;border:1px solid #1A2540;background:#0B1220">
+      <img src="assets/pitch-03.webp" alt="Equipe Origami em campo com a Prumo" style="width:100%;height:100%;object-fit:cover;display:block;will-change:transform">
+      <figcaption style="position:absolute;inset:auto 0 0 0;padding:20px;background:linear-gradient(to top,rgba(4,7,14,.95),transparent)"><div style="font-size:.9375rem;font-weight:700;color:#fff">Prumo Engenharia</div><div style="font-size:.8125rem;color:#94A3B8">Implementação de software</div></figcaption>
+    </figure>
+    <figure data-zoom="1" style="position:relative;margin:0;flex:0 0 auto;width:clamp(240px,26vw,340px);aspect-ratio:4/5;border-radius:18px;overflow:hidden;border:1px solid #1A2540;background:#0B1220">
+      <img src="assets/pitch-04.webp" alt="Visita técnica na Injepol" style="width:100%;height:100%;object-fit:cover;display:block;will-change:transform">
+      <figcaption style="position:absolute;inset:auto 0 0 0;padding:20px;background:linear-gradient(to top,rgba(4,7,14,.95),transparent)"><div style="font-size:.9375rem;font-weight:700;color:#fff">Injepol</div><div style="font-size:.8125rem;color:#94A3B8">Visita técnica</div></figcaption>
+    </figure>
+    <figure data-zoom="1" style="position:relative;margin:0;flex:0 0 auto;width:clamp(240px,26vw,340px);aspect-ratio:4/5;border-radius:18px;overflow:hidden;border:1px solid #1A2540;background:#0B1220">
+      <img src="assets/pitch-05.webp" alt="Discovery e estratégia de produto com a Bry" style="width:100%;height:100%;object-fit:cover;display:block;will-change:transform">
+      <figcaption style="position:absolute;inset:auto 0 0 0;padding:20px;background:linear-gradient(to top,rgba(4,7,14,.95),transparent)"><div style="font-size:.9375rem;font-weight:700;color:#fff">Bry</div><div style="font-size:.8125rem;color:#94A3B8">Discovery e estratégia de produto</div></figcaption>
+    </figure>
+    <figure data-zoom="1" style="position:relative;margin:0;flex:0 0 auto;width:clamp(240px,26vw,340px);aspect-ratio:4/5;border-radius:18px;overflow:hidden;border:1px solid #1A2540;background:#0B1220">
+      <img src="assets/pitch-07.webp" alt="Acompanhamento de uso do software na obra da Prumo" style="width:100%;height:100%;object-fit:cover;display:block;will-change:transform">
+      <figcaption style="position:absolute;inset:auto 0 0 0;padding:20px;background:linear-gradient(to top,rgba(4,7,14,.95),transparent)"><div style="font-size:.9375rem;font-weight:700;color:#fff">Prumo Engenharia</div><div style="font-size:.8125rem;color:#94A3B8">Acompanhamento de uso</div></figcaption>
+    </figure>
+    <figure data-zoom="1" style="position:relative;margin:0;flex:0 0 auto;width:clamp(240px,26vw,340px);aspect-ratio:4/5;border-radius:18px;overflow:hidden;border:1px solid #1A2540;background:#0B1220">
+      <img src="assets/pitch-08.webp" alt="Imersão no processo produtivo da Hayann" style="width:100%;height:100%;object-fit:cover;display:block;will-change:transform">
+      <figcaption style="position:absolute;inset:auto 0 0 0;padding:20px;background:linear-gradient(to top,rgba(4,7,14,.95),transparent)"><div style="font-size:.9375rem;font-weight:700;color:#fff">Hayann</div><div style="font-size:.8125rem;color:#94A3B8">Imersão no processo</div></figcaption>
+    </figure>
+    <figure data-zoom="1" style="position:relative;margin:0;flex:0 0 auto;width:clamp(240px,26vw,340px);aspect-ratio:4/5;border-radius:18px;overflow:hidden;border:1px solid #1A2540;background:#0B1220">
+      <img src="assets/pitch-06.webp" alt="Programa de inovação do Sebrae" style="width:100%;height:100%;object-fit:cover;display:block;will-change:transform">
+      <figcaption style="position:absolute;inset:auto 0 0 0;padding:20px;background:linear-gradient(to top,rgba(4,7,14,.95),transparent)"><div style="font-size:.9375rem;font-weight:700;color:#fff">Sebrae</div><div style="font-size:.8125rem;color:#94A3B8">Programa de inovação</div></figcaption>
+    </figure>
+  </div>
+</section>
+
+<section id="clientes" style="background:#F2F4F3;color:#0D1426;border-radius:clamp(24px,3vw,44px) clamp(24px,3vw,44px) 0 0">
+  <div style="max-width:1280px;margin:0 auto;padding:clamp(84px,10vw,140px) 24px">
+    <h2 data-anim="1" data-d="1" style="font-weight:800;font-size:clamp(2rem,3.6vw,3rem);line-height:1.1;letter-spacing:-.035em;color:#0D1426;margin-bottom:clamp(36px,4vw,56px);max-width:24ch;text-wrap:pretty">Indústria, engenharia e serviços — operações reais, transformadas.</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px">
+      <div data-anim="1" data-d="1" style="position:relative;border:1px solid #E1E5E3;border-radius:18px;background:#fff;padding:22px;display:flex;flex-direction:column;gap:16px;transition:border-color .45s cubic-bezier(.4,0,.2,1),box-shadow .45s cubic-bezier(.4,0,.2,1),transform .45s cubic-bezier(.4,0,.2,1)" style-hover="border-color:rgba(29,122,98,.45);box-shadow:0 20px 40px rgba(9,15,30,.12);transform:translateY(-5px)">
+        <div style="position:relative;height:58px;display:flex;align-items:center;justify-content:center"><img src="assets/clients/tecno2000.png" alt="Tecno 2000" style="max-width:88%;max-height:100%;object-fit:contain"></div>
+        <div style="position:relative"><div style="font-family:'Instrument Serif',Georgia,serif;font-size:1.1rem;color:#0D1426">Tecno 2000</div><div style="font-size:.7rem;letter-spacing:.09em;text-transform:uppercase;color:#6C7B73;font-weight:600;margin-top:4px">Mobiliário corporativo</div></div>
+      </div>
+      <div data-anim="1" data-d="2" style="position:relative;border:1px solid #E1E5E3;border-radius:18px;background:#fff;padding:22px;display:flex;flex-direction:column;gap:16px;transition:border-color .45s cubic-bezier(.4,0,.2,1),box-shadow .45s cubic-bezier(.4,0,.2,1),transform .45s cubic-bezier(.4,0,.2,1)" style-hover="border-color:rgba(29,122,98,.45);box-shadow:0 20px 40px rgba(9,15,30,.12);transform:translateY(-5px)">
+        <div style="position:relative;height:58px;display:flex;align-items:center;justify-content:center"><img src="assets/clients/prumo.webp" alt="Prumo Engenharia" style="max-width:88%;max-height:100%;object-fit:contain"></div>
+        <div style="position:relative"><div style="font-family:'Instrument Serif',Georgia,serif;font-size:1.1rem;color:#0D1426">Prumo Engenharia</div><div style="font-size:.7rem;letter-spacing:.09em;text-transform:uppercase;color:#6C7B73;font-weight:600;margin-top:4px">Engenharia e manutenção</div></div>
+      </div>
+      <div data-anim="1" data-d="3" style="position:relative;border:1px solid #E1E5E3;border-radius:18px;background:#fff;padding:22px;display:flex;flex-direction:column;gap:16px;transition:border-color .45s cubic-bezier(.4,0,.2,1),box-shadow .45s cubic-bezier(.4,0,.2,1),transform .45s cubic-bezier(.4,0,.2,1)" style-hover="border-color:rgba(29,122,98,.45);box-shadow:0 20px 40px rgba(9,15,30,.12);transform:translateY(-5px)">
+        <div style="position:relative;height:58px;display:flex;align-items:center;justify-content:center"><img src="assets/clients/retifica.jpg" alt="Retífica Formiguense" style="max-width:88%;max-height:100%;object-fit:contain"></div>
+        <div style="position:relative"><div style="font-family:'Instrument Serif',Georgia,serif;font-size:1.1rem;color:#0D1426">Retífica Formiguense</div><div style="font-size:.7rem;letter-spacing:.09em;text-transform:uppercase;color:#6C7B73;font-weight:600;margin-top:4px">Retífica e usinagem</div></div>
+      </div>
+      <div data-anim="1" data-d="4" style="position:relative;border:1px solid #E1E5E3;border-radius:18px;background:#fff;padding:22px;display:flex;flex-direction:column;gap:16px;transition:border-color .45s cubic-bezier(.4,0,.2,1),box-shadow .45s cubic-bezier(.4,0,.2,1),transform .45s cubic-bezier(.4,0,.2,1)" style-hover="border-color:rgba(29,122,98,.45);box-shadow:0 20px 40px rgba(9,15,30,.12);transform:translateY(-5px)">
+        <div style="position:relative;height:58px;display:flex;align-items:center;justify-content:center"><img src="assets/clients/cabral.png" alt="Transportadora Cabral" style="max-width:88%;max-height:100%;object-fit:contain"></div>
+        <div style="position:relative"><div style="font-family:'Instrument Serif',Georgia,serif;font-size:1.1rem;color:#0D1426">Transportadora Cabral</div><div style="font-size:.7rem;letter-spacing:.09em;text-transform:uppercase;color:#6C7B73;font-weight:600;margin-top:4px">Transporte e logística</div></div>
+      </div>
+      <div data-anim="1" data-d="5" style="position:relative;border:1px solid #E1E5E3;border-radius:18px;background:#fff;padding:22px;display:flex;flex-direction:column;gap:16px;transition:border-color .45s cubic-bezier(.4,0,.2,1),box-shadow .45s cubic-bezier(.4,0,.2,1),transform .45s cubic-bezier(.4,0,.2,1)" style-hover="border-color:rgba(29,122,98,.45);box-shadow:0 20px 40px rgba(9,15,30,.12);transform:translateY(-5px)">
+        <div style="position:relative;height:58px;display:flex;align-items:center;justify-content:center"><img src="assets/clients/bry.png" alt="Bry" style="max-width:88%;max-height:100%;object-fit:contain"></div>
+        <div style="position:relative"><div style="font-family:'Instrument Serif',Georgia,serif;font-size:1.1rem;color:#0D1426">Bry</div><div style="font-size:.7rem;letter-spacing:.09em;text-transform:uppercase;color:#6C7B73;font-weight:600;margin-top:4px">Tecnologia</div></div>
+      </div>
+      <div data-anim="1" data-d="6" style="position:relative;border:1px solid #E1E5E3;border-radius:18px;background:#fff;padding:22px;display:flex;flex-direction:column;gap:16px;transition:border-color .45s cubic-bezier(.4,0,.2,1),box-shadow .45s cubic-bezier(.4,0,.2,1),transform .45s cubic-bezier(.4,0,.2,1)" style-hover="border-color:rgba(29,122,98,.45);box-shadow:0 20px 40px rgba(9,15,30,.12);transform:translateY(-5px)">
+        <div style="position:relative;height:58px;display:flex;align-items:center;justify-content:center"><img src="assets/clients/sebrae.svg" alt="Sebrae" style="max-width:88%;max-height:100%;object-fit:contain"></div>
+        <div style="position:relative"><div style="font-family:'Instrument Serif',Georgia,serif;font-size:1.1rem;color:#0D1426">Sebrae</div><div style="font-size:.7rem;letter-spacing:.09em;text-transform:uppercase;color:#6C7B73;font-weight:600;margin-top:4px">Programas de inovação</div></div>
+      </div>
+      <div data-anim="1" data-d="7" style="position:relative;border:1px solid #E1E5E3;border-radius:18px;background:#fff;padding:22px;display:flex;flex-direction:column;gap:16px;transition:border-color .45s cubic-bezier(.4,0,.2,1),box-shadow .45s cubic-bezier(.4,0,.2,1),transform .45s cubic-bezier(.4,0,.2,1)" style-hover="border-color:rgba(29,122,98,.45);box-shadow:0 20px 40px rgba(9,15,30,.12);transform:translateY(-5px)">
+        <div style="position:relative;height:58px;display:flex;align-items:center;justify-content:center"><img src="assets/clients/syngular.png" alt="Syngular ID" style="max-width:88%;max-height:100%;object-fit:contain"></div>
+        <div style="position:relative"><div style="font-family:'Instrument Serif',Georgia,serif;font-size:1.1rem;color:#0D1426">Syngular ID</div><div style="font-size:.7rem;letter-spacing:.09em;text-transform:uppercase;color:#6C7B73;font-weight:600;margin-top:4px">Identidade digital</div></div>
+      </div>
+      <div data-anim="1" data-d="8" style="position:relative;border:1px solid #E1E5E3;border-radius:18px;background:#fff;padding:22px;display:flex;flex-direction:column;gap:16px;transition:border-color .45s cubic-bezier(.4,0,.2,1),box-shadow .45s cubic-bezier(.4,0,.2,1),transform .45s cubic-bezier(.4,0,.2,1)" style-hover="border-color:rgba(29,122,98,.45);box-shadow:0 20px 40px rgba(9,15,30,.12);transform:translateY(-5px)">
+        <div style="position:relative;height:58px;display:flex;align-items:center;justify-content:center"><img src="assets/clients/avante.png" alt="Avante" style="max-width:88%;max-height:100%;object-fit:contain"></div>
+        <div style="position:relative"><div style="font-family:'Instrument Serif',Georgia,serif;font-size:1.1rem;color:#0D1426">Avante</div><div style="font-size:.7rem;letter-spacing:.09em;text-transform:uppercase;color:#6C7B73;font-weight:600;margin-top:4px">Tecnologia</div></div>
+      </div>
+      <div data-anim="1" data-d="9" style="position:relative;border:1px solid #E1E5E3;border-radius:18px;background:#fff;padding:22px;display:flex;flex-direction:column;gap:16px;transition:border-color .45s cubic-bezier(.4,0,.2,1),box-shadow .45s cubic-bezier(.4,0,.2,1),transform .45s cubic-bezier(.4,0,.2,1)" style-hover="border-color:rgba(29,122,98,.45);box-shadow:0 20px 40px rgba(9,15,30,.12);transform:translateY(-5px)">
+        <div style="position:relative;height:58px;display:flex;align-items:center;justify-content:center"><img src="assets/clients/sindinova.png" alt="Sindinova" style="max-width:88%;max-height:100%;object-fit:contain;border-radius:5px"></div>
+        <div style="position:relative"><div style="font-family:'Instrument Serif',Georgia,serif;font-size:1.1rem;color:#0D1426">Sindinova</div><div style="font-size:.7rem;letter-spacing:.09em;text-transform:uppercase;color:#6C7B73;font-weight:600;margin-top:4px">Sindicato · polo calçadista</div></div>
+      </div>
+      <div data-anim="1" data-d="10" style="position:relative;border:1px solid #E1E5E3;border-radius:18px;background:#fff;padding:22px;display:flex;flex-direction:column;gap:16px;transition:border-color .45s cubic-bezier(.4,0,.2,1),box-shadow .45s cubic-bezier(.4,0,.2,1),transform .45s cubic-bezier(.4,0,.2,1)" style-hover="border-color:rgba(29,122,98,.45);box-shadow:0 20px 40px rgba(9,15,30,.12);transform:translateY(-5px)">
+        <div style="position:relative;height:58px;display:flex;align-items:center;justify-content:center"><img src="assets/clients/integrar.jpg" alt="Integrar Clínica" style="max-width:88%;max-height:100%;object-fit:contain;border-radius:5px"></div>
+        <div style="position:relative"><div style="font-family:'Instrument Serif',Georgia,serif;font-size:1.1rem;color:#0D1426">Integrar Clínica</div><div style="font-size:.7rem;letter-spacing:.09em;text-transform:uppercase;color:#6C7B73;font-weight:600;margin-top:4px">Saúde</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="quem-somos" style="position:relative;background:linear-gradient(168deg,#17564A 0%,#12463A 22%,#0D3229 44%,#091C1B 68%,#04070E 100%);border-radius:clamp(24px,3vw,44px) clamp(24px,3vw,44px) 0 0;overflow:hidden">
+  <div style="position:absolute;inset:0;z-index:0;opacity:.18;background:radial-gradient(60% 50% at 78% 12%,rgba(46,232,168,.55),transparent 70%);animation:olGlow 11s ease-in-out infinite"></div>
+  <div style="position:relative;z-index:1;max-width:1280px;margin:0 auto;padding:clamp(84px,10vw,140px) 24px clamp(90px,11vw,150px);display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:clamp(40px,6vw,80px);align-items:start">
+    <div data-sticky-col="1" style="position:sticky;top:120px">
+      <figure style="border-radius:22px;overflow:hidden;aspect-ratio:4/5;box-shadow:0 0 0 1px rgba(255,255,255,.22),0 40px 90px rgba(0,0,0,.5);margin:0" data-zoom="1" data-zoom-amt="0.1">
+        <img src="./img_9448-3-msgohzbl-l378.jpg" alt="Sócios e time da Origami Lab" style="width:100%;height:100%;object-fit:cover;display:block;will-change:transform">
+      </figure>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:clamp(34px,4.5vw,50px);padding-top:clamp(0px,2vw,20px)">
+      <h2 data-anim="1" data-d="1" style="font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:clamp(2.4rem,5vw,4rem);line-height:1.04;letter-spacing:-.015em;color:#fff;max-width:15ch;text-wrap:balance">O legado que você construiu <em style="font-style:italic;color:#2EE8A8">em boas mãos.</em></h2>
+      <p data-anim="1" data-d="2" style="font-size:1.125rem;line-height:1.65;color:#C3D0DE;max-width:44ch">Nossos sócios passaram anos dentro das maiores operações do país. Hoje estão dentro da sua — no chão de fábrica, ao lado de quem executa.</p>
+      <div>
+        <div data-anim="1" data-d="3" style="display:flex;align-items:center;gap:14px;margin-bottom:18px">
+          <span style="font-size:.6875rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#8FA8A0;white-space:nowrap">Onde essa experiência foi construída</span>
+          <span style="flex:1;height:1px;background:linear-gradient(90deg,rgba(255,255,255,.18),transparent)"></span>
+        </div>
+        <div data-anim="1" data-d="4" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(112px,1fr));gap:10px">
+          <span style="text-align:center;font-size:.9375rem;font-weight:700;color:#fff;background:rgba(11,18,32,.72);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:12px 14px;transition:border-color .45s cubic-bezier(.4,0,.2,1),transform .45s cubic-bezier(.4,0,.2,1)" style-hover="border-color:rgba(46,232,168,.6);transform:translateY(-3px)">Vale</span>
+          <span style="text-align:center;font-size:.9375rem;font-weight:700;color:#fff;background:rgba(11,18,32,.72);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:12px 14px;transition:border-color .45s cubic-bezier(.4,0,.2,1),transform .45s cubic-bezier(.4,0,.2,1)" style-hover="border-color:rgba(46,232,168,.6);transform:translateY(-3px)">AB InBev</span>
+          <span style="text-align:center;font-size:.9375rem;font-weight:700;color:#fff;background:rgba(11,18,32,.72);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:12px 14px;transition:border-color .45s cubic-bezier(.4,0,.2,1),transform .45s cubic-bezier(.4,0,.2,1)" style-hover="border-color:rgba(46,232,168,.6);transform:translateY(-3px)">Deloitte</span>
+          <span style="text-align:center;font-size:.9375rem;font-weight:700;color:#fff;background:rgba(11,18,32,.72);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:12px 14px;transition:border-color .45s cubic-bezier(.4,0,.2,1),transform .45s cubic-bezier(.4,0,.2,1)" style-hover="border-color:rgba(46,232,168,.6);transform:translateY(-3px)">Localiza</span>
+          <span style="text-align:center;font-size:.9375rem;font-weight:700;color:#fff;background:rgba(11,18,32,.72);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:12px 14px;transition:border-color .45s cubic-bezier(.4,0,.2,1),transform .45s cubic-bezier(.4,0,.2,1)" style-hover="border-color:rgba(46,232,168,.6);transform:translateY(-3px)">MRV</span>
+          <span style="text-align:center;font-size:.9375rem;font-weight:700;color:#fff;background:rgba(11,18,32,.72);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:12px 14px;transition:border-color .45s cubic-bezier(.4,0,.2,1),transform .45s cubic-bezier(.4,0,.2,1)" style-hover="border-color:rgba(46,232,168,.6);transform:translateY(-3px)">Inter</span>
+          <span style="text-align:center;font-size:.9375rem;font-weight:700;color:#fff;background:rgba(11,18,32,.72);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:12px 14px;transition:border-color .45s cubic-bezier(.4,0,.2,1),transform .45s cubic-bezier(.4,0,.2,1)" style-hover="border-color:rgba(46,232,168,.6);transform:translateY(-3px)">ESAB</span>
+          <span style="text-align:center;font-size:.9375rem;font-weight:700;color:#fff;background:rgba(11,18,32,.72);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:12px 14px;transition:border-color .45s cubic-bezier(.4,0,.2,1),transform .45s cubic-bezier(.4,0,.2,1)" style-hover="border-color:rgba(46,232,168,.6);transform:translateY(-3px)">Thoughtworks</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="faq" style="background:#fff;color:#0D1426">
+  <div style="max-width:1280px;margin:0 auto;padding:clamp(84px,10vw,140px) 24px;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(36px,5vw,72px);align-items:start">
+    <div data-sticky-col="1" style="position:sticky;top:120px">
+      <h2 data-anim="1" data-d="1" style="font-weight:800;font-size:clamp(1.9rem,3.3vw,2.7rem);line-height:1.08;letter-spacing:-.035em;color:#0D1426;max-width:15ch;margin-bottom:20px">Perguntas frequentes</h2>
+      <p data-anim="1" data-d="2" style="font-size:1rem;line-height:1.7;color:#3C4B44;max-width:36ch">Ficou alguma dúvida que não está aqui? <a href="https://forms.cloud.microsoft/r/f2GGyr2vZT" target="_blank" rel="noopener" style="color:#1D7A62;font-weight:600;border-bottom:1px solid rgba(29,122,98,.35)">Fale com a gente</a>.</p>
+    </div>
+    <div style="display:grid;gap:10px">
+      <div data-faq="1" data-anim="1" style="background:#fff;border:1px solid #E1E5E3;border-radius:14px;transition:border-color .25s ease,box-shadow .25s ease" style-hover="border-color:#C9D2CE">
+        <button type="button" onClick="{{ toggleFaq }}" style="width:100%;display:flex;align-items:center;justify-content:space-between;gap:20px;text-align:left;background:transparent;border:0;padding:22px 24px;cursor:pointer;color:#0D1426;font-size:1.0625rem;font-weight:600;letter-spacing:-.01em">
+          <span>Como começa e quanto tempo leva?</span>
+          <span data-faq-icon="1" style="flex-shrink:0;color:#1D7A62;transition:transform .3s cubic-bezier(.2,.7,.2,1);display:flex"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14"></path><path d="M5 12h14"></path></svg></span>
+        </button>
+        <div data-faq-body="1" style="max-height:0;overflow:hidden;opacity:0;transition:max-height .4s cubic-bezier(.2,.7,.2,1),opacity .3s ease">
+          <p style="padding:0 24px 22px;font-size:1rem;color:#3C4B44;line-height:1.7">O trabalho começa pelo diagnóstico: de 2 a 4 semanas dentro da sua operação, mapeando o processo real e mostrando onde a margem está vazando. Em seguida vem o desenho, quando priorizamos o que move resultado primeiro e desenhamos o processo digital com quem executa. Depois a construção, com desenvolvimento, integração e implantação em entregas quinzenais. Por último a implantação, quando colocamos o software em produção, treinamos o time e acompanhamos até a sua equipe conduzir a operação sem nós. O prazo total depende do escopo priorizado no diagnóstico.</p>
+        </div>
+      </div>
+      <div data-faq="1" data-anim="1" style="background:#fff;border:1px solid #E1E5E3;border-radius:14px;transition:border-color .25s ease,box-shadow .25s ease" style-hover="border-color:#C9D2CE">
+        <button type="button" onClick="{{ toggleFaq }}" style="width:100%;display:flex;align-items:center;justify-content:space-between;gap:20px;text-align:left;background:transparent;border:0;padding:22px 24px;cursor:pointer;color:#0D1426;font-size:1.0625rem;font-weight:600;letter-spacing:-.01em">
+          <span>Como funciona a cobrança do projeto?</span>
+          <span data-faq-icon="1" style="flex-shrink:0;color:#1D7A62;transition:transform .3s cubic-bezier(.2,.7,.2,1);display:flex"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14"></path><path d="M5 12h14"></path></svg></span>
+        </button>
+        <div data-faq-body="1" style="max-height:0;overflow:hidden;opacity:0;transition:max-height .4s cubic-bezier(.2,.7,.2,1),opacity .3s ease">
+          <p style="padding:0 24px 22px;font-size:1rem;color:#3C4B44;line-height:1.7">Cada projeto é dimensionado pelo seu escopo — não trabalhamos com pacote fechado de prateleira. O investimento é definido a partir do que a sua operação precisa e do retorno que aquilo destrava, e apresentado antes de qualquer etapa começar. Você aprova cada fase antes de ela ser iniciada.</p>
+        </div>
+      </div>
+      <div data-faq="1" data-anim="1" style="background:#fff;border:1px solid #E1E5E3;border-radius:14px;transition:border-color .25s ease,box-shadow .25s ease" style-hover="border-color:#C9D2CE">
+        <button type="button" onClick="{{ toggleFaq }}" style="width:100%;display:flex;align-items:center;justify-content:space-between;gap:20px;text-align:left;background:transparent;border:0;padding:22px 24px;cursor:pointer;color:#0D1426;font-size:1.0625rem;font-weight:600;letter-spacing:-.01em">
+          <span>Vocês substituem o nosso ERP e os sistemas que já usamos?</span>
+          <span data-faq-icon="1" style="flex-shrink:0;color:#1D7A62;transition:transform .3s cubic-bezier(.2,.7,.2,1);display:flex"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14"></path><path d="M5 12h14"></path></svg></span>
+        </button>
+        <div data-faq-body="1" style="max-height:0;overflow:hidden;opacity:0;transition:max-height .4s cubic-bezier(.2,.7,.2,1),opacity .3s ease">
+          <p style="padding:0 24px 22px;font-size:1rem;color:#3C4B44;line-height:1.7">Não. Trabalhamos integrados ao que já existe. Na maioria dos casos, o ERP continua sendo a base — construímos em volta dele o que ele não cobre e conectamos os sistemas que hoje não conversam entre si.</p>
+        </div>
+      </div>
+      <div data-faq="1" data-anim="1" style="background:#fff;border:1px solid #E1E5E3;border-radius:14px;transition:border-color .25s ease,box-shadow .25s ease" style-hover="border-color:#C9D2CE">
+        <button type="button" onClick="{{ toggleFaq }}" style="width:100%;display:flex;align-items:center;justify-content:space-between;gap:20px;text-align:left;background:transparent;border:0;padding:22px 24px;cursor:pointer;color:#0D1426;font-size:1.0625rem;font-weight:600;letter-spacing:-.01em">
+          <span>Precisamos ter uma equipe de TI?</span>
+          <span data-faq-icon="1" style="flex-shrink:0;color:#1D7A62;transition:transform .3s cubic-bezier(.2,.7,.2,1);display:flex"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14"></path><path d="M5 12h14"></path></svg></span>
+        </button>
+        <div data-faq-body="1" style="max-height:0;overflow:hidden;opacity:0;transition:max-height .4s cubic-bezier(.2,.7,.2,1),opacity .3s ease">
+          <p style="padding:0 24px 22px;font-size:1rem;color:#3C4B44;line-height:1.7">Não é necessário. Quando existe, trabalhamos junto com ela; quando não existe, conduzimos a implantação e preparamos as pessoas da operação para usar e manter o que foi entregue.</p>
+        </div>
+      </div>
+      <div data-faq="1" data-anim="1" style="background:#fff;border:1px solid #E1E5E3;border-radius:14px;transition:border-color .25s ease,box-shadow .25s ease" style-hover="border-color:#C9D2CE">
+        <button type="button" onClick="{{ toggleFaq }}" style="width:100%;display:flex;align-items:center;justify-content:space-between;gap:20px;text-align:left;background:transparent;border:0;padding:22px 24px;cursor:pointer;color:#0D1426;font-size:1.0625rem;font-weight:600;letter-spacing:-.01em">
+          <span>Como é o acompanhamento durante e depois da implantação?</span>
+          <span data-faq-icon="1" style="flex-shrink:0;color:#1D7A62;transition:transform .3s cubic-bezier(.2,.7,.2,1);display:flex"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14"></path><path d="M5 12h14"></path></svg></span>
+        </button>
+        <div data-faq-body="1" style="max-height:0;overflow:hidden;opacity:0;transition:max-height .4s cubic-bezier(.2,.7,.2,1),opacity .3s ease">
+          <p style="padding:0 24px 22px;font-size:1rem;color:#3C4B44;line-height:1.7">Durante o projeto há entregas quinzenais e um ponto de contato fixo com você. Depois da implantação, treinamos o time e acompanhamos o uso até a sua equipe conduzir a operação com autonomia.</p>
+        </div>
+      </div>
+      <div data-faq="1" data-anim="1" style="background:#fff;border:1px solid #E1E5E3;border-radius:14px;transition:border-color .25s ease,box-shadow .25s ease" style-hover="border-color:#C9D2CE">
+        <button type="button" onClick="{{ toggleFaq }}" style="width:100%;display:flex;align-items:center;justify-content:space-between;gap:20px;text-align:left;background:transparent;border:0;padding:22px 24px;cursor:pointer;color:#0D1426;font-size:1.0625rem;font-weight:600;letter-spacing:-.01em">
+          <span>Dá para financiar o projeto com recursos de incentivo?</span>
+          <span data-faq-icon="1" style="flex-shrink:0;color:#1D7A62;transition:transform .3s cubic-bezier(.2,.7,.2,1);display:flex"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14"></path><path d="M5 12h14"></path></svg></span>
+        </button>
+        <div data-faq-body="1" style="max-height:0;overflow:hidden;opacity:0;transition:max-height .4s cubic-bezier(.2,.7,.2,1),opacity .3s ease">
+          <p style="padding:0 24px 22px;font-size:1rem;color:#3C4B44;line-height:1.7">Na maioria dos casos, sim. Lei do Bem, FINEP e FAPEMIG existem para financiar modernização e inovação. Avaliamos o enquadramento da sua empresa e cuidamos da estruturação técnica, da documentação e da prestação de contas.</p>
+        </div>
+      </div>
+      <div data-faq="1" data-anim="1" style="background:#fff;border:1px solid #E1E5E3;border-radius:14px;transition:border-color .25s ease,box-shadow .25s ease" style-hover="border-color:#C9D2CE">
+        <button type="button" onClick="{{ toggleFaq }}" style="width:100%;display:flex;align-items:center;justify-content:space-between;gap:20px;text-align:left;background:transparent;border:0;padding:22px 24px;cursor:pointer;color:#0D1426;font-size:1.0625rem;font-weight:600;letter-spacing:-.01em">
+          <span>Vocês atendem presencialmente?</span>
+          <span data-faq-icon="1" style="flex-shrink:0;color:#1D7A62;transition:transform .3s cubic-bezier(.2,.7,.2,1);display:flex"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14"></path><path d="M5 12h14"></path></svg></span>
+        </button>
+        <div data-faq-body="1" style="max-height:0;overflow:hidden;opacity:0;transition:max-height .4s cubic-bezier(.2,.7,.2,1),opacity .3s ease">
+          <p style="padding:0 24px 22px;font-size:1rem;color:#3C4B44;line-height:1.7">Sim. Somos de Formiga, Minas Gerais, e é de lá que operamos — mas estamos dentro da operação dos nossos clientes onde quer que ela esteja, em Minas e em outros estados. Nas etapas que pedem presença, a gente vai até a sua empresa.</p>
+        </div>
+      </div>
+      <div data-faq="1" data-anim="1" style="background:#fff;border:1px solid #E1E5E3;border-radius:14px;transition:border-color .25s ease,box-shadow .25s ease" style-hover="border-color:#C9D2CE">
+        <button type="button" onClick="{{ toggleFaq }}" style="width:100%;display:flex;align-items:center;justify-content:space-between;gap:20px;text-align:left;background:transparent;border:0;padding:22px 24px;cursor:pointer;color:#0D1426;font-size:1.0625rem;font-weight:600;letter-spacing:-.01em">
+          <span>De quem é o código e os dados do projeto?</span>
+          <span data-faq-icon="1" style="flex-shrink:0;color:#1D7A62;transition:transform .3s cubic-bezier(.2,.7,.2,1);display:flex"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14"></path><path d="M5 12h14"></path></svg></span>
+        </button>
+        <div data-faq-body="1" style="max-height:0;overflow:hidden;opacity:0;transition:max-height .4s cubic-bezier(.2,.7,.2,1),opacity .3s ease">
+          <p style="padding:0 24px 22px;font-size:1rem;color:#3C4B44;line-height:1.7">Seus. O que construímos para a sua empresa é da sua empresa, com o código entregue e documentado. Os dados permanecem sob a sua titularidade e ficam em ambiente de nuvem contratado por você — somos credenciados AWS.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contato" style="position:relative;overflow:hidden;background:#04070E;border-radius:clamp(24px,3vw,44px) clamp(24px,3vw,44px) 0 0">
+  <div data-px="0.05" style="position:absolute;width:64vw;height:64vw;border-radius:50%;top:-28vw;left:50%;margin-left:-32vw;background:radial-gradient(circle,rgba(46,232,168,.2),transparent 62%);filter:blur(90px);animation:olGlow 10s ease-in-out infinite;z-index:0"></div>
+  <div data-scale-in="1" style="position:relative;z-index:2;max-width:1280px;margin:0 auto;padding:clamp(100px,12vw,170px) 24px;display:flex;flex-direction:column;align-items:center;text-align:center;will-change:transform,opacity">
+    <h2 style="font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:clamp(2.3rem,5.4vw,4.4rem);line-height:1.04;letter-spacing:-.015em;color:#fff;max-width:22ch;margin-bottom:26px;text-wrap:balance">Não vendemos tecnologia. Modernizamos <em style="font-style:italic;color:#2EE8A8">grandes negócios</em> — de ponta a ponta.</h2>
+    <p style="font-size:1.0625rem;line-height:1.7;color:#A9B8CA;max-width:58ch;margin-bottom:clamp(32px,4vw,44px)">A primeira conversa dura 30 minutos e serve para uma coisa só: entender a sua necessidade e apontar onde estão as maiores oportunidades. Se fizer sentido para os dois lados, seguimos. Se não fizer, a gente diz.</p>
+    <a href="https://forms.cloud.microsoft/r/f2GGyr2vZT" target="_blank" rel="noopener" data-magnet="1" style="display:inline-flex;align-items:center;gap:10px;background:#2EE8A8;color:#04231A;font-size:1.05rem;font-weight:700;padding:19px 36px;border-radius:100px;box-shadow:0 0 44px rgba(46,232,168,.3);transition:box-shadow .3s ease,transform .25s cubic-bezier(.2,.7,.2,1)" style-hover="color:#04231A;box-shadow:0 0 70px rgba(46,232,168,.55)">Agendar conversa de 30 minutos
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+    </a>
+  </div>
+</section>
+
+<footer style="position:relative;overflow:hidden;background:#04070E;border-top:1px solid rgba(255,255,255,.07)">
+  <div style="position:relative;z-index:1;max-width:1280px;margin:0 auto;padding:clamp(56px,6vw,80px) 24px clamp(28px,4vw,40px)">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:clamp(32px,5vw,64px);margin-bottom:clamp(40px,5vw,56px)">
       <div>
         <img src="assets/logo-horizontal-white.svg" alt="Origami Lab" style="height:28px;display:block;margin-bottom:20px">
-        <p style="font-size:1rem;color:#A9B8CA;line-height:1.65;max-width:38ch;margin-bottom:14px">Modernizamos a operação de grandes empresas tradicionais.</p>
-        <p style="font-size:.875rem;color:#71839B;line-height:1.65;max-width:40ch">Formiga, Minas Gerais · Atendemos Centro-Oeste mineiro, Sul de Minas e São Paulo.</p>
+        <p style="font-size:1rem;color:#A9B8CA;line-height:1.65;max-width:38ch">Modernizamos a operação de grandes empresas tradicionais.</p>
       </div>
       <div>
         <div style="font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#71839B;margin-bottom:18px">Navegar</div>
         <div style="display:grid;gap:12px">
-          <a href="#cases" style="font-size:.9375rem;color:#A9B8CA;transition:color .15s" style-hover="color:#fff">Cases</a>
-          <a href="#como" style="font-size:.9375rem;color:#A9B8CA;transition:color .15s" style-hover="color:#fff">Como trabalhamos</a>
-          <a href="#faq" style="font-size:.9375rem;color:#A9B8CA;transition:color .15s" style-hover="color:#fff">Perguntas frequentes</a>
-          <a href="#contato" style="font-size:.9375rem;color:#A9B8CA;transition:color .15s" style-hover="color:#fff">Contato</a>
+          <a href="#servicos" style="font-size:.9375rem;color:#A9B8CA;transition:color .2s,transform .2s;width:fit-content" style-hover="color:#fff;transform:translateX(4px)">Serviços</a>
+          <a href="#como" style="font-size:.9375rem;color:#A9B8CA;transition:color .2s,transform .2s;width:fit-content" style-hover="color:#fff;transform:translateX(4px)">Como trabalhamos</a>
+          <a href="#clientes" style="font-size:.9375rem;color:#A9B8CA;transition:color .2s,transform .2s;width:fit-content" style-hover="color:#fff;transform:translateX(4px)">Clientes</a>
+          <a href="#quem-somos" style="font-size:.9375rem;color:#A9B8CA;transition:color .2s,transform .2s;width:fit-content" style-hover="color:#fff;transform:translateX(4px)">Quem somos</a>
+          <a href="#faq" style="font-size:.9375rem;color:#A9B8CA;transition:color .2s,transform .2s;width:fit-content" style-hover="color:#fff;transform:translateX(4px)">Perguntas frequentes</a>
         </div>
       </div>
       <div>
         <div style="font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#71839B;margin-bottom:18px">Contato</div>
         <div style="display:grid;gap:12px">
-          <a href="mailto:contato@origamilab.com.br" style="font-size:.9375rem;color:#A9B8CA;transition:color .15s" style-hover="color:#fff">contato@origamilab.com.br</a>
-          <a href="#contato" style="font-size:.9375rem;color:#A9B8CA;transition:color .15s" style-hover="color:#fff">WhatsApp · (37) 0000-0000</a>
-          <span style="font-size:.9375rem;color:#71839B;line-height:1.55">Rua · nº · Bairro<br>Formiga, MG · CEP 35570-000</span>
+          <a href="https://forms.cloud.microsoft/r/f2GGyr2vZT" target="_blank" rel="noopener" style="font-size:.9375rem;color:#A9B8CA;transition:color .2s" style-hover="color:#fff">Agendar conversa de 30 minutos</a>
+          <a href="mailto:contato@origamilab.com.br" style="font-size:.9375rem;color:#A9B8CA;transition:color .2s" style-hover="color:#fff">contato@origamilab.com.br</a>
+          <a href="https://maps.google.com/?q=R.+Silviano+Brand%C3%A3o,+156+-+2%C2%BA+Andar+-+Centro,+Formiga+-+MG,+35570-112" target="_blank" rel="noopener" style="font-size:.9375rem;color:#A9B8CA;line-height:1.55;transition:color .2s" style-hover="color:#fff">R. Silviano Brandão, 156 — 2º andar<br>Centro, Formiga — MG, 35570-112</a>
           <div style="display:flex;gap:12px;margin-top:6px">
-            <a href="#contato" aria-label="LinkedIn" style="width:38px;height:38px;border:1px solid #1A2540;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#A9B8CA;transition:border-color .15s,color .15s" style-hover="border-color:#2EE8A8;color:#2EE8A8"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"></path><rect width="4" height="12" x="2" y="9"></rect><circle cx="4" cy="4" r="2"></circle></svg></a>
-            <a href="#contato" aria-label="Instagram" style="width:38px;height:38px;border:1px solid #1A2540;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#A9B8CA;transition:border-color .15s,color .15s" style-hover="border-color:#2EE8A8;color:#2EE8A8"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line></svg></a>
+            <a href="https://www.linkedin.com/company/origamilab-br/" target="_blank" rel="noopener" aria-label="LinkedIn" style="width:38px;height:38px;border:1px solid #1A2540;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#A9B8CA;transition:border-color .25s,color .25s,transform .25s" style-hover="border-color:#2EE8A8;color:#2EE8A8;transform:translateY(-3px)"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"></path><rect width="4" height="12" x="2" y="9"></rect><circle cx="4" cy="4" r="2"></circle></svg></a>
+            <a href="https://www.instagram.com/origamilab_br/" target="_blank" rel="noopener" aria-label="Instagram" style="width:38px;height:38px;border:1px solid #1A2540;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#A9B8CA;transition:border-color .25s,color .25s,transform .25s" style-hover="border-color:#2EE8A8;color:#2EE8A8;transform:translateY(-3px)"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line></svg></a>
           </div>
         </div>
       </div>
@@ -606,173 +547,302 @@ input,button{font-family:inherit;}
       <span style="font-size:.8125rem;color:#5C6E86">Conectamos a força da tradição à tecnologia que a sustenta.</span>
     </div>
   </div>
+  <img src="assets/logo-horizontal-white.svg" alt="" data-px="0.04" style="position:absolute;left:50%;bottom:-3%;width:120%;margin-left:-60%;opacity:.045;pointer-events:none;z-index:0">
 </footer>
 
-
+</div>
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;precoNaFaq&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Pontos abertos&quot;},&quot;depoimentoCabral&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Pontos abertos&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;intensidadeMovimento&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:1,&quot;min&quot;:0,&quot;max&quot;:1.6,&quot;step&quot;:0.1,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Movimento&quot;},&quot;mostrarGaleria&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Seções opcionais&quot;}}">
 class Component extends DCLogic {
-  state = {};
-
   componentDidMount() {
+    this.reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     this.apply();
-    this.reveal();
-    this.parallax();
-    this.stackReveal();
+    this.initVideo();
+    this.initFill();
+    this.initReveal();
+    this.initHover();
+    this.collect();
+    this.layout();
+    this._onScroll = () => { this.dirty = true; };
+    this._onResize = () => { this.layout(); this.dirty = true; };
+    window.addEventListener('scroll', this._onScroll, { passive: true });
+    window.addEventListener('resize', this._onResize);
+    this.lastY = window.scrollY;
+    this.mqOff = 0;
+    this.mqDir = 1;
+    this.vel = 0;
+    this.dirty = true;
+    const relayout = () => { this.layout(); this.dirty = true; };
+    window.addEventListener('load', relayout);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(relayout);
+    setTimeout(relayout, 1200);
+    this._loop = () => { this.frame(); this._raf = requestAnimationFrame(this._loop); };
+    this._raf = requestAnimationFrame(this._loop);
+  }
+
+  componentDidUpdate() {
+    this.apply();
+    this.initFill();
+    this.initReveal();
+    this.initHover();
+    this.collect();
+    setTimeout(() => { this.layout(); this.dirty = true; }, 40);
+  }
+
+  componentWillUnmount() {
+    cancelAnimationFrame(this._raf);
+    window.removeEventListener('scroll', this._onScroll);
+    window.removeEventListener('resize', this._onResize);
+  }
+
+  apply() {
+    const show = (sel, on, disp) => document.querySelectorAll(sel).forEach(el => { el.style.display = on ? (disp || 'block') : 'none'; });
+    show('[data-galeria]', this.props.mostrarGaleria !== false);
+  }
+
+  amp() { const v = this.props.intensidadeMovimento; return v === undefined || v === null ? 1 : v; }
+
+  initVideo() {
     document.querySelectorAll('[data-bg-video]').forEach(v => {
       v.muted = true; v.defaultMuted = true; v.playsInline = true;
       const go = () => v.play().catch(() => {});
       go();
       v.addEventListener('canplay', go, { once: true });
     });
-    this.chart();
   }
 
-  componentDidUpdate() { this.apply(); }
-
-  apply() {
-    if (this._onStack) this._onStack();
-    const show = (sel, on) => document.querySelectorAll(sel).forEach(el => { el.style.display = on ? 'block' : 'none'; });
-    show('[data-opt="preco"]', this.props.precoNaFaq === true);
-    show('[data-opt="depoimento"]', this.props.depoimentoCabral === true);
-  }
-
-  reveal() {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    const io = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (!e.isIntersecting) return;
-        e.target.style.opacity = '1';
-        e.target.style.transform = 'none';
-        io.unobserve(e.target);
-      });
-    }, { threshold: 0.08, rootMargin: '0px 0px -6% 0px' });
-    document.querySelectorAll('[data-anim]').forEach(el => {
-      if (el.getBoundingClientRect().top < window.innerHeight * 0.92) return;
-      el.style.opacity = '0';
-      el.style.transform = 'translateY(24px)';
-      el.style.transition = 'opacity .65s cubic-bezier(.2,.7,.2,1), transform .65s cubic-bezier(.2,.7,.2,1)';
-      el.style.transitionDelay = ((+el.dataset.d || 0) * 90) + 'ms';
-      io.observe(el);
-    });
-  }
-
-  parallax() {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    const nodes = [...document.querySelectorAll('[data-px]')];
-    if (!nodes.length) return;
-    let queued = false;
-    const paint = () => {
-      queued = false;
-      const vh = window.innerHeight;
-      nodes.forEach(n => {
-        const r = n.getBoundingClientRect();
-        if (r.bottom < -400 || r.top > vh + 400) return;
-        const off = r.top + r.height / 2 - vh / 2;
-        n.style.transform = 'translate3d(0,' + (-off * parseFloat(n.dataset.px)).toFixed(1) + 'px,0)';
-      });
-    };
-    this._onScroll = () => { if (!queued) { queued = true; requestAnimationFrame(paint); } };
-    window.addEventListener('scroll', this._onScroll, { passive: true });
-    window.addEventListener('resize', this._onScroll);
-    paint();
-  }
-
-  shotFrames() {
-    if (!window.matchMedia('(hover: hover)').matches) return;
-    document.querySelectorAll('[data-shot]').forEach(frame => {
-      if (frame._shotWired) return;
-      frame._shotWired = true;
-      const set = on => {
-        frame.style.transition = 'opacity .5s ease, transform .5s cubic-bezier(.22,1,.36,1), box-shadow .5s ease, border-color .4s ease';
-        frame.style.transitionDelay = '0ms';
-        frame.style.transform = on ? 'translateY(-8px) scale(1.05)' : 'translateY(0) scale(1)';
-        frame.style.boxShadow = on ? '0 40px 90px rgba(9,15,30,.24)' : '0 24px 60px rgba(9,15,30,.14)';
-        frame.style.borderColor = on ? 'rgba(29,122,98,.45)' : '#D9D9D9';
-      };
-      frame.addEventListener('mouseenter', () => set(true));
-      frame.addEventListener('mouseleave', () => set(false));
-    });
-  }
-
-  serviceCards() {
-    document.querySelectorAll('[data-svc]').forEach(card => {
-      if (card._svcWired) return;
-      card._svcWired = true;
-      const num = card.querySelector('[data-svc-num]');
-      const title = card.querySelector('[data-svc-title]');
-      const rule = card.querySelector('[data-svc-rule]');
-      const body = card.querySelector('[data-svc-body]');
-      const set = on => {
-        card.style.transition = 'opacity .5s ease, background .4s ease, border-color .4s ease, transform .3s ease, box-shadow .3s ease';
-        card.style.transitionDelay = '0ms';
-        card.style.background = on ? '#0D1426' : '#fff';
-        card.style.borderColor = on ? '#0D1426' : '#D9D9D9';
-        card.style.transform = on ? 'translateY(-4px)' : 'translateY(0)';
-        card.style.boxShadow = on ? '0 18px 40px rgba(9,15,30,.18)' : 'none';
-        if (num) num.style.color = on ? '#2EE8A8' : '#1D7A62';
-        if (title) title.style.color = on ? '#fff' : '#0D1426';
-        if (rule) { rule.style.width = on ? '48px' : '28px'; rule.style.background = on ? '#2EE8A8' : '#D9D9D9'; }
-        if (body) body.style.color = on ? '#A9B8CA' : '#334560';
-      };
-      if (!window.matchMedia('(hover: hover)').matches) return;
-      card.addEventListener('mouseenter', () => set(true));
-      card.addEventListener('mouseleave', () => set(false));
-      card.addEventListener('focusin', () => set(true));
-      card.addEventListener('focusout', () => set(false));
-    });
-  }
-
-  // Cada seção fica presa (sticky) e a seguinte desliza por cima — o ponto de
-  // parada é calculado pela altura real da tela do usuário, então seções mais
-  // altas que a janela entram por inteiro antes de encostar.
-  stackReveal() {
-    const root = document.querySelector('[data-ol-root]');
-    if (!root) return;
-    const sections = [...root.children].filter(el => el.tagName === 'SECTION' || el.tagName === 'FOOTER');
-    if (!sections.length) return;
-    document.documentElement.style.scrollSnapType = 'y proximity';
-    sections.forEach(el => {
-      el.style.position = 'relative';
-      el.style.top = '';
-      el.style.zIndex = '';
-      el.style.borderRadius = '';
-      el.style.boxShadow = '';
-      el.style.scrollSnapAlign = 'start';
-      if (el.tagName === 'SECTION') {
-        el.style.minHeight = '100vh';
-        el.style.display = 'flex';
-        el.style.alignItems = 'center';
-        [...el.children].forEach(child => {
-          if (getComputedStyle(child).position !== 'absolute') child.style.width = '100%';
-        });
+  initFill() {
+    document.querySelectorAll('[data-fill]').forEach(el => {
+      el.style.backgroundImage = 'linear-gradient(90deg,#FFFFFF 0%,#FFFFFF 50%,#46586E 50%,#46586E 100%)';
+      el.style.backgroundSize = '220% 100%';
+      el.style.backgroundRepeat = 'no-repeat';
+      el.style.backgroundPosition = '100% 0';
+      el.style.webkitBackgroundClip = 'text';
+      el.style.backgroundClip = 'text';
+      if (getComputedStyle(el).webkitBackgroundClip === 'text' || getComputedStyle(el).backgroundClip === 'text') {
+        el.style.color = 'transparent';
+        el.style.webkitTextFillColor = 'transparent';
+        el.dataset.fillOn = '1';
       }
     });
   }
 
-  chart() {
-    const box = document.querySelector('[data-chart]');
-    if (!box) return;
-    const run = () => {
-      document.querySelectorAll('[data-chart-curve]').forEach(p => { p.style.strokeDashoffset = '0'; });
-      const gap = document.querySelector('[data-chart-gap]');
-      if (gap) gap.style.opacity = '1';
+  initReveal() {
+    const grow = el => {
+      const w = el.dataset.w || '100%';
+      setTimeout(() => { if (el.dataset.axis === 'h') el.style.height = w; else el.style.width = w; }, +(el.dataset.delay || 0));
     };
+    if (this.reduced) {
+      document.querySelectorAll('[data-grow]').forEach(el => { if (el.dataset.axis === 'h') el.style.height = el.dataset.w; else el.style.width = el.dataset.w; });
+      return;
+    }
     const io = new IntersectionObserver(entries => {
-      entries.forEach(e => { if (e.isIntersecting) { run(); io.disconnect(); } });
-    }, { threshold: 0.35 });
-    io.observe(box);
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        const el = e.target;
+        if (el.hasAttribute('data-grow')) grow(el);
+        else {
+          el.style.visibility = '';
+          el.style.animation = 'olRise .7s cubic-bezier(.2,.7,.2,1) ' + ((+el.dataset.d || 0) * 85) + 'ms both';
+          const done = () => { el.style.animation = ''; el.removeEventListener('animationend', done); };
+          el.addEventListener('animationend', done);
+        }
+        io.unobserve(el);
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -5% 0px' });
+    document.querySelectorAll('[data-anim]').forEach(el => {
+      if (el.dataset.revealed) return;
+      el.dataset.revealed = '1';
+      if (el.getBoundingClientRect().top < window.innerHeight * 0.94) return;
+      el.style.visibility = 'hidden';
+      io.observe(el);
+    });
+    document.querySelectorAll('[data-grow]').forEach(el => io.observe(el));
   }
 
-  componentWillUnmount() {
-    if (this._onScroll) {
-      window.removeEventListener('scroll', this._onScroll);
-      window.removeEventListener('resize', this._onScroll);
+  initHover() {
+    document.querySelectorAll('[data-spot]:not([data-bound])').forEach(el => {
+      el.dataset.bound = '1';
+      el.addEventListener('pointermove', ev => {
+        const r = el.getBoundingClientRect();
+        el.style.setProperty('--mx', ((ev.clientX - r.left) / r.width * 100).toFixed(1) + '%');
+        el.style.setProperty('--my', ((ev.clientY - r.top) / r.height * 100).toFixed(1) + '%');
+      });
+    });
+    if (this.reduced) return;
+    document.querySelectorAll('[data-magnet]:not([data-bound])').forEach(el => {
+      el.dataset.bound = '1';
+      el.addEventListener('pointermove', ev => {
+        const r = el.getBoundingClientRect();
+        const dx = (ev.clientX - r.left - r.width / 2) / r.width;
+        const dy = (ev.clientY - r.top - r.height / 2) / r.height;
+        el.style.transform = 'translate(' + (dx * 12).toFixed(1) + 'px,' + (dy * 8).toFixed(1) + 'px)';
+      });
+      el.addEventListener('pointerleave', () => { el.style.transform = 'translate(0,0)'; });
+    });
+  }
+
+  collect() {
+    this.hero = document.querySelector('[data-hero]');
+    this.heroVideo = document.querySelector('[data-hero-video]');
+    this.heroContent = document.querySelector('[data-hero-content]');
+    this.heroCue = document.querySelector('[data-hero-cue]');
+    this.nav = document.querySelector('[data-nav]');
+    this.navInner = document.querySelector('[data-nav-inner]');
+    this.bar = document.querySelector('[data-progress]');
+    this.px = [...document.querySelectorAll('[data-px]')];
+    this.fills = [...document.querySelectorAll('[data-fill]')].filter(el => el.dataset.fillOn);
+    this.stacks = [...document.querySelectorAll('[data-stack]')];
+    this.zooms = [...document.querySelectorAll('[data-zoom]')];
+    this.scaleIns = [...document.querySelectorAll('[data-scale-in]')];
+    this.marquees = [...document.querySelectorAll('[data-mq-row],[data-drift]')].map(el => {
+      if (!el.dataset.cloned) {
+        el.dataset.cloned = '1';
+        [...el.children].forEach(k => el.appendChild(k.cloneNode(true)));
+      }
+      const prev = (this.marquees || []).find(m => m.el === el);
+      return { el, half: 0, off: prev ? prev.off : 0, speed: parseFloat(el.dataset.mqSpeed || '0.55') };
+    });
+  }
+
+  layout() {
+    const vw = window.innerWidth, vh = window.innerHeight;
+    (this.marquees || []).forEach(m => {
+      const kids = m.el.children, n = kids.length / 2;
+      m.half = n >= 1 ? kids[n].getBoundingClientRect().left - kids[0].getBoundingClientRect().left : m.el.scrollWidth / 2;
+    });
+    const track = document.querySelector('[data-hpin-track]');
+    if (track) {
+      const vp = track.querySelector('[data-hpin-vp]');
+      const rail = track.querySelector('[data-hpin-rail]');
+      const narrow = vw < 900 || vh < 620 || this.reduced;
+      if (narrow) {
+        track.style.height = 'auto';
+        vp.style.position = 'static';
+        vp.style.height = 'auto';
+        vp.style.overflow = 'visible';
+        vp.style.padding = '80px 0 70px';
+        rail.style.transform = 'none';
+        rail.style.overflowX = 'auto';
+        rail.style.paddingLeft = '24px';
+        rail.style.width = 'auto';
+        rail.style.scrollSnapType = 'x mandatory';
+        [...rail.children].forEach(c => { c.style.scrollSnapAlign = 'center'; });
+        this.hpin = null;
+      } else {
+        vp.style.position = 'sticky';
+        vp.style.height = '100vh';
+        vp.style.overflow = 'hidden';
+        vp.style.padding = '';
+        rail.style.overflowX = 'visible';
+        rail.style.scrollSnapType = '';
+        rail.style.paddingLeft = Math.max(24, Math.round((vw - 1280) / 2 + 24)) + 'px';
+        const kids = rail.children;
+        const last = kids[kids.length - 1];
+        const span = last ? last.getBoundingClientRect().right - rail.getBoundingClientRect().left : rail.scrollWidth;
+        const dist = Math.max(0, Math.round(span + Math.max(40, vw * 0.12) - vp.clientWidth));
+        track.style.height = (vh + dist) + 'px';
+        this.hpin = { track, rail, dist, bar: track.querySelector('[data-hpin-bar]') };
+      }
     }
-    if (this._onStack) {
-      window.removeEventListener('resize', this._onStack);
-      window.removeEventListener('load', this._onStack);
+    if (this.heroCue) this.heroCue.style.display = vh < 720 ? 'none' : 'flex';
+    this.stacks.forEach(el => { el.style.height = ''; });
+    this.docH = document.documentElement.scrollHeight - vh;
+  }
+
+  frame() {
+    const y = window.scrollY, vh = window.innerHeight;
+    const clamp = (n, a, b) => n < a ? a : n > b ? b : n;
+    const dv = y - this.lastY;
+    this.lastY = y;
+    this.vel += (dv - this.vel) * 0.18;
+
+    if (this.vel > 0.06) this.mqDir = 1; else if (this.vel < -0.06) this.mqDir = -1;
+    (this.marquees || []).forEach(m => {
+      if (!m.half) return;
+      m.off += (m.speed + Math.abs(this.vel) * 0.42) * (this.mqDir || 1);
+      if (m.off > m.half) m.off -= m.half;
+      if (m.off < 0) m.off += m.half;
+      m.el.style.transform = 'translate3d(' + (-m.off).toFixed(1) + 'px,0,0)';
+    });
+
+    if (!this.dirty && Math.abs(this.vel) < 0.05) return;
+    this.dirty = false;
+    const k = this.amp();
+
+    if (this.bar && this.docH > 0) this.bar.style.width = (clamp(y / this.docH, 0, 1) * 100).toFixed(2) + '%';
+    if (this.nav) {
+      const on = y > 60;
+      this.nav.style.background = on ? 'rgba(4,7,14,.86)' : 'transparent';
+      this.nav.style.backdropFilter = on ? 'blur(14px)' : 'none';
+      this.nav.style.borderBottomColor = on ? 'rgba(255,255,255,.08)' : 'transparent';
+      if (this.navInner) this.navInner.style.padding = on ? '12px 24px' : '20px 24px';
+    }
+
+    if (this.hero) {
+      const p = clamp(y / vh, 0, 1);
+      if (this.heroVideo) this.heroVideo.style.transform = 'scale(' + (1 + 0.22 * p * k).toFixed(3) + ')';
+      if (this.heroContent) {
+        this.heroContent.style.opacity = String(clamp(1 - p * 1.7, 0, 1));
+        this.heroContent.style.transform = 'translate3d(0,' + (-p * 90 * k).toFixed(1) + 'px,0) scale(' + (1 - p * 0.08).toFixed(3) + ')';
+      }
+      if (this.heroCue) this.heroCue.style.opacity = String(clamp(1 - p * 4, 0, 1));
+      if (this.heroVideo) {
+        const vis = y < vh * 1.15;
+        if (vis && this.heroVideo.paused) this.heroVideo.play().catch(() => {});
+        if (!vis && !this.heroVideo.paused) this.heroVideo.pause();
+      }
+    }
+
+    this.px.forEach(n => {
+      const r = n.getBoundingClientRect();
+      if (r.bottom < -500 || r.top > vh + 500) return;
+      const off = r.top + r.height / 2 - vh / 2;
+      n.style.transform = 'translate3d(0,' + (-off * parseFloat(n.dataset.px) * k).toFixed(1) + 'px,0)';
+    });
+
+    this.fills.forEach(el => {
+      const r = el.getBoundingClientRect();
+      const p = clamp((vh * 0.82 - r.top) / (r.height + vh * 0.3), 0, 1);
+      el.style.backgroundPosition = ((1 - p) * 100).toFixed(1) + '% 0';
+    });
+
+    this.stacks.forEach((card, i) => {
+      const next = this.stacks[i + 1];
+      if (!next) { card.style.transform = 'none'; return; }
+      const r = card.getBoundingClientRect(), nr = next.getBoundingClientRect();
+      const gap = nr.top - (r.top + r.height);
+      const p = clamp(1 - gap / (vh * 0.75), 0, 1);
+      card.style.transform = 'translate3d(0,' + (-14 * p).toFixed(1) + 'px,0) scale(' + (1 - 0.055 * p).toFixed(3) + ')';
+      const inner = card.firstElementChild;
+      if (inner) inner.style.filter = '';
+    });
+
+    this.zooms.forEach(f => {
+      const img = f.querySelector('img');
+      if (!img) return;
+      const r = f.getBoundingClientRect();
+      if (r.bottom < -300 || r.top > vh + 300) return;
+      const p = clamp((vh - r.top) / (vh + r.height), 0, 1);
+      const amt = parseFloat(f.dataset.zoomAmt || '0.16');
+      img.style.transform = 'scale(' + (1 + amt * (1 - p) * k).toFixed(3) + ')';
+    });
+
+
+
+    this.scaleIns.forEach(el => {
+      const r = el.getBoundingClientRect();
+      const p = clamp((vh * 1.05 - r.top) / (vh * 0.85), 0, 1);
+      el.style.transform = 'scale(' + (0.9 + 0.1 * p).toFixed(3) + ')';
+      el.style.opacity = String(clamp(p * 1.4, 0, 1));
+    });
+
+    if (this.hpin && this.hpin.dist > 0) {
+      const top = this.hpin.track.getBoundingClientRect().top + y;
+      const p = clamp((y - top) / this.hpin.dist, 0, 1);
+      this.hpin.rail.style.transform = 'translate3d(' + (-p * this.hpin.dist).toFixed(1) + 'px,0,0)';
+      if (this.hpin.bar) this.hpin.bar.style.width = (4 + p * 96).toFixed(1) + '%';
     }
   }
 
@@ -786,13 +856,9 @@ class Component extends DCLogic {
         body.style.maxHeight = open ? '0px' : body.scrollHeight + 'px';
         body.style.opacity = open ? '0' : '1';
         icon.style.transform = open ? 'none' : 'rotate(135deg)';
-        item.style.borderColor = open ? '#1A2540' : '#2B3D5E';
-      },
-      submitPdf: e => {
-        e.preventDefault();
-        const msg = e.currentTarget.querySelector('[data-pdf-msg]');
-        if (msg) msg.style.display = 'block';
-        e.currentTarget.reset();
+        item.style.borderColor = open ? '#E1E5E3' : '#1D7A62';
+        item.style.boxShadow = open ? 'none' : '0 16px 36px rgba(9,15,30,.08)';
+        setTimeout(() => { this.layout(); this.dirty = true; }, 420);
       }
     };
   }
