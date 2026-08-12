@@ -1,0 +1,33 @@
+# Origami Lab
+
+> Consultoria de modernização de operação para grandes empresas tradicionais,
+> baseada em Formiga, Minas Gerais, Brasil. Estrutura processo, informação e
+> tecnologia de ponta a ponta — sem substituir o que já funciona na empresa.
+
+## O que fazemos
+
+- Modernização de operação: diagnóstico dentro da operação, não em slides.
+- Integração de sistemas: ERP, planilhas e sistemas que não conversam entre si.
+- Informação para decisão: indicadores e visibilidade de margem em tempo real.
+- Tecnologia sob medida: software construído a partir do processo real.
+- Captação de incentivos: Lei do Bem, FINEP e FAPEMIG para financiar
+  modernização, em parceria com a PIN — cobrança só se o capital for liberado.
+
+## Para quem
+
+Empresas tradicionais de indústria, engenharia e serviços — tipicamente
+fundadas entre as décadas de 1960 e 1980 — em Minas Gerais. Clientes incluem
+Tecno 2000, Prumo Engenharia, Retífica Formiguense, Transportadora Cabral,
+Bry, Integrar, Sindinova, Syngular e Avante, com relações com Sebrae.
+
+## Quem somos
+
+Sócios com passagens por Deloitte, AB InBev, Vale, Localiza, MRV, Inter e
+ESAB. Trabalhamos dentro da operação do cliente: cada entrega precisa provar
+resultado antes de a próxima começar.
+
+## Contato
+
+- Site: https://www.origamilab.com.br/
+- E-mail: contato@origamilab.com.br
+- Localização: Formiga, Minas Gerais, Brasil

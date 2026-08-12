@@ -3,6 +3,15 @@
 Landing page estática da Origami Lab. Sem build, sem npm: publica em qualquer
 hospedagem de arquivo estático (GitHub Pages inclusive).
 
+## Deploy
+
+Push na `main` dispara o workflow `.github/workflows/deploy.yml`, que publica em
+produção na Vercel. **Push nesta branch é deploy** — não é só versionamento.
+Configuração em `vercel.json` (headers de segurança e cache) e `.vercelignore`.
+
+Secrets necessários no repo (Settings → Secrets and variables → Actions):
+`VERCEL_TOKEN`, `VERCEL_ORG_ID`, `VERCEL_PROJECT_ID`.
+
 ## Rodar
 
 ```bash
@@ -17,10 +26,13 @@ de origem HTTP.
 
 ```
 index.html                 a página (9 seções + rodapé)
-assets/css/styles.css      estilos; design tokens em :root
+assets/css/styles.css      estilos; design tokens em :root e @font-face
 assets/js/main.js          motor de scroll (nav, hero, marquees, pin, reveal, FAQ)
-assets/                    imagens, logos, vídeo e poster do hero
-robots.txt, sitemap.xml    SEO
+assets/fonts/              Inter e Instrument Serif self-hosted (sem Google Fonts)
+assets/                    imagens, logos, vídeo e poster do hero, capa de OG
+robots.txt, sitemap.xml, llms.txt   SEO
+vercel.json, .vercelignore          hospedagem
+.github/workflows/deploy.yml        deploy automático
 LP Origami Lab.dc.html     arquivo de design original (referência)
 support.js                 runtime do Claude Design, usado só pelo .dc.html
 ```
@@ -74,8 +86,11 @@ var CONFIG = {
 
 ## Conversão
 
-Todos os 8 CTAs vão para o mesmo formulário do Microsoft Forms
-(`https://forms.cloud.microsoft/r/f2GGyr2vZT`), em nova aba com `rel="noopener"`.
+Dois caminhos, ambos em nova aba com `rel="noopener"`:
+
+- **Formulário** (8 CTAs) — `https://forms.cloud.microsoft/r/f2GGyr2vZT`
+- **WhatsApp** — botão na chamada final (com mensagem pré-preenchida) e link no
+  rodapé: `+55 31 9805-5189`
 
 > Nota: a versão anterior do site **embutia** esse formulário num iframe, para o
 > visitante converter sem sair da página (o formulário permite embed — não manda
@@ -87,6 +102,7 @@ Todos os 8 CTAs vão para o mesmo formulário do Microsoft Forms
 Todos reais, vindos do design — **não há link sem destino**:
 
 - **E-mail:** contato@origamilab.com.br
+- **WhatsApp:** +55 31 9805-5189
 - **Endereço:** R. Silviano Brandão, 156 — 2º andar, Centro, Formiga — MG, 35570-112 (com link para o Google Maps)
 - **LinkedIn:** linkedin.com/company/origamilab-br
 - **Instagram:** instagram.com/origamilab_br
@@ -95,8 +111,7 @@ Todos reais, vindos do design — **não há link sem destino**:
 
 1. **CNPJ e razão social** no rodapé — procurement B2B costuma pedir.
 2. **Política de privacidade / LGPD** — o formulário coleta dados pessoais.
-3. **Imagem de Open Graph 1200×630** própria — hoje usa o poster do hero.
-4. **Cases com resultado.** A prova hoje é logo + setor + pedigree dos sócios.
+3. **Cases com resultado.** A prova hoje é logo + setor + pedigree dos sócios.
    Enquanto não houver problema → intervenção → resultado de dois ou três
    clientes, essa é a maior lacuna para ticket dessa faixa.
 
@@ -117,7 +132,10 @@ Todos reais, vindos do design — **não há link sem destino**:
   2219×3945) estourava o limite de 256 KiB por arquivo do MCP e vinha truncado.
   Foi reconstruído do `IMG_9448.jpg` local e otimizado para
   `assets/socios.webp` — **112 KB**, 1100 px de largura.
-- **Poster do hero.** O `hero-bg.webm` tem 12 MB; um frame extraído dele
+- **Fontes self-hosted.** Inter e Instrument Serif servidas do próprio domínio,
+  com `preload` das três variantes usadas acima da dobra. Sem Google Fonts: menos
+  uma dependência externa e sem requisição a terceiro.
+- **Poster do hero.** O `hero-bg.webm` foi comprimido de 12 MB para 3,4 MB; um frame
   (`assets/hero-poster.webp`, 48 KB) cobre a primeira pintura e o vídeo entra com
   `preload="none"`.
 - **Grades à prova de tela estreita.** `repeat(auto-fit, minmax(290px, 1fr))`
@@ -144,8 +162,10 @@ Todos reais, vindos do design — **não há link sem destino**:
   aparecendo até 860px.
 - FAQ abre e fecha com `aria-expanded`; os 8 CTAs com `target="_blank"` e
   `rel="noopener"`. Sem erro de console.
-- Render conferido em 1440px (hero com vídeo, serviços, trilha, quem somos) e em
-  380px.
+- Render conferido em 1440px (hero com vídeo, serviços, trilha, quem somos,
+  chamada final) e em 380px.
+- Fontes self-hosted carregando de fato (`document.fonts`) e o `h1` resolvendo
+  para Instrument Serif.
 
 O parallax, o zoom e a translação da trilha dependem de `requestAnimationFrame`,
 que não dispara no Chrome headless sob virtual-time — precisam de conferência no

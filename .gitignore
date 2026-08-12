@@ -11,3 +11,8 @@
 _qa*.html
 _test.html
 _probe.html
+.vercel
+.env*
+
+# Artefato do encode de vídeo (ffmpeg two-pass)
+ffmpeg2pass-*.log
