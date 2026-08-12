@@ -1049,6 +1049,15 @@ li {
   padding: 4px var(--ol-gutter);
   overflow-x: auto;
   scroll-snap-type: x mandatory;
+  /* Sem barra de rolagem: a regra global `::-webkit-scrollbar` do design deixa
+     a barra permanente e ela ainda rouba 10px de altura do bloco. O gesto
+     continua, e quem sinaliza que há mais é o próximo painel aparecendo na
+     borda — não a barra. */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.ol-hpin__rail::-webkit-scrollbar {
+  display: none;
 }
 .ol-hpin__rail > * {
   scroll-snap-align: center;
