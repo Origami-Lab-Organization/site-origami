@@ -34,7 +34,6 @@
   /* Estado do loop */
   var lastY = 0;
   var vel = 0;
-  var mqDir = 1;
   var dirty = true;
   var docH = 0;
   var raf = 0;
@@ -272,10 +271,9 @@
       }
       return {
         el: el,
-        half: 0,
-        off: 0,
-        speed: parseFloat(el.dataset.mqSpeed || "0.55"),
-        dir: parseFloat(el.dataset.driftDir || "1"),
+        // Sentido base: a galeria anda para o outro lado (data-drift-dir="-1").
+        reversed: parseFloat(el.dataset.driftDir || "1") < 0,
+        varDir: el.hasAttribute("data-drift") ? "--ol-drift-dir" : "--ol-mq-dir",
       };
     });
   }
@@ -283,15 +281,6 @@
   function layout() {
     var vw = window.innerWidth;
     var vh = window.innerHeight;
-
-    marquees.forEach(function (m) {
-      var kids = m.el.children;
-      var n = kids.length / 2;
-      m.half =
-        n >= 1
-          ? kids[n].getBoundingClientRect().left - kids[0].getBoundingClientRect().left
-          : m.el.scrollWidth / 2;
-    });
 
     var track = document.querySelector("[data-hpin-track]");
     if (track) {
@@ -344,19 +333,6 @@
     var dv = y - lastY;
     lastY = y;
     vel += (dv - vel) * 0.18;
-
-    // Marquees andam sempre; a velocidade e o sentido do scroll modulam.
-    if (!reduced) {
-      if (vel > 0.06) mqDir = 1;
-      else if (vel < -0.06) mqDir = -1;
-      marquees.forEach(function (m) {
-        if (!m.half) return;
-        m.off += (m.speed + Math.abs(vel) * 0.42) * mqDir * m.dir * amp;
-        if (m.off > m.half) m.off -= m.half;
-        if (m.off < 0) m.off += m.half;
-        m.el.style.transform = "translate3d(" + (-m.off).toFixed(1) + "px,0,0)";
-      });
-    }
 
     if (!dirty && Math.abs(vel) < 0.05) return;
     dirty = false;
@@ -450,6 +426,41 @@
      Boot
      ---------------------------------------------------------------------- */
 
+  /* ----------------------------------------------------------------------
+     Marquees — a faixa é animada por CSS (compositor) e nunca para. Nada aqui
+     depende de requestAnimationFrame nem de IntersectionObserver: no mobile os
+     dois dependem do pipeline de renderização, e quando ele engasga (Low Power
+     Mode, momentum scroll do iOS, jank) a faixa simplesmente parava.
+
+     Não pausamos fora da tela de propósito: o ganho é irrelevante — o navegador
+     já não pinta o que não está visível — e o modo de falha seria "pausado para
+     sempre". Aqui o JS só inverte o sentido; se ele falhar, a faixa continua
+     andando no sentido padrão.
+     ---------------------------------------------------------------------- */
+
+  function initMarquees() {
+    if (reduced || !marquees.length) return;
+
+    // Sentido acompanha o scroll, como no design.
+    var prevY = window.scrollY;
+    var dir = 1;
+    window.addEventListener(
+      "scroll",
+      function () {
+        var y = window.scrollY;
+        var d = y - prevY;
+        prevY = y;
+        if (Math.abs(d) < 2 || (d > 0) === (dir > 0)) return;
+        dir = d > 0 ? 1 : -1;
+        marquees.forEach(function (m) {
+          var back = m.reversed ? dir > 0 : dir < 0;
+          m.el.style.setProperty(m.varDir, back ? "reverse" : "normal");
+        });
+      },
+      { passive: true }
+    );
+  }
+
   function init() {
     applyOptions();
     initVideo();
@@ -459,6 +470,7 @@
     initFaq();
     collect();
     layout();
+    initMarquees();
 
     lastY = window.scrollY;
     dirty = true;
