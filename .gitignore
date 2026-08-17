@@ -5,7 +5,7 @@
 # Editores
 .vscode/
 .idea/
-*.swp
+*.swp 
 
 # Arquivos temporários de QA (gerados ao inspecionar seções isoladas)
 _qa*.html
