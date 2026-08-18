@@ -44,7 +44,7 @@ Os dois últimos não são carregados pela página e podem sair do deploy.
 1. **Hero** — fica preso (`position: sticky`) enquanto o resto da página desliza
    por cima. O vídeo dá zoom e o texto sobe e desaparece conforme o scroll.
 2. **Marquee de clientes** — faixa branca com os 10 logos, rolando em laço
-   contínuo. A velocidade e o **sentido** acompanham o scroll do visitante.
+   contínuo por animação CSS. O **sentido** acompanha o scroll do visitante.
 3. **Serviços** — três cartões que se empilham por `position: sticky`, cada um
    com um painel de interface simulado (painel da operação, matriz de
    priorização, destino do capital).
@@ -63,7 +63,7 @@ Tudo o que é movimento degrada com elegância:
 | Situação | O que acontece |
 |---|---|
 | **Sem JavaScript** | A página fica legível e navegável. A trilha de "Como trabalhamos" vira uma **rolagem horizontal comum** (é o padrão do CSS; o pin é que é adicionado pelo JS). |
-| **`prefers-reduced-motion`** | Sem marquee, sem parallax, sem zoom, sem pin. O hero deixa de ser sticky e as barras do painel já aparecem preenchidas. |
+| **`prefers-reduced-motion`** | Sem marquee, sem parallax, sem zoom, sem pin. No iOS isto é Ajustes → Acessibilidade → Movimento → *Reduzir Movimento*: com ele ligado a faixa de logos fica parada de propósito. O hero deixa de ser sticky e as barras do painel já aparecem preenchidas. |
 | **Abaixo de 900px** | A trilha horizontal volta a ser rolagem comum com `scroll-snap`. |
 | **Abaixo de 860px** | Entra o menu mobile (painel com `aria-expanded`, fecha com `Esc`, com clique fora e ao navegar). Os cartões de serviço deixam de empilhar e viram lista. |
 | **Vídeo do hero ausente** | O poster de 48 KB e o degradê assumem; nada quebra. |
@@ -138,6 +138,16 @@ Todos reais, vindos do design — **não há link sem destino**:
 - **Poster do hero.** O `hero-bg.webm` foi comprimido de 12 MB para 3,4 MB; um frame
   (`assets/hero-poster.webp`, 48 KB) cobre a primeira pintura e o vídeo entra com
   `preload="none"`.
+- **Marquee no compositor, inversão por `playbackRate`.** As faixas são animadas
+  por `@keyframes` (não por `requestAnimationFrame`): no mobile o rAF depende do
+  pipeline de renderização e parava com momentum scroll, Low Power Mode ou jank.
+  Para inverter o sentido, o JS troca o `playbackRate` da animação pela Web
+  Animations API — **não** `animation-direction`, que espelha o progresso
+  (`p` → `1 - p`) e teleporta meia largura da faixa (~1.900px medidos). Era isso
+  que fazia os logos "voltarem ao início" ao mudar o sentido do scroll. O relógio
+  da animação é adiantado um número inteiro de voltas (invisível, porque o
+  progresso é por iteração) para poder correr para trás sem chegar a zero.
+  Sem Web Animations API a faixa segue no sentido padrão, sem inverter.
 - **Grades à prova de tela estreita.** `repeat(auto-fit, minmax(290px, 1fr))`
   estoura quando a caixa é menor que 290px. Todas as 8 ocorrências passaram a
   usar `minmax(min(290px, 100%), 1fr)`.

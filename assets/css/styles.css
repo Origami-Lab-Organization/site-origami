@@ -588,7 +588,9 @@ li {
   /* Animação no compositor: não depende de requestAnimationFrame, então
      sobrevive ao momentum scroll do iOS, ao Low Power Mode e a jank. */
   animation: ol-marquee var(--ol-mq-dur, 60s) linear infinite;
-  animation-direction: var(--ol-mq-dir, normal);
+  /* O sentido e invertido pelo `playbackRate` no JS, nao por
+     `animation-direction`: trocar a direcao espelha o progresso e teleporta. */
+  animation-direction: normal;
 }
 .ol-marquee__item {
   flex: 0 0 auto;
@@ -1206,7 +1208,8 @@ li {
   width: max-content;
   will-change: transform;
   animation: ol-marquee var(--ol-drift-dur, 70s) linear infinite;
-  animation-direction: var(--ol-drift-dir, reverse);
+  /* Sentido oposto ao dos logos; a inversao por scroll e feita no JS. */
+  animation-direction: reverse;
 }
 .ol-shot {
   position: relative;

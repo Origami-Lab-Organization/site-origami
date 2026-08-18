@@ -269,12 +269,7 @@
           el.appendChild(copy);
         });
       }
-      return {
-        el: el,
-        // Sentido base: a galeria anda para o outro lado (data-drift-dir="-1").
-        reversed: parseFloat(el.dataset.driftDir || "1") < 0,
-        varDir: el.hasAttribute("data-drift") ? "--ol-drift-dir" : "--ol-mq-dir",
-      };
+      return el;
     });
   }
 
@@ -438,12 +433,44 @@
      andando no sentido padrão.
      ---------------------------------------------------------------------- */
 
+  /* Inverter o sentido trocando `animation-direction` NAO continua de onde a
+     faixa estava: o progresso vira 1 - p, o que teleporta meia largura (~1900px
+     aqui). No desktop isso lia como "voltou ao inicio"; no mobile, onde o
+     momentum do iOS troca de sentido varias vezes seguidas, a faixa teleportava
+     tanto que parecia parada.
+
+     Com a Web Animations API o `playbackRate` muda mantendo o `currentTime`, e a
+     inversao fica continua. Como o tempo passa a correr para tras, adiantamos o
+     relogio um numero INTEIRO de voltas: invisivel, porque o progresso e por
+     iteracao, e assim ele nunca chega a zero (onde a animacao travaria). */
+  function seekAnims() {
+    var VOLTAS = 2000; // ~30h de reversao continua na duracao mais curta
+    return marquees
+      .map(function (el) {
+        var list = el.getAnimations ? el.getAnimations() : [];
+        for (var i = 0; i < list.length; i++) {
+          var timing = list[i].effect && list[i].effect.getComputedTiming();
+          var dur = timing && timing.duration;
+          if (dur > 0 && isFinite(dur)) {
+            list[i].currentTime = (list[i].currentTime || 0) + dur * VOLTAS;
+            return list[i];
+          }
+        }
+        return null;
+      })
+      .filter(Boolean);
+  }
+
   function initMarquees() {
     if (reduced || !marquees.length) return;
 
-    // Sentido acompanha o scroll, como no design.
+    // Sentido acompanha o scroll, como no design. As animacoes sao resolvidas na
+    // primeira inversao, nao no boot: ai o estilo ja esta calculado com certeza.
+    // Sem Web Animations API a lista vem vazia e a faixa segue no sentido
+    // padrao — preferimos nao inverter a inverter com salto.
     var prevY = window.scrollY;
     var dir = 1;
+    var anims = null;
     window.addEventListener(
       "scroll",
       function () {
@@ -452,9 +479,9 @@
         prevY = y;
         if (Math.abs(d) < 2 || (d > 0) === (dir > 0)) return;
         dir = d > 0 ? 1 : -1;
-        marquees.forEach(function (m) {
-          var back = m.reversed ? dir > 0 : dir < 0;
-          m.el.style.setProperty(m.varDir, back ? "reverse" : "normal");
+        if (!anims) anims = seekAnims();
+        anims.forEach(function (a) {
+          a.playbackRate = dir;
         });
       },
       { passive: true }
