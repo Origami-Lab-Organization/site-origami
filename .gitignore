@@ -2,7 +2,7 @@
 .DS_Store
 ._*
 
-# Editores
+# Editores  
 .vscode/
 .idea/
 *.swp 
