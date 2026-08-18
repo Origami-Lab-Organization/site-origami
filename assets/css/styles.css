@@ -101,10 +101,9 @@
   --ol-gutter: 24px;
   --ol-round: clamp(24px, 3vw, 44px);
 
-  /* Duração das faixas. O laço percorre sempre um conjunto (-50%), então a
-     duração é o que define a velocidade: ~34 px/s nos dois breakpoints. */
-  --ol-mq-dur: 68s;
-  --ol-drift-dur: 63s;
+  /* Fallback de duração. O valor real é calculado pelo JS a partir da largura
+     medida de um conjunto, para a velocidade em px/s ser a mesma em toda tela. */
+  --ol-mq-dur: 40s;
 }
 
 *,
@@ -215,15 +214,20 @@ li {
     opacity: 0.25;
   }
 }
-/* Metade da faixa = exatamente um conjunto, porque o JS duplica os filhos.
-   Por isso o espaçamento é `margin-right` e não `gap`: com `gap`, metade da
-   largura total cairia meio vão fora do lugar e o laço daria um salto. */
+/* O laço anda exatamente um conjunto de filhos, e essa distância vem MEDIDA em
+   pixels pelo JS (`--ol-mq-w`). O `-50%` fica só de fallback.
+
+   Antes era `-50%`, o que fazia o laço depender da largura da própria faixa
+   resolver certo — e portanto de `width: max-content`, de não haver padding
+   lateral e de o espaçamento ser `margin-right` em vez de `gap`. Três coisas
+   frágeis, e nenhuma delas dava para conferir no aparelho do cliente. Em pixels,
+   a distância é correta mesmo que a faixa meça errado. */
 @keyframes ol-marquee {
   from {
     transform: translate3d(0, 0, 0);
   }
   to {
-    transform: translate3d(-50%, 0, 0);
+    transform: translate3d(calc(-1 * var(--ol-mq-w, 50%)), 0, 0);
   }
 }
 @keyframes ol-rise {
@@ -584,9 +588,12 @@ li {
 .ol-marquee__row {
   display: flex;
   width: max-content;
-  will-change: transform;
   /* Animação no compositor: não depende de requestAnimationFrame, então
-     sobrevive ao momentum scroll do iOS, ao Low Power Mode e a jank. */
+     sobrevive ao momentum scroll do iOS, ao Low Power Mode e a jank.
+
+     Sem `will-change`: animar `transform` já promove a camada, e a faixa é larga
+     (3.700px+). No iOS, com device pixel ratio 3, a camada extra vira memória de
+     textura à toa — sob pressão o WebKit descarta e a animação engasga. */
   animation: ol-marquee var(--ol-mq-dur, 60s) linear infinite;
   /* O sentido e invertido pelo `playbackRate` no JS, nao por
      `animation-direction`: trocar a direcao espelha o progresso e teleporta. */
@@ -1202,12 +1209,9 @@ li {
 }
 .ol-drift {
   display: flex;
-  /* Sem padding lateral: `translate3d(-50%)` é relativo à largura da própria
-     caixa, e padding horizontal desalinharia o ponto de emenda do laço. */
   padding: 0 0 clamp(80px, 9vw, 130px);
   width: max-content;
-  will-change: transform;
-  animation: ol-marquee var(--ol-drift-dur, 70s) linear infinite;
+  animation: ol-marquee var(--ol-mq-dur, 60s) linear infinite;
   /* Sentido oposto ao dos logos; a inversao por scroll e feita no JS. */
   animation-direction: reverse;
 }
@@ -1772,10 +1776,6 @@ li {
 }
 
 @media (max-width: 640px) {
-  :root {
-    --ol-mq-dur: 55s;
-    --ol-drift-dur: 45s;
-  }
   .ol-hero {
     position: relative;
     height: auto;
@@ -1826,5 +1826,18 @@ li {
   /* Sem movimento o hero não precisa ficar preso. */
   .ol-hero {
     position: relative;
+  }
+  /* Sem animação a faixa congelaria mostrando só os dois primeiros itens. Vira
+     uma faixa que se arrasta com o dedo: nenhum movimento automático, mas o
+     conteúdo continua alcançável. */
+  .ol-marquee__wrap,
+  .ol-gallery__deck {
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .ol-marquee__wrap::-webkit-scrollbar,
+  .ol-gallery__deck::-webkit-scrollbar {
+    display: none;
   }
 }

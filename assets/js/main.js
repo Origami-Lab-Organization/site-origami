@@ -273,9 +273,41 @@
     });
   }
 
+  /* Distância do laço e duração, MEDIDAS. O laço tem de andar exatamente um
+     conjunto de filhos; antes isso era `-50%`, que só funciona se a faixa souber
+     medir a si mesma. Aqui a distância vem da diferença entre o primeiro item e
+     o primeiro clone — imune à largura da faixa, a padding e ao tipo de
+     espaçamento.
+
+     A duração sai da largura, para a velocidade em px/s ser a mesma em qualquer
+     tela: sem isso, tela estreita (itens menores) andava no mesmo tempo, ou seja,
+     mais devagar — no celular ficava perto de imperceptível. */
+  var VELOCIDADE = { faixa: 58, galeria: 48 }; // px por segundo
+
+  function sizeMarquees() {
+    marquees.forEach(function (el) {
+      var kids = el.children;
+      var meio = kids.length / 2;
+      if (!meio || meio !== Math.floor(meio)) return;
+      var w = kids[meio].getBoundingClientRect().left - kids[0].getBoundingClientRect().left;
+      // Largura zero = seção escondida ou layout ainda não resolvido: mantém o
+      // fallback do CSS em vez de gravar um laço de tamanho errado.
+      if (!(w > 1)) return;
+      // Só reescreve quando muda de verdade: mexer na duração de uma animação em
+      // curso a retemporiza, e isso salta.
+      if (el.dataset.mqW === String(Math.round(w))) return;
+      el.dataset.mqW = String(Math.round(w));
+      var vel = el.hasAttribute("data-drift") ? VELOCIDADE.galeria : VELOCIDADE.faixa;
+      el.style.setProperty("--ol-mq-w", w.toFixed(2) + "px");
+      el.style.setProperty("--ol-mq-dur", (w / vel).toFixed(1) + "s");
+    });
+  }
+
   function layout() {
     var vw = window.innerWidth;
     var vh = window.innerHeight;
+
+    sizeMarquees();
 
     var track = document.querySelector("[data-hpin-track]");
     if (track) {
