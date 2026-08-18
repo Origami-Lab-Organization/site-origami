@@ -160,9 +160,12 @@ Todos reais, vindos do design — **não há link sem destino**:
      em vez de `gap`. Três invariantes frágeis, nenhuma verificável no aparelho do
      cliente. Agora o JS mede a diferença entre o primeiro item e o primeiro clone
      e grava em `--ol-mq-w`; a distância fica correta mesmo que a faixa meça
-     errado. A duração sai dessa largura, para a **velocidade em px/s ser a mesma
-     em qualquer tela** — antes, tela estreita tinha itens menores e duração fixa,
-     ou seja, andava mais devagar (~34 px/s, perto de imperceptível no celular).
+     errado. A duração passou a sair dessa largura: antes eram dois números fixos
+     por breakpoint (68s e 55s), calibrados à mão para dar ~34 px/s nos dois — o
+     que funcionava, mas desregulava a cada mudança de largura de item. Agora a
+     **velocidade é o parâmetro e a duração é a consequência**, e subiu de ~34
+     para 58 px/s: numa tela de 380px cabem 2,5 logos, então a 34 px/s há pouca
+     pista de movimento — parte do "parece parada" era isso.
      Também saiu o `will-change: transform`: animar `transform` já promove a
      camada, e numa faixa de 3.700px com DPR 3 a camada extra é memória de textura
      à toa — sob pressão o WebKit descarta e a animação engasga.
