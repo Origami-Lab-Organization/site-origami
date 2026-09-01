@@ -172,6 +172,25 @@ Todos reais, vindos do design — **não há link sem destino**:
 
   Medido em 320/380/768/1400px: laço com erro de 0,02px na emenda, 58 px/s nos
   logos e 48 px/s na galeria, inversão com salto de 0px.
+- **Logos dos clientes em peso óptico igual.** Na grade de clientes as marcas
+  apareciam em tamanhos muito diferentes no mobile: a Tecno 2000 esticava até
+  ~260px de largura enquanto a Retífica parava em 58px. Duas causas somadas.
+  1. **A caixa era mais larga que alta.** O `img` tinha `max-width: 88%` e
+     `max-height: 100%` numa caixa de 58px. No desktop a coluna é estreita e as
+     duas restrições se equilibravam; no mobile o cartão ocupa a tela inteira, os
+     88% viram ~260px e só as faixas longas cresciam. A caixa passou a ser fixa em
+     px (`min(180px, 100%)` × 54px, ~3,3:1): a faixa longa trava na largura, a
+     quase quadrada trava na altura, e a área renderizada fica parecida nas duas.
+     A dispersão de área entre a maior e a menor caiu de ~10x para 1,8x.
+  2. **Margem branca embutida nos arquivos.** Proporção do arquivo ≠ proporção da
+     marca: a `retifica.jpg` era 447×447 com só 32% de tinta, a `bry.png` 55%, a
+     `syngular.png` 46%. Qualquer normalização por CSS media a moldura, não o
+     logo. Os 7 arquivos soltos foram recortados no conteúdo (Sindinova e Integrar
+     ficaram de fora — são ladrilhos `is-rounded`, o recorte estragaria a borda).
+     De quebra, −42 KB no total. O marquee usa os mesmos arquivos e se acertou
+     junto, sem mudar de CSS; a largura do item continua fixa em 190px, então a
+     medição do laço não muda.
+
 - **Grades à prova de tela estreita.** `repeat(auto-fit, minmax(290px, 1fr))`
   estoura quando a caixa é menor que 290px. Todas as 8 ocorrências passaram a
   usar `minmax(min(290px, 100%), 1fr)`.

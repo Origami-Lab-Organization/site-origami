@@ -1295,15 +1295,29 @@ li {
   transform: translateY(-5px);
 }
 .ol-client__logo {
-  height: 58px;
+  height: 54px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
+/* As marcas vão de quase quadradas (1,4:1) a faixas longas (5,5:1). Limitar só a
+   largura em % dava o pior dos dois mundos: no mobile o cartão é largo, então a
+   faixa esticava até ~260px enquanto a quase quadrada parava nos 58px de altura
+   — lado a lado, uma parecia quatro vezes maior que a outra.
+
+   A caixa fixa em px (180x54, ~3,3:1) inverte qual eixo manda em cada formato: a
+   faixa trava na largura, a quase quadrada trava na altura, e as duas terminam
+   com área parecida em qualquer largura de tela. O `min(...,100%)` cobre a coluna
+   estreita do desktop, onde 180px não caberia dentro do cartão.
+
+   Os arquivos foram recortados no conteúdo (a Retífica tinha 68% de margem branca
+   embutida, a Bry 45%, a Syngular 54%): sem isso a proporção que o CSS enxerga é
+   a da moldura, não a da marca, e a normalização mede a coisa errada. */
 .ol-client__logo img {
-  max-width: 88%;
+  width: auto;
+  height: auto;
+  max-width: min(180px, 100%);
   max-height: 100%;
-  object-fit: contain;
 }
 .ol-client__logo img.is-rounded {
   border-radius: 5px;
