@@ -16,3 +16,7 @@ _probe.html
 
 # Artefato do encode de vídeo (ffmpeg two-pass)
 ffmpeg2pass-*.log
+
+# Resíduo de ferramenta: o projeto é estático, não tem package.json
+package-lock.json
+node_modules/

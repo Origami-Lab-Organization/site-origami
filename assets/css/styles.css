@@ -1286,6 +1286,9 @@ li {
   display: flex;
   flex-direction: column;
   gap: 16px;
+  /* Nome e setor centralizados como a logo, que já vem centrada pelo flex da
+     `.ol-client__logo`. Vale para desktop e mobile — o cartão é o mesmo. */
+  text-align: center;
   transition: border-color 0.45s cubic-bezier(0.4, 0, 0.2, 1),
     box-shadow 0.45s cubic-bezier(0.4, 0, 0.2, 1), transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -1295,7 +1298,7 @@ li {
   transform: translateY(-5px);
 }
 .ol-client__logo {
-  height: 54px;
+  height: 46px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1312,11 +1315,16 @@ li {
 
    Os arquivos foram recortados no conteúdo (a Retífica tinha 68% de margem branca
    embutida, a Bry 45%, a Syngular 54%): sem isso a proporção que o CSS enxerga é
-   a da moldura, não a da marca, e a normalização mede a coisa errada. */
+   a da moldura, não a da marca, e a normalização mede a coisa errada.
+
+   O limite lateral é `74%`, não `100%`: no desktop o cartão tem 189px úteis, e
+   com `100%` a faixa longa chegava a 180px — 4,5px de folga de cada lado, zero
+   em ~900px de viewport. A porcentagem reserva o respiro proporcionalmente. No
+   mobile o cartão é largo (296px úteis), então lá quem manda é o cap de 160px. */
 .ol-client__logo img {
   width: auto;
   height: auto;
-  max-width: min(180px, 100%);
+  max-width: min(160px, 74%);
   max-height: 100%;
 }
 .ol-client__logo img.is-rounded {
@@ -1353,7 +1361,12 @@ li {
     #04070e 100%
   );
   border-radius: var(--ol-round) var(--ol-round) 0 0;
-  overflow: hidden;
+  /* `clip` e não `hidden`: os dois recortam o glow e o canto arredondado igual,
+     mas `hidden` cria um container de rolagem, e isso anulava o `position:
+     sticky` da coluna da foto — ela descia junto com a seção em vez de ficar
+     presa. Com a foto em 4:5 quase não havia percurso e o bug passava batido; em
+     3:2 a coluna da foto ficou 183px mais baixa que a de texto e ficou óbvio. */
+  overflow: clip;
 }
 .ol-about__glow {
   position: absolute;
@@ -1371,7 +1384,10 @@ li {
   margin: 0 auto;
   padding: clamp(84px, 10vw, 140px) var(--ol-gutter) clamp(90px, 11vw, 150px);
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
+  /* Colunas assimétricas, não `auto-fit`: o retrato do time é uma foto larga
+     (3:2) e precisa de largura para os quatro rostos lerem. Com colunas iguais
+     ela ficava com 576px; assim fica com 647px em 1440. */
+  grid-template-columns: minmax(0, 1.28fr) minmax(0, 1fr);
   gap: clamp(40px, 6vw, 80px);
   align-items: start;
 }
@@ -1382,7 +1398,7 @@ li {
 .ol-about__figure {
   border-radius: 22px;
   overflow: hidden;
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 3 / 2;
   box-shadow: 0 0 0 1px rgb(255 255 255 / 0.22), 0 40px 90px rgb(0 0 0 / 0.5);
   margin: 0;
 }
@@ -1432,9 +1448,13 @@ li {
   height: 1px;
   background: linear-gradient(90deg, rgb(255 255 255 / 0.18), transparent);
 }
+/* A pista mínima é 140px porque o rótulo mais longo ("Thoughtworks") mede
+   107,7px e a pílula gasta 30px em padding e borda. Com os 112px antigos a
+   coluna caía para ~125px (94,6px úteis) e o texto vazava da pílula — já
+   acontecia em produção por volta de 940px, antes desta seção mudar. */
 .ol-brands {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(112px, 100%), 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(140px, 100%), 1fr));
   gap: 10px;
 }
 .ol-brands li {
@@ -1784,8 +1804,13 @@ li {
   .ol-sticky-col {
     position: static;
   }
+  /* Em duas colunas estreitas a foto ficaria com ~366px. Empilhada ela usa a
+     largura toda da seção, que é o que uma 3:2 de quatro pessoas pede. */
+  .ol-about__inner {
+    grid-template-columns: 1fr;
+  }
   .ol-about__figure {
-    max-width: 460px;
+    max-width: none;
   }
 }
 

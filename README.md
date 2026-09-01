@@ -130,10 +130,32 @@ Todos reais, vindos do design — **não há link sem destino**:
   tela estreita empilharia a barra fixa em várias linhas e comeria a viewport.
 - **Sublinhado da seção ativa.** O design marcava os links com `data-navlink` e
   `position: relative` sem usá-los; a página é longa, então o indicador entrou.
-- **Retrato dos sócios.** O original (`img_9448-3-msgohzbl-l378.jpg`, 2 MB,
-  2219×3945) estourava o limite de 256 KiB por arquivo do MCP e vinha truncado.
-  Foi reconstruído do `IMG_9448.jpg` local e otimizado para
-  `assets/socios.webp` — **112 KB**, 1100 px de largura.
+- **Retrato dos sócios: de retrato para paisagem.** A foto virou uma de grupo com
+  os quatro sócios (`DSC08622`, 6086×4057, 3:2), e a caixa antiga era `aspect-ratio:
+  4 / 5`. Com `object-fit: cover` isso recortava 53% da largura e **sobravam dois
+  dos quatro rostos** — o primeiro e o último ficavam de fora. Três ajustes:
+  1. **A caixa passou a 3:2**, a proporção exata do arquivo, então não há recorte
+     nenhum em repouso. O enquadramento não tem sobra para cortar: as cabeças
+     começam a ~5% do topo e o braço do último sócio encosta na borda direita. Por
+     isso o `data-zoom-amt` caiu de `0.1` para `0.06` — a 10% o zoom de entrada
+     comia 4,5% de cada lado e entrava no cabelo e no braço.
+  2. **Colunas assimétricas** (`1.28fr / 1fr`) no lugar do `auto-fit` de colunas
+     iguais: uma foto 3:2 precisa de largura para os quatro rostos lerem. Com
+     colunas iguais ela ficava com 576px; agora fica com 647px em 1440.
+     Até 860px a seção empilha e a foto usa a largura toda — em duas colunas
+     estreitas ela cairia para ~366px.
+  3. `assets/socios.webp` regerado — **88 KB**, 1600×1067 (era 112 KB, 1100×1956).
+- **`overflow: clip` na seção "Quem somos".** A `.ol-about` usava `overflow: hidden`
+  para recortar o glow e o canto arredondado. Só que `hidden` cria um container de
+  rolagem, e isso **anulava o `position: sticky`** da coluna da foto: ela descia
+  junto com a seção. Com a foto em 4:5 quase não havia percurso e o bug passava
+  despercebido; em 3:2 a coluna da foto ficou 183px mais baixa que a de texto e a
+  falha ficou óbvia. `clip` recorta igual sem criar o container de rolagem.
+- **Pílulas de marca que não cabiam.** "Thoughtworks" mede 107,7px e a pílula gasta
+  30px em padding e borda, mas a pista mínima do grid era `112px`. Em telas por
+  volta de 940px a coluna caía para ~132px (94,6px úteis) e **o texto vazava da
+  pílula** — já acontecia em produção, antes desta mudança. A pista mínima passou a
+  `140px`, que é o pior rótulo mais a moldura.
 - **Fontes self-hosted.** Inter e Instrument Serif servidas do próprio domínio,
   com `preload` das três variantes usadas acima da dobra. Sem Google Fonts: menos
   uma dependência externa e sem requisição a terceiro.
@@ -179,9 +201,13 @@ Todos reais, vindos do design — **não há link sem destino**:
      `max-height: 100%` numa caixa de 58px. No desktop a coluna é estreita e as
      duas restrições se equilibravam; no mobile o cartão ocupa a tela inteira, os
      88% viram ~260px e só as faixas longas cresciam. A caixa passou a ser fixa em
-     px (`min(180px, 100%)` × 54px, ~3,3:1): a faixa longa trava na largura, a
+     px (`min(160px, 74%)` × 46px, ~3,5:1): a faixa longa trava na largura, a
      quase quadrada trava na altura, e a área renderizada fica parecida nas duas.
      A dispersão de área entre a maior e a menor caiu de ~10x para 1,8x.
+     O limite lateral é `74%` e não `100%` porque o cartão do desktop tem 189px
+     úteis: com `100%` a faixa longa ia a 180px e sobravam 4,5px de folga de cada
+     lado — zero em ~900px de viewport. Com `74%` a folga vai a 24,5px. No mobile
+     o cartão é largo (296px úteis), então lá quem manda é o cap de 160px.
   2. **Margem branca embutida nos arquivos.** Proporção do arquivo ≠ proporção da
      marca: a `retifica.jpg` era 447×447 com só 32% de tinta, a `bry.png` 55%, a
      `syngular.png` 46%. Qualquer normalização por CSS media a moldura, não o
