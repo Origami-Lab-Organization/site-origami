@@ -1656,6 +1656,11 @@ li {
   line-height: 1.65;
   max-width: 38ch;
 }
+.ol-footer__cta {
+  margin-top: 24px;
+  font-size: 0.9375rem;
+  padding: 13px 26px;
+}
 .ol-footer__title {
   font-size: 11px;
   font-weight: 700;
