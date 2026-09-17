@@ -1747,7 +1747,10 @@ li {
    Responsivo
    -------------------------------------------------------------------------- */
 
-@media (max-width: 860px) {
+/* A nav some antes do resto: com seis links mais o botão, a barra já não cabia
+   em ~880px — os links encostavam no "Agendar conversa". O resto do layout
+   continua virando em 860. */
+@media (max-width: 980px) {
   .ol-nav__links,
   .ol-nav__right > .ol-btn--sm {
     display: none;
@@ -1793,7 +1796,9 @@ li {
     border-bottom: 0;
     color: var(--ol-on-green);
   }
+}
 
+@media (max-width: 860px) {
   /* Empilhamento sticky não cabe em tela pequena: vira lista simples. */
   .ol-stack {
     position: static;
@@ -1883,5 +1888,702 @@ li {
   .ol-marquee__wrap::-webkit-scrollbar,
   .ol-gallery__deck::-webkit-scrollbar {
     display: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Páginas internas — hero compacto
+   O hero da home é um vídeo de 100vh que fica preso enquanto o conteúdo passa
+   por cima. Numa página de leitura isso atrapalha: o assunto é o texto, não a
+   entrada. Aqui o hero é curto, sem vídeo, e o peso visual fica no título serif
+   e no mesmo glow verde usado na chamada final.
+   -------------------------------------------------------------------------- */
+
+.ol-phero {
+  position: relative;
+  overflow: clip;
+  background: var(--ol-bg);
+}
+.ol-phero__glow {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0.5;
+  background: radial-gradient(58% 62% at 82% 0%, rgb(46 232 168 / 0.22), transparent 68%);
+  animation: ol-glow 11s ease-in-out infinite;
+  pointer-events: none;
+}
+.ol-phero__inner {
+  position: relative;
+  z-index: 1;
+  max-width: var(--ol-max);
+  margin: 0 auto;
+  padding: clamp(124px, 14vw, 180px) var(--ol-gutter) clamp(56px, 7vw, 92px);
+}
+.ol-phero__title {
+  font-family: var(--ol-serif);
+  font-weight: 400;
+  font-size: clamp(2.3rem, 5vw, 4rem);
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+  max-width: 20ch;
+  text-wrap: balance;
+}
+.ol-phero__lead {
+  margin-top: 22px;
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  color: var(--ol-text-2);
+  max-width: 62ch;
+}
+
+/* Trilha de navegação */
+.ol-crumb {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 0.8125rem;
+  color: var(--ol-text-5);
+  margin-bottom: 22px;
+}
+.ol-crumb a {
+  color: var(--ol-text-2);
+  transition: color 0.2s;
+}
+.ol-crumb a:hover {
+  color: var(--ol-green);
+}
+.ol-crumb i {
+  opacity: 0.45;
+  font-style: normal;
+}
+
+/* Rótulo de seção: mesmo filete do "Onde essa experiência foi construída" */
+.ol-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ol-green);
+  margin-bottom: 20px;
+}
+.ol-kicker::before {
+  content: "";
+  width: 28px;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.6;
+}
+.ol-kicker--ink {
+  color: var(--ol-green-ink);
+}
+
+/* Ficha do projeto, logo abaixo do título */
+.ol-facts {
+  margin-top: clamp(36px, 5vw, 52px);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(170px, 100%), 1fr));
+  gap: 1px;
+  background: var(--ol-border);
+  border: 1px solid var(--ol-border);
+  border-radius: 16px;
+  overflow: hidden;
+}
+.ol-facts > div {
+  background: var(--ol-panel);
+  padding: 18px 20px;
+}
+.ol-facts dt {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ol-text-5);
+  margin-bottom: 8px;
+}
+.ol-facts dd {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--ol-text);
+  line-height: 1.45;
+}
+
+/* --------------------------------------------------------------------------
+   Listagem de cases
+   -------------------------------------------------------------------------- */
+
+.ol-caselist {
+  background: var(--ol-light);
+  color: var(--ol-ink);
+  border-radius: var(--ol-round) var(--ol-round) 0 0;
+}
+.ol-caselist__inner {
+  max-width: var(--ol-max);
+  margin: 0 auto;
+  padding: clamp(80px, 9vw, 130px) var(--ol-gutter);
+}
+.ol-caselist__head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px 32px;
+  margin-bottom: clamp(34px, 4vw, 52px);
+}
+.ol-caselist__head .ol-h2 {
+  max-width: 22ch;
+}
+.ol-caselist__grid {
+  display: grid;
+  gap: 18px;
+}
+
+/* O cartão inteiro é o link: alvo grande no celular e um só foco no teclado. */
+.ol-casecard {
+  display: grid;
+  grid-template-columns: minmax(0, 0.58fr) minmax(0, 1fr);
+  background: var(--ol-white);
+  border: 1px solid var(--ol-light-border);
+  border-radius: 22px;
+  overflow: hidden;
+  color: inherit;
+  transition: border-color 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.45s cubic-bezier(0.4, 0, 0.2, 1), transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.ol-casecard:hover {
+  border-color: rgb(29 122 98 / 0.45);
+  box-shadow: 0 24px 48px rgb(9 15 30 / 0.12);
+  transform: translateY(-5px);
+}
+/* Painel claro, não escuro: as logos dos clientes são arquivos pensados para
+   fundo branco — em superfície escura metade delas some. */
+.ol-casecard__visual {
+  position: relative;
+  background: linear-gradient(155deg, #f7f9f8 0%, #eef2f0 58%, #e7ece9 100%);
+  border-right: 1px solid var(--ol-light-hair);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(40px, 5vw, 64px) 28px;
+  min-height: 210px;
+}
+/* Vinco de origami: uma dobra só, atravessando o painel atrás da marca. Duas
+   diagonais cruzadas desenhavam um X que competia com a logo. */
+.ol-casecard__visual::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    116deg,
+    transparent 49.6%,
+    rgb(9 15 30 / 0.045) 50%,
+    rgb(255 255 255 / 0.6) 50.4%,
+    transparent 51%
+  );
+  pointer-events: none;
+}
+.ol-casecard__logo {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 72px;
+  width: 100%;
+}
+.ol-casecard__logo img {
+  width: auto;
+  height: auto;
+  max-width: min(190px, 78%);
+  max-height: 100%;
+}
+.ol-casecard__body {
+  padding: clamp(28px, 3.4vw, 44px);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+}
+.ol-casecard__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.ol-casecard__tags li {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--ol-ink-3);
+  border: 1px solid var(--ol-light-rule);
+  border-radius: 100px;
+  padding: 5px 12px;
+}
+.ol-casecard__title {
+  font-family: var(--ol-serif);
+  font-weight: 400;
+  font-size: clamp(1.45rem, 2.4vw, 2rem);
+  line-height: 1.14;
+  letter-spacing: -0.01em;
+  max-width: 26ch;
+  text-wrap: pretty;
+}
+/* O resumo é apoio do título, não um segundo título: menor que o corpo de
+   texto das páginas de case e com medida mais curta. */
+.ol-casecard__lead {
+  font-size: 0.9125rem;
+  line-height: 1.65;
+  color: var(--ol-ink-3);
+  max-width: 52ch;
+}
+.ol-casecard__stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 28px;
+  margin-top: 2px;
+}
+.ol-casecard__stats div {
+  display: grid;
+  gap: 3px;
+}
+.ol-casecard__stats b {
+  font-size: 1.05rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--ol-green-ink);
+}
+.ol-casecard__stats span {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ol-ink-3);
+}
+.ol-casecard__go {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: auto;
+  padding-top: 8px;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--ol-green-deep);
+  transition: gap 0.25s ease;
+}
+.ol-casecard:hover .ol-casecard__go {
+  gap: 15px;
+}
+
+/* --------------------------------------------------------------------------
+   Corpo do case
+   -------------------------------------------------------------------------- */
+
+.ol-case {
+  background: var(--ol-light);
+  color: var(--ol-ink);
+  border-radius: var(--ol-round) var(--ol-round) 0 0;
+}
+.ol-case__inner {
+  max-width: var(--ol-max);
+  margin: 0 auto;
+  padding: clamp(80px, 9vw, 130px) var(--ol-gutter);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.42fr);
+  gap: clamp(40px, 5vw, 76px);
+  align-items: start;
+}
+.ol-case__main {
+  display: grid;
+  gap: clamp(44px, 5vw, 68px);
+}
+.ol-case__block h2 {
+  font-weight: 800;
+  font-size: clamp(1.5rem, 2.6vw, 2.1rem);
+  line-height: 1.12;
+  letter-spacing: -0.03em;
+  color: var(--ol-ink);
+  margin-bottom: 18px;
+  max-width: 22ch;
+}
+.ol-prose p {
+  font-size: 1.0125rem;
+  line-height: 1.75;
+  color: var(--ol-ink-2);
+  max-width: 64ch;
+}
+.ol-prose p + p {
+  margin-top: 16px;
+}
+.ol-prose strong {
+  color: var(--ol-ink);
+  font-weight: 700;
+}
+/* O verde da marca foi calibrado para fundo escuro; no texto corrido em
+   superfície clara ele não tem contraste. Aqui o realce usa o verde escuro. */
+.ol-prose .ol-em,
+.ol-casecard .ol-em,
+.ol-case__block .ol-em {
+  color: var(--ol-green-ink);
+}
+
+/* Lista de entregas — mesmo filete verde do bloco de serviços */
+.ol-deliver {
+  display: grid;
+  gap: 0;
+  margin-top: 22px;
+  border-top: 1px solid var(--ol-light-rule);
+}
+.ol-deliver li {
+  display: grid;
+  grid-template-columns: 30px minmax(0, 1fr);
+  gap: 16px;
+  align-items: start;
+  padding: 18px 2px;
+  border-bottom: 1px solid var(--ol-light-rule);
+}
+.ol-deliver li > span {
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  color: var(--ol-green-ink);
+  padding-top: 3px;
+}
+.ol-deliver h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  line-height: 1.3;
+  color: var(--ol-ink);
+}
+.ol-deliver p {
+  font-size: 0.9125rem;
+  line-height: 1.65;
+  color: var(--ol-ink-3);
+  margin-top: 5px;
+  max-width: 58ch;
+}
+
+/* Resultados */
+/* Duas colunas fixas, como `.ol-outcomes` na home: com `auto-fit` a coluna do
+   case (~815px) comportava três cartões e o quarto sobrava sozinho na linha de
+   baixo. São sempre quatro resultados, então 2x2 é a grade certa. */
+.ol-results {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 22px;
+}
+.ol-result {
+  border: 1px solid #e4e9e6;
+  border-radius: 14px;
+  background: var(--ol-white);
+  padding: 20px;
+  transition: border-color 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.ol-result:hover {
+  border-color: rgb(23 169 127 / 0.6);
+  transform: translateY(-4px);
+}
+.ol-result > span {
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  border: 1px solid rgb(23 169 127 / 0.4);
+  background: rgb(23 169 127 / 0.09);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ol-green-ink);
+  margin-bottom: 14px;
+}
+.ol-result h3 {
+  font-size: 0.975rem;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  line-height: 1.3;
+}
+.ol-result p {
+  font-size: 0.8625rem;
+  line-height: 1.6;
+  color: var(--ol-ink-3);
+  margin-top: 6px;
+}
+
+/* Fases da implantação */
+.ol-phases {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
+  gap: 12px;
+  margin-top: 22px;
+}
+.ol-phase {
+  border: 1px solid var(--ol-light-border);
+  border-radius: 16px;
+  background: var(--ol-white);
+  padding: 22px;
+}
+.ol-phase > b {
+  display: block;
+  font-family: var(--ol-serif);
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: var(--ol-green-ink);
+  line-height: 1;
+  margin-bottom: 14px;
+}
+.ol-phase h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+}
+.ol-phase p {
+  font-size: 0.8625rem;
+  line-height: 1.6;
+  color: var(--ol-ink-3);
+  margin-top: 6px;
+}
+.ol-phase em {
+  display: inline-block;
+  margin-top: 12px;
+  font-style: normal;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ol-ink-4);
+  border: 1px solid var(--ol-light-rule);
+  border-radius: 100px;
+  padding: 5px 11px;
+}
+
+/* Faixa de números do case. Só entra quando o projeto tem número duro para
+   mostrar — sem isso ela vira enfeite, e número inventado é pior que nenhum. */
+.ol-metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(150px, 100%), 1fr));
+  gap: 1px;
+  margin-top: 24px;
+  background: var(--ol-light-rule);
+  border: 1px solid var(--ol-light-rule);
+  border-radius: 18px;
+  overflow: hidden;
+}
+.ol-metric {
+  background: var(--ol-white);
+  padding: 24px 22px;
+}
+.ol-metric b {
+  display: block;
+  font-family: var(--ol-serif);
+  font-weight: 400;
+  font-size: clamp(2rem, 3.4vw, 2.7rem);
+  line-height: 1;
+  letter-spacing: -0.01em;
+  color: var(--ol-green-ink);
+}
+.ol-metric span {
+  display: block;
+  margin-top: 10px;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--ol-ink-3);
+}
+
+/* Depoimento */
+.ol-quote {
+  border-left: 2px solid var(--ol-green-live);
+  padding: 4px 0 4px clamp(20px, 3vw, 32px);
+}
+.ol-quote blockquote {
+  font-family: var(--ol-serif);
+  font-size: clamp(1.3rem, 2.4vw, 1.9rem);
+  line-height: 1.28;
+  letter-spacing: -0.01em;
+  color: var(--ol-ink);
+  max-width: 30ch;
+  text-wrap: pretty;
+}
+.ol-quote figcaption {
+  margin-top: 18px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ol-ink-3);
+}
+
+/* Coluna lateral do case — acompanha a leitura, como a foto em "Quem somos". */
+.ol-case__aside {
+  display: grid;
+  gap: 14px;
+  position: sticky;
+  top: 108px;
+}
+.ol-aside {
+  border: 1px solid var(--ol-light-border);
+  border-radius: 18px;
+  background: var(--ol-white);
+  padding: 24px;
+}
+.ol-aside__title {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ol-ink-3);
+  margin-bottom: 16px;
+}
+.ol-aside__logo {
+  height: 44px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 18px;
+}
+.ol-aside__logo img {
+  width: auto;
+  height: auto;
+  max-width: min(160px, 80%);
+  max-height: 100%;
+}
+.ol-aside p {
+  font-size: 0.9125rem;
+  line-height: 1.7;
+  color: var(--ol-ink-2);
+}
+.ol-aside .ol-chips {
+  margin-top: 4px;
+}
+.ol-aside .ol-inline-link {
+  margin-top: 18px;
+}
+
+/* Trilha compacta do método. A página de cases não repete as quatro fases
+   inteiras: quem quiser o detalhe segue para "Como trabalhamos" na home. */
+/* A faixa herdava o respiro de uma seção de cartões; para uma linha só, é
+   metade disso. */
+.ol-nextcase--slim .ol-nextcase__inner {
+  padding-block: clamp(34px, 4vw, 52px);
+}
+.ol-steps {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px 32px;
+}
+.ol-steps__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 14px;
+}
+.ol-steps__row li {
+  display: flex;
+  align-items: center;
+  gap: 10px 14px;
+  font-family: var(--ol-serif);
+  font-size: clamp(1.15rem, 2vw, 1.5rem);
+  color: var(--ol-ink);
+}
+.ol-steps__row li + li::before {
+  content: "";
+  width: 22px;
+  height: 1px;
+  background: var(--ol-light-rule);
+}
+
+/* --------------------------------------------------------------------------
+   Próximo case
+   -------------------------------------------------------------------------- */
+
+.ol-nextcase {
+  background: var(--ol-white);
+  color: var(--ol-ink);
+}
+.ol-nextcase__inner {
+  max-width: var(--ol-max);
+  margin: 0 auto;
+  padding: clamp(60px, 7vw, 96px) var(--ol-gutter);
+}
+.ol-nextcase .ol-h2 {
+  max-width: 22ch;
+  margin-bottom: clamp(22px, 3vw, 32px);
+}
+.ol-nextcase__link {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px 32px;
+  border: 1px solid var(--ol-light-border);
+  border-radius: 20px;
+  padding: clamp(24px, 3vw, 34px);
+  color: inherit;
+  transition: border-color 0.35s ease, box-shadow 0.35s ease, transform 0.35s ease;
+}
+.ol-nextcase__link:hover {
+  border-color: rgb(29 122 98 / 0.45);
+  box-shadow: 0 20px 40px rgb(9 15 30 / 0.1);
+  transform: translateY(-4px);
+}
+.ol-nextcase__label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ol-ink-3);
+  margin-bottom: 10px;
+}
+.ol-nextcase__title {
+  font-family: var(--ol-serif);
+  font-weight: 400;
+  font-size: clamp(1.35rem, 2.2vw, 1.85rem);
+  line-height: 1.16;
+  max-width: 26ch;
+}
+
+@media (max-width: 900px) {
+  .ol-case__inner {
+    grid-template-columns: 1fr;
+  }
+  /* Empilhada, a ficha vai para depois do texto: o leitor abre direto no
+     desafio, e ficha e tecnologias fecham a leitura. Sem coluna ao lado não há
+     percurso para prender, então o sticky sai. */
+  .ol-case__aside {
+    order: 2;
+    position: static;
+  }
+  .ol-casecard {
+    grid-template-columns: 1fr;
+  }
+  .ol-casecard__visual {
+    border-right: 0;
+    border-bottom: 1px solid var(--ol-light-hair);
+    min-height: 0;
+    padding: 36px 24px;
+  }
+  .ol-casecard__logo {
+    height: 56px;
+  }
+}
+
+@media (max-width: 640px) {
+  .ol-phero__inner {
+    padding-top: 108px;
+  }
+  .ol-deliver li {
+    grid-template-columns: 24px minmax(0, 1fr);
+    gap: 12px;
+  }
+  .ol-casecard__stats {
+    gap: 12px 20px;
+  }
+  .ol-results {
+    grid-template-columns: 1fr;
   }
 }
