@@ -49,10 +49,9 @@
   z-index: 2;
   max-width: var(--ol-max);
   margin: 0 auto;
-  padding: clamp(112px, 14vh, 150px) var(--ol-gutter) 0;
-}
-.ol-cap-hero__crumb {
-  margin-bottom: clamp(40px, 7vh, 72px);
+  /* O respiro do topo inclui o que a trilha de navegação ocupava antes: sem
+     ela, o kicker encostaria na barra fixa. */
+  padding: clamp(150px, 18vh, 210px) var(--ol-gutter) 0;
 }
 /* Duas colunas: a proposta à esquerda, o cartão de diagnóstico à direita.
    `auto-fit` e não colunas fixas — abaixo de ~700px o cartão desce sozinho. */
