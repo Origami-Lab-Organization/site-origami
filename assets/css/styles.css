@@ -58,6 +58,7 @@
   --ol-bg: #04070e;
   --ol-panel: #0b1220;
   --ol-surface: #0d1426;
+  --ol-surface-hi: #141f38;
   --ol-border: #1a2540;
 
   /* Superfícies claras */
@@ -1039,8 +1040,8 @@ li {
 
 /* --------------------------------------------------------------------------
    Como trabalhamos — trilha horizontal
-   Padrão: rolagem horizontal comum, que funciona sem JS.
-   Com JS e espaço em tela, o bloco vira "pinado" e anda com o scroll vertical.
+   Rolagem horizontal comum, que funciona sem JS (gesto, teclado, barra).
+   Com JS, as setas do cabeçalho avançam um painel por clique.
    -------------------------------------------------------------------------- */
 
 .ol-hpin {
@@ -1072,12 +1073,46 @@ li {
   color: var(--ol-text-2);
   max-width: 46ch;
 }
+.ol-hpin__nav {
+  grid-column: 1 / -1;
+  justify-self: end;
+  display: flex;
+  gap: 10px;
+}
+.ol-hpin__arrow {
+  width: 48px;
+  height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 100px;
+  border: 1px solid var(--ol-border);
+  background: var(--ol-panel);
+  color: var(--ol-text);
+  cursor: pointer;
+  transition: border-color 0.25s ease, background 0.25s ease, color 0.25s ease,
+    transform 0.25s cubic-bezier(0.2, 0.7, 0.2, 1), opacity 0.25s ease;
+}
+.ol-hpin__arrow:hover:not(:disabled) {
+  border-color: rgb(46 232 168 / 0.5);
+  background: var(--ol-surface);
+  color: var(--ol-green);
+  transform: translateY(-2px);
+}
+.ol-hpin__arrow:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
 .ol-hpin__rail {
   display: flex;
   gap: 20px;
-  padding: 4px var(--ol-gutter);
+  /* `overflow-x: auto` obriga o eixo vertical a recortar também: o topo precisa
+     de folga maior que o -6px do hover do painel, e o rodapé, folga para a
+     sombra do realce não sair cortada numa linha reta. */
+  padding: 12px var(--ol-gutter) 34px;
   overflow-x: auto;
-  scroll-snap-type: x mandatory;
+  scroll-snap-type: x proximity;
+  scroll-padding-left: var(--ol-gutter);
   /* Sem barra de rolagem: a regra global `::-webkit-scrollbar` do design deixa
      a barra permanente e ela ainda rouba 10px de altura do bloco. O gesto
      continua, e quem sinaliza que há mais é o próximo painel aparecendo na
@@ -1089,24 +1124,7 @@ li {
   display: none;
 }
 .ol-hpin__rail > * {
-  scroll-snap-align: center;
-}
-
-/* Modo pinado, ligado pelo JS */
-.ol-hpin.is-pinned .ol-hpin__vp {
-  position: sticky;
-  top: 0;
-  height: 100vh;
-  overflow: hidden;
-  justify-content: center;
-  padding: clamp(72px, 11vh, 100px) 0 clamp(28px, 6vh, 60px);
-}
-.ol-hpin.is-pinned .ol-hpin__rail {
-  width: max-content;
-  overflow-x: visible;
-  scroll-snap-type: none;
-  padding: 0;
-  will-change: transform;
+  scroll-snap-align: start;
 }
 
 .ol-hpanel {
@@ -1119,13 +1137,33 @@ li {
   display: flex;
   flex-direction: column;
   gap: 16px;
-  min-height: min(430px, max(300px, 100vh - 320px));
-  transition: border-color 0.35s ease, background 0.35s ease, transform 0.35s ease;
+  min-height: 280px;
+  transition: border-color 0.35s ease, background 0.35s ease, transform 0.35s ease,
+    box-shadow 0.35s ease;
 }
-.ol-hpanel:hover {
-  border-color: rgb(46 232 168 / 0.5);
-  background: var(--ol-surface);
-  transform: translateY(-6px);
+/* O realce existe para leitura, não para enfeite: o parágrafo sai do cinza de
+   repouso e vai para contraste cheio, e a superfície sobe um degrau para o card
+   se destacar do fundo da seção. Inverter para claro brigaria com o resto da
+   página, que é escura de ponta a ponta.
+   `hover: hover` evita que o toque no celular deixe um card travado no realce.
+   O card de CTA fica de fora: ele tem gradiente próprio e não é texto de leitura. */
+@media (hover: hover) {
+  .ol-hpanel:not(.ol-hpanel--cta):hover {
+    border-color: rgb(46 232 168 / 0.5);
+    background: var(--ol-surface-hi);
+    transform: translateY(-6px);
+    box-shadow: 0 14px 26px rgb(2 5 12 / 0.55);
+  }
+  .ol-hpanel:not(.ol-hpanel--cta):hover p {
+    color: var(--ol-text-1);
+  }
+  .ol-hpanel:not(.ol-hpanel--cta):hover .ol-hpanel__num {
+    color: var(--ol-green-soft);
+  }
+  .ol-hpanel--cta:hover {
+    border-color: rgb(46 232 168 / 0.5);
+    transform: translateY(-6px);
+  }
 }
 .ol-hpanel__num {
   font-family: var(--ol-serif);
@@ -1142,20 +1180,7 @@ li {
   font-size: 1rem;
   color: var(--ol-text-3);
   line-height: 1.6;
-}
-.ol-hpanel__tags {
-  margin-top: auto;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-.ol-hpanel__tags li {
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: var(--ol-text-2);
-  border: 1px solid var(--ol-border);
-  border-radius: 100px;
-  padding: 6px 12px;
+  transition: color 0.35s ease;
 }
 .ol-hpanel--cta {
   background: linear-gradient(160deg, #17564a, var(--ol-panel));
@@ -1279,23 +1304,94 @@ li {
   gap: 14px;
 }
 .ol-client {
+  position: relative;
+  overflow: hidden;
   border: 1px solid var(--ol-light-border);
   border-radius: 18px;
   background: var(--ol-white);
   padding: 22px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   gap: 16px;
+  /* Altura igual para todos: o verso é sobreposto, então o cartão precisa já
+     nascer com espaço para o mini case mais longo — senão o texto estoura. */
+  min-height: 224px;
   /* Nome e setor centralizados como a logo, que já vem centrada pelo flex da
      `.ol-client__logo`. Vale para desktop e mobile — o cartão é o mesmo. */
   text-align: center;
-  transition: border-color 0.45s cubic-bezier(0.4, 0, 0.2, 1),
-    box-shadow 0.45s cubic-bezier(0.4, 0, 0.2, 1), transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+  /* `--case` é o único interruptor: 0 mostra a logo, 1 mostra o mini case.
+     Face e verso leem essa variável, então hover e foco ligam a mesma troca
+     sem repetir as declarações. */
+  --case: 0;
+  transition: border-color 0.24s cubic-bezier(0.2, 0.7, 0.2, 1),
+    box-shadow 0.24s cubic-bezier(0.2, 0.7, 0.2, 1), translate 0.24s cubic-bezier(0.2, 0.7, 0.2, 1);
 }
-.ol-client:hover {
+/* Em telas de toque não existe hover: lá o verso aparece ao tocar no cartão,
+   que é focável. Sem essa guarda, o primeiro toque deixaria um cartão travado
+   no mini case até você tocar em outro lugar. */
+@media (hover: hover) {
+  .ol-client:hover {
+    --case: 1;
+  }
+}
+.ol-client:focus-within,
+.ol-client:focus {
+  --case: 1;
+}
+.ol-client:focus-visible {
+  outline: 2px solid var(--ol-green-ink);
+  outline-offset: 3px;
+}
+.ol-client:hover,
+.ol-client:focus-within {
   border-color: rgb(29 122 98 / 0.45);
   box-shadow: 0 20px 40px rgb(9 15 30 / 0.12);
-  transform: translateY(-5px);
+  /* `translate` e não `transform`: a animação de entrada (`ol-rise`, com
+     `fill: both`) deixa `transform: none` fixado no cartão, e valor de animação
+     vence declaração normal — por isso o levantar por transform nunca subia. */
+  translate: 0 -5px;
+}
+
+/* A troca é curta de propósito: 0,22s sobe o mini case enquanto a logo sai em
+   0,16s. A leve diferença faz a face sair primeiro e o texto entrar por cima,
+   em vez de os dois piscarem juntos. */
+.ol-client__face {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  opacity: calc(1 - var(--case));
+  transform: translateY(calc(var(--case) * -8px));
+  transition: opacity 0.16s ease, transform 0.22s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.ol-client__case {
+  position: absolute;
+  inset: 0;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 9px;
+  text-align: left;
+  /* O verso nunca captura o ponteiro: quem responde ao hover é o cartão. */
+  pointer-events: none;
+  opacity: var(--case);
+  transform: translateY(calc((1 - var(--case)) * 10px));
+  transition: opacity 0.22s ease 0.04s,
+    transform 0.26s cubic-bezier(0.2, 0.7, 0.2, 1) 0.04s;
+}
+.ol-client__case b {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  line-height: 1.35;
+  color: var(--ol-green-ink);
+}
+.ol-client__case p {
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--ol-ink-2);
 }
 .ol-client__logo {
   height: 46px;
@@ -1330,13 +1426,13 @@ li {
 .ol-client__logo img.is-rounded {
   border-radius: 5px;
 }
-.ol-client b {
+.ol-client__face b {
   display: block;
   font-family: var(--ol-serif);
   font-size: 1.1rem;
   font-weight: 400;
 }
-.ol-client span {
+.ol-client__face span {
   display: block;
   font-size: 0.7rem;
   letter-spacing: 0.09em;

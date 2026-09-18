@@ -1,7 +1,8 @@
 /* ==========================================================================
    Origami Lab — motor de scroll da landing page.
    Sem dependências. Tudo o que é decorativo degrada: sem JS a página continua
-   legível e navegável, e a trilha de "Como trabalhamos" rola na horizontal.
+   legível e navegável, e a trilha de "Como trabalhamos" rola na horizontal
+   pelo gesto, pela barra e pelo teclado — as setas são um atalho a mais.
    ========================================================================== */
 
 (function () {
@@ -28,7 +29,6 @@
   var marquees = [];
   var navLinks = [];
   var sections = [];
-  var hpin = null;
   var heroMotion = true;
 
   /* Estado do loop */
@@ -223,7 +223,7 @@
         trigger.setAttribute("aria-expanded", String(open));
         body.style.maxHeight = open ? body.scrollHeight + "px" : "0px";
         body.style.opacity = open ? "1" : "0";
-        // A altura da página mudou: o pin e a barra de progresso precisam saber.
+        // A altura da página mudou: a barra de progresso precisa saber.
         window.setTimeout(function () {
           layout();
           dirty = true;
@@ -317,33 +317,6 @@
     var vh = window.innerHeight;
 
     sizeMarquees();
-
-    var track = document.querySelector("[data-hpin-track]");
-    if (track) {
-      var vp = track.querySelector("[data-hpin-vp]");
-      var rail = track.querySelector("[data-hpin-rail]");
-      // Pin exige largura e altura: em tela pequena, ou sem movimento, a
-      // trilha volta a ser uma rolagem horizontal comum (que é o padrão do CSS).
-      var narrow = vw < 900 || vh < 620 || reduced;
-      if (narrow) {
-        track.classList.remove("is-pinned");
-        track.style.height = "";
-        rail.style.transform = "";
-        hpin = null;
-      } else {
-        track.classList.add("is-pinned");
-        rail.style.transform = "translate3d(0,0,0)";
-        rail.style.paddingLeft = Math.max(24, Math.round((vw - 1280) / 2 + 24)) + "px";
-        var kids = rail.children;
-        var last = kids[kids.length - 1];
-        var span = last
-          ? last.getBoundingClientRect().right - rail.getBoundingClientRect().left
-          : rail.scrollWidth;
-        var dist = Math.max(0, Math.round(span + Math.max(40, vw * 0.12) - vp.clientWidth));
-        track.style.height = vh + dist + "px";
-        hpin = { track: track, rail: rail, dist: dist };
-      }
-    }
 
     heroMotion = !reduced && vw > 640;
     if (heroCue) heroCue.style.display = vh < 720 ? "none" : "";
@@ -450,12 +423,6 @@
       el.style.transform = "scale(" + (0.9 + 0.1 * p).toFixed(3) + ")";
       el.style.opacity = String(clamp(p * 1.4, 0, 1));
     });
-
-    if (hpin && hpin.dist > 0) {
-      var top = hpin.track.getBoundingClientRect().top + y;
-      var pp = clamp((y - top) / hpin.dist, 0, 1);
-      hpin.rail.style.transform = "translate3d(" + (-pp * hpin.dist).toFixed(1) + "px,0,0)";
-    }
   }
 
   /* ----------------------------------------------------------------------
@@ -502,6 +469,59 @@
       .filter(Boolean);
   }
 
+  /* ----------------------------------------------------------------------
+     Trilha "Como trabalhamos" — a rolagem horizontal é nativa (gesto, barra,
+     teclado). As setas só empurram a trilha um painel por clique e se apagam
+     quando não há mais para onde ir.
+     ---------------------------------------------------------------------- */
+
+  function initRail() {
+    var rail = document.querySelector("[data-hpin-rail]");
+    if (!rail) return;
+    var nav = document.querySelector("[data-rail-nav]");
+    var prev = document.querySelector("[data-rail-prev]");
+    var next = document.querySelector("[data-rail-next]");
+    if (!nav || !prev || !next) return;
+
+    function step() {
+      var first = rail.firstElementChild;
+      if (!first) return rail.clientWidth * 0.8;
+      var gap = parseFloat(window.getComputedStyle(rail).columnGap) || 0;
+      return first.getBoundingClientRect().width + gap;
+    }
+
+    function overflow() {
+      return rail.scrollWidth - rail.clientWidth;
+    }
+
+    function sync() {
+      var max = overflow();
+      // 2px de folga: com zoom ou meio pixel de arredondamento o scrollLeft
+      // nunca chega exatamente ao máximo e a seta ficaria viva sem ter destino.
+      nav.hidden = max <= 2;
+      prev.disabled = rail.scrollLeft <= 2;
+      next.disabled = rail.scrollLeft >= max - 2;
+    }
+
+    function go(dir) {
+      rail.scrollBy({
+        left: dir * step(),
+        behavior: reduced ? "auto" : "smooth",
+      });
+    }
+
+    prev.addEventListener("click", function () {
+      go(-1);
+    });
+    next.addEventListener("click", function () {
+      go(1);
+    });
+    rail.addEventListener("scroll", sync, { passive: true });
+    window.addEventListener("resize", sync);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(sync);
+    sync();
+  }
+
   function initMarquees() {
     if (reduced || !marquees.length) return;
 
@@ -538,6 +558,7 @@
     initFaq();
     collect();
     layout();
+    initRail();
     initMarquees();
 
     lastY = window.scrollY;
