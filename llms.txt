@@ -33,20 +33,12 @@ resultado antes de a próxima começar.
 Conteúdo explicativo mantido pela Origami Lab. Cada página responde a uma
 pergunta no primeiro parágrafo e traz perguntas frequentes em JSON-LD.
 
-- [Lei do Bem: quem tem direito](https://www.origamilab.com.br/lei-do-bem):
-  os três requisitos cumulativos do incentivo — apurar pelo lucro real, ter
-  lucro fiscal no período e estar em regularidade fiscal —, o que caracteriza
-  P&D (novidade somada a incerteza técnica), por que empresas do lucro
-  presumido e do Simples ficam de fora, e por que indústria tradicional se
-  enquadra com mais frequência do que se imagina.
-- [Lei do Bem na prática](https://www.origamilab.com.br/lei-do-bem-na-pratica):
-  o benefício é de auto-enquadramento e a análise do MCTI é posterior ao uso;
-  o que é o FormP&D, o que o Ministério avalia em cada projeto, o dossiê que
-  precisa ser feito durante o projeto e os motivos concretos de glosa.
-- [Financiamento de inovação](https://www.origamilab.com.br/financiamento-de-inovacao):
-  a diferença entre recurso reembolsável e não reembolsável, o que é subvenção
-  econômica, como a FINEP opera crédito e chamadas públicas, o papel da FAPEMIG
-  e das fundações estaduais, e por que a Lei do Bem não é financiamento.
+- [Acesso a capital](https://www.origamilab.com.br/acesso-a-capital): a página
+  do serviço de captação de capital subsidiado para inovação, do diagnóstico de
+  elegibilidade à prestação de contas. Compara as três naturezas de recurso —
+  incentivo fiscal, recurso não reembolsável e crédito subsidiado —, descreve as
+  seis etapas do serviço e registra que a cobrança só acontece se o capital for
+  liberado.
 - [Integração de sistemas](https://www.origamilab.com.br/integracao-de-sistemas):
   os sintomas de falta de integração, por que integrar quase nunca significa
   trocar o ERP, os quatro caminhos técnicos (API, banco, arquivo e automação de

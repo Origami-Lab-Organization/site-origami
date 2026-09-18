@@ -1,0 +1,571 @@
+/* ==========================================================================
+   Origami Lab — Acesso a capital
+   Implementação do design "Acesso a Capital.dc.html" (Claude Design).
+
+   Carrega depois de styles.css e usa os tokens dele. Só entra aqui o que a
+   LP tem e o resto do site não: o hero em duas colunas com o cartão de
+   diagnóstico, os cartões de caminho, a trilha de etapas e os cartões de
+   resultado. Nav, botões, FAQ, CTA e rodapé continuam vindo do styles.css.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Hero
+   -------------------------------------------------------------------------- */
+
+.ol-cap-hero {
+  position: relative;
+  overflow: hidden;
+  background: var(--ol-bg);
+}
+.ol-cap-hero__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  opacity: 0.5;
+}
+.ol-cap-hero__scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: radial-gradient(
+    120% 80% at 18% 30%,
+    rgb(4 7 14 / 0.72) 0%,
+    rgb(4 7 14 / 0.9) 50%,
+    rgb(4 7 14 / 0.99) 100%
+  );
+}
+.ol-cap-hero__fade {
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 42%;
+  z-index: 1;
+  background: linear-gradient(to top, var(--ol-bg), transparent);
+}
+.ol-cap-hero__inner {
+  position: relative;
+  z-index: 2;
+  max-width: var(--ol-max);
+  margin: 0 auto;
+  /* O respiro do topo inclui o que a trilha de navegação ocupava antes: sem
+     ela, o kicker encostaria na barra fixa. */
+  padding: clamp(150px, 18vh, 210px) var(--ol-gutter) 0;
+}
+/* Duas colunas: a proposta à esquerda, o cartão de diagnóstico à direita.
+   `auto-fit` e não colunas fixas — abaixo de ~700px o cartão desce sozinho. */
+.ol-cap-hero__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: clamp(40px, 5vw, 72px);
+  align-items: center;
+}
+.ol-cap-hero__title {
+  font-family: var(--ol-serif);
+  font-weight: 400;
+  font-size: clamp(2.7rem, 6.2vw, 5.2rem);
+  line-height: 0.98;
+  letter-spacing: -0.02em;
+  max-width: 14ch;
+  margin-bottom: 28px;
+  text-wrap: balance;
+}
+.ol-cap-hero__lead {
+  font-weight: 400;
+  font-size: clamp(1.05rem, 1.5vw, 1.25rem);
+  line-height: 1.6;
+  color: var(--ol-text-1);
+  max-width: 44ch;
+  margin-bottom: 38px;
+  text-wrap: pretty;
+}
+.ol-cap-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  align-items: center;
+}
+
+/* --------------------------------------------------------------------------
+   Cartão de diagnóstico
+   -------------------------------------------------------------------------- */
+
+.ol-diag {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--ol-border);
+  border-radius: 22px;
+  background: linear-gradient(170deg, rgb(13 20 38 / 0.92), rgb(4 7 14 / 0.92));
+  padding: clamp(22px, 2.4vw, 30px);
+  box-shadow: 0 40px 90px rgb(0 0 0 / 0.55);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+/* Holofote que segue o cursor, igual ao dos cartões de serviço da home. */
+.ol-diag__spot {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    320px circle at var(--mx, 75%) var(--my, 10%),
+    rgb(46 232 168 / 0.13),
+    transparent 70%
+  );
+}
+.ol-diag__head,
+.ol-diag__list {
+  position: relative;
+  z-index: 1;
+}
+.ol-diag__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.ol-diag__tag {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ol-text-5);
+}
+.ol-diag__live {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ol-green);
+}
+.ol-diag__live::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--ol-green);
+  animation: ol-blink 1.8s ease-in-out infinite;
+}
+.ol-diag__list {
+  display: grid;
+  gap: 0;
+}
+.ol-diag__list li {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 15px 0;
+  border-top: 1px solid #16213a;
+}
+.ol-diag__list li:last-child {
+  border-bottom: 1px solid #16213a;
+}
+.ol-diag__list li > span {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: rgb(46 232 168 / 0.12);
+  border: 1px solid rgb(46 232 168 / 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ol-green);
+  flex-shrink: 0;
+}
+.ol-diag__list b {
+  display: block;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--ol-text);
+  letter-spacing: -0.01em;
+}
+.ol-diag__list i {
+  display: block;
+  font-style: normal;
+  font-size: 0.8125rem;
+  color: var(--ol-text-5);
+}
+
+/* --------------------------------------------------------------------------
+   Faixa de números
+   -------------------------------------------------------------------------- */
+
+.ol-cap-proof {
+  position: relative;
+  z-index: 2;
+  max-width: var(--ol-max);
+  margin: 0 auto;
+  padding: clamp(56px, 7vw, 92px) var(--ol-gutter) clamp(70px, 8vw, 110px);
+}
+.ol-cap-proof__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(230px, 100%), 1fr));
+  gap: 1px;
+  background: #16213a;
+  border: 1px solid #16213a;
+  border-radius: 18px;
+  overflow: hidden;
+}
+.ol-cap-proof__grid > div {
+  background: var(--ol-bg);
+  padding: clamp(24px, 2.6vw, 32px);
+}
+.ol-cap-proof__grid dt {
+  font-family: var(--ol-serif);
+  font-size: clamp(2.6rem, 4.4vw, 3.6rem);
+  line-height: 1;
+  color: var(--ol-green);
+  letter-spacing: -0.01em;
+}
+.ol-cap-proof__grid dd {
+  font-size: 0.9375rem;
+  color: var(--ol-text-2);
+  line-height: 1.5;
+  margin-top: 12px;
+  max-width: 26ch;
+}
+.ol-cap-proof__src {
+  font-size: 0.8125rem;
+  color: var(--ol-text-6);
+  margin-top: 16px;
+}
+
+/* --------------------------------------------------------------------------
+   Seções claras e escuras
+   -------------------------------------------------------------------------- */
+
+.ol-cap-sec {
+  position: relative;
+  border-radius: var(--ol-round) var(--ol-round) 0 0;
+}
+.ol-cap-sec--light {
+  background: var(--ol-light);
+  color: var(--ol-ink);
+}
+.ol-cap-sec--white {
+  background: var(--ol-white);
+  color: var(--ol-ink);
+}
+.ol-cap-sec--dark {
+  background: var(--ol-bg);
+  /* `clip` e não `hidden`: os dois recortam o brilho que vaza da seção, mas
+     `hidden` cria um container de rolagem e isso anula o `position: sticky` da
+     coluna de texto — ela descia junto em vez de ficar presa no topo. Mesmo
+     motivo já registrado em `.ol-about` no styles.css. */
+  overflow: clip;
+}
+.ol-cap-sec__inner {
+  position: relative;
+  z-index: 1;
+  max-width: var(--ol-max);
+  margin: 0 auto;
+  padding: clamp(80px, 9vw, 130px) var(--ol-gutter) clamp(70px, 8vw, 110px);
+}
+.ol-cap-sec__title {
+  font-weight: 800;
+  font-size: clamp(2rem, 3.8vw, 3.1rem);
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+  max-width: 18ch;
+  margin-bottom: clamp(36px, 4.5vw, 56px);
+  text-wrap: pretty;
+}
+/* Brilho de fundo das seções escuras; o parallax é aplicado pelo JS. */
+.ol-cap-glow {
+  position: absolute;
+  width: 60vw;
+  height: 60vw;
+  border-radius: 50%;
+  top: -24vw;
+  right: -18vw;
+  background: radial-gradient(circle, rgb(46 232 168 / 0.16), transparent 62%);
+  filter: blur(90px);
+  animation: ol-glow 12s ease-in-out infinite;
+  z-index: 0;
+  pointer-events: none;
+}
+.ol-cap-glow--center {
+  width: 64vw;
+  height: 64vw;
+  top: -28vw;
+  right: auto;
+  left: 50%;
+  margin-left: -32vw;
+  background: radial-gradient(circle, rgb(46 232 168 / 0.2), transparent 62%);
+  animation-duration: 10s;
+}
+
+/* --------------------------------------------------------------------------
+   Cartões de caminho
+   -------------------------------------------------------------------------- */
+
+.ol-paths {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(290px, 100%), 1fr));
+  gap: 16px;
+}
+.ol-path {
+  display: flex;
+  flex-direction: column;
+  background: var(--ol-white);
+  border: 1px solid var(--ol-light-border);
+  border-radius: 20px;
+  padding: clamp(24px, 2.4vw, 30px);
+  transition: border-color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.ol-path:hover {
+  border-color: rgb(29 122 98 / 0.45);
+  box-shadow: 0 24px 50px rgb(9 15 30 / 0.1);
+  transform: translateY(-5px);
+}
+.ol-path__kind {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 26px;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ol-green-ink);
+}
+.ol-path__kind span {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: rgb(23 169 127 / 0.1);
+  border: 1px solid rgb(23 169 127 / 0.32);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.ol-path h3 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--ol-ink);
+  line-height: 1.1;
+}
+.ol-path__line {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--ol-ink-3);
+  margin: 6px 0 22px;
+}
+/* Fecha o cartão: sem o bloco de condição embaixo, o filete não tem o que
+   separar e a frase encosta na borda inferior do cartão. */
+.ol-path__what {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--ol-ink-2);
+  letter-spacing: -0.005em;
+}
+/* O termo que define o mecanismo fica em destaque: é o que o leitor precisa
+   levar do cartão se ler só uma coisa. */
+.ol-path__what strong {
+  font-weight: 700;
+  color: var(--ol-ink);
+}
+/* Fecho da seção: a faixa de rótulos das linhas, sob um filete. */
+.ol-paths__close {
+  margin-top: clamp(36px, 4vw, 52px);
+  padding-top: clamp(28px, 3vw, 38px);
+  border-top: 1px solid #dfe4e2;
+}
+.ol-paths__close .ol-chips li {
+  background: var(--ol-white);
+  border-color: #dfe4e2;
+  padding: 9px 15px;
+  letter-spacing: 0.09em;
+  color: var(--ol-ink-2);
+}
+
+/* --------------------------------------------------------------------------
+   Trilha de etapas
+   -------------------------------------------------------------------------- */
+
+.ol-flow {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+  gap: clamp(44px, 5vw, 80px);
+  align-items: start;
+}
+.ol-flow__aside {
+  position: sticky;
+  top: 120px;
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+}
+.ol-flow__aside h2 {
+  font-weight: 800;
+  font-size: clamp(1.9rem, 3.4vw, 2.9rem);
+  line-height: 1.06;
+  letter-spacing: -0.035em;
+  max-width: 15ch;
+  text-wrap: pretty;
+}
+.ol-flow__aside > p {
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  color: var(--ol-text-2);
+  max-width: 40ch;
+}
+.ol-flow__steps {
+  display: grid;
+  gap: 0;
+}
+.ol-flow__steps li {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 6px 22px;
+  padding: clamp(22px, 2.4vw, 28px) 0;
+  border-top: 1px solid #16213a;
+  transition: border-color 0.3s ease;
+}
+.ol-flow__steps li:last-child {
+  border-bottom: 1px solid #16213a;
+}
+.ol-flow__steps li:hover {
+  border-top-color: rgb(46 232 168 / 0.5);
+}
+.ol-flow__steps li > b {
+  font-family: var(--ol-serif);
+  font-weight: 400;
+  font-size: 1.5rem;
+  line-height: 1.1;
+  color: var(--ol-green);
+  grid-row: span 2;
+}
+.ol-flow__steps h3 {
+  font-size: 1.1875rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--ol-text);
+  line-height: 1.25;
+}
+.ol-flow__steps p {
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--ol-text-3);
+  max-width: 46ch;
+}
+
+/* --------------------------------------------------------------------------
+   Cartões de resultado
+   -------------------------------------------------------------------------- */
+
+.ol-gains {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+  gap: 16px;
+}
+.ol-gain {
+  background: var(--ol-white);
+  border: 1px solid var(--ol-light-border);
+  border-radius: 20px;
+  padding: clamp(26px, 2.6vw, 34px);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  transition: border-color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.ol-gain:hover {
+  border-color: rgb(29 122 98 / 0.45);
+  box-shadow: 0 24px 50px rgb(9 15 30 / 0.1);
+  transform: translateY(-5px);
+}
+.ol-gain > span {
+  width: 38px;
+  height: 38px;
+  border-radius: 11px;
+  background: rgb(23 169 127 / 0.1);
+  border: 1px solid rgb(23 169 127 / 0.32);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ol-green-ink);
+}
+.ol-gain h3 {
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  color: var(--ol-ink);
+  line-height: 1.2;
+}
+.ol-gain p {
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--ol-ink-2);
+  max-width: 34ch;
+}
+/* Aviso fiscal: mesmo âmbar do .ol-note, com o ícone que o design pede. */
+.ol-warn {
+  margin-top: clamp(28px, 3vw, 40px);
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  background: #faf6ec;
+  border: 1px solid #e8dcbf;
+  border-radius: 16px;
+  padding: 20px 22px;
+}
+.ol-warn > span {
+  color: #8a6a12;
+  flex-shrink: 0;
+  display: flex;
+  margin-top: 2px;
+}
+.ol-warn p {
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: #6b5410;
+}
+.ol-warn strong {
+  font-weight: 700;
+  color: #8a6a12;
+}
+
+/* --------------------------------------------------------------------------
+   FAQ
+   -------------------------------------------------------------------------- */
+
+/* A FAQ usa a grade de duas colunas do .ol-faq da home, e não a variante de
+   coluna única das páginas de conteúdo. A coluna do título acompanha a lista. */
+.ol-cap-faq .ol-faq__inner {
+  padding-bottom: clamp(60px, 7vw, 90px);
+}
+.ol-cap-faq .ol-faq__aside {
+  position: sticky;
+  top: 120px;
+}
+
+/* --------------------------------------------------------------------------
+   Responsivo
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 900px) {
+  /* Sem coluna ao lado não há percurso para prender. */
+  .ol-flow__aside,
+  .ol-cap-faq .ol-faq__aside {
+    position: static;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ol-cap-glow {
+    animation: none;
+  }
+  .ol-diag__live::before {
+    animation: none;
+  }
+}
