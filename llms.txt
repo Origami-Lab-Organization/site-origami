@@ -26,6 +26,53 @@ Sócios com passagens por Deloitte, AB InBev, Vale, Localiza, MRV, Inter e
 ESAB. Trabalhamos dentro da operação do cliente: cada entrega precisa provar
 resultado antes de a próxima começar.
 
+## Páginas de referência
+
+Conteúdo explicativo mantido pela Origami Lab. Cada página responde a uma
+pergunta no primeiro parágrafo e traz perguntas frequentes em JSON-LD.
+
+- [Lei do Bem: quem tem direito](https://www.origamilab.com.br/lei-do-bem):
+  os três requisitos cumulativos do incentivo — apurar pelo lucro real, ter
+  lucro fiscal no período e estar em regularidade fiscal —, o que caracteriza
+  P&D (novidade somada a incerteza técnica), por que empresas do lucro
+  presumido e do Simples ficam de fora, e por que indústria tradicional se
+  enquadra com mais frequência do que se imagina.
+- [Lei do Bem na prática](https://www.origamilab.com.br/lei-do-bem-na-pratica):
+  o benefício é de auto-enquadramento e a análise do MCTI é posterior ao uso;
+  o que é o FormP&D, o que o Ministério avalia em cada projeto, o dossiê que
+  precisa ser feito durante o projeto e os motivos concretos de glosa.
+- [Financiamento de inovação](https://www.origamilab.com.br/financiamento-de-inovacao):
+  a diferença entre recurso reembolsável e não reembolsável, o que é subvenção
+  econômica, como a FINEP opera crédito e chamadas públicas, o papel da FAPEMIG
+  e das fundações estaduais, e por que a Lei do Bem não é financiamento.
+- [Integração de sistemas](https://www.origamilab.com.br/integracao-de-sistemas):
+  os sintomas de falta de integração, por que integrar quase nunca significa
+  trocar o ERP, os quatro caminhos técnicos (API, banco, arquivo e automação de
+  interface) e como lidar com sistema legado sem documentação.
+- [Software sob medida](https://www.origamilab.com.br/software-sob-medida):
+  o critério para decidir entre produto pronto e sob medida, os cinco fatores
+  que definem o custo de um projeto, e o que a empresa precisa receber ao fim
+  para não ficar dependente do fornecedor.
+
+## Experiências de projeto
+
+- [Unificação de produtos digitais](https://www.origamilab.com.br/unificacao-de-produtos-digitais):
+  uma experiência da Origami Lab, da descoberta à construção
+  de uma plataforma com acesso, planos, cobrança e recursos para desenvolvedores.
+  O projeto registrou 100 dias corridos do início do desenvolvimento à primeira
+  entrada em produção, média de 11 minutos até o primeiro “Hello World” em teste
+  com 15 desenvolvedores sem contato prévio com a plataforma e transferência de
+  conhecimento para seis áreas. São marcos com recortes distintos: os 11 minutos
+  não medem uma integração empresarial completa e os 100 dias não representam
+  a duração total do projeto.
+
+## Observação sobre conteúdo fiscal
+
+As páginas sobre Lei do Bem e financiamento de inovação são orientação geral e
+não substituem parecer contábil. Requisitos, percentuais e prazos são definidos
+em legislação e em atos do MCTI e da Receita Federal, e mudam entre exercícios —
+confirme sempre na fonte oficial vigente antes de decidir.
+
 ## Contato
 
 - Site: https://www.origamilab.com.br/

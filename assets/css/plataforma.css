@@ -1,0 +1,140 @@
+/* Experiência de unificação de produtos — mesmos tokens do site. */
+.ol-platform__hero { padding-top: clamp(120px, 11vw, 160px); }
+.ol-platform__opening {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  align-items: center;
+  gap: clamp(32px, 5vw, 72px);
+}
+.ol-platform__eyebrow {
+  font-size: 0.72rem;
+  line-height: 1.5;
+  font-weight: 650;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--ol-green-soft);
+}
+.ol-platform__opening .ol-page__title { margin-top: 20px; max-width: 20ch; }
+.ol-platform__opening .ol-page__lead { max-width: 47ch; }
+.ol-platform__diagram {
+  min-width: 0;
+  margin: 0;
+  padding: clamp(20px, 3vw, 36px);
+  border: 1px solid var(--ol-border);
+  border-radius: 20px;
+  background: var(--ol-panel);
+  color: var(--ol-text);
+}
+.ol-platform__diagram figcaption { margin-bottom: 28px; font-size: 0.875rem; line-height: 1.6; color: var(--ol-text-1); }
+.ol-platform__products { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; list-style: none; }
+.ol-platform__products > * { padding: 10px 12px; border: 1px solid var(--ol-border); border-radius: 8px; font-size: 0.75rem; color: var(--ol-text-1); }
+.ol-platform__connector { height: 44px; width: 1px; margin: 0 auto; background: var(--ol-green-deep); }
+.ol-platform__foundation { padding: 24px; border: 1px solid var(--ol-green-deep); border-radius: 12px; background: rgb(46 232 168 / 0.04); }
+.ol-platform__foundation > span { display: block; font-size: 0.7rem; line-height: 1.6; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ol-green-soft); }
+.ol-platform__foundation > strong { display: block; margin-top: 12px; font-size: clamp(1.5rem, 2.5vw, 2.2rem); font-weight: 500; line-height: 1.2; letter-spacing: -0.025em; }
+.ol-platform__foundation ul { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; list-style: none; margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--ol-border); font-size: 0.75rem; color: var(--ol-text-1); }
+.ol-platform__diagram--compact { padding: 24px; }
+.ol-platform__evidence {
+  background: var(--ol-light);
+  color: var(--ol-ink);
+  border-radius: var(--ol-round) var(--ol-round) 0 0;
+}
+.ol-platform__evidence-inner {
+  max-width: var(--ol-max);
+  margin: 0 auto;
+  padding: clamp(40px, 5vw, 64px) var(--ol-gutter) 0;
+}
+.ol-platform__evidence .ol-platform__eyebrow { color: var(--ol-green-ink); }
+.ol-platform__metrics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 32px;
+  margin-top: 24px;
+}
+.ol-platform__metrics > div { padding-top: 24px; border-top: 1px solid var(--ol-light-rule); }
+.ol-platform__metrics dt {
+  font-size: clamp(3rem, 5vw, 4.5rem);
+  font-weight: 500;
+  line-height: 1.05;
+  letter-spacing: -0.05em;
+}
+.ol-platform__metrics dt span {
+  display: block;
+  margin-top: 10px;
+  font-size: 0.9375rem;
+  line-height: 1.4;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.ol-platform__metrics dd {
+  margin-top: 12px;
+  max-width: 36ch;
+  font-size: 0.875rem;
+  line-height: 1.65;
+  color: var(--ol-ink-2);
+}
+.ol-platform__source {
+  margin-top: 32px;
+  max-width: 100ch;
+  font-size: 0.75rem;
+  line-height: 1.65;
+  color: var(--ol-ink-2);
+}
+.ol-platform .ol-doc { border-radius: 0; }
+.ol-platform .ol-doc__inner { padding-top: clamp(56px, 7vw, 88px); }
+.ol-prose .ol-platform__stages { gap: 0; margin-top: 24px; }
+.ol-platform__stages li { padding: 18px 0 18px 10px; border-top: 1px solid var(--ol-light-rule); }
+.ol-platform__stages h3 { margin: 0 0 8px; }
+.ol-platform__stages p { font-size: 1rem; }
+.ol-platform__question { padding: 20px 0; border-top: 1px solid var(--ol-light-rule); }
+.ol-platform__question + .ol-platform__question { margin-top: 0; }
+.ol-platform__question summary { cursor: pointer; font-weight: 650; color: var(--ol-ink); line-height: 1.55; }
+.ol-platform__question summary::marker { color: var(--ol-green-ink); }
+.ol-platform__question p { margin-top: 16px; }
+.ol-platform__question:last-child { border-bottom: 1px solid var(--ol-light-rule); }
+
+/* A experiência é descoberta a partir da seção de clientes da home. */
+.ol-project-feature {
+  margin-top: 32px;
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: clamp(24px, 4vw, 56px);
+  align-items: center;
+  padding: clamp(24px, 4vw, 48px);
+  border: 1px solid var(--ol-light-border);
+  border-radius: 22px;
+  background: var(--ol-white);
+}
+.ol-project-feature .ol-platform__eyebrow { color: var(--ol-green-ink); }
+.ol-project-feature h3 {
+  margin-top: 12px;
+  max-width: 26ch;
+  font-size: clamp(1.6rem, 3vw, 2.5rem);
+  line-height: 1.12;
+  letter-spacing: -0.035em;
+  font-weight: 650;
+}
+.ol-project-feature p:not(.ol-platform__eyebrow) { margin-top: 18px; max-width: 52ch; color: var(--ol-ink-2); }
+.ol-project-feature__link {
+  display: inline-block;
+  margin-top: 22px;
+  padding: 8px 0;
+  color: var(--ol-green-ink);
+  font-weight: 650;
+  text-decoration: underline;
+  text-underline-offset: 5px;
+}
+.ol-project-feature__link:hover { color: var(--ol-ink); }
+.ol-project-feature__link:focus-visible,
+.ol-platform__question summary:focus-visible { outline: 2px solid var(--ol-green-ink); outline-offset: 6px; }
+@media (max-width: 900px) {
+  .ol-platform__opening { grid-template-columns: minmax(0, 1fr); }
+  .ol-platform__opening .ol-page__title { max-width: 23ch; }
+  .ol-platform__diagram { max-width: 620px; }
+}
+@media (max-width: 600px) {
+  .ol-platform__metrics { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+  .ol-platform__metrics dd { max-width: 48ch; }
+  .ol-project-feature { grid-template-columns: minmax(0, 1fr); }
+  .ol-platform__foundation { padding: 20px; }
+}

@@ -30,6 +30,9 @@ Allow: /
 User-agent: Applebot-Extended
 Allow: /
 
+# Resumo do site para modelos de linguagem, com as páginas de referência e a
+# ressalva sobre conteúdo fiscal: https://www.origamilab.com.br/llms.txt
+
 # Logos de clientes fora do índice de imagens: são near-square em fundo claro
 # e o Google os escolhia como thumbnail da marca no lugar da capa da Origami.
 User-agent: Googlebot-Image

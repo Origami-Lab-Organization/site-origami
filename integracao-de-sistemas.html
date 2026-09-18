@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Integração de sistemas: o que fazer quando o ERP não cobre a operação | Origami Lab</title>
+<meta name="description" content="Por que o dado volta a nascer numa planilha, os quatro caminhos técnicos para integrar sistemas que não conversam e o que fazer quando o sistema é legado e não tem API.">
+<meta name="theme-color" content="#04070E">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<link rel="canonical" href="https://www.origamilab.com.br/integracao-de-sistemas">
+<link rel="icon" href="/assets/logo-mark-color.svg" type="image/svg+xml">
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:url" content="https://www.origamilab.com.br/integracao-de-sistemas">
+<meta property="og:site_name" content="Origami Lab">
+<meta property="og:title" content="Integração de sistemas: quando o ERP não cobre a operação">
+<meta property="og:description" content="Por que o dado volta a nascer numa planilha, os quatro caminhos técnicos para integrar sistemas que não conversam e o que fazer quando o sistema é legado e não tem API.">
+<meta property="og:image" content="https://www.origamilab.com.br/assets/og-cover.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:alt" content="Origami Lab — modernizamos a operação das grandes empresas tradicionais.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://www.origamilab.com.br/assets/og-cover.jpg">
+<meta name="twitter:image:alt" content="Origami Lab — modernizamos a operação das grandes empresas tradicionais.">
+
+<link rel="preload" href="/assets/fonts/inter-normal-400-900-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/css/styles.css?v=7">
+</head>
+<body>
+
+<a class="ol-sr" href="#conteudo">Pular para o conteúdo</a>
+
+<nav class="ol-nav" data-nav>
+  <div class="ol-nav__inner">
+    <a class="ol-nav__logo" href="/" aria-label="Origami Lab — início">
+      <img src="/assets/logo-horizontal-white.svg" alt="Origami Lab" width="7811" height="1830">
+    </a>
+    <div class="ol-nav__right">
+      <div class="ol-nav__links">
+        <a class="ol-nav__link" href="/#servicos">Serviços</a>
+        <a class="ol-nav__link" href="/#como">Como trabalhamos</a>
+        <a class="ol-nav__link" href="/#clientes">Clientes</a>
+        <a class="ol-nav__link" href="/#quem-somos">Quem somos</a>
+        <a class="ol-nav__link" href="#faq">Perguntas</a>
+      </div>
+      <a class="ol-btn ol-btn--primary ol-btn--sm" href="https://forms.cloud.microsoft/r/f2GGyr2vZT" target="_blank" rel="noopener">Agendar conversa</a>
+      <button class="ol-nav__toggle" type="button" aria-expanded="false" aria-controls="ol-menu" aria-label="Abrir menu">
+        <svg class="ol-nav__bars" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg>
+        <svg class="ol-nav__x" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg>
+      </button>
+    </div>
+  </div>
+  <div class="ol-nav__panel" id="ol-menu">
+    <a href="/#servicos">Serviços</a>
+    <a href="/#como">Como trabalhamos</a>
+    <a href="/#clientes">Clientes</a>
+    <a href="/#quem-somos">Quem somos</a>
+    <a href="#faq">Perguntas frequentes</a>
+    <a class="ol-btn ol-btn--primary" href="https://forms.cloud.microsoft/r/f2GGyr2vZT" target="_blank" rel="noopener">Agendar conversa</a>
+  </div>
+  <div class="ol-nav__track"><div class="ol-nav__progress" data-progress></div></div>
+</nav>
+
+<div class="ol-root" id="conteudo">
+
+  <!-- ==================== Abertura ==================== -->
+  <header class="ol-page__hero">
+    <div class="ol-page__glow" aria-hidden="true"></div>
+    <div class="ol-page__inner">
+      <nav class="ol-crumb" aria-label="Você está em">
+        <a href="/">Origami Lab</a>
+        <span aria-hidden="true">/</span>
+        <span>Integração de sistemas</span>
+      </nav>
+      <h1 class="ol-page__title">Integração de sistemas: o que fazer quando o ERP não cobre a operação</h1>
+      <p class="ol-page__lead">Quando o ERP não cobre uma parte da operação, a empresa não fica sem processo — ela ganha uma planilha. O apontamento de produção vai para o Excel, o chão de fábrica anota em papel, alguém redigita no fim do turno, e o número que chega à diretoria já tem um dia de atraso e um erro de digitação dentro. Integrar sistemas é fechar esse ciclo: fazer o dado nascer <strong>uma única vez</strong>, no ponto onde o fato acontece, e chegar ao ERP sem redigitação. Na prática isso quase nunca significa trocar o ERP — significa construir em volta dele o que ele não cobre e conectar os dois pelo caminho que o fornecedor do ERP permitir: API, banco de dados ou arquivo.</p>
+      <div class="ol-page__actions">
+        <a class="ol-btn ol-btn--primary" href="https://forms.cloud.microsoft/r/f2GGyr2vZT" target="_blank" rel="noopener">Falar sobre a operação da minha empresa
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+        </a>
+        <a class="ol-btn ol-btn--ghost" href="#faq">Ir para as perguntas</a>
+      </div>
+      <p class="ol-page__meta">Origami Lab · Formiga, Minas Gerais · Desenvolvimento e integração para indústria, engenharia e serviços</p>
+    </div>
+  </header>
+
+  <div class="ol-over">
+
+    <!-- ==================== Conteúdo ==================== -->
+    <section class="ol-doc">
+      <div class="ol-doc__inner">
+        <aside class="ol-toc">
+          <div class="ol-toc__title">Nesta página</div>
+          <ul class="ol-toc__list">
+            <li><a href="#sintomas">Os três sintomas</a></li>
+            <li><a href="#nao-trocar">Integrar não é trocar o ERP</a></li>
+            <li><a href="#caminhos">Os quatro caminhos técnicos</a></li>
+            <li><a href="#legado">Quando o sistema é legado</a></li>
+            <li><a href="#nao-tecnico">A parte que não é técnica</a></li>
+            <li><a href="#comecar">Por onde começar</a></li>
+            <li><a href="#origami">Como a Origami trabalha</a></li>
+            <li><a href="#faq">Perguntas frequentes</a></li>
+          </ul>
+        </aside>
+
+        <article class="ol-prose">
+
+          <p class="ol-prose__lead">Nenhuma empresa decide ter oito planilhas paralelas ao ERP. Elas aparecem uma a uma, cada uma resolvendo um problema legítimo, e um ano depois ninguém sabe mais qual número é o certo.</p>
+
+          <h2 id="sintomas">Os três sintomas de que falta integração</h2>
+          <p>Não é preciso diagnóstico para reconhecê-los. Se dois dos três estão presentes, o problema já custa dinheiro:</p>
+          <div class="ol-key">
+            <div class="ol-key__title">Reconhecendo o problema</div>
+            <ul>
+              <li><strong>Redigitação.</strong> Alguém lê um número de um lugar e digita em outro. Cada redigitação é uma chance de erro e um atraso, e normalmente ocupa uma pessoa boa fazendo trabalho que não precisa existir.</li>
+              <li><strong>Números que não batem.</strong> A produção diz uma coisa, o ERP diz outra, a diretoria recebe uma terceira. A reunião gasta a primeira meia hora decidindo qual número é o verdadeiro, em vez de decidindo o que fazer.</li>
+              <li><strong>Informação que chega tarde.</strong> O relatório de ontem no meio da manhã de hoje. Quando o dado chega, a decisão que ele deveria orientar já foi tomada no escuro.</li>
+            </ul>
+          </div>
+          <p>O terceiro é o mais caro e o menos visível, porque o custo não aparece em lugar nenhum da contabilidade. Ele aparece como margem que vazou numa ordem que seguiu errada por um turno inteiro.</p>
+
+          <h2 id="nao-trocar">Integrar não é trocar o ERP</h2>
+          <p>A conclusão apressada quando a operação trava é que o ERP é ruim e precisa ser substituído. Na maior parte das vezes isso é caro, demorado e desnecessário — e a troca recria o mesmo problema dois anos depois, porque a causa raramente era o ERP.</p>
+          <p>ERPs são bons no que foram feitos para fazer: financeiro, fiscal, estoque, compras, faturamento. Eles são genéricos por natureza, porque precisam servir a milhares de empresas diferentes. O que eles não cobrem bem é justamente <strong>o que a sua empresa faz de específico</strong> — a forma como você programa a produção, apura o custo de uma ordem, controla a qualidade de um lote, acompanha uma obra ou uma frota. Esse pedaço específico não é falha do ERP; é o limite do conceito.</p>
+          <p>A estratégia que funciona é manter o ERP como base de registro e construir em volta dele o que falta, conectado. O ERP continua sendo a verdade do fiscal e do financeiro; o sistema específico passa a ser a verdade da operação; e os dois trocam dados sem ninguém no meio digitando.</p>
+
+          <h2 id="caminhos">Os quatro caminhos técnicos</h2>
+          <p>A escolha não é de gosto — ela é ditada pelo que o fornecedor do ERP libera e pelo tipo de dado. Em ordem de preferência:</p>
+          <div class="ol-tablewrap">
+            <table class="ol-table">
+              <thead>
+                <tr><th scope="col">Caminho</th><th scope="col">Quando é o certo</th><th scope="col">O que custa</th></tr>
+              </thead>
+              <tbody>
+                <tr><th scope="row">API</th><td>O ERP expõe serviços documentados. É o caminho mais estável: sobrevive a atualizações do fornecedor e respeita as regras de negócio do próprio ERP.</td><td>Depende de o fornecedor liberar — e às vezes cobrar por — o acesso.</td></tr>
+                <tr><th scope="row">Banco de dados</th><td>Não há API, mas há acesso de leitura ao banco. Serve bem para extrair dado; para escrever, é arriscado, porque passa por cima das validações do sistema.</td><td>Quebra quando o fornecedor muda o modelo de dados numa atualização.</td></tr>
+                <tr><th scope="row">Arquivo</th><td>Troca por CSV, XML ou layout posicional em intervalos definidos. Menos elegante e perfeitamente adequado para dado que não precisa ser instantâneo.</td><td>Tem latência por desenho e exige tratamento de falha e reprocessamento.</td></tr>
+                <tr><th scope="row">Automação de interface (RPA)</th><td>Último recurso, quando não há API, nem banco, nem arquivo — um robô opera a tela como um humano operaria.</td><td>Frágil: qualquer mudança de layout quebra. Serve como ponte temporária, não como arquitetura.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>Vale insistir no último: <strong>RPA é ponte, não destino</strong>. Ele resolve rápido e cria uma dependência que ninguém documenta. Quando for a única opção, trate como provisório e registre por que foi necessário.</p>
+
+          <h2 id="legado">Quando o sistema é legado</h2>
+          <p>Sistema legado é aquele que ainda sustenta a operação e ninguém quer tocar — normalmente porque quem o construiu não está mais na empresa, a documentação não existe e ele funciona. Às vezes o fornecedor sumiu. Às vezes ele roda numa tecnologia que ninguém mais domina.</p>
+          <p>A tentação é reescrever tudo. É a decisão mais arriscada disponível: reescrever um sistema que ninguém entende por completo significa descobrir as regras de negócio esquecidas uma a uma, em produção. O caminho mais seguro é diferente:</p>
+          <ol>
+            <li><strong>Cercar antes de substituir.</strong> Construir o novo em volta, lendo os dados do legado, sem mexer nele.</li>
+            <li><strong>Mover por pedaço.</strong> Uma função por vez, com o legado ainda no ar como rede de segurança.</li>
+            <li><strong>Documentar enquanto move.</strong> Cada regra descoberta vira documentação — é o único momento em que alguém está olhando para ela.</li>
+            <li><strong>Desligar só quando nada mais depender.</strong> E confirmar isso medindo, não perguntando.</li>
+          </ol>
+
+          <h2 id="nao-tecnico">A parte que não é técnica (e costuma ser a difícil)</h2>
+          <p>Integração fracassa mais por acordo do que por tecnologia. Três perguntas precisam ter dono antes da primeira linha de código:</p>
+          <ul>
+            <li><strong>Qual sistema manda em cada dado?</strong> Se o cadastro de cliente existe em dois lugares, um dos dois precisa ser o oficial. Sem essa definição, a integração propaga divergência mais rápido do que a redigitação propagava.</li>
+            <li><strong>O que fazer quando os dois discordam?</strong> Sobrescreve, rejeita, ou avisa alguém? Essa regra precisa ser decidida por quem responde pelo processo, não pelo desenvolvedor.</li>
+            <li><strong>Quem é avisado quando falha?</strong> Integração cai — rede, atualização, dado fora do padrão. O problema não é cair; é cair em silêncio e ninguém perceber por três dias.</li>
+          </ul>
+          <p>Há ainda um item que não é técnico nem contratual: <strong>o cadastro.</strong> Boa parte dos projetos de integração descobre, na primeira semana, que o mesmo cliente está gravado de quatro jeitos diferentes. Limpar cadastro é chato, não tem glamour nenhum e é pré-requisito real.</p>
+
+          <h2 id="comecar">Por onde começar</h2>
+          <p>Não por todos os sistemas. Escolha <strong>um processo, de ponta a ponta</strong> — do pedido à entrega, da ordem ao faturamento, da requisição à compra — e integre esse. Um processo inteiro funcionando prova o caminho, gera resultado visível e ensina o que a próxima integração vai encontrar. Integrar dez sistemas pela metade não entrega nada.</p>
+          <p>O critério de escolha do primeiro processo é simples: aquele em que a redigitação é maior e o erro dói mais.</p>
+
+          <h2 id="origami">Como a Origami Lab trabalha isso</h2>
+          <p>Começamos pelo diagnóstico dentro da operação — de duas a quatro semanas mapeando o processo real, não o desenhado, e mostrando onde o dado para. Depois priorizamos por retorno, desenhamos com quem executa, construímos em ciclos curtos com entregas quinzenais e acompanhamos até a sua equipe conduzir sozinha. O ERP continua sendo o ERP; nós construímos e conectamos o que falta em volta dele.</p>
+          <p>Quando o que falta não existe no mercado, o assunto vira <a href="/software-sob-medida">desenvolvimento sob medida</a>. E quando o projeto tem incerteza técnica de verdade, parte dele pode se enquadrar na <a href="/lei-do-bem">Lei do Bem</a> — o que muda a conta do investimento.</p>
+          <p>Uma aplicação dessa abordagem é a <a href="/unificacao-de-produtos-digitais">unificação de produtos digitais em uma plataforma</a>. Em um projeto de plataforma digital, o trabalho conectou jornadas, acesso e contratação de serviços, com integração de contas e planos ao sistema legado.</p>
+
+        </article>
+      </div>
+    </section>
+
+    <!-- ==================== Perguntas ==================== -->
+    <section class="ol-faq ol-faq--page" id="faq">
+      <div class="ol-faq__inner">
+        <div class="ol-faq__aside">
+          <h2 class="ol-h2 ol-h2--ink">Perguntas frequentes</h2>
+          <p>Ficou alguma dúvida que não está aqui? <a href="https://forms.cloud.microsoft/r/f2GGyr2vZT" target="_blank" rel="noopener">Fale com a gente</a>.</p>
+        </div>
+        <div class="ol-faq__list">
+
+          <div class="ol-faq__item" data-faq data-faq-open>
+            <button class="ol-faq__trigger" type="button" aria-expanded="false" aria-controls="faq-integracao-de-sistemas-1">
+              <span>Preciso trocar de ERP para resolver isso?</span>
+              <span class="ol-faq__icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14"></path><path d="M5 12h14"></path></svg></span>
+            </button>
+            <div class="ol-faq__body" id="faq-integracao-de-sistemas-1" data-faq-body>
+              <p>Na maior parte dos casos, não. ERPs são genéricos por natureza e cobrem bem financeiro, fiscal, estoque e faturamento; o que costuma faltar é justamente a parte específica da sua operação. Trocar de ERP é caro, demorado e tende a recriar o mesmo problema dois anos depois, porque a causa raramente era o ERP. O caminho usual é manter o ERP como base de registro e construir em volta dele o que ele não cobre, conectado por integração.</p>
+            </div>
+          </div>
+          <div class="ol-faq__item" data-faq>
+            <button class="ol-faq__trigger" type="button" aria-expanded="false" aria-controls="faq-integracao-de-sistemas-2">
+              <span>Meu ERP não tem API. Ainda dá para integrar?</span>
+              <span class="ol-faq__icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14"></path><path d="M5 12h14"></path></svg></span>
+            </button>
+            <div class="ol-faq__body" id="faq-integracao-de-sistemas-2" data-faq-body>
+              <p>Dá, com caminhos alternativos em ordem de preferência: acesso de leitura ao banco de dados, troca de arquivos em intervalos definidos (CSV, XML ou layout posicional) e, em último caso, automação de interface — um robô operando a tela. Cada opção tem um custo diferente: banco quebra quando o fornecedor muda o modelo de dados; arquivo tem latência por desenho; automação de interface quebra a qualquer mudança de layout e deve ser tratada como ponte temporária, nunca como arquitetura definitiva.</p>
+            </div>
+          </div>
+          <div class="ol-faq__item" data-faq>
+            <button class="ol-faq__trigger" type="button" aria-expanded="false" aria-controls="faq-integracao-de-sistemas-3">
+              <span>Funciona com Protheus, TOTVS, Sankhya, SAP ou Senior?</span>
+              <span class="ol-faq__icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14"></path><path d="M5 12h14"></path></svg></span>
+            </button>
+            <div class="ol-faq__body" id="faq-integracao-de-sistemas-3" data-faq-body>
+              <p>O caminho técnico depende do que cada fornecedor libera na sua versão e no seu contrato — alguns oferecem API documentada, outros só acesso ao banco, outros cobram à parte pelo módulo de integração. A primeira etapa de qualquer projeto é confirmar exatamente o que o seu ERP, na configuração que você tem, permite. Isso é verificação, não suposição, e muda bastante de um cliente para outro dentro do mesmo produto.</p>
+            </div>
+          </div>
+          <div class="ol-faq__item" data-faq>
+            <button class="ol-faq__trigger" type="button" aria-expanded="false" aria-controls="faq-integracao-de-sistemas-4">
+              <span>Quanto tempo leva uma integração?</span>
+              <span class="ol-faq__icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14"></path><path d="M5 12h14"></path></svg></span>
+            </button>
+            <div class="ol-faq__body" id="faq-integracao-de-sistemas-4" data-faq-body>
+              <p>Depende menos da tecnologia e mais de três coisas: quantos sistemas estão envolvidos, o estado do cadastro e quantas regras de exceção o processo tem. Um processo único ponta a ponta, com cadastro razoável e um ERP com API, costuma ser o escopo que entrega resultado visível mais rápido. Cadastro sujo é o fator que mais estende prazo, e ele raramente aparece no orçamento inicial de quem não olhou a operação antes.</p>
+            </div>
+          </div>
+          <div class="ol-faq__item" data-faq>
+            <button class="ol-faq__trigger" type="button" aria-expanded="false" aria-controls="faq-integracao-de-sistemas-5">
+              <span>Integração em tempo real ou por lote?</span>
+              <span class="ol-faq__icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14"></path><path d="M5 12h14"></path></svg></span>
+            </button>
+            <div class="ol-faq__body" id="faq-integracao-de-sistemas-5" data-faq-body>
+              <p>Depende do uso do dado, e tempo real nem sempre é melhor. Um apontamento de produção que orienta decisão de turno precisa ser imediato. Um fechamento contábil pode rodar à noite, e rodar à noite é mais simples, mais barato e mais fácil de reprocessar quando falha. Escolher tempo real por padrão encarece o projeto e aumenta a superfície de falha sem ganho correspondente.</p>
+            </div>
+          </div>
+          <div class="ol-faq__item" data-faq>
+            <button class="ol-faq__trigger" type="button" aria-expanded="false" aria-controls="faq-integracao-de-sistemas-6">
+              <span>O que acontece quando a integração falha?</span>
+              <span class="ol-faq__icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14"></path><path d="M5 12h14"></path></svg></span>
+            </button>
+            <div class="ol-faq__body" id="faq-integracao-de-sistemas-6" data-faq-body>
+              <p>Ela vai falhar em algum momento — rede fora, atualização do fornecedor, dado fora do padrão. O que separa uma integração bem-feita de uma mal-feita não é nunca falhar: é falhar de forma visível, reprocessável e sem perder dado. Isso significa registro de cada tentativa, alerta para uma pessoa nomeada e capacidade de reenviar o que ficou para trás sem duplicar. Integração que cai em silêncio é pior que redigitação, porque ninguém desconfia do número.</p>
+            </div>
+          </div>
+          <div class="ol-faq__item" data-faq>
+            <button class="ol-faq__trigger" type="button" aria-expanded="false" aria-controls="faq-integracao-de-sistemas-7">
+              <span>Precisamos ter equipe de TI para manter isso?</span>
+              <span class="ol-faq__icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14"></path><path d="M5 12h14"></path></svg></span>
+            </button>
+            <div class="ol-faq__body" id="faq-integracao-de-sistemas-7" data-faq-body>
+              <p>Não é necessário. Quando existe equipe interna, trabalhamos junto com ela desde o desenho, para que a manutenção fique possível. Quando não existe, conduzimos a implantação e preparamos as pessoas da operação para usar e acompanhar o que foi entregue, com a documentação e o monitoramento necessários para que uma falha seja percebida sem depender de conhecimento técnico profundo.</p>
+            </div>
+          </div>
+          <div class="ol-faq__item" data-faq>
+            <button class="ol-faq__trigger" type="button" aria-expanded="false" aria-controls="faq-integracao-de-sistemas-8">
+              <span>De quem são o código e os dados?</span>
+              <span class="ol-faq__icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14"></path><path d="M5 12h14"></path></svg></span>
+            </button>
+            <div class="ol-faq__body" id="faq-integracao-de-sistemas-8" data-faq-body>
+              <p>Seus. O que é construído para a sua empresa é da sua empresa, com o código entregue e documentado. Os dados permanecem sob a sua titularidade e ficam em ambiente de nuvem contratado por você — a Origami Lab é credenciada AWS. Isso importa especialmente em integração, porque é a camada que, mal contratada, cria a dependência mais difícil de desfazer.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== Leituras relacionadas ==================== -->
+    <section class="ol-next" aria-labelledby="relacionadas">
+      <div class="ol-next__inner">
+        <h2 class="ol-next__title" id="relacionadas">Continuar por aqui</h2>
+        <ul class="ol-next__grid">
+          <li><a class="ol-next__card" href="/software-sob-medida"><b>Software sob medida</b><span>Quando o pronto resolve, quando o sob medida se paga e o que de fato define o custo de um projeto.</span></a></li>
+          <li><a class="ol-next__card" href="/lei-do-bem"><b>Lei do Bem: quem tem direito</b><span>Os três requisitos que decidem se a sua empresa pode usar o incentivo, o que conta como P&D e como o benefício aparece na apuração.</span></a></li>
+          <li><a class="ol-next__card" href="/financiamento-de-inovacao"><b>Financiamento de inovação</b><span>FINEP, subvenção econômica e FAPEMIG: o que é crédito, o que é dinheiro a fundo perdido e como cada um é acessado.</span></a></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="ol-cta" id="contato">
+      <div class="ol-cta__glow" aria-hidden="true"></div>
+      <div class="ol-cta__inner">
+        <h2 class="ol-cta__title">Todo dado redigitado é uma <em class="ol-em">decisão atrasada</em>.</h2>
+        <p class="ol-cta__lead">A primeira conversa dura 30 minutos e serve para mapear onde o dado da sua operação para, volta atrás ou se perde. Se o caminho for simples, a gente diz — e às vezes é.</p>
+        <div class="ol-cta__actions">
+          <a class="ol-btn ol-btn--primary ol-btn--lg" href="https://forms.cloud.microsoft/r/f2GGyr2vZT" target="_blank" rel="noopener">Agendar conversa de 30 minutos
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+          </a>
+          <a class="ol-btn ol-btn--ghost" href="https://wa.me/553198055189?text=Ol%C3%A1!%20Quero%20conversar%20sobre%20a%20opera%C3%A7%C3%A3o%20da%20minha%20empresa." target="_blank" rel="noopener">Falar no WhatsApp</a>
+        </div>
+      </div>
+    </section>
+
+    <footer class="ol-footer">
+      <div class="ol-footer__inner">
+        <div class="ol-footer__cols">
+          <div>
+            <img class="ol-footer__logo" src="/assets/logo-horizontal-white.svg" alt="Origami Lab" width="7811" height="1830">
+            <p class="ol-footer__tagline">Modernizamos a operação de grandes empresas tradicionais.</p>
+            <a class="ol-btn ol-btn--ghost ol-footer__cta" href="https://www.origamipulse.com.br/trabalhe-conosco/93e40db0-4946-48ba-b40f-7ee9d02734e0" target="_blank" rel="noopener">Trabalhe conosco</a>
+          </div>
+          <div>
+            <div class="ol-footer__title">Navegar</div>
+            <nav class="ol-footer__list ol-footer__list--nav" aria-label="Rodapé">
+              <a href="/#servicos">Serviços</a>
+              <a href="/#como">Como trabalhamos</a>
+              <a href="/#clientes">Clientes</a>
+              <a href="/#quem-somos">Quem somos</a>
+              <a href="/#faq">Perguntas frequentes</a>
+              <a href="https://blog.origamilab.com.br/">Blog</a>
+              <a href="https://blog.origamilab.com.br/cases/">Cases</a>
+            </nav>
+          </div>
+          <div>
+            <div class="ol-footer__title">Entender o assunto</div>
+            <nav class="ol-footer__list ol-footer__list--nav" aria-label="Páginas de conteúdo">
+              <a href="/lei-do-bem">Lei do Bem: quem tem direito</a>
+              <a href="/lei-do-bem-na-pratica">Lei do Bem na prática</a>
+              <a href="/financiamento-de-inovacao">Financiamento de inovação</a>
+              <a href="/integracao-de-sistemas">Integração de sistemas</a>
+              <a href="/software-sob-medida">Software sob medida</a>
+            </nav>
+          </div>
+          <div>
+            <div class="ol-footer__title">Contato</div>
+            <div class="ol-footer__list">
+              <a href="https://forms.cloud.microsoft/r/f2GGyr2vZT" target="_blank" rel="noopener">Agendar conversa de 30 minutos</a>
+              <a href="mailto:contato@origamilab.com.br">contato@origamilab.com.br</a>
+              <a href="https://wa.me/553198055189" target="_blank" rel="noopener">WhatsApp · +55 31 9805-5189</a>
+              <a href="https://maps.google.com/?q=R.+Silviano+Brand%C3%A3o,+156+-+2%C2%BA+Andar+-+Centro,+Formiga+-+MG,+35570-112" target="_blank" rel="noopener">R. Silviano Brandão, 156 — 2º andar<br>Centro, Formiga — MG, 35570-112</a>
+              <div class="ol-social">
+                <a href="https://www.linkedin.com/company/origamilab-br/" target="_blank" rel="noopener" aria-label="LinkedIn da Origami Lab"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"></path><rect width="4" height="12" x="2" y="9"></rect><circle cx="4" cy="4" r="2"></circle></svg></a>
+                <a href="https://www.instagram.com/origamilab_br/" target="_blank" rel="noopener" aria-label="Instagram da Origami Lab"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="20" x="2" y="2" rx="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line></svg></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="ol-footer__bottom">
+          <span>© 2026 Origami Lab · Formiga, MG</span>
+          <span>Conectamos a força da tradição ao poder da inovação.</span>
+        </div>
+      </div>
+      <img class="ol-footer__mark" src="/assets/logo-horizontal-white.svg" alt="" aria-hidden="true">
+    </footer>
+
+  </div>
+</div>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ProfessionalService",
+      "@id": "https://www.origamilab.com.br/#org",
+      "name": "Origami Lab",
+      "url": "https://www.origamilab.com.br/",
+      "logo": "https://www.origamilab.com.br/assets/logo-mark-color.png",
+      "email": "contato@origamilab.com.br",
+      "telephone": "+553198055189",
+      "description": "Modernização da operação de grandes empresas tradicionais: desenvolvimento de software, consultoria de operação e captação de recursos via Lei do Bem, FINEP e FAPEMIG.",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "R. Silviano Brandão, 156 — 2º andar",
+        "addressLocality": "Formiga",
+        "addressRegion": "MG",
+        "postalCode": "35570-112",
+        "addressCountry": "BR"
+      },
+      "sameAs": [
+        "https://www.linkedin.com/company/origamilab-br/",
+        "https://www.instagram.com/origamilab_br/"
+      ],
+      "areaServed": [
+        {
+          "@type": "Place",
+          "name": "Minas Gerais"
+        },
+        {
+          "@type": "Place",
+          "name": "Brasil"
+        }
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.origamilab.com.br/#site",
+      "url": "https://www.origamilab.com.br/",
+      "name": "Origami Lab",
+      "inLanguage": "pt-BR",
+      "publisher": {
+        "@id": "https://www.origamilab.com.br/#org"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://www.origamilab.com.br/integracao-de-sistemas#webpage",
+      "url": "https://www.origamilab.com.br/integracao-de-sistemas",
+      "name": "Integração de sistemas: o que fazer quando o ERP não cobre a operação",
+      "description": "Por que o dado volta a nascer numa planilha, os quatro caminhos técnicos para integrar sistemas que não conversam e o que fazer quando o sistema é legado e não tem API.",
+      "inLanguage": "pt-BR",
+      "isPartOf": {
+        "@id": "https://www.origamilab.com.br/#site"
+      },
+      "about": {
+        "@id": "https://www.origamilab.com.br/#org"
+      },
+      "publisher": {
+        "@id": "https://www.origamilab.com.br/#org"
+      },
+      "breadcrumb": {
+        "@id": "https://www.origamilab.com.br/integracao-de-sistemas#breadcrumb"
+      },
+      "primaryImageOfPage": {
+        "@id": "https://www.origamilab.com.br/#primaryimage"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.origamilab.com.br/integracao-de-sistemas#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Origami Lab",
+          "item": "https://www.origamilab.com.br/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Integração de sistemas",
+          "item": "https://www.origamilab.com.br/integracao-de-sistemas"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://www.origamilab.com.br/integracao-de-sistemas#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Preciso trocar de ERP para resolver isso?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Na maior parte dos casos, não. ERPs são genéricos por natureza e cobrem bem financeiro, fiscal, estoque e faturamento; o que costuma faltar é justamente a parte específica da sua operação. Trocar de ERP é caro, demorado e tende a recriar o mesmo problema dois anos depois, porque a causa raramente era o ERP. O caminho usual é manter o ERP como base de registro e construir em volta dele o que ele não cobre, conectado por integração."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Meu ERP não tem API. Ainda dá para integrar?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Dá, com caminhos alternativos em ordem de preferência: acesso de leitura ao banco de dados, troca de arquivos em intervalos definidos (CSV, XML ou layout posicional) e, em último caso, automação de interface — um robô operando a tela. Cada opção tem um custo diferente: banco quebra quando o fornecedor muda o modelo de dados; arquivo tem latência por desenho; automação de interface quebra a qualquer mudança de layout e deve ser tratada como ponte temporária, nunca como arquitetura definitiva."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Funciona com Protheus, TOTVS, Sankhya, SAP ou Senior?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "O caminho técnico depende do que cada fornecedor libera na sua versão e no seu contrato — alguns oferecem API documentada, outros só acesso ao banco, outros cobram à parte pelo módulo de integração. A primeira etapa de qualquer projeto é confirmar exatamente o que o seu ERP, na configuração que você tem, permite. Isso é verificação, não suposição, e muda bastante de um cliente para outro dentro do mesmo produto."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Quanto tempo leva uma integração?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Depende menos da tecnologia e mais de três coisas: quantos sistemas estão envolvidos, o estado do cadastro e quantas regras de exceção o processo tem. Um processo único ponta a ponta, com cadastro razoável e um ERP com API, costuma ser o escopo que entrega resultado visível mais rápido. Cadastro sujo é o fator que mais estende prazo, e ele raramente aparece no orçamento inicial de quem não olhou a operação antes."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Integração em tempo real ou por lote?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Depende do uso do dado, e tempo real nem sempre é melhor. Um apontamento de produção que orienta decisão de turno precisa ser imediato. Um fechamento contábil pode rodar à noite, e rodar à noite é mais simples, mais barato e mais fácil de reprocessar quando falha. Escolher tempo real por padrão encarece o projeto e aumenta a superfície de falha sem ganho correspondente."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "O que acontece quando a integração falha?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ela vai falhar em algum momento — rede fora, atualização do fornecedor, dado fora do padrão. O que separa uma integração bem-feita de uma mal-feita não é nunca falhar: é falhar de forma visível, reprocessável e sem perder dado. Isso significa registro de cada tentativa, alerta para uma pessoa nomeada e capacidade de reenviar o que ficou para trás sem duplicar. Integração que cai em silêncio é pior que redigitação, porque ninguém desconfia do número."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Precisamos ter equipe de TI para manter isso?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Não é necessário. Quando existe equipe interna, trabalhamos junto com ela desde o desenho, para que a manutenção fique possível. Quando não existe, conduzimos a implantação e preparamos as pessoas da operação para usar e acompanhar o que foi entregue, com a documentação e o monitoramento necessários para que uma falha seja percebida sem depender de conhecimento técnico profundo."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "De quem são o código e os dados?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Seus. O que é construído para a sua empresa é da sua empresa, com o código entregue e documentado. Os dados permanecem sob a sua titularidade e ficam em ambiente de nuvem contratado por você — a Origami Lab é credenciada AWS. Isso importa especialmente em integração, porque é a camada que, mal contratada, cria a dependência mais difícil de desfazer."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "Service",
+      "@id": "https://www.origamilab.com.br/integracao-de-sistemas#service",
+      "name": "Integração de sistemas e desenvolvimento em volta do ERP",
+      "description": "Integração entre ERP, sistemas legados e operação: eliminação de redigitação, conexão por API, banco ou arquivo, e construção do que o ERP não cobre.",
+      "serviceType": "Integração de sistemas empresariais",
+      "provider": {
+        "@id": "https://www.origamilab.com.br/#org"
+      },
+      "areaServed": [
+        {
+          "@type": "Place",
+          "name": "Minas Gerais"
+        },
+        {
+          "@type": "Place",
+          "name": "Brasil"
+        }
+      ],
+      "url": "https://www.origamilab.com.br/integracao-de-sistemas"
+    }
+  ]
+}
+</script>
+
+<script src="/assets/js/pagina.js?v=1" defer></script>
+</body>
+</html>
