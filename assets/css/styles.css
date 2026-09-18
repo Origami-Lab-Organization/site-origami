@@ -334,6 +334,18 @@ li {
   border-color: var(--ol-ink);
   gap: 14px;
 }
+/* Dentro do cartão de serviço a superfície é escura, e o verde profundo do
+   link — calibrado para fundo claro — some. Aqui ele usa o verde de marca e
+   ganha o respiro que a lista de itens logo acima não deixa. */
+.ol-stack__body .ol-inline-link {
+  margin-top: 28px;
+  color: var(--ol-green);
+  border-bottom-color: rgb(46 232 168 / 0.45);
+}
+.ol-stack__body .ol-inline-link:hover {
+  color: var(--ol-green-soft);
+  border-bottom-color: var(--ol-green-soft);
+}
 
 /* --------------------------------------------------------------------------
    Navegação fixa + barra de progresso
@@ -1064,14 +1076,12 @@ li {
   gap: 24px clamp(32px, 5vw, 64px);
   align-items: end;
 }
+/* Sem o parágrafo de apoio ao lado, o título ficaria espremido numa trilha de
+   300px da grade. Ocupando a linha inteira, quem controla a medida é o
+   `max-width`, e as setas seguem na linha de baixo. */
 .ol-hpin__head .ol-h2 {
+  grid-column: 1 / -1;
   max-width: 20ch;
-}
-.ol-hpin__head p {
-  font-size: 1.0625rem;
-  line-height: 1.7;
-  color: var(--ol-text-2);
-  max-width: 46ch;
 }
 .ol-hpin__nav {
   grid-column: 1 / -1;
