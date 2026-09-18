@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Origami Lab — Acesso a capital
+   Origami Lab — Páginas de serviço
 
    Complementa o pagina.js, que já cuida de barra fixa, menu, progresso e FAQ.
    Aqui ficam só os efeitos que esta página tem e as de conteúdo não têm:

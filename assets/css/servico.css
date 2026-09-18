@@ -1,6 +1,7 @@
 /* ==========================================================================
-   Origami Lab — Acesso a capital
-   Implementação do design "Acesso a Capital.dc.html" (Claude Design).
+   Origami Lab — Páginas de serviço
+   Implementação dos designs de serviço (Claude Design): acesso a capital,
+   desenvolvimento de software e consultoria estratégica.
 
    Carrega depois de styles.css e usa os tokens dele. Só entra aqui o que a
    LP tem e o resto do site não: o hero em duas colunas com o cartão de
@@ -12,12 +13,12 @@
    Hero
    -------------------------------------------------------------------------- */
 
-.ol-cap-hero {
+.ol-sv-hero {
   position: relative;
   overflow: hidden;
   background: var(--ol-bg);
 }
-.ol-cap-hero__video {
+.ol-sv-hero__video {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -26,7 +27,7 @@
   z-index: 0;
   opacity: 0.5;
 }
-.ol-cap-hero__scrim {
+.ol-sv-hero__scrim {
   position: absolute;
   inset: 0;
   z-index: 1;
@@ -37,14 +38,14 @@
     rgb(4 7 14 / 0.99) 100%
   );
 }
-.ol-cap-hero__fade {
+.ol-sv-hero__fade {
   position: absolute;
   inset: auto 0 0 0;
   height: 42%;
   z-index: 1;
   background: linear-gradient(to top, var(--ol-bg), transparent);
 }
-.ol-cap-hero__inner {
+.ol-sv-hero__inner {
   position: relative;
   z-index: 2;
   max-width: var(--ol-max);
@@ -53,15 +54,20 @@
      ela, o kicker encostaria na barra fixa. */
   padding: clamp(150px, 18vh, 210px) var(--ol-gutter) 0;
 }
+/* O respiro de baixo é da faixa de números que costuma vir depois. Quando a
+   página não tem essa faixa, o hero fecha o próprio respiro. */
+.ol-sv-hero__inner:last-child {
+  padding-bottom: clamp(70px, 8vw, 110px);
+}
 /* Duas colunas: a proposta à esquerda, o cartão de diagnóstico à direita.
    `auto-fit` e não colunas fixas — abaixo de ~700px o cartão desce sozinho. */
-.ol-cap-hero__grid {
+.ol-sv-hero__grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: clamp(40px, 5vw, 72px);
   align-items: center;
 }
-.ol-cap-hero__title {
+.ol-sv-hero__title {
   font-family: var(--ol-serif);
   font-weight: 400;
   font-size: clamp(2.7rem, 6.2vw, 5.2rem);
@@ -71,7 +77,7 @@
   margin-bottom: 28px;
   text-wrap: balance;
 }
-.ol-cap-hero__lead {
+.ol-sv-hero__lead {
   font-weight: 400;
   font-size: clamp(1.05rem, 1.5vw, 1.25rem);
   line-height: 1.6;
@@ -80,7 +86,7 @@
   margin-bottom: 38px;
   text-wrap: pretty;
 }
-.ol-cap-hero__actions {
+.ol-sv-hero__actions {
   display: flex;
   flex-wrap: wrap;
   gap: 14px;
@@ -194,14 +200,14 @@
    Faixa de números
    -------------------------------------------------------------------------- */
 
-.ol-cap-proof {
+.ol-sv-proof {
   position: relative;
   z-index: 2;
   max-width: var(--ol-max);
   margin: 0 auto;
   padding: clamp(56px, 7vw, 92px) var(--ol-gutter) clamp(70px, 8vw, 110px);
 }
-.ol-cap-proof__grid {
+.ol-sv-proof__grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(230px, 100%), 1fr));
   gap: 1px;
@@ -210,25 +216,25 @@
   border-radius: 18px;
   overflow: hidden;
 }
-.ol-cap-proof__grid > div {
+.ol-sv-proof__grid > div {
   background: var(--ol-bg);
   padding: clamp(24px, 2.6vw, 32px);
 }
-.ol-cap-proof__grid dt {
+.ol-sv-proof__grid dt {
   font-family: var(--ol-serif);
   font-size: clamp(2.6rem, 4.4vw, 3.6rem);
   line-height: 1;
   color: var(--ol-green);
   letter-spacing: -0.01em;
 }
-.ol-cap-proof__grid dd {
+.ol-sv-proof__grid dd {
   font-size: 0.9375rem;
   color: var(--ol-text-2);
   line-height: 1.5;
   margin-top: 12px;
   max-width: 26ch;
 }
-.ol-cap-proof__src {
+.ol-sv-proof__src {
   font-size: 0.8125rem;
   color: var(--ol-text-6);
   margin-top: 16px;
@@ -238,19 +244,19 @@
    Seções claras e escuras
    -------------------------------------------------------------------------- */
 
-.ol-cap-sec {
+.ol-sv-sec {
   position: relative;
   border-radius: var(--ol-round) var(--ol-round) 0 0;
 }
-.ol-cap-sec--light {
+.ol-sv-sec--light {
   background: var(--ol-light);
   color: var(--ol-ink);
 }
-.ol-cap-sec--white {
+.ol-sv-sec--white {
   background: var(--ol-white);
   color: var(--ol-ink);
 }
-.ol-cap-sec--dark {
+.ol-sv-sec--dark {
   background: var(--ol-bg);
   /* `clip` e não `hidden`: os dois recortam o brilho que vaza da seção, mas
      `hidden` cria um container de rolagem e isso anula o `position: sticky` da
@@ -258,14 +264,14 @@
      motivo já registrado em `.ol-about` no styles.css. */
   overflow: clip;
 }
-.ol-cap-sec__inner {
+.ol-sv-sec__inner {
   position: relative;
   z-index: 1;
   max-width: var(--ol-max);
   margin: 0 auto;
   padding: clamp(80px, 9vw, 130px) var(--ol-gutter) clamp(70px, 8vw, 110px);
 }
-.ol-cap-sec__title {
+.ol-sv-sec__title {
   font-weight: 800;
   font-size: clamp(2rem, 3.8vw, 3.1rem);
   line-height: 1.05;
@@ -275,7 +281,7 @@
   text-wrap: pretty;
 }
 /* Brilho de fundo das seções escuras; o parallax é aplicado pelo JS. */
-.ol-cap-glow {
+.ol-sv-glow {
   position: absolute;
   width: 60vw;
   height: 60vw;
@@ -288,7 +294,7 @@
   z-index: 0;
   pointer-events: none;
 }
-.ol-cap-glow--center {
+.ol-sv-glow--center {
   width: 64vw;
   height: 64vw;
   top: -28vw;
@@ -541,10 +547,10 @@
 
 /* A FAQ usa a grade de duas colunas do .ol-faq da home, e não a variante de
    coluna única das páginas de conteúdo. A coluna do título acompanha a lista. */
-.ol-cap-faq .ol-faq__inner {
+.ol-sv-faq .ol-faq__inner {
   padding-bottom: clamp(60px, 7vw, 90px);
 }
-.ol-cap-faq .ol-faq__aside {
+.ol-sv-faq .ol-faq__aside {
   position: sticky;
   top: 120px;
 }
@@ -556,13 +562,13 @@
 @media (max-width: 900px) {
   /* Sem coluna ao lado não há percurso para prender. */
   .ol-flow__aside,
-  .ol-cap-faq .ol-faq__aside {
+  .ol-sv-faq .ol-faq__aside {
     position: static;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .ol-cap-glow {
+  .ol-sv-glow {
     animation: none;
   }
   .ol-diag__live::before {
