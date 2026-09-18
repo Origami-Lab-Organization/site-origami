@@ -253,11 +253,20 @@
     zooms = [].slice.call(document.querySelectorAll("[data-zoom]"));
     scaleIns = [].slice.call(document.querySelectorAll("[data-scale-in]"));
     navLinks = [].slice.call(document.querySelectorAll(".ol-nav__link"));
-    sections = navLinks
-      .map(function (a) {
-        return document.querySelector(a.getAttribute("href"));
-      })
-      .filter(Boolean);
+    /* Fora da home o menu aponta para outra página ("/#servicos", "/cases"), e
+       isso não é seletor válido: `querySelector` lançaria e derrubaria todo o
+       resto do script. Só âncora da própria página vira seção observada, e o
+       array fica PARALELO ao de links (com buracos) porque o destaque do menu
+       pareia os dois por índice. */
+    sections = navLinks.map(function (a) {
+      var href = a.getAttribute("href") || "";
+      if (href.charAt(0) !== "#" || href.length < 2) return null;
+      try {
+        return document.querySelector(href);
+      } catch (e) {
+        return null;
+      }
+    });
 
     // Marquees duplicam os filhos uma vez para poder emendar o laço.
     marquees = [].slice.call(document.querySelectorAll("[data-mq-row],[data-drift]")).map(function (el) {
@@ -373,7 +382,7 @@
     if (sections.length) {
       var active = -1;
       for (var i = 0; i < sections.length; i++) {
-        if (sections[i].getBoundingClientRect().top <= 140) active = i;
+        if (sections[i] && sections[i].getBoundingClientRect().top <= 140) active = i;
       }
       navLinks.forEach(function (a, idx) {
         a.classList.toggle("is-active", idx === active);

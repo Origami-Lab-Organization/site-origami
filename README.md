@@ -25,7 +25,9 @@ de origem HTTP.
 ## Estrutura
 
 ```
-index.html                 a página (9 seções + rodapé)
+index.html                 a home (9 seções + rodapé)
+cases/index.html           listagem dos cases (/cases)
+cases/*.html               um arquivo por case (/cases/<slug>)
 assets/css/styles.css      estilos; design tokens em :root e @font-face
 assets/js/main.js          motor de scroll (nav, hero, marquees, pin, reveal, FAQ)
 assets/fonts/              Inter e Instrument Serif self-hosted (sem Google Fonts)
@@ -57,6 +59,49 @@ Os dois últimos não são carregados pela página e podem sair do deploy.
 7. **Quem somos** — retrato dos sócios em coluna fixa e as empresas de origem.
 8. **FAQ** — oito perguntas, com a coluna do título fixa ao lado.
 9. **Chamada final** — cresce e aparece ao entrar em cena.
+
+## Cases
+
+`/cases` e as páginas de case reaproveitam o mesmo CSS e o mesmo JS da home —
+nav, rodapé, botões, reveal e tokens são os mesmos arquivos. O que muda é a
+abertura: em vez do hero de vídeo em 100vh que fica preso, as páginas internas
+usam `.ol-phero`, um hero curto sem vídeo, porque ali o assunto é o texto.
+
+```
+cases/index.html                     listagem + as quatro fases + CTA
+cases/plataforma-bry.html            plataforma única de confiança digital
+cases/prumo-engenharia.html          intranet corporativa em SharePoint Online
+cases/transportadora-cabral.html     Central do Motorista integrada ao TripLog
+```
+
+Prumo e Cabral vêm dos posts de `blog.origamilab.com.br/cases/`, reescritos
+para o site (não é cópia) e com link para a versão do blog na coluna lateral.
+A Bry veio do case interno em PDF. Cada página traz `Article` +
+`BreadcrumbList` em JSON-LD, e todas as URLs estão no `sitemap.xml` e no
+`llms.txt`.
+
+**O que foi deixado de fora do case da Bry.** O documento de origem é interno e
+traz coisas que não vão para página pública: nomes dos stakeholders do cliente
+e da equipe do projeto, os clientes da Bry citados como prova de venda cruzada
+(dependem de autorização de cada empresa), os concorrentes citados
+nominalmente, o texto da visão interna sobre risco de continuidade do negócio,
+os itens não entregues por dependência de sistemas do cliente, o fornecedor de
+gateway de pagamento e as recomendações estratégicas do encerramento. Quem for
+editar essa página deve manter esse corte.
+
+**Antes de publicar a página da Bry**, validar o texto com o cliente — o
+documento de origem pede isso e sugere pedir junto um depoimento curto da
+direção, que hoje falta no case.
+
+As rotas dependem do `cleanUrls: true` do `vercel.json`: é ele que serve
+`cases/prumo-engenharia.html` em `/cases/prumo-engenharia`. Num servidor
+estático comum (o `python3 -m http.server` do "Rodar") os links internos vão
+precisar do `.html`.
+
+**Para acrescentar um case:** copie um dos dois arquivos, troque conteúdo,
+`<title>`, meta tags, canonical e JSON-LD; some um `.ol-casecard` em
+`cases/index.html`; aponte o "próximo case" do arquivo vizinho para ele; e
+inclua a URL no `sitemap.xml` e no `llms.txt`.
 
 ## Comportamento e degradação
 
@@ -113,9 +158,17 @@ Todos reais, vindos do design — **não há link sem destino**:
 
 1. **CNPJ e razão social** no rodapé — procurement B2B costuma pedir.
 2. **Política de privacidade / LGPD** — o formulário coleta dados pessoais.
-3. **Cases com resultado.** A prova hoje é logo + setor + pedigree dos sócios.
-   Enquanto não houver problema → intervenção → resultado de dois ou três
-   clientes, essa é a maior lacuna para ticket dessa faixa.
+3. **Números nos cases.** `/cases` já traz problema → intervenção → resultado
+   de dois clientes, mas o resultado ainda é quase todo qualitativo: o único
+   número duro é o alcance da Prumo (500+ colaboradores) e o prazo de 8
+   semanas. Percentual de retrabalho evitado, tempo de tratativa antes e depois
+   ou custo de parada da frota fechariam o argumento para ticket dessa faixa.
+4. **Indústria sem case.** Tecno 2000 e Retífica Formiguense aparecem como logo
+   na home e não têm case — a lista cobre tecnologia, engenharia e logística,
+   mas não indústria.
+5. **Depoimento de cliente.** Só o case da Cabral tem voz do cliente. Bry e
+   Prumo estão sem citação, e é o elemento que mais converte numa página de
+   case.
 
 ## Decisões de implementação
 

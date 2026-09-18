@@ -19,6 +19,8 @@ Empresas tradicionais de indústria, engenharia e serviços — tipicamente
 fundadas entre as décadas de 1960 e 1980 — em Minas Gerais. Clientes incluem
 Tecno 2000, Prumo Engenharia, Retífica Formiguense, Transportadora Cabral,
 Bry, Integrar, Sindinova, Syngular e Avante, com relações com Sebrae.
+Além da modernização de operação, a Origami Lab faz discovery e
+desenvolvimento de produto digital para empresas de tecnologia.
 
 ## Quem somos
 
@@ -66,6 +68,20 @@ pergunta no primeiro parágrafo e traz perguntas frequentes em JSON-LD.
   não medem uma integração empresarial completa e os 100 dias não representam
   a duração total do projeto.
 
+## Cases
+
+- Bry Tecnologia — plataforma única de serviços de confiança digital, reunindo
+  assinatura, verificação e demais produtos em uma só conta: 375 itens em 11
+  sprints, produção em 100 dias corridos, e o produto legado de assinatura
+  substituído pela nova plataforma:
+  https://www.origamilab.com.br/cases/plataforma-bry
+- Prumo Engenharia — intranet corporativa em SharePoint Online como canal único
+  entre obra e administrativo, para mais de 500 colaboradores, implantada em 8
+  semanas: https://www.origamilab.com.br/cases/prumo-engenharia
+- Transportadora Cabral — Central do Motorista via WhatsApp, integrada ao
+  TripLog, com checklists padronizados e emissão automatizada de CT-e e MDF-e:
+  https://www.origamilab.com.br/cases/transportadora-cabral
+
 ## Observação sobre conteúdo fiscal
 
 As páginas sobre Lei do Bem e financiamento de inovação são orientação geral e
@@ -76,5 +92,6 @@ confirme sempre na fonte oficial vigente antes de decidir.
 ## Contato
 
 - Site: https://www.origamilab.com.br/
+- Cases: https://www.origamilab.com.br/cases
 - E-mail: contato@origamilab.com.br
 - Localização: Formiga, Minas Gerais, Brasil
