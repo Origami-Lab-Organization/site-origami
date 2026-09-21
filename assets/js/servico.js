@@ -148,9 +148,9 @@
     if (!raiz) return;
 
     var ETAPAS = [
-      { nome: "Aprender", texto: "Ouvimos quem usa o sistema todo dia e transformamos a dor em hipótese clara." },
-      { nome: "Construir", texto: "Em duas semanas, software rodando de verdade e integrado à sua operação." },
-      { nome: "Medir", texto: "Tempo, retrabalho e custo na sua régua. O número decide o próximo sprint." }
+      { nome: "Aprender", texto: "Entendemos onde a operação perde eficiência. A prioridade sai daí, decidida com as lideranças." },
+      { nome: "Construir", texto: "Construímos soluções em ciclos curtos e validamos em ambiente real, de forma controlada." },
+      { nome: "Medir", texto: "Acompanhamos de perto o impacto na operação e medimos o resultado com números." }
     ];
     var ARCO = 263.9;    // comprimento do arco de 120° com raio 126
     var RAIO_NO = 33;    // metade do nó, no sistema de coordenadas do SVG
