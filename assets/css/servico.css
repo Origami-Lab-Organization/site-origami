@@ -160,6 +160,247 @@
   display: grid;
   gap: 0;
 }
+/* --------------------------------------------------------------------------
+   Ciclo de entrega — a linha percorre a órbita e acende cada etapa
+
+   Recriação do handoff "Ciclo de produção": geometria, cores e comportamento
+   são os do design, mapeados para os tokens do site. A linha dá a volta
+   inteira acumulando os segmentos já percorridos, em vez de apagar o anterior
+   a cada troca — é o que dá a leitura de um ciclo, e não de três barras.
+   -------------------------------------------------------------------------- */
+
+.ol-diag--cycle {
+  gap: 0;
+}
+/* Brilhos difusos no fundo, no lugar do holofote que segue o cursor: os dois
+   juntos seriam dois sinais competindo pela atenção. */
+.ol-cycle__aurora {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+.ol-cycle__aurora--a {
+  left: -70px;
+  bottom: -90px;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgb(46 232 168 / 0.28), transparent 68%);
+  filter: blur(18px);
+  animation: ol-cycle-aurora-a 11s ease-in-out infinite;
+}
+.ol-cycle__aurora--b {
+  right: -60px;
+  top: -70px;
+  width: 260px;
+  height: 260px;
+  background: radial-gradient(circle, rgb(50 150 255 / 0.14), transparent 70%);
+  filter: blur(20px);
+  animation: ol-cycle-aurora-b 14s ease-in-out infinite;
+}
+
+.ol-cycle {
+  position: relative;
+  z-index: 1;
+}
+/* O bloco é quadrado e encolhe junto com o cartão; por isso os nós são
+   posicionados em porcentagem, e não nos pixels do arquivo de referência. */
+.ol-cycle__orbit {
+  position: relative;
+  width: min(320px, 100%);
+  aspect-ratio: 1;
+  margin: 46px auto 0;
+}
+.ol-cycle__halo {
+  position: absolute;
+  inset: 12%;
+  border-radius: 50%;
+  pointer-events: none;
+  background: conic-gradient(
+    from 0deg,
+    rgb(46 232 168 / 0.2),
+    rgb(46 232 168 / 0) 55%,
+    rgb(46 232 168 / 0.2)
+  );
+  filter: blur(16px);
+  animation: ol-cycle-halo 16s linear infinite;
+}
+.ol-cycle__orbit svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+.ol-cycle__ring {
+  fill: none;
+  stroke: rgb(255 255 255 / 0.055);
+  stroke-width: 1;
+  stroke-dasharray: 2 7;
+}
+/* O `dashoffset` negativo é o que abre a folga do traço junto a cada nó. */
+.ol-cycle__track {
+  fill: none;
+  stroke: rgb(120 200 170 / 0.16);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-dasharray: 214 400;
+  stroke-dashoffset: -25;
+}
+/* Ao fechar a volta o grupo inteiro esvanece e a linha recomeça do zero, em
+   vez de sumir de um quadro para o outro. */
+.ol-cycle__fills {
+  transition: opacity 0.55s ease;
+}
+.ol-cycle.is-clearing .ol-cycle__fills {
+  opacity: 0;
+}
+.ol-cycle__fill {
+  fill: none;
+  stroke: var(--ol-green);
+  stroke-width: 3;
+  stroke-linecap: round;
+  /* Estado de partida; o JS escreve em `style`, que vence esta regra. Sem
+     JavaScript o traço fica vazio e o cartão continua legível. */
+  stroke-dasharray: 0 600;
+  stroke-dashoffset: -25;
+  filter: url(#ol-cycle-glow);
+}
+
+.ol-cycle__core {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  pointer-events: none;
+}
+.ol-cycle__core span {
+  display: block;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ol-text-5);
+}
+.ol-cycle__core b {
+  display: block;
+  margin-top: 2px;
+  font-size: clamp(1.5rem, 5vw, 1.875rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  color: var(--ol-green);
+}
+
+.ol-cycle__node {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: clamp(54px, 20%, 66px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  background: radial-gradient(circle at 50% 30%, #14252a, #0a1316);
+  border: 1.5px solid rgb(120 200 170 / 0.28);
+  transform: translate(-50%, -50%);
+  transition: border-color 0.45s cubic-bezier(0.2, 0.8, 0.25, 1),
+    box-shadow 0.45s cubic-bezier(0.2, 0.8, 0.25, 1),
+    transform 0.45s cubic-bezier(0.2, 0.8, 0.25, 1);
+}
+.ol-cycle__node span[aria-hidden] {
+  font-size: 0.9375rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  font-variant-numeric: tabular-nums;
+  color: var(--ol-text-mint);
+  transition: color 0.4s ease;
+}
+/* Etapa por onde a linha já passou: fica marcada, sem roubar o destaque. */
+.ol-cycle__node.is-done {
+  border-color: rgb(46 232 168 / 0.55);
+}
+.ol-cycle__node.is-done span[aria-hidden] {
+  color: rgb(46 232 168 / 0.8);
+}
+/* Etapa que a linha acabou de alcançar. */
+.ol-cycle__node.is-active {
+  border-color: var(--ol-green);
+  transform: translate(-50%, -50%) scale(1.1);
+  box-shadow: 0 0 0 7px rgb(46 232 168 / 0.07), 0 0 34px rgb(46 232 168 / 0.35);
+}
+.ol-cycle__node.is-active span[aria-hidden] {
+  color: var(--ol-green);
+}
+.ol-cycle__node:focus-visible {
+  outline: 2px solid var(--ol-green);
+  outline-offset: 4px;
+}
+
+.ol-cycle__label {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  transform: translateX(-50%);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  color: var(--ol-text-mint);
+  transition: color 0.4s ease;
+}
+.ol-cycle__label.is-active {
+  color: var(--ol-text);
+}
+
+/* `min-height` fixa a altura para o cartão não pular ao trocar de etapa. */
+.ol-cycle__detail {
+  margin-top: 26px;
+  padding: 18px 20px;
+  min-height: 104px;
+  border-radius: 16px;
+  background: rgb(255 255 255 / 0.035);
+  border: 1px solid rgb(120 180 158 / 0.12);
+}
+.ol-cycle__detail-top {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+.ol-cycle__detail-top i {
+  width: 18px;
+  height: 2px;
+  border-radius: 1px;
+  background: var(--ol-green);
+  flex-shrink: 0;
+}
+.ol-cycle__detail-top b {
+  font-size: 1.125rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--ol-text);
+}
+.ol-cycle__detail p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--ol-text-1);
+  text-wrap: pretty;
+}
+
+@keyframes ol-cycle-aurora-a {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.55; }
+  50% { transform: translate(30px, -20px) scale(1.15); opacity: 0.8; }
+}
+@keyframes ol-cycle-aurora-b {
+  0%, 100% { transform: translate(0, 0) scale(1.1); opacity: 0.4; }
+  50% { transform: translate(-26px, 18px) scale(0.95); opacity: 0.65; }
+}
+@keyframes ol-cycle-halo {
+  to { transform: rotate(-360deg); }
+}
+
 .ol-diag__list li {
   display: flex;
   align-items: center;
@@ -359,11 +600,16 @@
   color: var(--ol-ink);
   line-height: 1.1;
 }
+/* O subtítulo é opcional: nem todo cartão tem um. */
 .ol-path__line {
   font-size: 0.875rem;
   font-weight: 600;
   color: var(--ol-ink-3);
   margin: 6px 0 22px;
+}
+/* Quando ele não existe, o respiro que ele dava passa para o título. */
+.ol-path h3 + .ol-path__what {
+  margin-top: 22px;
 }
 /* Fecha o cartão: sem o bloco de condição embaixo, o filete não tem o que
    separar e a frase encosta na borda inferior do cartão. */

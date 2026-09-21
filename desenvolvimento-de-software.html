@@ -82,7 +82,7 @@
         <div>
           <span class="ol-kicker">Desenvolvimento e implantação</span>
           <h1 class="ol-sv-hero__title">Software feito <em class="ol-em">sob medida</em> para a sua operação.</h1>
-          <h2 class="ol-sv-hero__lead">Construímos soluções integradas ao seu ecossistema para que você tenha gestão em tempo real, dados assertivos e processos automatizados. Tudo integrado ao seu ERP.</h2>
+          <h2 class="ol-sv-hero__lead">Construímos soluções integradas ao seu ecossistema para que você tenha gestão em tempo real, dados assertivos e processos automatizados.</h2>
           <div class="ol-sv-hero__actions">
             <a class="ol-btn ol-btn--primary" data-magnet href="https://forms.cloud.microsoft/r/f2GGyr2vZT" target="_blank" rel="noopener">Falar sobre o meu projeto
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
@@ -91,26 +91,70 @@
           </div>
         </div>
 
-        <div class="ol-diag" data-spot>
-          <div class="ol-diag__spot" aria-hidden="true"></div>
+        <div class="ol-diag ol-diag--cycle">
+          <div class="ol-cycle__aurora ol-cycle__aurora--a" aria-hidden="true"></div>
+          <div class="ol-cycle__aurora ol-cycle__aurora--b" aria-hidden="true"></div>
+
           <div class="ol-diag__head">
             <span class="ol-diag__tag">Ciclo de entrega</span>
             <span class="ol-diag__live">2 semanas</span>
           </div>
-          <ul class="ol-diag__list">
-            <li>
-              <span aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span>
-              <div><b>Construir</b><i>Software em produção já no primeiro mês</i></div>
-            </li>
-            <li>
-              <span aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span>
-              <div><b>Medir</b><i>Uso real de quem está na ponta, não opinião</i></div>
-            </li>
-            <li>
-              <span aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span>
-              <div><b>Aprender</b><i>A diretoria corrige o rumo durante, não no fim</i></div>
-            </li>
-          </ul>
+
+          <div class="ol-cycle" data-cycle>
+            <div class="ol-cycle__orbit">
+              <div class="ol-cycle__halo" aria-hidden="true"></div>
+
+              <svg viewBox="0 0 320 320" aria-hidden="true">
+                <defs>
+                  <filter id="ol-cycle-glow" x="-60%" y="-60%" width="220%" height="220%">
+                    <feGaussianBlur stdDeviation="5" result="b"></feGaussianBlur>
+                    <feMerge><feMergeNode in="b"></feMergeNode><feMergeNode in="SourceGraphic"></feMergeNode></feMerge>
+                  </filter>
+                </defs>
+                <circle class="ol-cycle__ring" cx="160" cy="160" r="126"></circle>
+
+                <path class="ol-cycle__track" d="M160,34 A126,126 0 0 0 50.9,223"></path>
+                <path class="ol-cycle__track" d="M50.9,223 A126,126 0 0 0 269.1,223"></path>
+                <path class="ol-cycle__track" d="M269.1,223 A126,126 0 0 0 160,34"></path>
+
+                <g class="ol-cycle__fills">
+                  <path class="ol-cycle__fill" data-cycle-fill="0" d="M160,34 A126,126 0 0 0 50.9,223"></path>
+                  <path class="ol-cycle__fill" data-cycle-fill="1" d="M50.9,223 A126,126 0 0 0 269.1,223"></path>
+                  <path class="ol-cycle__fill" data-cycle-fill="2" d="M269.1,223 A126,126 0 0 0 160,34"></path>
+                </g>
+              </svg>
+
+              <div class="ol-cycle__core">
+                <span>Sprint</span>
+                <b>2 semanas</b>
+              </div>
+
+              <button class="ol-cycle__node is-active" type="button" data-cycle-node="0" style="--x:50%;--y:10.625%">
+                <span aria-hidden="true">01</span>
+                <span class="ol-sr">Aprender</span>
+              </button>
+              <button class="ol-cycle__node" type="button" data-cycle-node="1" style="--x:15.906%;--y:69.688%">
+                <span aria-hidden="true">02</span>
+                <span class="ol-sr">Construir</span>
+              </button>
+              <button class="ol-cycle__node" type="button" data-cycle-node="2" style="--x:84.094%;--y:69.688%">
+                <span aria-hidden="true">03</span>
+                <span class="ol-sr">Medir</span>
+              </button>
+
+              <span class="ol-cycle__label is-active" data-cycle-label="0" style="--x:50%;--y:-10.625%" aria-hidden="true">Aprender</span>
+              <span class="ol-cycle__label" data-cycle-label="1" style="--x:15.906%;--y:85.312%" aria-hidden="true">Construir</span>
+              <span class="ol-cycle__label" data-cycle-label="2" style="--x:84.094%;--y:85.312%" aria-hidden="true">Medir</span>
+            </div>
+
+            <div class="ol-cycle__detail" aria-live="polite">
+              <div class="ol-cycle__detail-top">
+                <i aria-hidden="true"></i>
+                <b data-cycle-name>Aprender</b>
+              </div>
+              <p data-cycle-desc>Ouvimos quem usa o sistema todo dia e transformamos a dor em hipótese clara.</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -120,37 +164,34 @@
   <!-- ==================== O que construímos ==================== -->
   <section class="ol-sv-sec ol-sv-sec--light" id="solucoes">
     <div class="ol-sv-sec__inner">
-      <h2 class="ol-sv-sec__title" data-anim>Três frentes, o mesmo ponto de partida</h2>
+      <h2 class="ol-sv-sec__title" data-anim>Como é ter um software feito para a sua operação</h2>
 
       <div class="ol-paths">
         <article class="ol-path" data-anim data-d="1">
           <div class="ol-path__kind">
             <span aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="14" rx="2"></rect><path d="M8 21h8"></path><path d="M12 18v3"></path></svg></span>
-            O que o ERP não cobre
+            Personalização
           </div>
-          <h3>Sistema sob medida</h3>
-          <p class="ol-path__line">Produção, obra, frota, qualidade</p>
-          <p class="ol-path__what">O ERP é bom no fiscal, no financeiro e no estoque, porque é genérico por natureza. Construímos em volta dele <strong>o que é específico do seu negócio</strong> e hoje vive em planilha.</p>
+          <h3>Solução sob medida</h3>
+          <p class="ol-path__what">O ERP é bom no fiscal, no financeiro e no estoque, porque é genérico por natureza. Construímos em volta dele <strong>o que é específico do seu negócio</strong> e hoje vive em planilha e controles manuais.</p>
         </article>
 
         <article class="ol-path" data-anim data-d="2">
           <div class="ol-path__kind">
             <span aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 7H5a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h3"></path><path d="M16 7h3a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2h-3"></path><path d="M8 12h8"></path></svg></span>
-            Sistemas que não conversam
+            Integração
           </div>
-          <h3>Integração</h3>
-          <p class="ol-path__line">API, banco, arquivo</p>
+          <h3>Sistemas integrados</h3>
           <p class="ol-path__what">Quando alguém lê um número de um lugar e digita em outro, o erro é questão de tempo. Conectamos o que já existe para que <strong>o dado ande sozinho</strong>, sem trocar o seu ERP.</p>
         </article>
 
         <article class="ol-path" data-anim data-d="3">
           <div class="ol-path__kind">
             <span aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"></path><path d="m7 15 4-4 3 3 5-6"></path></svg></span>
-            Decisão no escuro
+            Dados
           </div>
           <h3>Informação em tempo real</h3>
-          <p class="ol-path__line">Indicadores e apontamento</p>
-          <p class="ol-path__what">Relatório de ontem no meio da manhã de hoje chega tarde demais. O apontamento digitalizado faz <strong>o que acontece na ponta chegar à diretoria</strong> enquanto ainda dá para agir.</p>
+          <p class="ol-path__what">Indicadores e apontamento digitalizados levam <strong>o dado da operação em tempo real</strong> a quem decide. A gestão passa a acompanhar produção, custo e prazo pelo que está acontecendo agora, não pelo relatório de ontem.</p>
         </article>
       </div>
 
@@ -159,7 +200,6 @@
           <li>Integrado ao ERP</li>
           <li>Código e dados seus</li>
           <li>Implantação e treinamento</li>
-          <li>Credenciados AWS</li>
         </ul>
       </div>
     </div>
@@ -180,7 +220,7 @@
           <li data-anim>
             <b>01</b>
             <h3>Diagnóstico dentro da operação</h3>
-            <p>De duas a quatro semanas no lugar onde o processo acontece, entendendo como ele funciona hoje — não como o manual diz que funciona.</p>
+            <p>De uma a duas semanas imersos fisicamente onde o processo acontece, entendendo como ele funciona.</p>
           </li>
           <li data-anim>
             <b>02</b>
@@ -240,11 +280,7 @@
         </article>
       </div>
 
-      <div class="ol-warn" data-anim>
-        <span aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 8v5"></path><path d="M12 16.5v.01"></path></svg></span>
-        <p><strong>Sob medida não é sempre a resposta.</strong> Quando existe produto de mercado que resolve bem o seu caso, dizemos isso no diagnóstico — sai mais barato para os dois lados descobrir antes de começar.</p>
       </div>
-    </div>
   </section>
 
   <!-- ==================== Perguntas ==================== -->
@@ -475,7 +511,7 @@
         "itemListElement": [
           { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Sistema sob medida", "description": "O ERP é genérico por natureza. Construímos em volta dele o que é específico do negócio e hoje vive em planilha: produção, obra, frota, qualidade." } },
           { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Integração de sistemas", "description": "Conectamos por API, banco ou arquivo o que já existe, para que o dado ande sozinho, sem trocar o ERP." } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Informação em tempo real", "description": "Apontamento de produção e de campo digitalizado, com indicadores que chegam à diretoria enquanto ainda dá para agir." } }
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Informação em tempo real", "description": "Indicadores e apontamento digitalizados levam o dado da operação em tempo real a quem decide, para a gestão acompanhar produção, custo e prazo pelo que está acontecendo agora." } }
         ]
       }
     },
@@ -486,7 +522,7 @@
       "description": "As seis etapas entre o diagnóstico da operação e o time do cliente conduzindo o sistema com autonomia.",
       "inLanguage": "pt-BR",
       "step": [
-        { "@type": "HowToStep", "position": 1, "name": "Diagnóstico dentro da operação", "text": "De duas a quatro semanas no lugar onde o processo acontece, entendendo como ele funciona hoje." },
+        { "@type": "HowToStep", "position": 1, "name": "Diagnóstico dentro da operação", "text": "De uma a duas semanas imersos fisicamente onde o processo acontece, entendendo como ele funciona." },
         { "@type": "HowToStep", "position": 2, "name": "Estratégia com a diretoria", "text": "Definir o que move resultado primeiro e o que fica para depois, com aprovação de cada fase antes do início." },
         { "@type": "HowToStep", "position": 3, "name": "Primeira entrega em produção", "text": "Ainda no primeiro mês há software rodando e sendo usado por quem está na ponta." },
         { "@type": "HowToStep", "position": 4, "name": "Ciclos de duas semanas", "text": "Construir, medir e aprender a cada sprint, com review ao fim de cada ciclo." },

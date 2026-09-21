@@ -131,8 +131,123 @@
     pintar();
   }
 
+  /* ---- Ciclo de entrega ----
+
+     A linha percorre a órbita acumulando: o segmento já vencido continua aceso
+     enquanto o seguinte cresce, e cada nó acende quando a linha encosta nele.
+     Fechada a volta, o traço esvanece e recomeça.
+
+     O handoff especifica um tique de 60ms, que a 16 quadros por segundo faz a
+     linha andar aos trancos. Aqui o avanço vem do relógio do navegador, via
+     requestAnimationFrame: mesmo ritmo (4,2s por etapa), movimento contínuo.
+
+     Sem JavaScript o cartão já nasce com a primeira etapa marcada e o texto
+     visível, então nada depende desta função para ser lido. */
+  function initCiclo() {
+    var raiz = document.querySelector("[data-cycle]");
+    if (!raiz) return;
+
+    var ETAPAS = [
+      { nome: "Aprender", texto: "Ouvimos quem usa o sistema todo dia e transformamos a dor em hipótese clara." },
+      { nome: "Construir", texto: "Em duas semanas, software rodando de verdade e integrado à sua operação." },
+      { nome: "Medir", texto: "Tempo, retrabalho e custo na sua régua. O número decide o próximo sprint." }
+    ];
+    var ARCO = 263.9;    // comprimento do arco de 120° com raio 126
+    var RAIO_NO = 33;    // metade do nó, no sistema de coordenadas do SVG
+    var ETAPA_MS = 4200; // tempo em cada etapa
+    var LIMPEZA_MS = 550;
+    /* O arco liga o centro de um nó ao centro do seguinte, mas visualmente
+       alcança o próximo assim que toca a borda do círculo — um raio antes. */
+    var TOQUE = (ARCO - RAIO_NO) / ARCO;
+    var VOLTA = ETAPA_MS * ETAPAS.length;
+
+    var nos = [].slice.call(raiz.querySelectorAll("[data-cycle-node]"));
+    var rotulos = [].slice.call(raiz.querySelectorAll("[data-cycle-label]"));
+    var arcos = [].slice.call(raiz.querySelectorAll("[data-cycle-fill]"));
+    var nome = raiz.querySelector("[data-cycle-name]");
+    var texto = raiz.querySelector("[data-cycle-desc]");
+    if (nos.length !== ETAPAS.length || !nome || !texto) return;
+
+    var t = 0;           // ms decorridos na volta
+    var parado = false;
+    var limpando = false;
+    var ultimo = 0;
+    var mostrado = -1;
+
+    function suave(p) {   // tira o arranque seco do início de cada segmento
+      return p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
+    }
+
+    function pintar() {
+      var alcancados = 0;
+      for (var i = 0; i < ETAPAS.length; i++) {
+        var p = Math.min(Math.max((t - i * ETAPA_MS) / ETAPA_MS, 0), 1);
+        // `style` e não `setAttribute`: num SVG o atributo de apresentação tem
+        // especificidade zero e perde para a regra `.ol-cycle__fill` do CSS.
+        arcos[i].style.strokeDasharray = ARCO * suave(p) + " 600";
+        if (p >= TOQUE) alcancados = i + 1;
+      }
+
+      var atual = alcancados % ETAPAS.length;
+      nos.forEach(function (n, i) {
+        n.classList.toggle("is-active", i === atual);
+        n.classList.toggle("is-done", !limpando && i !== atual && i < alcancados);
+      });
+      rotulos.forEach(function (r, i) { r.classList.toggle("is-active", i === atual); });
+
+      if (mostrado !== atual) {
+        mostrado = atual;
+        nome.textContent = ETAPAS[atual].nome;
+        texto.textContent = ETAPAS[atual].texto;
+      }
+    }
+
+    function irPara(i) {
+      limpando = false;
+      raiz.classList.remove("is-clearing");
+      t = i * ETAPA_MS;
+      pintar();
+    }
+
+    nos.forEach(function (n, i) {
+      n.addEventListener("click", function () { irPara(i); });
+      n.addEventListener("focus", function () { irPara(i); });
+    });
+
+    pintar();
+
+    // Sem movimento o ciclo não anda sozinho: fica só a navegação por clique.
+    if (semMovimento) return;
+
+    raiz.addEventListener("pointerenter", function () { parado = true; });
+    raiz.addEventListener("pointerleave", function () { parado = false; });
+
+    function quadro(agora) {
+      var delta = ultimo ? agora - ultimo : 0;
+      ultimo = agora;
+      // Aba em segundo plano devolve um salto enorme; melhor descartar.
+      if (delta > 200) delta = 0;
+
+      if (!parado && !document.hidden) {
+        t += delta;
+        if (!limpando && t >= VOLTA) {
+          limpando = true;
+          raiz.classList.add("is-clearing");
+        } else if (limpando && t >= VOLTA + LIMPEZA_MS) {
+          limpando = false;
+          raiz.classList.remove("is-clearing");
+          t = 0;
+        }
+        if (!limpando) pintar();
+      }
+      requestAnimationFrame(quadro);
+    }
+    requestAnimationFrame(quadro);
+  }
+
   function init() {
     initVideo();
+    initCiclo();
     initReveal();
     initSpot();
     initMagnet();
