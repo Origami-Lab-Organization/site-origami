@@ -39,6 +39,16 @@ pergunta no primeiro parágrafo e traz perguntas frequentes em JSON-LD.
   incentivo fiscal, recurso não reembolsável e crédito subsidiado —, descreve as
   seis etapas do serviço e registra que a cobrança só acontece se o capital for
   liberado.
+- [Desenvolvimento de software](https://www.origamilab.com.br/desenvolvimento-de-software):
+  a página do serviço de software sob medida. Cobre as três frentes — sistema
+  para o que o ERP não cobre, integração dos sistemas que não conversam e
+  informação de operação em tempo real —, as seis etapas do projeto, e registra
+  que o código sai documentado e os dados permanecem com o cliente.
+- [Consultoria estratégica](https://www.origamilab.com.br/consultoria-estrategica):
+  a página do serviço de diagnóstico e estratégia. Cobre estratégia de produto,
+  gestão de portfólio com ROI, avaliação de maturidade digital e programas de
+  inovação in-company, com a imersão de duas a quatro semanas dentro da operação
+  e o plano de modernização com sequência, prazo e custo.
 - [Integração de sistemas](https://www.origamilab.com.br/integracao-de-sistemas):
   os sintomas de falta de integração, por que integrar quase nunca significa
   trocar o ERP, os quatro caminhos técnicos (API, banco, arquivo e automação de
