@@ -138,27 +138,419 @@
   text-transform: uppercase;
   color: var(--ol-text-5);
 }
-.ol-diag__live {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  font-size: 0.6875rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--ol-green);
-}
-.ol-diag__live::before {
-  content: "";
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--ol-green);
-  animation: ol-blink 1.8s ease-in-out infinite;
-}
 .ol-diag__list {
   display: grid;
   gap: 0;
+}
+
+/* --------------------------------------------------------------------------
+   De onde vem o capital — quatro fontes convergindo para o projeto
+
+   O handoff entrega o cartão em 580px fixos, medida que não existe aqui: a
+   coluna da hero é `minmax(320px, 1fr)` e varia de ~305px a ~584px conforme a
+   viewport. Em vez de escalar o conjunto inteiro, a coluna de fontes é
+   flexível e o SVG de ligação estica no vão entre ela e o nó. A altura fica
+   travada em 238px, que é o que mantém os centros das curvas (y = 26, 88,
+   150 e 212) alinhados aos centros das quatro caixas de 52px com 10px de gap.
+   -------------------------------------------------------------------------- */
+
+.ol-fontes__stage {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 238px;
+}
+.ol-fontes__list {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: grid;
+  gap: 10px;
+  height: 100%;
+  align-content: stretch;
+}
+
+/* O botão carrega a fonte inteira: é o que dá acesso por teclado ao que no
+   protótipo era uma `div` com `onclick`. */
+.ol-fonte {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 0 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1px;
+  text-align: left;
+  cursor: pointer;
+  font: inherit;
+  border-radius: 12px;
+  background: rgb(255 255 255 / 0.03);
+  border: 1px solid var(--ol-border);
+  transition: background 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.ol-fonte b {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--ol-text-1);
+  transition: color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.ol-fonte i {
+  font-style: normal;
+  font-size: 0.75rem;
+  color: var(--ol-text-3);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.ol-fonte.is-active {
+  background: rgb(46 232 168 / 0.08);
+  border-color: rgb(46 232 168 / 0.5);
+}
+.ol-fonte.is-active b {
+  color: var(--ol-text);
+}
+.ol-fonte:focus-visible {
+  outline: 2px solid var(--ol-green);
+  outline-offset: 2px;
+}
+
+/* `preserveAspectRatio="none"` deixa o vão esticar sem mexer nos pontos de
+   partida e chegada; `non-scaling-stroke` evita que a deformação horizontal
+   engrosse o traço de um lado e afine do outro. */
+.ol-fontes__links {
+  flex: 0 1 214px;
+  min-width: 48px;
+  height: 238px;
+  overflow: visible;
+}
+.ol-fontes__rails {
+  fill: none;
+  stroke: var(--ol-border);
+  stroke-width: 1.5;
+}
+.ol-fontes__flows {
+  fill: none;
+  stroke: var(--ol-green);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-dasharray: 3 11;
+}
+.ol-fontes__flow {
+  opacity: 0.28;
+  transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.ol-fontes__flow.is-active {
+  opacity: 1;
+}
+
+.ol-fontes__target {
+  flex: none;
+  width: 104px;
+  height: 104px;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  text-align: center;
+  background: radial-gradient(circle at 50% 30%, var(--ol-surface-hi), var(--ol-panel));
+  border: 1.5px solid var(--ol-green);
+  box-shadow: 0 0 0 8px rgb(46 232 168 / 0.06), 0 0 40px rgb(46 232 168 / 0.28);
+}
+.ol-fontes__target small {
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ol-text-5);
+}
+.ol-fontes__target strong {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--ol-text);
+}
+
+.ol-fontes__desc {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 18px 0 0;
+  padding: 16px 18px;
+  min-height: 56px;
+  box-sizing: border-box;
+  border-radius: 14px;
+  background: rgb(255 255 255 / 0.035);
+  border: 1px solid var(--ol-border);
+  font-size: 0.96875rem;
+  line-height: 1.5;
+  color: var(--ol-text-2);
+  text-wrap: pretty;
+}
+.ol-fontes__desc i {
+  flex: none;
+  width: 18px;
+  height: 2px;
+  border-radius: 1px;
+  background: var(--ol-green);
+}
+
+/* --------------------------------------------------------------------------
+   Portfólio de iniciativas — da fila sem critério à matriz retorno x esforço
+
+   O handoff posiciona as sete bolinhas em pixels sobre um palco de 520x250.
+   Como a coluna da hero é elástica, cada uma carrega as duas posições em
+   percentual da área útil do gráfico (492x224, o palco menos a coluna do eixo
+   Y e a base do eixo X), nas variáveis --ol-pf-x0/y0 (antes) e x1/y1 (depois).
+   A altura segue fixa em 250px, que é o que preserva a proporção da matriz.
+
+   Os dois estados são descritos aqui, não no JavaScript: sem ele o cartão
+   nasce no "Antes", com as bolinhas em fila e a legenda certa, e as abas
+   continuam trocando o estado. Ao JavaScript cabe só alternar a classe. */
+
+.ol-pf__tabs {
+  display: flex;
+  gap: 4px;
+  padding: 3px;
+  border-radius: 9px;
+  background: rgb(255 255 255 / 0.04);
+  border: 1px solid var(--ol-border);
+}
+.ol-pf__tab {
+  font: inherit;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 5px 10px;
+  border: 0;
+  border-radius: 6px;
+  cursor: pointer;
+  color: var(--ol-text-3);
+  background: transparent;
+  transition: color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    background 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.ol-pf__tab.is-active {
+  color: var(--ol-on-green);
+  background: var(--ol-green);
+}
+.ol-pf__tab:focus-visible {
+  outline: 2px solid var(--ol-green);
+  outline-offset: 2px;
+}
+
+.ol-pf__stage {
+  position: relative;
+  height: 250px;
+}
+.ol-pf__ylabel {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 26px;
+  width: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ol-pf__ylabel span {
+  transform: rotate(-90deg);
+  white-space: nowrap;
+}
+.ol-pf__xlabel {
+  position: absolute;
+  left: 28px;
+  right: 0;
+  bottom: 0;
+  text-align: center;
+}
+.ol-pf__ylabel span,
+.ol-pf__xlabel,
+.ol-pf__qlabel {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ol-text-3);
+}
+
+.ol-pf__plot {
+  position: absolute;
+  left: 28px;
+  right: 0;
+  top: 0;
+  bottom: 26px;
+}
+/* A moldura e os quadrantes ficam recortados pelo raio; as bolinhas moram numa
+   camada irmã, sem recorte, para não serem cortadas junto às bordas. */
+.ol-pf__quads {
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  border: 1px solid var(--ol-border);
+  overflow: hidden;
+  opacity: 0.55;
+  transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.ol-pf__q1,
+.ol-pf__q4 {
+  position: absolute;
+  width: 50%;
+  height: 50%;
+}
+.ol-pf__q1 {
+  left: 0;
+  top: 0;
+  background: rgb(46 232 168 / 0.07);
+  border-right: 1px dashed var(--ol-border);
+  border-bottom: 1px dashed var(--ol-border);
+}
+.ol-pf__q4 {
+  right: 0;
+  bottom: 0;
+  border-left: 1px dashed var(--ol-border);
+  border-top: 1px dashed var(--ol-border);
+}
+.ol-pf__qlabel {
+  position: absolute;
+}
+.ol-pf__qlabel--first {
+  left: 12px;
+  top: 10px;
+  color: var(--ol-green);
+}
+.ol-pf__qlabel--last {
+  right: 12px;
+  bottom: 10px;
+  color: var(--ol-text-5);
+}
+.ol-pf__queue {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 84px;
+  margin: 0;
+  text-align: center;
+  font-size: 0.8125rem;
+  color: var(--ol-text-3);
+  transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ol-pf__dots {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.ol-pf__dot {
+  position: absolute;
+  left: var(--ol-pf-x0);
+  top: var(--ol-pf-y0);
+  width: 34px;
+  height: 34px;
+  box-sizing: border-box;
+  margin: -17px 0 0 -17px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.75rem;
+  font-weight: 500;
+  background: rgb(255 255 255 / 0.04);
+  border: 1.5px solid rgb(255 255 255 / 0.2);
+  color: var(--ol-text-3);
+  transition: left 0.9s cubic-bezier(0.6, 0, 0.2, 1),
+    top 0.9s cubic-bezier(0.6, 0, 0.2, 1),
+    background 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+    color 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.ol-pf__rank,
+.ol-pf__cap--after {
+  display: none;
+}
+
+/* ---- Estado "Depois" ---- */
+.ol-pf.is-after .ol-pf__quads {
+  opacity: 1;
+}
+.ol-pf.is-after .ol-pf__queue {
+  opacity: 0;
+}
+.ol-pf.is-after .ol-pf__dot {
+  left: var(--ol-pf-x1);
+  top: var(--ol-pf-y1);
+}
+.ol-pf.is-after .ol-pf__dot.is-top {
+  background: rgb(46 232 168 / 0.14);
+  border-color: var(--ol-green);
+  color: var(--ol-text);
+  box-shadow: 0 0 18px rgb(46 232 168 / 0.35);
+}
+.ol-pf.is-after .ol-pf__mark,
+.ol-pf.is-after .ol-pf__cap--before {
+  display: none;
+}
+.ol-pf.is-after .ol-pf__rank,
+.ol-pf.is-after .ol-pf__cap--after {
+  display: inline;
+}
+
+.ol-pf__desc {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 20px 0 0;
+  padding: 16px 18px;
+  min-height: 56px;
+  box-sizing: border-box;
+  border-radius: 14px;
+  background: rgb(255 255 255 / 0.035);
+  border: 1px solid var(--ol-border);
+  font-size: 0.96875rem;
+  line-height: 1.5;
+  color: var(--ol-text-2);
+  text-wrap: pretty;
+}
+.ol-pf__desc i {
+  flex: none;
+  width: 18px;
+  height: 2px;
+  border-radius: 1px;
+  background: var(--ol-green);
+}
+
+/* Cartão estreito: as sete bolinhas em fila quase se encostam, então encolhem. */
+@media (max-width: 420px) {
+  .ol-pf__dot {
+    width: 28px;
+    height: 28px;
+    margin: -14px 0 0 -14px;
+    font-size: 0.6875rem;
+  }
+}
+
+/* Abaixo de ~380px o nó e o vão comem a coluna de fontes: o nó encolhe e as
+   ligações ficam só como indicação de direção. */
+@media (max-width: 420px) {
+  .ol-fontes__target {
+    width: 84px;
+    height: 84px;
+  }
+  .ol-fontes__target strong {
+    font-size: 0.8125rem;
+  }
+  .ol-fontes__links {
+    min-width: 28px;
+  }
 }
 /* --------------------------------------------------------------------------
    Ciclo de entrega — a linha percorre a órbita e acende cada etapa
@@ -521,6 +913,64 @@
   margin-bottom: clamp(36px, 4.5vw, 56px);
   text-wrap: pretty;
 }
+/* Quando um texto de apoio segue o título, ele herda o respiro que separava o
+   título do conteúdo; o título fica só com o espaço da própria linha. */
+.ol-sv-sec__title--tight {
+  margin-bottom: 18px;
+}
+.ol-sv-sec__lead {
+  max-width: 62ch;
+  font-size: clamp(1rem, 1.4vw, 1.125rem);
+  line-height: 1.65;
+  color: var(--ol-ink-2);
+  margin-bottom: clamp(36px, 4.5vw, 56px);
+  text-wrap: pretty;
+}
+.ol-sv-sec--dark .ol-sv-sec__lead {
+  color: var(--ol-text-2);
+}
+
+/* Duas seções escuras seguidas: o topo arredondado e o padding cheio da
+   segunda criariam um degrau e um vão dobrado sobre a mesma cor de fundo.
+   A emenda tira o raio e encurta o respiro, para as duas lerem como um bloco. */
+.ol-sv-sec--seam {
+  border-radius: 0;
+}
+.ol-sv-sec--seam .ol-sv-sec__inner {
+  padding-top: clamp(24px, 3vw, 44px);
+}
+
+/* Bloco de prova: clientes de hoje e números da operação. */
+.ol-legacy__now {
+  margin-top: clamp(28px, 3.4vw, 44px);
+}
+.ol-legacy__stats {
+  margin-top: clamp(36px, 4.5vw, 56px);
+}
+
+/* Mural de logos de cliente sobre a seção escura. As seis artes não convivem
+   direto no fundo quase preto: a do Syngular é opaca e viraria um retângulo
+   branco, a do Prumo é marrom escuro e sumiria, e os azuis do Sebrae e da
+   Avante ficam com contraste baixo. Inverter tudo para branco também não
+   serve, porque o fundo opaco do Syngular viraria um bloco sólido. Cada logo
+   vai então sobre uma placa clara, que mantém as cores originais e dá
+   tratamento igual a todas. */
+.ol-brands--logos {
+  grid-template-columns: repeat(auto-fit, minmax(min(160px, 100%), 1fr));
+}
+.ol-brands--logos li {
+  display: grid;
+  place-items: center;
+  min-height: 72px;
+  padding: 14px 18px;
+  background: var(--ol-white);
+  border-color: rgb(255 255 255 / 0.22);
+}
+.ol-brands--logos img {
+  max-width: 100%;
+  max-height: 34px;
+  object-fit: contain;
+}
 /* Brilho de fundo das seções escuras; o parallax é aplicado pelo JS. */
 .ol-sv-glow {
   position: absolute;
@@ -817,7 +1267,10 @@
   .ol-sv-glow {
     animation: none;
   }
-  .ol-diag__live::before {
-    animation: none;
+  /* As bolinhas trocam de quadrante sem deslizar; cor e brilho ainda mudam. */
+  .ol-pf__dot {
+    transition: background 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+      border-color 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+      color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   }
 }

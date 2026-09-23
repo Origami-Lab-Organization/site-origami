@@ -94,23 +94,63 @@
         <div class="ol-diag" data-spot>
           <div class="ol-diag__spot" aria-hidden="true"></div>
           <div class="ol-diag__head">
-            <span class="ol-diag__tag">Diagnóstico de elegibilidade</span>
-            <span class="ol-diag__live">30 min</span>
+            <span class="ol-diag__tag">De onde vem o capital</span>
           </div>
-          <ul class="ol-diag__list">
-            <li>
-              <span aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span>
-              <div><b>Regime tributário</b><i>Lucro real, lucro fiscal no exercício</i></div>
-            </li>
-            <li>
-              <span aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span>
-              <div><b>Desenvolvimento técnico</b><i>Novidade e incerteza no processo produtivo</i></div>
-            </li>
-            <li>
-              <span aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span>
-              <div><b>Janela do edital</b><i>Calendário das chamadas abertas</i></div>
-            </li>
-          </ul>
+
+          <div class="ol-fontes" data-fontes>
+            <div class="ol-fontes__stage">
+              <ul class="ol-fontes__list">
+              <li>
+                <button class="ol-fonte is-active" type="button" data-fonte>
+                  <b>Lei do Bem</b><i>Incentivo fiscal federal</i>
+                </button>
+              </li>
+              <li>
+                <button class="ol-fonte" type="button" data-fonte>
+                  <b>FINEP</b><i>Crédito e subvenção federal</i>
+                </button>
+              </li>
+              <li>
+                <button class="ol-fonte" type="button" data-fonte>
+                  <b>FAPEMIG</b><i>Fomento estadual</i>
+                </button>
+              </li>
+              <li>
+                <button class="ol-fonte" type="button" data-fonte>
+                  <b>Compete Minas</b><i>Programa estadual</i>
+                </button>
+              </li>
+              </ul>
+
+              <svg class="ol-fontes__links" viewBox="0 0 214 238" preserveAspectRatio="none" aria-hidden="true">
+                <defs>
+                  <filter id="acGlow" x="-40%" y="-40%" width="180%" height="180%">
+                    <feGaussianBlur stdDeviation="3.5" result="b"></feGaussianBlur>
+                    <feMerge><feMergeNode in="b"></feMergeNode><feMergeNode in="SourceGraphic"></feMergeNode></feMerge>
+                  </filter>
+                </defs>
+                <g class="ol-fontes__rails" vector-effect="non-scaling-stroke">
+          <path d="M0,26 C112,26 124,119 214,119"></path>
+              <path d="M0,88 C112,88 124,119 214,119"></path>
+              <path d="M0,150 C112,150 124,119 214,119"></path>
+              <path d="M0,212 C112,212 124,119 214,119"></path>
+                </g>
+                <g class="ol-fontes__flows" filter="url(#acGlow)" vector-effect="non-scaling-stroke">
+          <path class="ol-fontes__flow" data-fonte-flow d="M0,26 C112,26 124,119 214,119"></path>
+              <path class="ol-fontes__flow" data-fonte-flow d="M0,88 C112,88 124,119 214,119"></path>
+              <path class="ol-fontes__flow" data-fonte-flow d="M0,150 C112,150 124,119 214,119"></path>
+              <path class="ol-fontes__flow" data-fonte-flow d="M0,212 C112,212 124,119 214,119"></path>
+                </g>
+              </svg>
+
+              <div class="ol-fontes__target">
+                <small>Seu</small>
+                <strong>projeto de<br>inovação</strong>
+              </div>
+            </div>
+
+            <p class="ol-fontes__desc"><i aria-hidden="true"></i><span data-fonte-desc>Parte dos gastos com P&amp;D deixa de pagar IRPJ e CSLL no ano.</span></p>
+          </div>
         </div>
       </div>
     </div>
