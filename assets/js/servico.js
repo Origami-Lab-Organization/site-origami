@@ -245,9 +245,151 @@
     requestAnimationFrame(quadro);
   }
 
+  /* ---- De onde vem o capital ----
+
+     Quatro fontes convergem para o projeto: uma por vez fica acesa, com a
+     linha dela em fluxo e a descrição trocando embaixo.
+
+     O handoff move o tracejado com `setInterval` de 50ms (1,2px por tique).
+     Aqui o avanço vem do relógio do navegador, como no ciclo de entrega acima:
+     mesma velocidade de 24px/s, sem os trancos de um tique fixo.
+
+     Sem JavaScript a primeira fonte já nasce marcada e a descrição dela está
+     no HTML, então o cartão continua legível. */
+  function initFontes() {
+    var raiz = document.querySelector("[data-fontes]");
+    if (!raiz) return;
+
+    var DESC = [
+      "Parte dos gastos com P&D deixa de pagar IRPJ e CSLL no ano.",
+      "Crédito com juros reduzidos e, em editais, recurso não reembolsável.",
+      "Recurso de fomento do estado para projetos de inovação mineiros.",
+      "Apoio estadual para empresas que investem em inovação em Minas."
+    ];
+    var PARADA_MS = 3600; // tempo de cada fonte acesa
+    var VELOCIDADE = 24;  // px por segundo do tracejado
+    var PERIODO = 14;     // soma do dasharray "3 11"
+
+    var fontes = [].slice.call(raiz.querySelectorAll("[data-fonte]"));
+    var fluxos = [].slice.call(raiz.querySelectorAll("[data-fonte-flow]"));
+    var texto = raiz.querySelector("[data-fonte-desc]");
+    if (!texto || fontes.length !== DESC.length || fluxos.length !== DESC.length) return;
+
+    var atual = 0;
+    var desde = 0;
+    var parado = false;
+    var ultimo = 0;
+    var andado = 0;
+
+    function acender(i) {
+      atual = i;
+      desde = 0;
+      fontes.forEach(function (el, k) { el.classList.toggle("is-active", k === i); });
+      fluxos.forEach(function (el, k) { el.classList.toggle("is-active", k === i); });
+      texto.textContent = DESC[i];
+    }
+
+    fontes.forEach(function (el, i) {
+      el.addEventListener("click", function () { acender(i); });
+      el.addEventListener("focus", function () { acender(i); });
+    });
+
+    acender(0);
+
+    // Sem movimento nada anda sozinho: fica só a navegação por clique.
+    if (semMovimento) return;
+
+    raiz.addEventListener("pointerenter", function () { parado = true; });
+    raiz.addEventListener("pointerleave", function () { parado = false; });
+
+    function quadro(agora) {
+      var delta = ultimo ? agora - ultimo : 0;
+      ultimo = agora;
+      // Aba em segundo plano devolve um salto enorme; melhor descartar.
+      if (delta > 200) delta = 0;
+
+      if (!document.hidden) {
+        andado = (andado + (delta / 1000) * VELOCIDADE) % PERIODO;
+        for (var i = 0; i < fluxos.length; i++) {
+          fluxos[i].setAttribute("stroke-dashoffset", -andado);
+        }
+        if (!parado) {
+          desde += delta;
+          if (desde >= PARADA_MS) acender((atual + 1) % fontes.length);
+        }
+      }
+      requestAnimationFrame(quadro);
+    }
+    requestAnimationFrame(quadro);
+  }
+
+  /* ---- Portfólio de iniciativas ----
+
+     Alterna o cartão entre "Antes" (fila sem critério) e "Depois" (matriz de
+     retorno x esforço). Os dois estados estão descritos no CSS, então aqui só
+     se troca a classe e o rótulo da aba — sem JavaScript o cartão já nasce
+     legível no "Antes".
+
+     O handoff alterna com `setInterval` de 100ms; como nos outros cartões, a
+     contagem vem do relógio do navegador, o que evita a aba em segundo plano
+     acumular trocas e disparar várias de uma vez ao voltar. */
+  function initPortfolio() {
+    var raiz = document.querySelector("[data-pf]");
+    if (!raiz) return;
+
+    var TROCA_MS = 4320;
+
+    var abas = [].slice.call(document.querySelectorAll("[data-pf-tab]"));
+    if (abas.length !== 2) return;
+
+    var depois = false;
+    var desde = 0;
+    var parado = false;
+    var ultimo = 0;
+
+    function mostrar(dep) {
+      depois = dep;
+      desde = 0;
+      raiz.classList.toggle("is-after", dep);
+      abas.forEach(function (el, i) {
+        var ativa = i === (dep ? 1 : 0);
+        el.classList.toggle("is-active", ativa);
+        el.setAttribute("aria-selected", ativa ? "true" : "false");
+      });
+    }
+
+    abas.forEach(function (el, i) {
+      el.addEventListener("click", function () { mostrar(i === 1); });
+    });
+
+    mostrar(false);
+
+    // Sem movimento o cartão não alterna sozinho: ficam só as abas.
+    if (semMovimento) return;
+
+    raiz.addEventListener("pointerenter", function () { parado = true; });
+    raiz.addEventListener("pointerleave", function () { parado = false; });
+
+    function quadro(agora) {
+      var delta = ultimo ? agora - ultimo : 0;
+      ultimo = agora;
+      // Aba em segundo plano devolve um salto enorme; melhor descartar.
+      if (delta > 200) delta = 0;
+
+      if (!parado && !document.hidden) {
+        desde += delta;
+        if (desde >= TROCA_MS) mostrar(!depois);
+      }
+      requestAnimationFrame(quadro);
+    }
+    requestAnimationFrame(quadro);
+  }
+
   function init() {
     initVideo();
     initCiclo();
+    initFontes();
+    initPortfolio();
     initReveal();
     initSpot();
     initMagnet();
