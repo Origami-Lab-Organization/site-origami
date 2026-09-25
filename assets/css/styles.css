@@ -2663,11 +2663,42 @@ li {
   margin: 0 auto;
   padding: clamp(80px, 9vw, 130px) var(--ol-gutter);
 }
-/* Coluna única de leitura, alinhada à esquerda como a abertura. */
 .ol-case__main {
   display: grid;
   gap: clamp(44px, 5vw, 68px);
-  max-width: 860px;
+}
+
+/* Página de case: uma coluna de leitura centralizada, com a mesma largura na
+   abertura, no corpo e em "outros cases", para o olho não trocar de margem.
+   ~780px mantém a linha de texto perto de 80 caracteres. */
+.ol-root--case {
+  --ol-read: 780px;
+}
+.ol-root--case .ol-phero__inner,
+.ol-root--case .ol-case__inner,
+.ol-root--case .ol-nextcase__inner {
+  max-width: calc(var(--ol-read) + 2 * var(--ol-gutter));
+}
+/* Título de case é uma frase longa: corpo menor e sem limite em ch, para caber
+   em três linhas e a primeira dobra mostrar título, resumo e ficha. */
+.ol-root--case .ol-phero__inner {
+  padding-top: clamp(104px, 10vw, 144px);
+  padding-bottom: clamp(44px, 5vw, 68px);
+}
+.ol-root--case .ol-phero__title {
+  font-size: clamp(2.1rem, 4vw, 3.25rem);
+  line-height: 1.08;
+  max-width: none;
+}
+.ol-root--case .ol-phero__lead {
+  margin-top: 18px;
+  max-width: none;
+}
+.ol-root--case .ol-facts {
+  margin-top: clamp(28px, 3.5vw, 40px);
+}
+.ol-root--case .ol-prose {
+  max-width: none;
 }
 .ol-case__block h2 {
   font-weight: 800;
