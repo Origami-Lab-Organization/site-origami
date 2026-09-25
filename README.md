@@ -69,7 +69,8 @@ usam `.ol-phero`, um hero curto sem vídeo, porque ali o assunto é o texto.
 
 ```
 cases/index.html                     listagem + as quatro fases + CTA
-cases/plataforma-bry.html            plataforma única de confiança digital
+cases/plataforma-bry.html            plataforma única de confiança digital (fora do deploy, via .vercelignore)
+cases/cobranca-automatica-whatsapp-retifica-formiguense.html   cobrança automática via WhatsApp
 cases/prumo-engenharia.html          intranet corporativa em SharePoint Online
 cases/transportadora-cabral.html     Central do Motorista integrada ao TripLog
 ```

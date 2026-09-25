@@ -72,11 +72,6 @@ pergunta no primeiro parágrafo e traz perguntas frequentes em JSON-LD.
 
 ## Cases
 
-- Bry Tecnologia: plataforma única de serviços de confiança digital, reunindo
-  assinatura, verificação e demais produtos em uma só conta: 375 itens em 11
-  sprints, produção em 100 dias corridos, e o produto legado de assinatura
-  substituído pela nova plataforma:
-  https://www.origamilab.com.br/cases/plataforma-bry
 - Prumo Engenharia: intranet corporativa em SharePoint Online como canal único
   entre obra e administrativo, para mais de 500 colaboradores, implantada em 8
   semanas: https://www.origamilab.com.br/cases/prumo-engenharia
