@@ -2662,14 +2662,12 @@ li {
   max-width: var(--ol-max);
   margin: 0 auto;
   padding: clamp(80px, 9vw, 130px) var(--ol-gutter);
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 0.42fr);
-  gap: clamp(40px, 5vw, 76px);
-  align-items: start;
 }
+/* Coluna única de leitura, alinhada à esquerda como a abertura. */
 .ol-case__main {
   display: grid;
   gap: clamp(44px, 5vw, 68px);
+  max-width: 860px;
 }
 .ol-case__block h2 {
   font-weight: 800;
@@ -2889,51 +2887,6 @@ li {
   color: var(--ol-ink-3);
 }
 
-/* Coluna lateral do case — acompanha a leitura, como a foto em "Quem somos". */
-.ol-case__aside {
-  display: grid;
-  gap: 14px;
-  position: sticky;
-  top: 108px;
-}
-.ol-aside {
-  border: 1px solid var(--ol-light-border);
-  border-radius: 18px;
-  background: var(--ol-white);
-  padding: 24px;
-}
-.ol-aside__title {
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--ol-ink-3);
-  margin-bottom: 16px;
-}
-.ol-aside__logo {
-  height: 44px;
-  display: flex;
-  align-items: center;
-  margin-bottom: 18px;
-}
-.ol-aside__logo img {
-  width: auto;
-  height: auto;
-  max-width: min(160px, 80%);
-  max-height: 100%;
-}
-.ol-aside p {
-  font-size: 0.9125rem;
-  line-height: 1.7;
-  color: var(--ol-ink-2);
-}
-.ol-aside .ol-chips {
-  margin-top: 4px;
-}
-.ol-aside .ol-inline-link {
-  margin-top: 18px;
-}
-
 /* Trilha compacta do método. A página de cases não repete as quatro fases
    inteiras: quem quiser o detalhe segue para "Como trabalhamos" na home. */
 /* A faixa herdava o respiro de uma seção de cartões; para uma linha só, é
@@ -3020,16 +2973,6 @@ li {
 }
 
 @media (max-width: 900px) {
-  .ol-case__inner {
-    grid-template-columns: 1fr;
-  }
-  /* Empilhada, a ficha vai para depois do texto: o leitor abre direto no
-     desafio, e ficha e tecnologias fecham a leitura. Sem coluna ao lado não há
-     percurso para prender, então o sticky sai. */
-  .ol-case__aside {
-    order: 2;
-    position: static;
-  }
   .ol-casecard {
     grid-template-columns: 1fr;
   }
