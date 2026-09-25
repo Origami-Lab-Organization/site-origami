@@ -83,6 +83,11 @@ pergunta no primeiro parágrafo e traz perguntas frequentes em JSON-LD.
 - Transportadora Cabral: Central do Motorista via WhatsApp, integrada ao
   TripLog, com checklists padronizados e emissão automatizada de CT-e e MDF-e:
   https://www.origamilab.com.br/cases/transportadora-cabral
+- Retífica Formiguense: régua de cobrança automática via WhatsApp (Retipay),
+  integrada ao ERP, com nove marcos e painel de inadimplência, construída em
+  15 semanas: 100% dos avisos entregues sem falha e 41% do valor avisado
+  quitado nos primeiros quatro dias de envio real:
+  https://www.origamilab.com.br/cases/cobranca-automatica-whatsapp-retifica-formiguense
 
 ## Observação sobre conteúdo fiscal
 

@@ -2567,6 +2567,11 @@ li {
   max-width: min(190px, 78%);
   max-height: 100%;
 }
+/* Logo em JPG traz fundo branco chapado: multiply funde o branco ao painel.
+   Vai no contêiner, que é o contexto de empilhamento (z-index), não na img. */
+.ol-casecard__logo--flat {
+  mix-blend-mode: multiply;
+}
 .ol-casecard__body {
   padding: clamp(28px, 3.4vw, 44px);
   display: flex;
