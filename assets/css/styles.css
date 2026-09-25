@@ -2863,6 +2863,42 @@ li {
   line-height: 1.5;
   color: var(--ol-ink-3);
 }
+/* Variante com um número-chave: o primeiro ocupa a faixa inteira e os demais,
+   qualitativos, ficam em tinta neutra para não disputar com ele. */
+.ol-metrics--lead {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.ol-metrics--lead .ol-metric {
+  padding: 28px 26px;
+}
+.ol-metrics--lead .ol-metric:first-child {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 12px clamp(24px, 4vw, 44px);
+  padding: clamp(28px, 4vw, 40px) clamp(26px, 4vw, 40px);
+}
+.ol-metrics--lead .ol-metric:first-child b {
+  font-size: clamp(4rem, 9vw, 6.5rem);
+}
+.ol-metrics--lead .ol-metric:first-child span {
+  margin-top: 0;
+  max-width: 44ch;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--ol-ink-2);
+}
+.ol-metrics--lead .ol-metric:not(:first-child) b {
+  font-size: clamp(1.6rem, 2.6vw, 2.1rem);
+  color: var(--ol-ink);
+}
+@media (max-width: 560px) {
+  .ol-metrics--lead,
+  .ol-metrics--lead .ol-metric:first-child {
+    grid-template-columns: 1fr;
+  }
+}
 
 /* Depoimento */
 .ol-quote {
