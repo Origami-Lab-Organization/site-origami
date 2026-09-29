@@ -3069,3 +3069,65 @@ li {
     grid-template-columns: 1fr;
   }
 }
+
+
+/* Quem somos: descrição factual da empresa (entidade para buscadores e LLMs) */
+.ol-about__fact {
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--ol-text-2);
+  max-width: 52ch;
+  margin-top: 16px;
+}
+
+/* Home: soluções para indústria (links para as páginas de cada problema) */
+.ol-sols {
+  max-width: var(--ol-max);
+  margin: 0 auto;
+  padding: 0 var(--ol-gutter) clamp(90px, 10vw, 150px);
+}
+.ol-sols__title {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ol-green-ink);
+  margin-bottom: 20px;
+}
+.ol-sols__grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr));
+  gap: 12px;
+}
+@media (min-width: 900px) {
+  .ol-sols__grid { grid-template-columns: repeat(3, 1fr); }
+}
+.ol-sols__grid a {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  height: 100%;
+  padding: 20px 22px;
+  border: 1px solid rgba(4, 7, 14, 0.12);
+  border-radius: 14px;
+  color: inherit;
+  text-decoration: none;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+.ol-sols__grid a:hover,
+.ol-sols__grid a:focus-visible {
+  border-color: var(--ol-green-ink);
+  transform: translateY(-2px);
+}
+.ol-sols__grid b {
+  font-size: 1rem;
+  font-weight: 700;
+}
+.ol-sols__grid span {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  opacity: 0.72;
+}
