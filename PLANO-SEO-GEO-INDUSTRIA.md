@@ -70,3 +70,39 @@ Regra: 80% problema que o diretor industrial pesquisa, 20% tecnologia. Sem núme
 10. Lei do Bem para indústria: o projeto de digitalização se enquadra?
 
 Os temas 1 a 6 já têm uma página-pilar publicada; o artigo aprofunda e linka para ela.
+
+## 5. Desligamento do blog (blog.origamilab.com.br)
+
+Decisão de 29/09/2026: o blog (WordPress na Hostinger) sai do ar. Em 180 dias
+trouxe 10 cliques, contra 205 do site. Os posts de IA e de ROI são conteúdo de
+"tendência" com estatística de terceiros, fora da linha 80% problema / 20%
+tecnologia, e não foram migrados. Os dois cases já estavam reescritos no site.
+
+Redirects permanentes em `vercel.json`, filtrados pelo host `blog.`:
+
+| URL do blog | Destino no site |
+|---|---|
+| `/`, `/blog/` | `/` |
+| `/cases/`, `/category/cases/` | `/cases` |
+| `/case-tecnologia/` | `/cases/prumo-engenharia` |
+| `/case-transportadora-cabral/` | `/cases/transportadora-cabral` |
+| `/como-mensurar-o-retorno-sobre-investimento-em-inovacao/` | `/planejamento-de-producao#roi` |
+| `/ia-na-industria-casos-de-uso/`, `/category/ia-aplicada/` | `/gestao-industrial-em-tempo-real#ia` |
+| `/ia-na-mineracao/` | `/tecnologia-para-industrias-minas-gerais#cal-calcario` |
+| `/category/inovacao-estrategia/` | `/consultoria-estrategica` |
+| `/category/produto/` | `/unificacao-de-produtos-digitais` |
+| `/author/victor-couto/` | `/#quem-somos` |
+| qualquer outro caminho (tags, `/tendencias-inovacao-2026/`, `/wp-content/…`) | mesmo caminho no site, que responde 404 |
+
+Ordem para desligar sem perder nada:
+
+1. Exportar o WordPress (Ferramentas → Exportar, e backup da Hostinger) e guardar.
+2. Publicar o `vercel.json` com os redirects (não afeta nada enquanto o DNS do blog aponta para a Hostinger).
+3. Adicionar `blog.origamilab.com.br` como domínio do projeto na Vercel.
+4. Trocar o DNS de `blog` para o CNAME que a Vercel indicar.
+5. Conferir com `curl -I` cada URL da tabela (301/308 para o destino certo).
+6. No Search Console, remover o sitemap `https://blog.origamilab.com.br/sitemap_index.xml`.
+7. Só então cancelar a hospedagem do WordPress.
+
+Pauta: reescrever "IA na mineração" no tom novo, como artigo do polo de cal e
+mineração, sem estatística sem fonte.

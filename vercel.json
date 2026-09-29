@@ -3,6 +3,160 @@
   "cleanUrls": true,
   "redirects": [
     {
+      "source": "/case-tecnologia{/}?",
+      "has": [
+        {
+          "type": "host",
+          "value": "blog.origamilab.com.br"
+        }
+      ],
+      "destination": "https://www.origamilab.com.br/cases/prumo-engenharia",
+      "permanent": true
+    },
+    {
+      "source": "/case-transportadora-cabral{/}?",
+      "has": [
+        {
+          "type": "host",
+          "value": "blog.origamilab.com.br"
+        }
+      ],
+      "destination": "https://www.origamilab.com.br/cases/transportadora-cabral",
+      "permanent": true
+    },
+    {
+      "source": "/cases{/}?",
+      "has": [
+        {
+          "type": "host",
+          "value": "blog.origamilab.com.br"
+        }
+      ],
+      "destination": "https://www.origamilab.com.br/cases",
+      "permanent": true
+    },
+    {
+      "source": "/category/cases{/}?",
+      "has": [
+        {
+          "type": "host",
+          "value": "blog.origamilab.com.br"
+        }
+      ],
+      "destination": "https://www.origamilab.com.br/cases",
+      "permanent": true
+    },
+    {
+      "source": "/como-mensurar-o-retorno-sobre-investimento-em-inovacao{/}?",
+      "has": [
+        {
+          "type": "host",
+          "value": "blog.origamilab.com.br"
+        }
+      ],
+      "destination": "https://www.origamilab.com.br/planejamento-de-producao#roi",
+      "permanent": true
+    },
+    {
+      "source": "/ia-na-industria-casos-de-uso{/}?",
+      "has": [
+        {
+          "type": "host",
+          "value": "blog.origamilab.com.br"
+        }
+      ],
+      "destination": "https://www.origamilab.com.br/gestao-industrial-em-tempo-real#ia",
+      "permanent": true
+    },
+    {
+      "source": "/category/ia-aplicada{/}?",
+      "has": [
+        {
+          "type": "host",
+          "value": "blog.origamilab.com.br"
+        }
+      ],
+      "destination": "https://www.origamilab.com.br/gestao-industrial-em-tempo-real#ia",
+      "permanent": true
+    },
+    {
+      "source": "/ia-na-mineracao{/}?",
+      "has": [
+        {
+          "type": "host",
+          "value": "blog.origamilab.com.br"
+        }
+      ],
+      "destination": "https://www.origamilab.com.br/tecnologia-para-industrias-minas-gerais#cal-calcario",
+      "permanent": true
+    },
+    {
+      "source": "/category/inovacao-estrategia{/}?",
+      "has": [
+        {
+          "type": "host",
+          "value": "blog.origamilab.com.br"
+        }
+      ],
+      "destination": "https://www.origamilab.com.br/consultoria-estrategica",
+      "permanent": true
+    },
+    {
+      "source": "/category/produto{/}?",
+      "has": [
+        {
+          "type": "host",
+          "value": "blog.origamilab.com.br"
+        }
+      ],
+      "destination": "https://www.origamilab.com.br/unificacao-de-produtos-digitais",
+      "permanent": true
+    },
+    {
+      "source": "/author/victor-couto{/}?",
+      "has": [
+        {
+          "type": "host",
+          "value": "blog.origamilab.com.br"
+        }
+      ],
+      "destination": "https://www.origamilab.com.br/#quem-somos",
+      "permanent": true
+    },
+    {
+      "source": "/blog{/}?",
+      "has": [
+        {
+          "type": "host",
+          "value": "blog.origamilab.com.br"
+        }
+      ],
+      "destination": "https://www.origamilab.com.br/",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "blog.origamilab.com.br"
+        }
+      ],
+      "destination": "https://www.origamilab.com.br/",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "blog.origamilab.com.br"
+        }
+      ],
+      "destination": "https://www.origamilab.com.br/:path*",
+      "permanent": true
+    },
+    {
       "source": "/about",
       "destination": "/#quem-somos",
       "permanent": true
