@@ -101,7 +101,7 @@ Ordem para desligar sem perder nada:
 3. Adicionar `blog.origamilab.com.br` como domínio do projeto na Vercel.
 4. Trocar o DNS de `blog` para o CNAME que a Vercel indicar.
 5. Conferir com `curl -I` cada URL da tabela (301/308 para o destino certo).
-6. No Search Console, remover o sitemap `https://blog.origamilab.com.br/sitemap_index.xml`.
+6. ~~No Search Console, remover o sitemap do blog.~~ Feito em 29/09/2026 pela API.
 7. Só então cancelar a hospedagem do WordPress.
 
 Pauta: reescrever "IA na mineração" no tom novo, como artigo do polo de cal e
