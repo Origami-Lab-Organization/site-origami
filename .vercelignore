@@ -1,13 +1,10 @@
-# Arquivos de referência do design — não são carregados pela página
+# Arquivos de referência e documentos internos: não vão para o deploy
 LP Origami Lab.dc.html
-support.js 
-README.md 
-
-# Case da Bry: fica no repositório e no localhost, mas fora de produção
-cases/plataforma-bry.html
- 
- 
-
-# Relatórios internos de SEO/GEO
+support.js
+README.md
 RELATORIO-SEO-GEO.md
 PLANO-SEO-GEO-INDUSTRIA.md
+PLANO-AQUISICAO-ORGANICA.md
+
+# Case da Bry: fica no repositório, fora do ar até o cliente aprovar
+rascunhos/

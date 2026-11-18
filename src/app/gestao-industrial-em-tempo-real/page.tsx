@@ -1,0 +1,757 @@
+import type { Metadata } from "next";
+import { Navegacao } from "@/components/Navegacao";
+import { Rodape } from "@/components/Rodape";
+import { DadosEstruturados } from "@/components/DadosEstruturados";
+import { ScriptsDaPagina } from "@/components/ScriptsDaPagina";
+
+export const metadata: Metadata = {
+  "title": {
+    "absolute": "Gestão industrial em tempo real: OEE e indicadores | Origami Lab"
+  },
+  "description": "Por que o relatório chega depois da decisão, como calcular OEE sem apontamento manual, quais indicadores de produção movem decisão e onde a IA ajuda de fato.",
+  "alternates": {
+    "canonical": "https://www.origamilab.com.br/gestao-industrial-em-tempo-real"
+  },
+  "robots": {
+    "index": true,
+    "follow": true,
+    "max-image-preview": "large",
+    "max-snippet": -1
+  },
+  "openGraph": {
+    "type": "article",
+    "locale": "pt_BR",
+    "url": "https://www.origamilab.com.br/gestao-industrial-em-tempo-real",
+    "siteName": "Origami Lab",
+    "title": "Gestão industrial em tempo real: indicadores, OEE e dados confiáveis",
+    "description": "Por que o relatório chega depois da decisão, como calcular OEE sem apontamento manual, quais indicadores de produção movem decisão e onde a IA ajuda de fato.",
+    "images": [
+      {
+        "url": "https://www.origamilab.com.br/assets/og-cover.jpg",
+        "width": 1200,
+        "height": 630,
+        "type": "image/jpeg",
+        "alt": "Origami Lab — modernizamos a operação das grandes empresas tradicionais."
+      }
+    ]
+  },
+  "twitter": {
+    "card": "summary_large_image",
+    "title": "Gestão industrial em tempo real: indicadores, OEE e dados confiáveis",
+    "description": "Por que o relatório chega depois da decisão, como calcular OEE sem apontamento manual, quais indicadores de produção movem decisão e onde a IA ajuda de fato.",
+    "images": [
+      {
+        "url": "https://www.origamilab.com.br/assets/og-cover.jpg",
+        "alt": "Origami Lab — modernizamos a operação das grandes empresas tradicionais."
+      }
+    ]
+  }
+};
+
+const DADOS_ESTRUTURADOS = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ProfessionalService",
+      "@id": "https://www.origamilab.com.br/#org",
+      "name": "Origami Lab",
+      "url": "https://www.origamilab.com.br/",
+      "logo": "https://www.origamilab.com.br/assets/logo-mark-color.png",
+      "email": "contato@origamilab.com.br",
+      "telephone": "+553198055189",
+      "description": "Empresa de tecnologia para indústria sediada em Formiga, Minas Gerais. Moderniza operações industriais com software sob medida, integração com ERP, automação de processos, dados em tempo real e IA aplicada, do diagnóstico à implantação, e estrutura o financiamento via Lei do Bem, FINEP e FAPEMIG.",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "R. Silviano Brandão, 156 - 2º andar",
+        "addressLocality": "Formiga",
+        "addressRegion": "MG",
+        "postalCode": "35570-112",
+        "addressCountry": "BR"
+      },
+      "sameAs": [
+        "https://www.linkedin.com/company/origamilab-br/",
+        "https://www.instagram.com/origamilab_br/"
+      ],
+      "areaServed": [
+        {
+          "@type": "AdministrativeArea",
+          "name": "Centro-Oeste de Minas Gerais"
+        },
+        {
+          "@type": "State",
+          "name": "Minas Gerais"
+        },
+        {
+          "@type": "Country",
+          "name": "Brasil"
+        }
+      ],
+      "slogan": "Tecnologia para indústria",
+      "knowsAbout": [
+        "Tecnologia para indústria",
+        "Software para indústria",
+        "Software sob medida para indústria",
+        "Integração de sistemas industriais",
+        "Integração com ERP",
+        "Automação de processos industriais",
+        "Digitalização do chão de fábrica",
+        "Apontamento de produção",
+        "Gestão industrial em tempo real",
+        "Indústria 4.0",
+        "Inteligência artificial aplicada à indústria",
+        "Consultoria de operação",
+        "Lei do Bem",
+        "FINEP",
+        "FAPEMIG"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.origamilab.com.br/#site",
+      "url": "https://www.origamilab.com.br/",
+      "name": "Origami Lab",
+      "inLanguage": "pt-BR",
+      "publisher": {
+        "@id": "https://www.origamilab.com.br/#org"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://www.origamilab.com.br/gestao-industrial-em-tempo-real#webpage",
+      "url": "https://www.origamilab.com.br/gestao-industrial-em-tempo-real",
+      "name": "Gestão industrial em tempo real: indicadores, OEE e dados que a diretoria confia",
+      "description": "Por que o relatório chega depois da decisão, como calcular OEE sem apontamento manual, quais indicadores de produção movem decisão e onde a IA ajuda de fato.",
+      "inLanguage": "pt-BR",
+      "isPartOf": {
+        "@id": "https://www.origamilab.com.br/#site"
+      },
+      "about": {
+        "@id": "https://www.origamilab.com.br/#org"
+      },
+      "publisher": {
+        "@id": "https://www.origamilab.com.br/#org"
+      },
+      "breadcrumb": {
+        "@id": "https://www.origamilab.com.br/gestao-industrial-em-tempo-real#breadcrumb"
+      },
+      "dateModified": "2026-09-29"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.origamilab.com.br/gestao-industrial-em-tempo-real#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Início",
+          "item": "https://www.origamilab.com.br/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Soluções para indústria",
+          "item": "https://www.origamilab.com.br/#solucoes"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Gestão industrial em tempo real",
+          "item": "https://www.origamilab.com.br/gestao-industrial-em-tempo-real"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://www.origamilab.com.br/gestao-industrial-em-tempo-real#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "O que é gestão industrial em tempo real?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "É a diretoria acompanhar produção, paradas, refugo e margem enquanto ainda dá para agir, com o mesmo número que as áreas usam. Depende menos do painel e mais da coleta: o dado nasce uma vez, onde o fato acontece, e chega aos sistemas sem redigitação. Nem tudo precisa ser instantâneo: parada pede o turno; margem pode ser diária."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Como calcular o OEE?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "OEE é o produto de três fatores: disponibilidade (tempo em operação ÷ tempo planejado de produção), desempenho (ciclo ideal × quantidade produzida ÷ tempo em operação) e qualidade (peças boas ÷ quantidade produzida). Num exemplo ilustrativo com 90% de disponibilidade, 89,9% de desempenho e 95% de qualidade, o OEE é 76,9%."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Dá para medir OEE sem apontamento manual?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Em boa parte, sim. Quando a máquina já informa estado e contagem de ciclos, esse sinal marca paradas e produção sem ninguém anotar horário. O motivo ainda precisa de uma pessoa: o sistema detecta a parada e o operador escolhe numa lista curta e padronizada."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Preciso de um BI para ter indicadores de produção?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "O BI é a última camada, não a primeira: mostra bem, mas não corrige o dado que recebe. Primeiro a coleta e a integração, depois a regra de cálculo, e só então o painel."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Preciso trocar o ERP ou comprar um sistema novo?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Na maior parte dos casos, não é preciso trocar o ERP. Ele continua sendo a base de registro do fiscal e do financeiro; o que falta costuma ser a coleta no chão de fábrica e a ligação entre as fontes. Se um produto pronto de mercado resolve bem o seu caso, ele pode ser a escolha certa. Se a operação é específica demais, constrói-se em volta do ERP, integrado a ele."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "A IA já pode ajudar na minha fábrica?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Depende do dado que existe hoje. IA aprende com histórico; se ele é pouco confiável, o resultado também será. Com a base organizada, há usos plausíveis para testar: sinalizar pedidos com risco de atraso, sugerir a causa provável de uma parada e ler pedidos e documentos que chegam em PDF."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "Service",
+      "@id": "https://www.origamilab.com.br/gestao-industrial-em-tempo-real#service",
+      "name": "Gestão industrial em tempo real: coleta de dados, OEE e indicadores de produção",
+      "description": "Coleta de dados do chão de fábrica na origem, integração com ERP e sinais de máquina já disponíveis, cálculo de OEE com regra definida e painel de indicadores para a diretoria.",
+      "serviceType": "Dados e indicadores de operação industrial",
+      "provider": {
+        "@id": "https://www.origamilab.com.br/#org"
+      },
+      "areaServed": [
+        {
+          "@type": "Place",
+          "name": "Minas Gerais"
+        },
+        {
+          "@type": "Place",
+          "name": "Brasil"
+        }
+      ],
+      "url": "https://www.origamilab.com.br/gestao-industrial-em-tempo-real"
+    }
+  ]
+};
+
+export default function PaginaGestaoIndustrialEmTempoReal() {
+  return (
+    <>
+      <Navegacao faqNaPagina />
+      <div className="ol-root" id="conteudo">
+        {/* ==================== Abertura ==================== */}
+        <header className="ol-page__hero">
+          <div className="ol-page__glow" aria-hidden="true" />
+          <div className="ol-page__inner">
+            <nav className="ol-crumb" aria-label="Você está em">
+              <a href="/">Início</a>
+              {" "}
+              <span aria-hidden="true">/</span>
+              {" "}
+              <a href="/#solucoes">Soluções para indústria</a>
+              {" "}
+              <span aria-hidden="true">/</span>
+              {" "}
+              <span>Gestão industrial em tempo real</span>
+            </nav>
+            <h1 className="ol-page__title">Gestão industrial em tempo real: indicadores, OEE e dados que a diretoria confia</h1>
+            <p className="ol-page__lead">
+              {"Gestão industrial em tempo real é a diretoria ver o que acontece na fábrica enquanto ainda dá para agir — e ver o mesmo número que a produção, a qualidade e o financeiro veem. O obstáculo quase nunca é falta de painel. É o dado: ele nasce em papel ou planilha, é redigitado no fim do turno e chega ao BI atrasado e sem o motivo da parada. Por isso o trabalho começa na coleta, não no dashboard. Com o dado nascendo "}
+              <strong>uma única vez</strong>
+              , no ponto onde o fato acontece — sinal da máquina quando existe, apontamento assistido quando não existe —, OEE, cumprimento de programa, refugo e margem por pedido ficam confiáveis o bastante para decidir. Só então faz sentido falar em IA.
+            </p>
+            <div className="ol-page__actions">
+              <a className="ol-btn ol-btn--primary" href="https://forms.cloud.microsoft/r/f2GGyr2vZT" target="_blank" rel="noopener">
+                {"Falar sobre a operação da minha empresa "}
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M5 12h14" />
+                  <path d="m12 5 7 7-7 7" />
+                </svg>
+              </a>
+              {" "}
+              <a className="ol-btn ol-btn--ghost" href="#faq">Ir para as perguntas</a>
+            </div>
+            <p className="ol-page__meta">Origami Lab · Formiga, Minas Gerais · Dados de operação e indicadores para indústria</p>
+          </div>
+        </header>
+        <div className="ol-over">
+          {/* ==================== Conteúdo ==================== */}
+          <section className="ol-doc">
+            <div className="ol-doc__inner">
+              <aside className="ol-toc">
+                <div className="ol-toc__title">Nesta página</div>
+                <ul className="ol-toc__list">
+                  <li>
+                    <a href="#problema">O relatório chega depois da decisão</a>
+                  </li>
+                  <li>
+                    <a href="#origem">De onde vêm os dados</a>
+                  </li>
+                  <li>
+                    <a href="#oee">OEE: como calcular</a>
+                  </li>
+                  <li>
+                    <a href="#coleta">OEE sem apontamento manual</a>
+                  </li>
+                  <li>
+                    <a href="#erros">Erros comuns no cálculo</a>
+                  </li>
+                  <li>
+                    <a href="#indicadores">Poucos indicadores que movem decisão</a>
+                  </li>
+                  <li>
+                    <a href="#ia">Onde a IA ajuda de fato</a>
+                  </li>
+                  <li>
+                    <a href="#comecar">Por onde começar</a>
+                  </li>
+                  <li>
+                    <a href="#origami">Como a Origami trabalha</a>
+                  </li>
+                  <li>
+                    <a href="#faq">Perguntas frequentes</a>
+                  </li>
+                </ul>
+              </aside>
+              <article className="ol-prose">
+                <h2 id="problema">O problema real: o relatório chega depois da decisão</h2>
+                <p>
+                  Na maioria das fábricas, o número de ontem chega à diretoria no meio da manhã de hoje; o do mês, depois do fechamento. A decisão de reprogramar uma linha, cobrar um fornecedor ou renegociar um prazo acaba tomada com base no que a fábrica era, não no que ela é.
+                </p>
+                <p>
+                  O segundo problema: cada área tem um número diferente. A produção diz que o programa foi cumprido. O comercial diz que os pedidos atrasaram. O financeiro não consegue dizer qual produto dá margem. Ninguém erra de má-fé: cada um mede com uma régua. A reunião gasta o começo decidindo qual número vale.
+                </p>
+                <h2 id="origem">De onde vêm os dados (e por que BI em cima de dado ruim não resolve)</h2>
+                <p>O dado de uma fábrica costuma vir de cinco lugares, e cada um tem o seu defeito:</p>
+                <div className="ol-tablewrap">
+                  <table className="ol-table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Fonte</th>
+                        <th scope="col">O que traz</th>
+                        <th scope="col">Onde costuma falhar</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">ERP</th>
+                        <td>Pedidos, ordens, estoque, custo padrão, faturamento.</td>
+                        <td>Registra o que foi lançado, não o que aconteceu, e o lançamento vem no fim do turno.</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Apontamento</th>
+                        <td>Início e fim de ordem, quantidade, parada, refugo.</td>
+                        <td>De memória, em papel, redigitado. O motivo vira “outros”.</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Máquina</th>
+                        <td>Estado (rodando ou parada) e contagem de ciclos.</td>
+                        <td>Nem toda informa. Quando informa, diz que parou, não por quê.</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Balança e instrumentos</th>
+                        <td>Peso, medição, inspeção.</td>
+                        <td>Anotada à mão, sem vínculo com a ordem.</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Planilhas</th>
+                        <td>Tudo o que os sistemas não cobrem.</td>
+                        <td>Versões paralelas e fórmulas que só uma pessoa entende.</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <p>
+                  Por isso BI em cima do que existe raramente resolve. O BI mostra; não corrige o dado que recebe. Um dashboard de produção sobre apontamento redigitado mostra o erro mais rápido, com aparência de precisão. Na primeira divergência, a diretoria abandona o painel e a planilha volta.
+                </p>
+                <p>
+                  {"A ordem certa é a inversa: o dado nasce uma vez, onde o fato acontece, e chega aos sistemas sem redigitação. Isso é "}
+                  <a href="/integracao-de-sistemas">integração de sistemas</a>
+                  . O painel vem depois, e fica simples.
+                </p>
+                <h2 id="oee">OEE: o que é e como calcular</h2>
+                <p>
+                  OEE (
+                  <em>Overall Equipment Effectiveness</em>
+                  , ou eficiência global do equipamento) mede quanto do tempo planejado virou peça boa, na velocidade ideal. A fórmula padrão multiplica três fatores:
+                </p>
+                <div className="ol-key">
+                  <div className="ol-key__title">A fórmula</div>
+                  <ul>
+                    <li>
+                      <strong>Disponibilidade</strong>
+                      {" = tempo em operação ÷ tempo planejado de produção. Captura as paradas."}
+                    </li>
+                    <li>
+                      <strong>Desempenho</strong>
+                      {" = (ciclo ideal × quantidade produzida) ÷ tempo em operação. Captura a perda de velocidade e as pequenas paradas."}
+                    </li>
+                    <li>
+                      <strong>Qualidade</strong>
+                      {" = peças boas ÷ quantidade produzida. Captura refugo e retrabalho."}
+                    </li>
+                    <li>
+                      <strong>OEE</strong>
+                      {" = Disponibilidade × Desempenho × Qualidade."}
+                    </li>
+                  </ul>
+                </div>
+                <p>Um exemplo ilustrativo, com números escolhidos só para mostrar a conta:</p>
+                <div className="ol-tablewrap">
+                  <table className="ol-table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Etapa</th>
+                        <th scope="col">Valor</th>
+                        <th scope="col">Conta</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">Tempo planejado de produção</th>
+                        <td>420 min</td>
+                        <td>Turno de 480 min menos 60 min de refeição</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Tempo em operação</th>
+                        <td>378 min</td>
+                        <td>420 min menos 42 min de paradas não planejadas</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Disponibilidade</th>
+                        <td>90,0%</td>
+                        <td>378 ÷ 420</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Desempenho</th>
+                        <td>89,9%</td>
+                        <td>340 peças × 1 min de ciclo ideal ÷ 378 min</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Qualidade</th>
+                        <td>95,0%</td>
+                        <td>323 peças boas ÷ 340 produzidas</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">OEE</th>
+                        <td>76,9%</td>
+                        <td>0,900 × 0,899 × 0,950</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <p>
+                  Uma forma de conferir: o OEE também é igual a peças boas × ciclo ideal ÷ tempo planejado. No exemplo, 323 ÷ 420 = 76,9%. Se as duas contas não batem, algum fator está errado.
+                </p>
+                <p>
+                  O valor do OEE está na decomposição: ela diz se a perda está na parada, na velocidade ou na qualidade — problemas com donos diferentes. Há referências de “OEE de classe mundial” citadas na literatura; ajudam pouco. A comparação útil é a linha com ela mesma, mês a mês, com a mesma regra.
+                </p>
+                <h2 id="coleta">Como medir OEE sem depender de apontamento manual</h2>
+                <p>
+                  O OEE é tão bom quanto o registro de paradas. E o registro manual tem um defeito de origem: quem aponta está ocupado produzindo. Parada curta some, o horário é arredondado. Três caminhos resolvem, e se combinam:
+                </p>
+                <ol>
+                  <li>
+                    <strong>Sinal de máquina, quando existe.</strong>
+                    {" Muitas máquinas já informam estado e contagem de ciclos. Ler esse sinal é integração de dados: ele vira o relógio do OEE sem ninguém apontar horário. Não mexemos no controle da máquina — só lemos o que ela já informa."}
+                  </li>
+                  <li>
+                    <strong>Apontamento assistido, quando não existe.</strong>
+                    {" O operador escolhe a ordem numa lista, confirma o início, e o sistema pergunta o motivo quando a parada acontece. Poucos toques, sem papel. Mais em "}
+                    <a href="/apontamento-de-producao">apontamento de produção</a>
+                    .
+                  </li>
+                  <li>
+                    <strong>Motivos de parada padronizados.</strong>
+                    {" Lista curta e fechada, definida com produção e manutenção, agrupada por natureza — máquina, material, pessoa, processo. Sem “outros” livre."}
+                  </li>
+                </ol>
+                <p>A máquina diz quando parou; a pessoa diz por quê. É essa divisão que torna o OEE confiável.</p>
+                <h2 id="erros">Os erros comuns no cálculo do OEE</h2>
+                <ul>
+                  <li>
+                    <strong>Tempo base inconsistente.</strong>
+                    {" Uma linha usa o turno inteiro, outra desconta refeição, outra desconta setup. Nada se compara. Escreva uma regra."}
+                  </li>
+                  <li>
+                    <strong>Ciclo ideal inflado.</strong>
+                    {" Usar o tempo padrão do ERP, que já tem folga, no lugar do ciclo ideal. Desempenho acima de 100% é sinal de ciclo errado."}
+                  </li>
+                  <li>
+                    <strong>Setup fora da conta.</strong>
+                    {" Tratar setup como parada planejada esconde uma perda tratável. Na definição usual, setup é perda de disponibilidade."}
+                  </li>
+                  <li>
+                    <strong>Retrabalho contado como peça boa.</strong>
+                    {" Qualidade mede o que saiu certo da primeira vez."}
+                  </li>
+                  <li>
+                    <strong>Média simples entre máquinas.</strong>
+                    {" Consolide ponderando pelo tempo planejado, não pela média dos percentuais."}
+                  </li>
+                </ul>
+                <h2 id="indicadores">Poucos indicadores que movem decisão</h2>
+                <p>O painel que funciona tem poucos indicadores de produção, cada um com definição escrita, dono e uma decisão associada:</p>
+                <div className="ol-tablewrap">
+                  <table className="ol-table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Indicador</th>
+                        <th scope="col">O que responde</th>
+                        <th scope="col">Decisão que orienta</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">OEE</th>
+                        <td>Quanto do tempo planejado virou peça boa.</td>
+                        <td>Onde atacar a perda: parada, velocidade ou qualidade.</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Cumprimento de programa</th>
+                        <td>Se a fábrica produziu o que foi programado, na data.</td>
+                        <td>Reprogramar, rever capacidade, rever a promessa feita ao cliente.</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Refugo</th>
+                        <td>Quanto se perde em material e hora-máquina, e por qual causa.</td>
+                        <td>Onde investir em processo ou matéria-prima.</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Margem por pedido e por produto</th>
+                        <td>Quanto sobra de cada venda depois do custo real.</td>
+                        <td>Preço, mix, o que aceitar e o que recusar.</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Lead time</th>
+                        <td>Quanto tempo vai do pedido à entrega.</td>
+                        <td>O prazo que dá para prometer sem mentir.</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <p>
+                  Margem por pedido costuma surpreender, porque junta dado espalhado: o preço está no ERP, o tempo real de máquina no apontamento, o refugo em outra planilha. Enquanto essas fontes não conversam, a margem é estimada pelo custo padrão — e o custo padrão não sabe que aquele pedido parou duas vezes.
+                </p>
+                <h2 id="ia">Onde a IA para indústria ajuda de fato — e onde é cedo</h2>
+                <p>
+                  IA aplicada à indústria é útil depois que o dado existe. Um modelo aprende com histórico; se o histórico tem “outros” como principal motivo de parada, ele aprende isso. Sem dado confiável, não há IA útil.
+                </p>
+                <p>Com a base organizada, há usos plausíveis para testar:</p>
+                <ul>
+                  <li>
+                    <strong>Previsão de atraso.</strong>
+                    {" Cruzar carteira, programa e ritmo real para sinalizar cedo pedidos com risco de atraso. Não substitui o planejador; dá a ele uma lista para olhar primeiro."}
+                  </li>
+                  <li>
+                    <strong>Classificação de causa de parada.</strong>
+                    {" Sugerir o motivo provável, para o operador confirmar num toque."}
+                  </li>
+                  <li>
+                    <strong>Leitura de documentos.</strong>
+                    {" Extrair dados de pedidos e laudos em PDF ou e-mail, com conferência humana."}
+                  </li>
+                </ul>
+                <p>
+                  Onde ainda é cedo: manutenção preditiva sem histórico de falhas, sequenciamento automático sem regras de programação escritas e qualquer projeto que comece pelo modelo em vez do problema.
+                </p>
+                <h2 id="comecar">Por onde começar</h2>
+                <p>
+                  {"Não pela fábrica inteira, nem pelo painel. Escolha "}
+                  <strong>uma linha ou um setor</strong>
+                  {" — o gargalo, ou aquele onde a diretoria mais discute número — e faça o ciclo completo: dado nascendo na origem, motivos de parada padronizados, um indicador com regra escrita, visto por quem decide. Uma linha funcionando prova o caminho e ensina o que a próxima vai encontrar."}
+                </p>
+                <h2 id="origami">Como a Origami Lab trabalha isso</h2>
+                <p>
+                  Começamos pelo diagnóstico: de duas a quatro semanas dentro da operação, vendo onde o dado nasce, onde é redigitado e onde se perde. Com a diretoria, definimos os indicadores e suas regras. Colocamos software em produção já no primeiro mês e seguimos em ciclos curtos: coleta na origem, integração com o ERP e com as máquinas que já informam sinal, e o painel por último.
+                </p>
+                <p>
+                  Não substituímos o ERP — ele continua sendo a base de registro do fiscal e do financeiro. O código e os dados são da sua empresa e ficam em nuvem contratada por você; a Origami Lab é credenciada AWS.
+                </p>
+                <p>
+                  {"Na Tecno 2000, do setor de mobiliário corporativo, um software que centralizou o fluxo de pedidos levou a 80% de redução no tempo de planejamento de produção. Na Retífica Formiguense, a integração com o ERP resultou em um "}
+                  <a href="/cases/cobranca-automatica-whatsapp-retifica-formiguense">painel de inadimplência e uma régua de cobrança via WhatsApp</a>
+                  .
+                </p>
+              </article>
+            </div>
+          </section>
+          {/* ==================== Perguntas ==================== */}
+          <section className="ol-faq ol-faq--page" id="faq">
+            <div className="ol-faq__inner">
+              <div className="ol-faq__aside">
+                <h2 className="ol-h2 ol-h2--ink">Perguntas frequentes</h2>
+                <p>
+                  {"Ficou alguma dúvida que não está aqui? "}
+                  <a href="https://forms.cloud.microsoft/r/f2GGyr2vZT" target="_blank" rel="noopener">Fale com a gente</a>
+                  .
+                </p>
+              </div>
+              <div className="ol-faq__list">
+                <div className="ol-faq__item" data-faq="" data-faq-open="">
+                  <button className="ol-faq__trigger" type="button" aria-expanded="false" aria-controls="faq-gestao-industrial-em-tempo-real-1">
+                    <span>O que é gestão industrial em tempo real?</span>
+                    {" "}
+                    <span className="ol-faq__icon" aria-hidden="true">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                        <path d="M12 5v14" />
+                        <path d="M5 12h14" />
+                      </svg>
+                    </span>
+                  </button>
+                  <div className="ol-faq__body" id="faq-gestao-industrial-em-tempo-real-1" data-faq-body="">
+                    <p>
+                      É a diretoria acompanhar produção, paradas, refugo e margem enquanto ainda dá para agir, com o mesmo número que as áreas usam. Depende menos do painel e mais da coleta: o dado nasce uma vez, onde o fato acontece, e chega aos sistemas sem redigitação. Nem tudo precisa ser instantâneo: parada pede o turno; margem pode ser diária.
+                    </p>
+                  </div>
+                </div>
+                <div className="ol-faq__item" data-faq="">
+                  <button className="ol-faq__trigger" type="button" aria-expanded="false" aria-controls="faq-gestao-industrial-em-tempo-real-2">
+                    <span>Como calcular o OEE?</span>
+                    {" "}
+                    <span className="ol-faq__icon" aria-hidden="true">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                        <path d="M12 5v14" />
+                        <path d="M5 12h14" />
+                      </svg>
+                    </span>
+                  </button>
+                  <div className="ol-faq__body" id="faq-gestao-industrial-em-tempo-real-2" data-faq-body="">
+                    <p>
+                      OEE é o produto de três fatores: disponibilidade (tempo em operação ÷ tempo planejado de produção), desempenho (ciclo ideal × quantidade produzida ÷ tempo em operação) e qualidade (peças boas ÷ quantidade produzida). Num exemplo ilustrativo com 90% de disponibilidade, 89,9% de desempenho e 95% de qualidade, o OEE é 76,9%.
+                    </p>
+                  </div>
+                </div>
+                <div className="ol-faq__item" data-faq="">
+                  <button className="ol-faq__trigger" type="button" aria-expanded="false" aria-controls="faq-gestao-industrial-em-tempo-real-3">
+                    <span>Dá para medir OEE sem apontamento manual?</span>
+                    {" "}
+                    <span className="ol-faq__icon" aria-hidden="true">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                        <path d="M12 5v14" />
+                        <path d="M5 12h14" />
+                      </svg>
+                    </span>
+                  </button>
+                  <div className="ol-faq__body" id="faq-gestao-industrial-em-tempo-real-3" data-faq-body="">
+                    <p>
+                      Em boa parte, sim. Quando a máquina já informa estado e contagem de ciclos, esse sinal marca paradas e produção sem ninguém anotar horário. O motivo ainda precisa de uma pessoa: o sistema detecta a parada e o operador escolhe numa lista curta e padronizada.
+                    </p>
+                  </div>
+                </div>
+                <div className="ol-faq__item" data-faq="">
+                  <button className="ol-faq__trigger" type="button" aria-expanded="false" aria-controls="faq-gestao-industrial-em-tempo-real-4">
+                    <span>Preciso de um BI para ter indicadores de produção?</span>
+                    {" "}
+                    <span className="ol-faq__icon" aria-hidden="true">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                        <path d="M12 5v14" />
+                        <path d="M5 12h14" />
+                      </svg>
+                    </span>
+                  </button>
+                  <div className="ol-faq__body" id="faq-gestao-industrial-em-tempo-real-4" data-faq-body="">
+                    <p>
+                      O BI é a última camada, não a primeira: mostra bem, mas não corrige o dado que recebe. Primeiro a coleta e a integração, depois a regra de cálculo, e só então o painel.
+                    </p>
+                  </div>
+                </div>
+                <div className="ol-faq__item" data-faq="">
+                  <button className="ol-faq__trigger" type="button" aria-expanded="false" aria-controls="faq-gestao-industrial-em-tempo-real-5">
+                    <span>Preciso trocar o ERP ou comprar um sistema novo?</span>
+                    {" "}
+                    <span className="ol-faq__icon" aria-hidden="true">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                        <path d="M12 5v14" />
+                        <path d="M5 12h14" />
+                      </svg>
+                    </span>
+                  </button>
+                  <div className="ol-faq__body" id="faq-gestao-industrial-em-tempo-real-5" data-faq-body="">
+                    <p>
+                      Na maior parte dos casos, não é preciso trocar o ERP. Ele continua sendo a base de registro do fiscal e do financeiro; o que falta costuma ser a coleta no chão de fábrica e a ligação entre as fontes. Se um produto pronto de mercado resolve bem o seu caso, ele pode ser a escolha certa. Se a operação é específica demais, constrói-se em volta do ERP, integrado a ele.
+                    </p>
+                  </div>
+                </div>
+                <div className="ol-faq__item" data-faq="">
+                  <button className="ol-faq__trigger" type="button" aria-expanded="false" aria-controls="faq-gestao-industrial-em-tempo-real-6">
+                    <span>A IA já pode ajudar na minha fábrica?</span>
+                    {" "}
+                    <span className="ol-faq__icon" aria-hidden="true">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                        <path d="M12 5v14" />
+                        <path d="M5 12h14" />
+                      </svg>
+                    </span>
+                  </button>
+                  <div className="ol-faq__body" id="faq-gestao-industrial-em-tempo-real-6" data-faq-body="">
+                    <p>
+                      Depende do dado que existe hoje. IA aprende com histórico; se ele é pouco confiável, o resultado também será. Com a base organizada, há usos plausíveis para testar: sinalizar pedidos com risco de atraso, sugerir a causa provável de uma parada e ler pedidos e documentos que chegam em PDF.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          {/* ==================== Leituras relacionadas ==================== */}
+          <section className="ol-next" aria-labelledby="relacionadas">
+            <div className="ol-next__inner">
+              <h2 className="ol-next__title" id="relacionadas">Continuar por aqui</h2>
+              <ul className="ol-next__grid">
+                <li>
+                  <a className="ol-next__card" href="/apontamento-de-producao">
+                    <b>Apontamento de produção</b>
+                    <span>Como registrar produção, paradas e refugo no chão de fábrica sem papel e sem redigitação.</span>
+                  </a>
+                </li>
+                <li>
+                  <a className="ol-next__card" href="/integracao-erp-chao-de-fabrica">
+                    <b>Integração do ERP com o chão de fábrica</b>
+                    <span>Como ligar o que acontece na máquina ao que o ERP registra, sem trocar o ERP.</span>
+                  </a>
+                </li>
+                <li>
+                  <a className="ol-next__card" href="/integracao-de-sistemas">
+                    <b>Integração de sistemas</b>
+                    <span>Os quatro caminhos técnicos para integrar sistemas que não conversam, inclusive os legados.</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </section>
+          <section className="ol-cta" id="contato">
+            <div className="ol-cta__glow" aria-hidden="true" />
+            <div className="ol-cta__inner">
+              <h2 className="ol-cta__title">
+                {"Decidir com o dado da semana passada é "}
+                <em className="ol-em">decidir no escuro</em>
+                .
+              </h2>
+              <p className="ol-cta__lead">
+                A primeira conversa dura 30 minutos e serve para entender quais números a sua diretoria usa, de onde eles vêm e quanto atraso carregam. Se o caminho for simples, a gente diz — e às vezes é.
+              </p>
+              <div className="ol-cta__actions">
+                <a className="ol-btn ol-btn--primary ol-btn--lg" href="https://forms.cloud.microsoft/r/f2GGyr2vZT" target="_blank" rel="noopener">
+                  {"Agendar conversa de 30 minutos "}
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <path d="M5 12h14" />
+                    <path d="m12 5 7 7-7 7" />
+                  </svg>
+                </a>
+                {" "}
+                <a className="ol-btn ol-btn--ghost" href="https://wa.me/553198055189?text=Ol%C3%A1!%20Quero%20conversar%20sobre%20a%20opera%C3%A7%C3%A3o%20da%20minha%20empresa." target="_blank" rel="noopener">Falar no WhatsApp</a>
+              </div>
+            </div>
+          </section>
+          <Rodape />
+        </div>
+      </div>
+      <DadosEstruturados dados={DADOS_ESTRUTURADOS} />
+      <ScriptsDaPagina scripts={["pagina"]} />
+    </>
+  );
+}
