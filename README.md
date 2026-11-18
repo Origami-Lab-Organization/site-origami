@@ -11,7 +11,7 @@ o HTML chega pronto ao navegador, como na versão anterior em HTML puro.
 npm install
 npm run dev          # http://localhost:3000
 npm run build        # build de produção (tem que passar antes de qualquer PR)
-npm test             # testes da medição (src/**/*.test.ts)
+npm test             # testes (src/**/*.test.ts): medição e leads
 npm run lint
 npm run type-check
 ```
@@ -23,10 +23,20 @@ o painel ainda mostra o preset "Other" porque a `main` publicada era estática.
 Depois do primeiro deploy do Next em produção, trocar o preset para Next.js no
 painel.
 
-Variável de ambiente (Vercel, só Production):
-`NEXT_PUBLIC_AMPLITUDE_API_KEY` (tipo Config: a chave de navegador do Amplitude
-é pública por natureza). Sem ela o site funciona e o console avisa que a
-medição está desligada.
+Variáveis de ambiente (Vercel):
+
+| Variável | Ambientes | Para quê |
+|---|---|---|
+| `NEXT_PUBLIC_AMPLITUDE_API_KEY` | Production | Chave de navegador do Amplitude (tipo Config: é pública por natureza). Sem ela o console avisa que a medição está desligada |
+| `RESEND_API_KEY` | Production, Preview | Envio dos leads por e-mail. Conta do Resend do Origami Pulse, domínio já verificado `origamipulse.com.br`. Use uma chave própria do site, com permissão só de envio |
+| `LEADS_PARA` | Production, Preview | Quem recebe os leads (comercial) |
+| `LEADS_DE` | opcional | Remetente; padrão `Site Origami Lab <noreply@origamipulse.com.br>` |
+
+`POST /api/lead` (`src/app/api/lead/route.ts`, lógica em `src/lib/leads/`)
+recebe o contato deixado nas ferramentas e formulários do site e manda por
+e-mail, com as respostas e a origem da visita; responder o e-mail fala direto
+com o visitante. Recusa origem de fora do site (403), tem campo-armadilha e
+tempo mínimo contra robôs, e devolve 503 se a chave ou o destinatário faltarem.
 
 O `vercel.json` guarda os redirects do blog (host `blog.origamilab.com.br`), o
 `/about` e os cabeçalhos de segurança e de cache. O `next.config.ts` guarda os
@@ -43,6 +53,8 @@ src/components/              Navegacao, Rodape, DadosEstruturados, ScriptsDaPagi
 src/conteudo/paginas.ts      páginas publicadas: fonte do sitemap e dos redirects .html
 src/conteudo/contato.ts      formulário, e-mail, WhatsApp, endereço e redes (um lugar só)
 src/lib/medicao/             classificação de canal e eventos de conversão (+ testes)
+src/lib/leads/               validação, e-mail e envio dos leads pelo Resend (+ testes)
+src/app/api/lead/            POST /api/lead
 src/estilos/                 styles.css (tokens, @font-face), servico.css, plataforma.css
 public/assets/               imagens, logos, fontes, vídeo e poster do hero, capa de OG
 public/assets/js/            main.js (scroll da home e dos cases), pagina.js, servico.js
