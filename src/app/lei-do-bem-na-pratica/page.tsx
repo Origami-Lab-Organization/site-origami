@@ -1,3 +1,4 @@
+import { ChamadaDaOrigami } from "@/components/conteudo/ChamadaDaOrigami";
 import { PaginaDeConteudo } from "@/components/conteudo/PaginaDeConteudo";
 import { ChamadaFinal, Documento, LeiturasRelacionadas, Nota, Perguntas, QuadroDeFatos, Tabela } from "@/components/conteudo/blocos";
 import { grafoDaPagina, type Pergunta } from "@/lib/seo/estruturados";
@@ -5,7 +6,7 @@ import { metadataDaPagina } from "@/lib/seo/metadata";
 
 /* Lei do Bem na prática: uso no ano, FORMP&D, documentação e glosa.
    Cada número, prazo e requisito tem fonte oficial (seção "Fontes oficiais").
-   Conferido em 17/11/2026. */
+   Conferido em 18/11/2026. */
 
 const CAMINHO = "/lei-do-bem-na-pratica";
 const TITULO = "Lei do Bem na prática: FORMP&D e glosa";
@@ -71,7 +72,6 @@ const DADOS = grafoDaPagina({
   caminho: CAMINHO,
   titulo: "Lei do Bem na prática: FORMP&D, documentação e por que projetos são glosados",
   descricao: DESCRICAO,
-  atualizadaEm: ATUALIZADA_EM,
   migalhas: [
     { nome: "Lei do Bem", caminho: "/lei-do-bem" },
     { nome: "Lei do Bem na prática", caminho: CAMINHO },
@@ -109,7 +109,8 @@ export default function PaginaLeiDoBemNaPratica() {
   return (
     <PaginaDeConteudo
       migalhas={[{ nome: "Lei do Bem", caminho: "/lei-do-bem" }, { nome: "Na prática" }]}
-      titulo="Lei do Bem na prática: FORMP&D, documentação e por que projetos são glosados"
+      rotulo="Incentivo fiscal à inovação"
+      titulo={<>Lei do Bem na prática: FORMP&D, documentação e <em className="ol-em">por que projetos são glosados</em></>}
       lead={
         <>
           Usar a Lei do Bem tem duas metades. Na primeira, a empresa aplica a exclusão dos dispêndios de P&D na apuração do IRPJ e da CSLL,{" "}
@@ -118,7 +119,7 @@ export default function PaginaLeiDoBemNaPratica() {
           recolher o imposto que deixou de pagar, com juros e multa. O que decide a análise é o registro técnico feito durante o projeto, não depois.
         </>
       }
-      meta="Atualizado em 17/11/2026 · Orientação geral, não substitui a análise da sua contabilidade · Origami Lab, Formiga (MG)"
+      meta="Atualizado em 18/11/2026 · Orientação geral, não substitui a análise da sua contabilidade · Origami Lab, Formiga (MG)"
       dados={DADOS}
     >
       <Documento
@@ -352,6 +353,7 @@ export default function PaginaLeiDoBemNaPratica() {
         </ol>
       </Documento>
 
+      <ChamadaDaOrigami frente="inovacao" pagina={CAMINHO} />
       <Perguntas prefixo="lei-do-bem-na-pratica" perguntas={PERGUNTAS} />
 
       <LeiturasRelacionadas

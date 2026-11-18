@@ -59,7 +59,6 @@ const DADOS = grafoDaPagina({
   caminho: CAMINHO,
   titulo: TITULO,
   descricao: DESCRICAO,
-  atualizadaEm: "2026-11-17",
   migalhas: [
     { nome: "Ferramentas", caminho: "/ferramentas" },
     { nome: "Calculadora de custo hora-máquina", caminho: CAMINHO },
@@ -100,7 +99,9 @@ export default function PaginaCalculadoraCustoHoraMaquina() {
     <PaginaDeConteudo
       ativo="ferramentas"
       migalhas={[{ nome: "Ferramentas", caminho: "/ferramentas" }, { nome: "Custo hora-máquina" }]}
-      titulo="Calculadora de custo hora-máquina"
+      rotulo="Ferramenta gratuita"
+      rotuloDoLead="Como funciona"
+      titulo={<>Calculadora de <em className="ol-em">custo hora-máquina</em></>}
       lead={
         <>
           O custo hora-máquina é o custo anual de manter a máquina (depreciação, capital, energia, manutenção, espaço e operador) dividido pelas horas em que ela{" "}

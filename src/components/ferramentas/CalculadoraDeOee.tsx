@@ -5,6 +5,7 @@ import { calcularOee, EXEMPLO, faixaDeOee, porcentagem, type EntradasOee, type M
 import { registrarEvento } from "@/lib/medicao/eventos";
 import { CampoNumero, numero } from "./campos";
 import { CapturaDeLead } from "./CapturaDeLead";
+import { ChamadaDaOrigami } from "@/components/conteudo/ChamadaDaOrigami";
 
 const FERRAMENTA = "calculadora-de-oee";
 const PLANILHA = "/ferramentas/planilha-de-oee.xlsx";
@@ -179,12 +180,13 @@ export function CalculadoraDeOee() {
           <Resultado r={resultado} />
         </div>
       </section>
+      <ChamadaDaOrigami frente="producao" pagina={`/${FERRAMENTA}`} formulario={`#contato-${FERRAMENTA}`} />
       <div className="ol-capture">
         <CapturaDeLead
           ferramenta={FERRAMENTA}
-          titulo="Baixe a planilha de OEE"
-          descricao="Planilha em Excel para lançar turno a turno, com as fórmulas de disponibilidade, desempenho, qualidade e OEE, e o resumo por máquina somando tempos (não média de percentuais). Deixe o contato para baixar; se quiser, um especialista da Origami olha o seu resultado com você."
-          rotuloBotao="Baixar a planilha"
+          titulo="Quer entender as perdas da sua operação?"
+          descricao="Envie o OEE que você acabou de calcular para um especialista avaliar com você onde vale aprofundar a medição. A conta segue junto ao contato. Você também recebe acesso à planilha em Excel para acompanhar os próximos turnos."
+          rotuloBotao="Quero analisar meu OEE"
           dados={dadosParaOLead(entradas, resultado)}
           mensagemDeSucesso={
             <>

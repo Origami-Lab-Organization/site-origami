@@ -43,6 +43,25 @@ Sócios com passagens por Deloitte, AB InBev, Vale, Localiza, MRV, Inter e
 ESAB. Trabalhamos dentro da operação do cliente: cada entrega precisa provar
 resultado antes de a próxima começar.
 
+## Guias por tema
+
+- [Guias de software industrial e inovação](https://www.origamilab.com.br/guias):
+  índice de conteúdos sobre software e operação, Lei do Bem e financiamento,
+  e produção industrial em Minas Gerais.
+- [MES e ERP](https://www.origamilab.com.br/mes-vs-erp):
+  responsabilidades de execução e gestão, relação com o PCP, fluxo de dados
+  e critérios para decidir se o módulo do ERP atende à operação.
+- [Automação de contas a receber](https://www.origamilab.com.br/automacao-de-contas-a-receber):
+  regras e exceções da carteira, integração com o ERP, conciliação de baixas,
+  avaliação dos canais e o recorte do case publicado da Retífica Formiguense.
+- [Lei do Bem no desenvolvimento de software](https://www.origamilab.com.br/lei-do-bem-desenvolvimento-de-software):
+  incerteza tecnológica e atividades de rotina, exemplos hipotéticos,
+  evidências técnicas e segregação de dispêndios, com fontes oficiais.
+- [Software para a indústria metalúrgica](https://www.origamilab.com.br/software-para-industria-metalurgica):
+  requisitos e critérios de aceite para ordens, roteiros, lotes, qualidade,
+  custos e integração com ERP em fundição e usinagem. Guia de avaliação;
+  não apresenta um case metalúrgico da Origami.
+
 ## Ferramentas gratuitas
 
 Calculadoras e diagnóstico com o resultado na tela, sem cadastro, e o método
@@ -74,14 +93,24 @@ explicado na própria página. Hub: https://www.origamilab.com.br/ferramentas
   confere os requisitos (lucro real, lucro no período, regularidade fiscal) e
   estima a economia de IRPJ e CSLL sobre o gasto com P&D, com a memória de
   cálculo e a base legal (Lei 11.196/2005, Decreto 5.798/2006).
+- [Qual fomento à inovação serve](https://www.origamilab.com.br/fomento-a-inovacao):
+  nove perguntas sobre a empresa e o projeto (objetivo, origem do recurso,
+  regime tributário, lucro, receita, valor, contrapartida, parceria com centro
+  de pesquisa e estado) cruzadas com as regras publicadas de oito
+  instrumentos: Lei do Bem, crédito direto da FINEP, Finep Inovacred,
+  subvenção econômica, BNDES Mais Inovação, EMBRAPII, Compete Minas e BDMG
+  Pró-Inovação. Cada instrumento sai como caminho provável, vale avaliar,
+  pouco provável ou não se aplica, com o motivo. Usa as faixas de porte da
+  FINEP; limites conferidos em 18/11/2026. Não avalia mérito nem garante
+  aprovação. A página explica as fontes de fomento e o fomento em Minas Gerais
+  (tetos e contrapartidas do Compete Minas 2026, linhas do BDMG).
 
 ## Soluções para indústria
 
 Páginas de referência sobre os problemas de operação que a Origami Lab resolve em indústrias. Cada uma responde à pergunta no primeiro parágrafo e traz perguntas frequentes em JSON-LD.
 
 - [Tecnologia para indústrias de Minas
-  Gerais](https://www.origamilab.com.br/tecnologia-para-industrias-minas-
-  gerais): a Origami Lab em Formiga, no Centro-Oeste de Minas, e os problemas
+  Gerais](https://www.origamilab.com.br/tecnologia-para-industrias-minas-gerais): a Origami Lab em Formiga, no Centro-Oeste de Minas, e os problemas
   de operação de cada polo industrial da região: cal, calcário e mineração
   (Arcos, Pains, Formiga), siderurgia, fundição e metalurgia (Divinópolis,
   Itaúna), calçados (Nova Serrana) e manufatura sob encomenda.
@@ -91,8 +120,7 @@ Páginas de referência sobre os problemas de operação que a Origami Lab resol
   costuma não resolver na indústria sob encomenda, o que um sistema de PCP
   precisa ter, o exemplo da Tecno 2000 e um método para calcular o ROI de um
   projeto de digitalização industrial.
-- [Apontamento de produção](https://www.origamilab.com.br/apontamento-de-
-  producao): o que o apontamento alimenta (PCP, custo, OEE, estoque), o custo
+- [Apontamento de produção](https://www.origamilab.com.br/apontamento-de-producao): o que o apontamento alimenta (PCP, custo, OEE, estoque), o custo
   escondido do apontamento em papel, as formas de coletar dados no chão de
   fábrica, a integração com o ERP e como começar por um setor-piloto.
 - [Integração do ERP com o chão de
@@ -101,13 +129,11 @@ Páginas de referência sobre os problemas de operação que a Origami Lab resol
   volta do ERP, quais dados sobem e descem, quando customizar o próprio ERP é
   melhor e os riscos de dado duplicado.
 - [Automação de processos
-  industriais](https://www.origamilab.com.br/automacao-de-processos-
-  industriais): sete processos industriais que ainda vivem no Excel, o que
+  industriais](https://www.origamilab.com.br/automacao-de-processos-industriais): sete processos industriais que ainda vivem no Excel, o que
   cada planilha custa, como eliminar a redigitação entre produção, estoque e
   ERP, o que não vale automatizar e como priorizar. Automação de processos por
   software, não automação de CLP ou supervisório.
-- [Gestão industrial em tempo real](https://www.origamilab.com.br/gestao-
-  industrial-em-tempo-real): de onde vêm os dados da operação, como calcular
+- [Gestão industrial em tempo real](https://www.origamilab.com.br/gestao-industrial-em-tempo-real): de onde vêm os dados da operação, como calcular
   OEE e medi-lo sem depender de apontamento manual, os erros comuns de
   cálculo, os poucos indicadores que movem decisão e onde a IA ajuda de fato
   na indústria.
@@ -164,9 +190,43 @@ pergunta no primeiro parágrafo e traz perguntas frequentes em JSON-LD.
   que projetos são glosados, com links para as fontes oficiais.
 - [Financiamento de inovação](https://www.origamilab.com.br/financiamento-de-inovacao):
   Lei do Bem (incentivo fiscal, só no lucro real), subvenção econômica (não
-  reembolsável, por chamada pública, com contrapartida) e crédito da FINEP
+  reembolsável, por chamada pública ou programa, com contrapartida) e crédito da FINEP
   (direto ou por agentes, conforme o porte); a saída para quem está no lucro
   presumido e o Compete Minas, da FAPEMIG.
+- [FINEP: o que é e como funciona o financiamento](https://www.origamilab.com.br/finep):
+  empresa pública vinculada ao MCTI e secretaria-executiva do FNDCT. As três
+  portas para empresas: crédito direto (receita acima de R$ 90 mi, patrimônio
+  líquido acima de R$ 86 mi, a partir de R$ 30 mi, até 90% do projeto),
+  Finep Inovacred por agentes credenciados (receita abaixo de R$ 300 mi, até
+  R$ 30 mi, até TR + 6,068% ou TR + 6,605% ao ano; BDMG em Minas) e subvenção
+  econômica (qualquer porte, contrapartida obrigatória, Lei 10.973/2004). Faixas
+  de porte, encargos, passo a passo, garantias e combinação com a Lei do Bem,
+  pelas Condições Operacionais 2026. Não filtra por regime tributário.
+- [Finep Inovacred](https://www.origamilab.com.br/finep-inovacred): crédito
+  da FINEP operado por agentes credenciados, que assumem o risco. Receita de
+  até R$ 300 mi (acima, só projetos no Norte, Nordeste e Centro-Oeste), até
+  R$ 30 mi e até 100% do projeto, carência de até 24 meses e prazo de até 96
+  meses. Taxas máximas de 2026 por linha: Inovacred, 4.0 e Telecom até TR +
+  6,068% (micro a pequena) ou TR + 6,605% (média); B+P até TR + 5,560%;
+  Centros de P&D até TR + 6,080%. Inovacred 4.0 exige integradora credenciada
+  pela FINEP. Despesas só contam a partir do registro do projeto no agente,
+  exceto no 4.0. Agentes: BDMG em Minas, Sicoob, Sicredi, Cresol, Caixa e
+  outros. Esclarece que Expresso e Conecta não estão nas Condições
+  Operacionais 2026.
+- [BNDES Mais Inovação](https://www.origamilab.com.br/bndes-mais-inovacao):
+  crédito com recursos do FAT para inovação e digitalização. Difusão
+  Tecnológica (máquinas credenciadas no Finame, inclusive 4.0, até R$ 50 mi a
+  cada 12 meses), Investimento Automático (software, consultoria e serviços
+  tecnológicos, até R$ 15 mi por ano), Investimento em Inovação (a partir de
+  R$ 20 mi), como pedir pelo banco credenciado ou direto, porte no BNDES e o
+  prazo de 31/12/2026 para pedidos diretos em TR.
+- [EMBRAPII](https://www.origamilab.com.br/embrapii): organização social
+  federal, criada em 2013, que cofinancia com recursos não reembolsáveis
+  projetos de P&D executados por Unidades credenciadas (em geral até 1/3; até
+  50% em parcerias com BNDES e Sebrae). Sem edital; exige empresa industrial
+  ou de software no projeto (CNAE 05 a 33, 35, 62.01, 62.03); TRL 3 a 6.
+  Parceria com o Sebrae para micro e pequenas e Unidades em Minas Gerais
+  (Inatel, IF-MG em Formiga, FEMEC-UFU).
 
 ## Experiências de projeto
 

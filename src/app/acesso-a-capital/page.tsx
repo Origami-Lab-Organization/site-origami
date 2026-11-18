@@ -4,6 +4,8 @@ import { Rodape } from "@/components/Rodape";
 import { DadosEstruturados } from "@/components/DadosEstruturados";
 import { ScriptsDaPagina } from "@/components/ScriptsDaPagina";
 import "@/estilos/servico.css";
+import { atualizacaoDaPagina } from "@/conteudo/paginas";
+import { ORGANIZACAO, SITE_NODE } from "@/lib/seo/estruturados";
 
 export const metadata: Metadata = {
   "title": {
@@ -50,70 +52,8 @@ export const metadata: Metadata = {
 const DADOS_ESTRUTURADOS = {
   "@context": "https://schema.org",
   "@graph": [
-    {
-      "@type": "ProfessionalService",
-      "@id": "https://www.origamilab.com.br/#org",
-      "name": "Origami Lab",
-      "url": "https://www.origamilab.com.br/",
-      "logo": "https://www.origamilab.com.br/assets/logo-mark-color.png",
-      "email": "contato@origamilab.com.br",
-      "telephone": "+553198055189",
-      "description": "Empresa de tecnologia para indústria sediada em Formiga, Minas Gerais. Moderniza operações industriais com software sob medida, integração com ERP, automação de processos, dados em tempo real e IA aplicada, do diagnóstico à implantação, e estrutura o financiamento via Lei do Bem, FINEP e FAPEMIG.",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "R. Silviano Brandão, 156 - 2º andar",
-        "addressLocality": "Formiga",
-        "addressRegion": "MG",
-        "postalCode": "35570-112",
-        "addressCountry": "BR"
-      },
-      "sameAs": [
-        "https://www.linkedin.com/company/origamilab-br/",
-        "https://www.instagram.com/origamilab_br/"
-      ],
-      "areaServed": [
-        {
-          "@type": "AdministrativeArea",
-          "name": "Centro-Oeste de Minas Gerais"
-        },
-        {
-          "@type": "State",
-          "name": "Minas Gerais"
-        },
-        {
-          "@type": "Country",
-          "name": "Brasil"
-        }
-      ],
-      "slogan": "Tecnologia para indústria",
-      "knowsAbout": [
-        "Tecnologia para indústria",
-        "Software para indústria",
-        "Software sob medida para indústria",
-        "Integração de sistemas industriais",
-        "Integração com ERP",
-        "Automação de processos industriais",
-        "Digitalização do chão de fábrica",
-        "Apontamento de produção",
-        "Gestão industrial em tempo real",
-        "Indústria 4.0",
-        "Inteligência artificial aplicada à indústria",
-        "Consultoria de operação",
-        "Lei do Bem",
-        "FINEP",
-        "FAPEMIG"
-      ]
-    },
-    {
-      "@type": "WebSite",
-      "@id": "https://www.origamilab.com.br/#site",
-      "url": "https://www.origamilab.com.br/",
-      "name": "Origami Lab",
-      "inLanguage": "pt-BR",
-      "publisher": {
-        "@id": "https://www.origamilab.com.br/#org"
-      }
-    },
+    ORGANIZACAO,
+    SITE_NODE,
     {
       "@type": "WebPage",
       "@id": "https://www.origamilab.com.br/acesso-a-capital#webpage",
@@ -133,7 +73,7 @@ const DADOS_ESTRUTURADOS = {
       "breadcrumb": {
         "@id": "https://www.origamilab.com.br/acesso-a-capital#breadcrumb"
       },
-      "dateModified": "2026-09-18"
+      "dateModified": atualizacaoDaPagina("/acesso-a-capital")
     },
     {
       "@type": "BreadcrumbList",
@@ -219,51 +159,6 @@ const DADOS_ESTRUTURADOS = {
           }
         ]
       }
-    },
-    {
-      "@type": "HowTo",
-      "@id": "https://www.origamilab.com.br/acesso-a-capital#howto",
-      "name": "Como captar recursos para inovação, do diagnóstico à prestação de contas",
-      "description": "As seis etapas que levam uma empresa do diagnóstico de elegibilidade até a prestação de contas de um recurso de incentivo à inovação.",
-      "inLanguage": "pt-BR",
-      "step": [
-        {
-          "@type": "HowToStep",
-          "position": 1,
-          "name": "Diagnóstico de elegibilidade",
-          "text": "Olhar o regime tributário, o resultado do exercício e o que a equipe desenvolveu. Se não houver caminho, dizer na hora."
-        },
-        {
-          "@type": "HowToStep",
-          "position": 2,
-          "name": "Escolha da linha e do edital",
-          "text": "Comparar as oportunidades abertas e montar o calendário, porque perder a janela de uma chamada pode custar um ano de espera."
-        },
-        {
-          "@type": "HowToStep",
-          "position": 3,
-          "name": "Enquadramento técnico",
-          "text": "Encontrar, dentro da operação, o desenvolvimento que se sustenta diante de um avaliador. Na maioria das empresas ele já existe, só que ninguém o chama de P&D."
-        },
-        {
-          "@type": "HowToStep",
-          "position": 4,
-          "name": "Documentação e formulários",
-          "text": "Cuidar dos formulários oficiais, da memória de cálculo, da alocação de horas e do dossiê técnico."
-        },
-        {
-          "@type": "HowToStep",
-          "position": 5,
-          "name": "Submissão e interlocução",
-          "text": "Protocolar no prazo, acompanhar o trâmite e responder às diligências do órgão."
-        },
-        {
-          "@type": "HowToStep",
-          "position": 6,
-          "name": "Prestação de contas",
-          "text": "Entregar os relatórios de execução e sustentar tecnicamente o projeto."
-        }
-      ]
     },
     {
       "@type": "FAQPage",
@@ -353,7 +248,7 @@ export default function PaginaAcessoACapital() {
                   Lei do Bem, FINEP, FAPEMIG e Compete Minas existem para financiar a inovação, mas sete em cada dez empresas com direito não usam. A Origami faz a captação inteira para o seu negócio.
                 </h2>
                 <div className="ol-sv-hero__actions">
-                  <a className="ol-btn ol-btn--primary" data-magnet="" href="https://forms.cloud.microsoft/r/f2GGyr2vZT" target="_blank" rel="noopener">
+                  <a className="ol-btn ol-btn--primary" data-magnet="" href="/conversar">
                     {"Avaliar minha elegibilidade "}
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                       <path d="M5 12h14" />
@@ -649,7 +544,7 @@ export default function PaginaAcessoACapital() {
               <h2 className="ol-h2 ol-h2--ink">Perguntas frequentes</h2>
               <p>
                 {"Não achou a sua? "}
-                <a href="https://forms.cloud.microsoft/r/f2GGyr2vZT" target="_blank" rel="noopener">Fale com a gente</a>
+                <a href="/conversar">Fale com a gente</a>
                 .
               </p>
             </div>
@@ -781,6 +676,7 @@ export default function PaginaAcessoACapital() {
           <div className="ol-next__inner">
             <h2 className="ol-next__title" id="relacionadas">Leituras relacionadas</h2>
             <ul className="ol-next__grid">
+              <li><a className="ol-next__card" href="/fomento-a-inovacao"><b>Qual fomento serve para o projeto</b><span>Ferramenta gratuita: Lei do Bem, FINEP, BNDES, EMBRAPII ou as linhas de Minas, com o porquê de cada caminho.</span></a></li>
               <li><a className="ol-next__card" href="/simulador-lei-do-bem"><b>Simulador da Lei do Bem</b><span>Se a sua empresa pode usar o incentivo e quanto ele representa sobre o gasto com P&amp;D, com a memória de cálculo.</span></a></li>
               <li><a className="ol-next__card" href="/lei-do-bem"><b>Lei do Bem: quem tem direito</b><span>Os requisitos, o que conta como P&amp;D na indústria e o que fazer quando a empresa não se enquadra.</span></a></li>
               <li><a className="ol-next__card" href="/financiamento-de-inovacao"><b>FINEP, subvenção e crédito para inovação</b><span>Os três caminhos para financiar inovação e qual serve para quem está no lucro presumido.</span></a></li>
@@ -799,7 +695,7 @@ export default function PaginaAcessoACapital() {
               Olhamos o regime tributário, o resultado do exercício e o que o seu time desenvolveu, e você sai da conversa sabendo se há caminho, qual é ele e qual o prazo.
             </p>
             <div className="ol-cta__actions">
-              <a className="ol-btn ol-btn--primary ol-btn--lg" data-magnet="" href="https://forms.cloud.microsoft/r/f2GGyr2vZT" target="_blank" rel="noopener">
+              <a className="ol-btn ol-btn--primary ol-btn--lg" data-magnet="" href="/conversar">
                 {"Avaliar minha elegibilidade "}
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                   <path d="M5 12h14" />

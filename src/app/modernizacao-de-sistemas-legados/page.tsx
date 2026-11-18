@@ -1,3 +1,4 @@
+import { ChamadaDaOrigami } from "@/components/conteudo/ChamadaDaOrigami";
 import { ChamadaFinal, Documento, LeiturasRelacionadas, Nota, Perguntas, QuadroDeFatos, Tabela } from "@/components/conteudo/blocos";
 import { PaginaDeConteudo, Seta } from "@/components/conteudo/PaginaDeConteudo";
 import { FORMULARIO } from "@/conteudo/contato";
@@ -8,7 +9,6 @@ const CAMINHO = "/modernizacao-de-sistemas-legados";
 const TITULO = "Modernização de sistemas legados";
 const DESCRICAO =
   "Sistema que só uma pessoa entende, sem fornecedor ou sem API? Como modernizar o legado sem parar a operação: integrar, migrar por partes ou reescrever.";
-const ATUALIZADA_EM = "2026-11-17";
 
 export const metadata = metadataDaPagina({
   titulo: TITULO,
@@ -65,7 +65,6 @@ const DADOS = grafoDaPagina({
   caminho: CAMINHO,
   titulo: TITULO,
   descricao: DESCRICAO,
-  atualizadaEm: ATUALIZADA_EM,
   migalhas: [{ nome: TITULO, caminho: CAMINHO }],
   perguntas: PERGUNTAS,
   principal: {
@@ -102,7 +101,8 @@ export default function PaginaModernizacaoDeSistemasLegados() {
   return (
     <PaginaDeConteudo
       migalhas={[{ nome: TITULO }]}
-      titulo="Modernização de sistemas legados sem parar a operação"
+      rotulo="Sistemas legados"
+      titulo={<>Modernização de sistemas legados <em className="ol-em">sem parar a operação</em></>}
       lead={
         <>
           Modernizar um sistema legado não é sinônimo de reescrever tudo. Na maior parte das empresas, o caminho mais seguro é descobrir o que o sistema antigo faz de
@@ -113,7 +113,7 @@ export default function PaginaModernizacaoDeSistemasLegados() {
       }
       acoes={
         <>
-          <a className="ol-btn ol-btn--primary" href={FORMULARIO} target="_blank" rel="noopener">
+          <a className="ol-btn ol-btn--primary" href={FORMULARIO}>
             Converse com um especialista da Origami <Seta />
           </a>{" "}
           <a className="ol-btn ol-btn--ghost" href="/diagnostico-de-modernizacao">
@@ -121,7 +121,7 @@ export default function PaginaModernizacaoDeSistemasLegados() {
           </a>
         </>
       }
-      meta="Origami Lab · Formiga, Minas Gerais · Atualizado em 17/11/2026"
+      meta="Origami Lab · Formiga, Minas Gerais · Atualizado em 18/11/2026"
       dados={DADOS}
     >
       <Documento sumario={SUMARIO}>
@@ -316,6 +316,7 @@ export default function PaginaModernizacaoDeSistemasLegados() {
         </p>
       </Documento>
 
+      <ChamadaDaOrigami frente="sistemas" pagina={CAMINHO} />
       <Perguntas prefixo="legado" perguntas={PERGUNTAS} />
 
       <LeiturasRelacionadas

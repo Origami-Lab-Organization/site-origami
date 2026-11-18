@@ -48,7 +48,6 @@ const DADOS = grafoDaPagina({
   caminho: CAMINHO,
   titulo: TITULO,
   descricao: DESCRICAO,
-  atualizadaEm: "2026-11-17",
   migalhas: [
     { nome: "Ferramentas", caminho: "/ferramentas" },
     { nome: "Diagnóstico de modernização", caminho: CAMINHO },
@@ -87,7 +86,9 @@ export default function PaginaDiagnosticoDeModernizacao() {
     <PaginaDeConteudo
       ativo="ferramentas"
       migalhas={[{ nome: "Ferramentas", caminho: "/ferramentas" }, { nome: "Diagnóstico de modernização" }]}
-      titulo="Diagnóstico de modernização da operação"
+      rotulo="Ferramenta gratuita"
+      rotuloDoLead="Como funciona"
+      titulo={<>Diagnóstico de <em className="ol-em">modernização</em> da operação</>}
       lead={
         <>
           Onze perguntas, cerca de três minutos. O diagnóstico mede a maturidade da sua operação em cinco frentes (dados e indicadores, integração entre sistemas,

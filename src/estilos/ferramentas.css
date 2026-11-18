@@ -13,6 +13,14 @@
 .ol-capture + .ol-doc {
   border-radius: 0;
 }
+/* Formulário seguido do texto: um respiro só entre os dois, não a soma dos
+   dois respiros cheios. */
+.ol-capture:has(+ .ol-doc) {
+  padding-bottom: clamp(32px, 4vw, 48px);
+}
+.ol-capture + .ol-doc .ol-doc__inner {
+  padding-top: clamp(24px, 3vw, 40px);
+}
 .ol-tool__inner {
   max-width: var(--ol-max);
   margin: 0 auto;
@@ -95,20 +103,41 @@
   line-height: 1.5;
   color: var(--ol-ink-3);
 }
+/* Campo e seleção com a mesma altura: sem appearance: none o <select> segue a
+   altura do sistema e fica mais baixo que o campo de texto ao lado. */
 .ol-input,
 .ol-select {
   width: 100%;
-  min-height: 46px;
+  min-height: 48px;
   padding: 11px 14px;
-  border: 1px solid var(--ol-light-border);
-  border-radius: 10px;
+  border: 1px solid #d5dcd8;
+  border-radius: 12px;
   background: var(--ol-white);
   color: var(--ol-ink);
   font: inherit;
   font-size: 1rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.ol-select {
+  appearance: none;
+  padding-right: 42px;
+  background: var(--ol-white) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236c7b73' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") right 14px center / 18px no-repeat;
+  cursor: pointer;
+}
+.ol-select:invalid,
+.ol-select:has(option[value=""]:checked) {
+  color: var(--ol-ink-3);
+}
+.ol-input:hover,
+.ol-select:hover {
+  border-color: #b9c4bf;
 }
 .ol-input:focus-visible,
-.ol-select:focus-visible,
+.ol-select:focus-visible {
+  outline: none;
+  border-color: var(--ol-green-deep);
+  box-shadow: 0 0 0 4px rgb(29 122 98 / 0.14);
+}
 .ol-check input:focus-visible {
   outline: 2px solid var(--ol-green-deep);
   outline-offset: 1px;
@@ -118,15 +147,15 @@
   align-items: stretch;
 }
 .ol-input-group .ol-input {
-  border-radius: 10px 0 0 10px;
+  border-radius: 12px 0 0 12px;
 }
 .ol-input-group__suffix {
   display: inline-flex;
   align-items: center;
   padding: 0 12px;
-  border: 1px solid var(--ol-light-border);
+  border: 1px solid #d5dcd8;
   border-left: 0;
-  border-radius: 0 10px 10px 0;
+  border-radius: 0 12px 12px 0;
   background: var(--ol-light);
   font-size: 0.875rem;
   color: var(--ol-ink-3);
@@ -259,8 +288,120 @@
   background: var(--ol-light);
   padding: 0 max(var(--ol-gutter), calc((100% - var(--ol-max)) / 2 + var(--ol-gutter))) clamp(56px, 8vw, 96px);
 }
-.ol-capture .ol-card {
-  border-left: 3px solid var(--ol-green-deep);
+/* Formulário em duas colunas nas ferramentas: à esquerda o que a pessoa
+   ganha ao enviar, à direita só os campos. Fora do .ol-capture (página de
+   conversa, coluna estreita) ele continua numa coluna só. */
+.ol-capture .ol-lead {
+  display: grid;
+  grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+  padding: 0;
+  overflow: hidden;
+  border-radius: 22px;
+  box-shadow: 0 24px 60px rgb(9 15 30 / 0.07);
+}
+.ol-capture .ol-lead__intro,
+.ol-capture .ol-lead__campos {
+  padding: clamp(24px, 3.4vw, 44px);
+}
+.ol-capture .ol-lead__intro {
+  background: linear-gradient(160deg, rgb(46 232 168 / 0.12), rgb(46 232 168 / 0.03) 70%);
+  border-right: 1px solid var(--ol-light-border);
+}
+.ol-capture .ol-card__title {
+  font-family: var(--ol-serif);
+  font-weight: 400;
+  font-size: clamp(1.8rem, 2.8vw, 2.4rem);
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+.ol-capture .ol-card__lead {
+  margin-top: 14px;
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--ol-ink-2);
+}
+.ol-capture .ol-lead__campos > .ol-fields:first-child {
+  margin-top: 0;
+}
+.ol-lead__passos {
+  display: grid;
+  gap: 14px;
+  margin-top: 26px;
+  padding-top: 22px;
+  border-top: 1px solid rgb(29 122 98 / 0.18);
+  counter-reset: passo;
+}
+.ol-lead__passos li {
+  position: relative;
+  padding-left: 40px;
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: var(--ol-ink);
+  counter-increment: passo;
+}
+.ol-lead__passos li::before {
+  content: counter(passo, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  top: -3px;
+  font-family: var(--ol-serif);
+  font-size: 1.45rem;
+  line-height: 1.1;
+  color: var(--ol-green-deep);
+}
+.ol-lead .ol-fields--2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.ol-fields--3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.ol-lead__opcionais {
+  margin-top: 26px;
+  padding: 20px 0 0;
+  border: 0;
+  border-top: 1px dashed var(--ol-light-border);
+}
+/* float tira a legend da borda do fieldset; o respiro vem do padding dela,
+   porque a margem do bloco seguinte some na clearance. */
+.ol-lead__opcionais > legend {
+  float: left;
+  width: 100%;
+  padding-bottom: 16px;
+  font-size: 0.8125rem;
+  color: var(--ol-ink-3);
+}
+.ol-lead__opcionais > legend + * {
+  clear: both;
+}
+.ol-lead__opcionais .ol-fields {
+  margin-top: 0;
+}
+.ol-lead__opcionais .ol-field__label {
+  font-weight: 500;
+  color: var(--ol-ink-2);
+}
+.ol-lead .ol-capture__actions .ol-btn {
+  padding: 16px 30px;
+}
+@media (max-width: 900px) {
+  .ol-capture .ol-lead {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .ol-capture .ol-lead__intro {
+    border-right: 0;
+    border-bottom: 1px solid var(--ol-light-border);
+  }
+}
+@media (max-width: 640px) {
+  .ol-lead .ol-fields--2,
+  .ol-fields--3 {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .ol-lead .ol-capture__actions .ol-btn {
+    width: 100%;
+    justify-content: center;
+  }
 }
 .ol-capture__actions {
   display: flex;
@@ -360,4 +501,248 @@
   font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.04em;
+}
+
+/* ---- Vitrine de ferramentas (/ferramentas) ---- */
+
+.ol-hub {
+  background: var(--ol-light);
+  color: var(--ol-ink);
+  border-radius: var(--ol-round) var(--ol-round) 0 0;
+  scroll-margin-top: 80px;
+}
+.ol-hub__inner {
+  max-width: var(--ol-max);
+  margin: 0 auto;
+  padding: clamp(60px, 8vw, 104px) var(--ol-gutter) clamp(56px, 7vw, 96px);
+}
+.ol-hub__title {
+  margin-bottom: clamp(28px, 4vw, 44px);
+  font-size: clamp(1.9rem, 3.3vw, 2.7rem);
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+}
+.ol-hub__title .ol-em {
+  font-family: var(--ol-serif);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  color: var(--ol-green-ink);
+}
+.ol-hub__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  list-style: none;
+}
+@media (max-width: 1000px) {
+  .ol-hub__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 640px) {
+  .ol-hub__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+.ol-hub__card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: clamp(22px, 2.4vw, 30px);
+  background: var(--ol-white);
+  border: 1px solid var(--ol-light-border);
+  border-radius: 20px;
+  color: var(--ol-ink);
+  box-shadow: 0 1px 2px rgb(9 15 30 / 0.04);
+  transition: border-color 0.25s ease, transform 0.25s cubic-bezier(0.2, 0.7, 0.2, 1),
+    box-shadow 0.25s ease;
+}
+.ol-hub__card:hover {
+  color: var(--ol-ink);
+  border-color: var(--ol-green-deep);
+  transform: translateY(-3px);
+  box-shadow: 0 18px 40px rgb(9 15 30 / 0.09);
+}
+.ol-hub__topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 22px;
+}
+.ol-hub__icone {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: rgb(46 232 168 / 0.12);
+  color: var(--ol-green-ink);
+}
+.ol-hub__tipo {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ol-ink-3);
+}
+.ol-hub__card b {
+  font-size: 1.1875rem;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+.ol-hub__texto {
+  margin: 10px 0 24px;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--ol-ink-3);
+}
+.ol-hub__abrir {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: auto;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--ol-green-ink);
+}
+.ol-hub__abrir svg {
+  transition: translate 0.25s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.ol-hub__card:hover .ol-hub__abrir svg {
+  translate: 4px 0;
+}
+/* O cartão de conversa fecha a grade: com seis ferramentas ele vira uma faixa
+   na linha de baixo, em vez de ficar sozinho num canto. */
+.ol-hub__grid > li:last-child:nth-child(3n + 1) {
+  grid-column: 1 / -1;
+}
+@media (max-width: 1000px) {
+  .ol-hub__grid > li:last-child:nth-child(3n + 1) {
+    grid-column: auto;
+  }
+  .ol-hub__grid > li:last-child:nth-child(2n + 1) {
+    grid-column: 1 / -1;
+  }
+}
+.ol-hub__card--conversa {
+  border-color: transparent;
+  background: radial-gradient(80% 90% at 100% 0%, rgb(46 232 168 / 0.16), transparent 70%), var(--ol-bg);
+  color: var(--ol-text);
+}
+.ol-hub__card--conversa:hover {
+  color: var(--ol-text);
+  border-color: rgb(46 232 168 / 0.45);
+}
+.ol-hub__card--conversa .ol-hub__tipo {
+  margin-bottom: 22px;
+  color: var(--ol-green);
+}
+.ol-hub__card--conversa b {
+  font-family: var(--ol-serif);
+  font-weight: 400;
+  font-size: 1.6rem;
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+}
+.ol-hub__card--conversa .ol-hub__texto {
+  color: var(--ol-text-2);
+}
+.ol-hub__card--conversa .ol-hub__abrir {
+  color: var(--ol-green);
+}
+
+/* ---- Qual fomento serve (/fomento-a-inovacao) ---- */
+
+.ol-fom__lista {
+  display: grid;
+  gap: 12px;
+  margin-top: 20px;
+  counter-reset: none;
+}
+.ol-fom__item {
+  padding: 16px 18px;
+  border: 1px solid var(--ol-light-border);
+  border-radius: 14px;
+  background: var(--ol-white);
+}
+.ol-fom__item--alta {
+  border-color: rgb(29 122 98 / 0.45);
+  background: linear-gradient(160deg, rgb(46 232 168 / 0.1), rgb(46 232 168 / 0.02) 70%), var(--ol-white);
+}
+.ol-fom__topo {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+.ol-fom__topo b {
+  font-size: 1.0625rem;
+  letter-spacing: -0.015em;
+  color: var(--ol-ink);
+}
+.ol-fom__selo {
+  flex: none;
+  padding: 3px 10px;
+  border-radius: 100px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  background: var(--ol-light);
+  color: var(--ol-ink-3);
+}
+.ol-fom__item--alta .ol-fom__selo {
+  background: var(--ol-green-deep);
+  color: var(--ol-white);
+}
+.ol-fom__natureza {
+  display: block;
+  margin-top: 2px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ol-green-ink);
+}
+.ol-fom__motivos {
+  display: grid;
+  gap: 6px;
+  margin-top: 10px;
+  padding-left: 18px;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--ol-ink-2);
+}
+.ol-fom__motivos li {
+  list-style: disc;
+}
+.ol-fom__motivos li::marker {
+  color: var(--ol-green-ink);
+}
+.ol-tool .ol-fom__link {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+.ol-fom__fora {
+  margin-top: 18px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  background: var(--ol-light);
+}
+.ol-fom__fora summary {
+  cursor: pointer;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--ol-ink);
+}
+.ol-fom__fora ul {
+  display: grid;
+  gap: 8px;
+  margin-top: 12px;
+  font-size: 0.875rem;
+  line-height: 1.55;
+  color: var(--ol-ink-2);
 }

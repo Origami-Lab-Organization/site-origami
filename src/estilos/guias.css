@@ -1,0 +1,28 @@
+.ol-guias + .ol-guias {
+  border-top: 1px solid var(--ol-light-border);
+}
+
+.ol-guias__abertura {
+  display: flex;
+  align-items: flex-start;
+  gap: clamp(16px, 3vw, 38px);
+  margin-bottom: 32px;
+}
+
+.ol-guias__numero {
+  font-family: var(--ol-serif);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  line-height: 1;
+  color: var(--ol-green-deep);
+}
+
+.ol-guias__abertura .ol-next__title {
+  margin-bottom: 12px;
+  scroll-margin-top: 110px;
+}
+
+.ol-guias__descricao {
+  max-width: 70ch;
+  color: var(--ol-ink-3);
+  line-height: 1.7;
+}

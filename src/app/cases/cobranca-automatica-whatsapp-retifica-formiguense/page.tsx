@@ -4,6 +4,8 @@ import { Rodape } from "@/components/Rodape";
 import { DadosEstruturados } from "@/components/DadosEstruturados";
 import { ScriptsDaPagina } from "@/components/ScriptsDaPagina";
 import { PreloadDaFonteSerifada } from "@/components/PreloadDaFonteSerifada";
+import { atualizacaoDaPagina } from "@/conteudo/paginas";
+import { ORGANIZACAO, SITE_NODE } from "@/lib/seo/estruturados";
 
 export const metadata: Metadata = {
   "title": {
@@ -50,6 +52,8 @@ export const metadata: Metadata = {
 const DADOS_ESTRUTURADOS = {
   "@context": "https://schema.org",
   "@graph": [
+    ORGANIZACAO,
+    SITE_NODE,
     {
       "@type": "Article",
       "@id": "https://www.origamilab.com.br/cases/cobranca-automatica-whatsapp-retifica-formiguense#article",
@@ -79,7 +83,7 @@ const DADOS_ESTRUTURADOS = {
       "isPartOf": {
         "@id": "https://www.origamilab.com.br/#site"
       },
-      "dateModified": "2026-09-25"
+      "dateModified": atualizacaoDaPagina("/cases/cobranca-automatica-whatsapp-retifica-formiguense")
     },
     {
       "@type": "BreadcrumbList",
@@ -392,8 +396,8 @@ export default function PaginaCasesCobrancaAutomaticaWhatsappRetificaFormiguense
               A Origami Lab desenvolve soluções sob medida para indústrias e empresas de serviço que desejam aumentar a sua eficiência operacional. A primeira conversa dura 30 minutos e serve para entender a sua operação e apontar onde estão as maiores oportunidades.
             </p>
             <div className="ol-cta__actions">
-              <a className="ol-btn ol-btn--primary ol-btn--lg" data-magnet="" href="https://forms.cloud.microsoft/r/f2GGyr2vZT" target="_blank" rel="noopener">
-                {"Agendar conversa de 30 minutos "}
+              <a className="ol-btn ol-btn--primary ol-btn--lg" data-magnet="" href="/conversar">
+                {"Solicitar conversa de 30 minutos "}
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                   <path d="M5 12h14" />
                   <path d="m12 5 7 7-7 7" />

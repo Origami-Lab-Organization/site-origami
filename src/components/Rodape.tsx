@@ -23,12 +23,20 @@ const SERVICOS = [
 ];
 
 const GUIAS = [
+  { href: "/guias", rotulo: "Todos os guias" },
+  { href: "/mes-vs-erp", rotulo: "MES e ERP" },
+  { href: "/automacao-de-contas-a-receber", rotulo: "Automação de contas a receber" },
   { href: "/integracao-de-sistemas", rotulo: "Integração de sistemas" },
   { href: "/software-sob-medida", rotulo: "Software sob medida" },
   { href: "/ia-na-industria", rotulo: "IA na indústria" },
   { href: "/lei-do-bem", rotulo: "Lei do Bem" },
+  { href: "/lei-do-bem-desenvolvimento-de-software", rotulo: "Lei do Bem e software" },
   { href: "/lei-do-bem-na-pratica", rotulo: "Lei do Bem na prática" },
   { href: "/financiamento-de-inovacao", rotulo: "Financiamento de inovação" },
+  { href: "/finep", rotulo: "FINEP: como funciona" },
+  { href: "/finep-inovacred", rotulo: "Finep Inovacred" },
+  { href: "/bndes-mais-inovacao", rotulo: "BNDES Mais Inovação" },
+  { href: "/embrapii", rotulo: "EMBRAPII" },
   { href: "/unificacao-de-produtos-digitais", rotulo: "Unificação de produtos digitais" },
 ];
 
@@ -36,12 +44,14 @@ const FERRAMENTAS = [
   { href: "/calculadora-reforma-tributaria", rotulo: "Calculadora da reforma tributária" },
   { href: "/calculadora-de-oee", rotulo: "Calculadora de OEE" },
   { href: "/simulador-lei-do-bem", rotulo: "Simulador da Lei do Bem" },
+  { href: "/fomento-a-inovacao", rotulo: "Qual fomento serve" },
   { href: "/calculadora-custo-hora-maquina", rotulo: "Custo hora-máquina" },
   { href: "/diagnostico-de-modernizacao", rotulo: "Diagnóstico de modernização" },
   { href: "/ferramentas", rotulo: "Todas as ferramentas" },
 ];
 
 const SOLUCOES = [
+  { href: "/software-para-industria-metalurgica", rotulo: "Software para metalúrgicas" },
   { href: "/planejamento-de-producao", rotulo: "Planejamento da produção (PCP)" },
   { href: "/apontamento-de-producao", rotulo: "Apontamento de produção" },
   { href: "/integracao-erp-chao-de-fabrica", rotulo: "Integração ERP e chão de fábrica" },
@@ -108,8 +118,8 @@ export function Rodape({ home = false, parallax = false }: Props) {
           <div>
             <div className="ol-footer__title">Contato</div>
             <div className="ol-footer__list">
-              <a href={FORMULARIO} target="_blank" rel="noopener">
-                Agendar conversa de 30 minutos
+              <a href={FORMULARIO}>
+                Solicitar conversa de 30 minutos
               </a>
               <a href={`mailto:${EMAIL}`}>{EMAIL}</a>
               <a href={WHATSAPP} target="_blank" rel="noopener">

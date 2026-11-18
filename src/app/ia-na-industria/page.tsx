@@ -1,3 +1,4 @@
+import { ChamadaDaOrigami } from "@/components/conteudo/ChamadaDaOrigami";
 import { ChamadaFinal, Documento, LeiturasRelacionadas, Nota, Perguntas, QuadroDeFatos, Tabela } from "@/components/conteudo/blocos";
 import { PaginaDeConteudo, Seta } from "@/components/conteudo/PaginaDeConteudo";
 import { FORMULARIO } from "@/conteudo/contato";
@@ -63,7 +64,6 @@ const DADOS = grafoDaPagina({
   caminho: CAMINHO,
   titulo: TITULO,
   descricao: DESCRICAO,
-  atualizadaEm: ATUALIZADA_EM,
   migalhas: [{ nome: "IA na indústria", caminho: CAMINHO }],
   perguntas: PERGUNTAS,
   principal: {
@@ -96,7 +96,8 @@ export default function PaginaIaNaIndustria() {
   return (
     <PaginaDeConteudo
       migalhas={[{ nome: "IA na indústria" }]}
-      titulo={H1}
+      rotulo="Inteligência artificial"
+      titulo={<>IA na indústria: onde a inteligência artificial <em className="ol-em">ajuda de fato</em> e onde ainda é cedo</>}
       lead={
         <>
           Numa operação industrial, a inteligência artificial já resolve bem tarefas de linguagem e de padrão com dado disponível: ler e conferir documentos, atender e
@@ -107,7 +108,7 @@ export default function PaginaIaNaIndustria() {
       }
       acoes={
         <>
-          <a className="ol-btn ol-btn--primary" href={FORMULARIO} target="_blank" rel="noopener">
+          <a className="ol-btn ol-btn--primary" href={FORMULARIO}>
             Converse com um especialista da Origami <Seta />
           </a>{" "}
           <a className="ol-btn ol-btn--ghost" href="/diagnostico-de-modernizacao">
@@ -115,7 +116,7 @@ export default function PaginaIaNaIndustria() {
           </a>
         </>
       }
-      meta="Origami Lab · Formiga, Minas Gerais · Atualizado em 17/11/2026"
+      meta="Origami Lab · Formiga, Minas Gerais · Atualizado em 18/11/2026"
       dados={DADOS}
     >
       <Documento sumario={SUMARIO}>
@@ -291,6 +292,7 @@ export default function PaginaIaNaIndustria() {
         </p>
       </Documento>
 
+      <ChamadaDaOrigami frente="sistemas" pagina={CAMINHO} />
       <Perguntas prefixo="ia-industria" perguntas={PERGUNTAS} />
 
       <LeiturasRelacionadas

@@ -3,6 +3,8 @@ import { Navegacao } from "@/components/Navegacao";
 import { Rodape } from "@/components/Rodape";
 import { DadosEstruturados } from "@/components/DadosEstruturados";
 import { ScriptsDaPagina } from "@/components/ScriptsDaPagina";
+import { atualizacaoDaPagina } from "@/conteudo/paginas";
+import { ORGANIZACAO, SITE_NODE } from "@/lib/seo/estruturados";
 
 export const metadata: Metadata = {
   "title": {
@@ -49,70 +51,8 @@ export const metadata: Metadata = {
 const DADOS_ESTRUTURADOS = {
   "@context": "https://schema.org",
   "@graph": [
-    {
-      "@type": "ProfessionalService",
-      "@id": "https://www.origamilab.com.br/#org",
-      "name": "Origami Lab",
-      "url": "https://www.origamilab.com.br/",
-      "logo": "https://www.origamilab.com.br/assets/logo-mark-color.png",
-      "email": "contato@origamilab.com.br",
-      "telephone": "+553198055189",
-      "description": "Empresa de tecnologia para indústria sediada em Formiga, Minas Gerais. Moderniza operações industriais com software sob medida, integração com ERP, automação de processos, dados em tempo real e IA aplicada, do diagnóstico à implantação, e estrutura o financiamento via Lei do Bem, FINEP e FAPEMIG.",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "R. Silviano Brandão, 156 - 2º andar",
-        "addressLocality": "Formiga",
-        "addressRegion": "MG",
-        "postalCode": "35570-112",
-        "addressCountry": "BR"
-      },
-      "sameAs": [
-        "https://www.linkedin.com/company/origamilab-br/",
-        "https://www.instagram.com/origamilab_br/"
-      ],
-      "areaServed": [
-        {
-          "@type": "AdministrativeArea",
-          "name": "Centro-Oeste de Minas Gerais"
-        },
-        {
-          "@type": "State",
-          "name": "Minas Gerais"
-        },
-        {
-          "@type": "Country",
-          "name": "Brasil"
-        }
-      ],
-      "slogan": "Tecnologia para indústria",
-      "knowsAbout": [
-        "Tecnologia para indústria",
-        "Software para indústria",
-        "Software sob medida para indústria",
-        "Integração de sistemas industriais",
-        "Integração com ERP",
-        "Automação de processos industriais",
-        "Digitalização do chão de fábrica",
-        "Apontamento de produção",
-        "Gestão industrial em tempo real",
-        "Indústria 4.0",
-        "Inteligência artificial aplicada à indústria",
-        "Consultoria de operação",
-        "Lei do Bem",
-        "FINEP",
-        "FAPEMIG"
-      ]
-    },
-    {
-      "@type": "WebSite",
-      "@id": "https://www.origamilab.com.br/#site",
-      "url": "https://www.origamilab.com.br/",
-      "name": "Origami Lab",
-      "inLanguage": "pt-BR",
-      "publisher": {
-        "@id": "https://www.origamilab.com.br/#org"
-      }
-    },
+    ORGANIZACAO,
+    SITE_NODE,
     {
       "@type": "WebPage",
       "@id": "https://www.origamilab.com.br/integracao-de-sistemas#webpage",
@@ -132,7 +72,7 @@ const DADOS_ESTRUTURADOS = {
       "breadcrumb": {
         "@id": "https://www.origamilab.com.br/integracao-de-sistemas#breadcrumb"
       },
-      "dateModified": "2026-09-18"
+      "dateModified": atualizacaoDaPagina("/integracao-de-sistemas")
     },
     {
       "@type": "BreadcrumbList",
@@ -269,7 +209,7 @@ export default function PaginaIntegracaoDeSistemas() {
               , no ponto onde o fato acontece, e chegar ao ERP sem redigitação. Na prática isso quase nunca significa trocar o ERP — significa construir em volta dele o que ele não cobre e conectar os dois pelo caminho que o fornecedor do ERP permitir: API, banco de dados ou arquivo.
             </p>
             <div className="ol-page__actions">
-              <a className="ol-btn ol-btn--primary" href="https://forms.cloud.microsoft/r/f2GGyr2vZT" target="_blank" rel="noopener">
+              <a className="ol-btn ol-btn--primary" href="/conversar">
                 {"Falar sobre a operação da minha empresa "}
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                   <path d="M5 12h14" />
@@ -481,7 +421,7 @@ export default function PaginaIntegracaoDeSistemas() {
                 <h2 className="ol-h2 ol-h2--ink">Perguntas frequentes</h2>
                 <p>
                   {"Ficou alguma dúvida que não está aqui? "}
-                  <a href="https://forms.cloud.microsoft/r/f2GGyr2vZT" target="_blank" rel="noopener">Fale com a gente</a>
+                  <a href="/conversar">Fale com a gente</a>
                   .
                 </p>
               </div>
@@ -663,8 +603,8 @@ export default function PaginaIntegracaoDeSistemas() {
                 A primeira conversa dura 30 minutos e serve para mapear onde o dado da sua operação para, volta atrás ou se perde. Se o caminho for simples, a gente diz — e às vezes é.
               </p>
               <div className="ol-cta__actions">
-                <a className="ol-btn ol-btn--primary ol-btn--lg" href="https://forms.cloud.microsoft/r/f2GGyr2vZT" target="_blank" rel="noopener">
-                  {"Agendar conversa de 30 minutos "}
+                <a className="ol-btn ol-btn--primary ol-btn--lg" href="/conversar">
+                  {"Solicitar conversa de 30 minutos "}
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                     <path d="M5 12h14" />
                     <path d="m12 5 7 7-7 7" />

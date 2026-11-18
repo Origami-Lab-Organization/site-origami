@@ -5,7 +5,7 @@ type Props = {
   home?: boolean;
   /** A página tem FAQ própria: "Perguntas" rola até ela em vez de ir para a da home. */
   faqNaPagina?: boolean;
-  ativo?: "cases" | "ferramentas";
+  ativo?: "cases" | "ferramentas" | "guias";
   /** Texto do botão de contato. */
   cta?: string;
 };
@@ -17,7 +17,7 @@ const SECOES = [
   { id: "quem-somos", rotulo: "Quem somos" },
 ];
 
-export function Navegacao({ home = false, faqNaPagina = false, ativo, cta = "Agendar conversa" }: Props) {
+export function Navegacao({ home = false, faqNaPagina = false, ativo, cta = "Solicitar conversa" }: Props) {
   const ancora = (id: string) => (home ? `#${id}` : `/#${id}`);
   const faq = home || faqNaPagina ? "#faq" : "/#faq";
   return (
@@ -39,11 +39,14 @@ export function Navegacao({ home = false, faqNaPagina = false, ativo, cta = "Age
             <a className={ativo === "cases" ? "ol-nav__link is-active" : "ol-nav__link"} href="/cases">
               Cases
             </a>
+            <a className={ativo === "guias" ? "ol-nav__link is-active" : "ol-nav__link"} href="/guias" aria-current={ativo === "guias" ? "page" : undefined}>
+              Guias
+            </a>
             <a className={ativo === "ferramentas" ? "ol-nav__link is-active" : "ol-nav__link"} href="/ferramentas">
               Ferramentas
             </a>
           </div>
-          <a className="ol-btn ol-btn--primary ol-btn--sm" data-magnet="" href={FORMULARIO} target="_blank" rel="noopener">
+          <a className="ol-btn ol-btn--primary ol-btn--sm" data-magnet="" href={FORMULARIO}>
             {cta}
           </a>
           <button className="ol-nav__toggle" type="button" aria-expanded="false" aria-controls="ol-menu" aria-label="Abrir menu">
@@ -64,8 +67,9 @@ export function Navegacao({ home = false, faqNaPagina = false, ativo, cta = "Age
         ))}
         <a href={faq}>Perguntas frequentes</a>
         <a href="/cases">Cases</a>
+        <a href="/guias" aria-current={ativo === "guias" ? "page" : undefined}>Guias</a>
         <a href="/ferramentas">Ferramentas grátis</a>
-        <a className="ol-btn ol-btn--primary" href={FORMULARIO} target="_blank" rel="noopener">
+        <a className="ol-btn ol-btn--primary" href={FORMULARIO}>
           {cta}
         </a>
       </div>

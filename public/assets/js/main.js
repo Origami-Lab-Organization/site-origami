@@ -172,7 +172,7 @@
   }
 
   /* ----------------------------------------------------------------------
-     Menu mobile — a lista horizontal não cabe abaixo de 860px
+     Menu mobile — o CSS define quando a lista precisa virar painel
      ---------------------------------------------------------------------- */
 
   function mobileMenu() {
@@ -204,7 +204,7 @@
       toggle.focus();
     });
     window.addEventListener("resize", function () {
-      if (window.innerWidth > 860) setOpen(false);
+      if (window.getComputedStyle(toggle).display === "none") setOpen(false);
     });
   }
 

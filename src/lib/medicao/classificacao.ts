@@ -51,6 +51,7 @@ const PAGINAS_DE_SERVICO = ["/desenvolvimento-de-software", "/consultoria-estrat
 
 /* Ancorados no início do href: um link qualquer com "wa.me/" na query não é CTA. */
 const CTAS = [
+  { tipo: "formulario", padrao: /^\/conversar(?:[?#]|$)/ },
   {
     tipo: "agendamento",
     padrao: /^https:\/\/(outlook\.office(365)?\.com\/(owa\/calendar\/|book\/|bookwithme\/)|bookings\.cloud\.microsoft\/|calendly\.com\/|cal\.com\/)/,
@@ -116,6 +117,7 @@ export function tipoDaPagina(caminho: string, eh404: boolean): string {
   const p = normalizarCaminho(caminho);
   if (eh404) return "404";
   if (p === "/") return "home";
+  if (p === "/conversar") return "contato";
   if (p === "/cases") return "cases";
   if (p.startsWith("/cases/")) return "case";
   if (PAGINAS_DE_SERVICO.includes(p)) return "servico";

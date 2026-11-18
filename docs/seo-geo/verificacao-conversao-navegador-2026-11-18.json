@@ -1,0 +1,65 @@
+{
+  "verificadoEm": "2026-11-18T12:17:01.377Z",
+  "destino": "/conversar?tema=inovacao&de=%2Flei-do-bem-desenvolvimento-de-software",
+  "inicial": {
+    "assunto": "inovacao",
+    "noindex": "noindex, follow",
+    "largura": 390,
+    "documento": 390,
+    "campos": 6
+  },
+  "falha": {
+    "aviso": "Não conseguimos enviar agora. Fale direto com a gente pelo WhatsApp ou por contato@origamilab.com.br. Você também pode usar o formulário alternativo.",
+    "preservou": true,
+    "submits": 0,
+    "erros": 1
+  },
+  "sucesso": {
+    "confirmado": "Recebemos sua solicitação. A equipe da Origami vai avaliar o contexto e responder pelo e-mail informado. Se for necessário marcar uma conversa, combinamos com você.",
+    "submits": 1,
+    "inicios": 0,
+    "piiEmEventos": false
+  },
+  "requisicoesInterceptadas": 2,
+  "contextoEnviado": [
+    {
+      "interesse": "inovacao",
+      "pagina": "/lei-do-bem-desenvolvimento-de-software",
+      "canal": "busca_organica",
+      "entrada": "/lei-do-bem-desenvolvimento-de-software"
+    },
+    {
+      "interesse": "inovacao",
+      "pagina": "/lei-do-bem-desenvolvimento-de-software",
+      "canal": "busca_organica",
+      "entrada": "/lei-do-bem-desenvolvimento-de-software"
+    }
+  ],
+  "alternativa": {
+    "formularioAusente": true,
+    "assunto": "inovacao",
+    "whatsapp": "https://wa.me/553198055189?text=Ol%C3%A1!%20Quero%20conversar%20sobre%20lei%20do%20bem%20e%20financiamento.%20Vim%20da%20p%C3%A1gina%20%2Flei-do-bem%20do%20site%20da%20Origami.",
+    "largura": 390,
+    "documento": 390
+  },
+  "ferramenta": {
+    "resultado": "76,9%",
+    "ponte": "A conta mostra a perda. O próximo passo é medir na operação.",
+    "destino": "#contato-calculadora-de-oee",
+    "formulario": "contato-calculadora-de-oee",
+    "largura": 390,
+    "documento": 390
+  },
+  "errosJs": [],
+  "emailRealEnviado": false,
+  "focoPorCliqueReal": {
+    "campo": "nome",
+    "eventos": [
+      "contact_form_start"
+    ]
+  },
+  "limitacoes": [
+    "API do formulário interceptada no navegador, sem envio real de e-mail.",
+    "O primeiro teste preencheu campos por script; o foco foi verificado separadamente com clique de mouse pelo CDP."
+  ]
+}

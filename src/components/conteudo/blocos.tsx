@@ -98,7 +98,7 @@ export function Perguntas({ prefixo, perguntas }: { prefixo: string; perguntas: 
           <h2 className="ol-h2 ol-h2--ink">Perguntas frequentes</h2>
           <p>
             Ficou alguma dúvida que não está aqui?{" "}
-            <a href={FORMULARIO} target="_blank" rel="noopener">
+            <a href={FORMULARIO}>
               Fale com a gente
             </a>
             .
@@ -165,7 +165,7 @@ export function ChamadaFinal({ titulo, lead, rotulo = "Converse com um especiali
         <h2 className="ol-cta__title">{titulo}</h2>
         <p className="ol-cta__lead">{lead}</p>
         <div className="ol-cta__actions">
-          <a className="ol-btn ol-btn--primary ol-btn--lg" href={FORMULARIO} target="_blank" rel="noopener">
+          <a className="ol-btn ol-btn--primary ol-btn--lg" href={FORMULARIO}>
             {rotulo} <Seta />
           </a>{" "}
           <a className="ol-btn ol-btn--ghost" href={`${WHATSAPP}?text=${encodeURIComponent(whatsapp)}`} target="_blank" rel="noopener">

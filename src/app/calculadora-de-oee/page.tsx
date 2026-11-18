@@ -65,7 +65,6 @@ const DADOS = grafoDaPagina({
   caminho: CAMINHO,
   titulo: TITULO,
   descricao: DESCRICAO,
-  atualizadaEm: "2026-11-17",
   migalhas: [
     { nome: "Ferramentas", caminho: "/ferramentas" },
     { nome: "Calculadora de OEE", caminho: CAMINHO },
@@ -108,7 +107,9 @@ export default function PaginaCalculadoraDeOee() {
     <PaginaDeConteudo
       ativo="ferramentas"
       migalhas={[{ nome: "Ferramentas", caminho: "/ferramentas" }, { nome: "Calculadora de OEE" }]}
-      titulo="Calculadora de OEE: disponibilidade, desempenho e qualidade"
+      rotulo="Ferramenta gratuita"
+      rotuloDoLead="Como funciona"
+      titulo={<>Calculadora de <em className="ol-em">OEE</em>: disponibilidade, desempenho e qualidade</>}
       lead={
         <>
           Para calcular o OEE, multiplique três taxas do mesmo período: <strong>disponibilidade</strong> (tempo em operação ÷ tempo planejado),{" "}
@@ -122,7 +123,7 @@ export default function PaginaCalculadoraDeOee() {
           <a className="ol-btn ol-btn--primary" href="#ferramenta">
             Calcular o OEE <Seta />
           </a>{" "}
-          <a className="ol-btn ol-btn--ghost" href={FORMULARIO} target="_blank" rel="noopener">
+          <a className="ol-btn ol-btn--ghost" href={FORMULARIO}>
             Converse com um especialista
           </a>
         </>

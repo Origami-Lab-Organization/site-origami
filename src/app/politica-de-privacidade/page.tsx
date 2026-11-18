@@ -1,6 +1,6 @@
 import { Documento } from "@/components/conteudo/blocos";
 import { PaginaDeConteudo } from "@/components/conteudo/PaginaDeConteudo";
-import { EMAIL, FORMULARIO } from "@/conteudo/contato";
+import { EMAIL, FORMULARIO_ALTERNATIVO } from "@/conteudo/contato";
 import { grafoDaPagina } from "@/lib/seo/estruturados";
 import { metadataDaPagina } from "@/lib/seo/metadata";
 
@@ -9,7 +9,7 @@ import { metadataDaPagina } from "@/lib/seo/metadata";
    social e CNPJ quando forem publicados no rodapé. */
 
 const CAMINHO = "/politica-de-privacidade";
-const ATUALIZADA_EM = "2026-11-17";
+const ATUALIZADA_EM = "2026-11-18";
 
 export const metadata = metadataDaPagina({
   titulo: "Política de privacidade",
@@ -41,14 +41,16 @@ export default function PoliticaDePrivacidade() {
   return (
     <PaginaDeConteudo
       migalhas={[{ nome: "Política de privacidade" }]}
-      titulo="Política de privacidade"
+      rotulo="Transparência e LGPD"
+      abertura="simples"
+      titulo={<>Política de <em className="ol-em">privacidade</em></>}
       lead="O que o site da Origami Lab coleta, para quê, com quem compartilha e como você pede acesso, correção ou exclusão dos seus dados, nos termos da Lei Geral de Proteção de Dados (Lei 13.709/2018)."
       acoes={
         <a className="ol-btn ol-btn--ghost" href={`mailto:${EMAIL}`}>
           Falar sobre os meus dados
         </a>
       }
-      meta="Versão de 17/11/2026"
+      meta="Versão de 18/11/2026"
       dados={DADOS}
       faqNaPagina={false}
     >
@@ -75,18 +77,19 @@ export default function PoliticaDePrivacidade() {
         <h2 id="formularios">Formulários e ferramentas</h2>
         <p>
           Quando você deixa um contato numa ferramenta ou formulário do site, recebemos o que você preencher: nome, e-mail, empresa, cargo,
-          telefone, faixas de faturamento e de número de funcionários, as respostas e o resultado da ferramenta e a origem da sua visita. Usamos
+          telefone, mensagem, faixas de faturamento e de número de funcionários, as respostas e o resultado da ferramenta, o assunto de interesse e a origem da sua visita. Usamos
           esses dados para responder ao seu contato e avaliar como podemos ajudar a sua empresa. A base legal é o seu consentimento, dado ao marcar a
           caixa do formulário (art. 7º, I), e os procedimentos preliminares de um eventual contrato a seu pedido (art. 7º, V).
         </p>
         <p>
-          O resultado das calculadoras e do diagnóstico é calculado no seu navegador e aparece sem cadastro. Ele só é enviado à Origami se você
-          deixar o contato.
+          OEE, custo hora-máquina, Lei do Bem e diagnóstico são calculados no navegador e aparecem sem cadastro. Na calculadora da reforma tributária,
+          os parâmetros da operação passam pelo servidor da Origami e seguem para a API da Receita Federal para produzir o cálculo. Quando você envia
+          um formulário, o contexto e o resultado informado seguem junto ao contato para a equipe comercial.
         </p>
         <p>
           Alguns botões levam a canais de terceiros: o{" "}
-          <a href={FORMULARIO} target="_blank" rel="noopener">
-            formulário de contato
+          <a href={FORMULARIO_ALTERNATIVO} target="_blank" rel="noopener">
+            formulário alternativo de contato
           </a>{" "}
           no Microsoft Forms e o WhatsApp. O que você envia por eles é tratado também por esses serviços, conforme as políticas da Microsoft e da
           Meta.

@@ -4,6 +4,8 @@ import { Rodape } from "@/components/Rodape";
 import { DadosEstruturados } from "@/components/DadosEstruturados";
 import { ScriptsDaPagina } from "@/components/ScriptsDaPagina";
 import "@/estilos/servico.css";
+import { atualizacaoDaPagina } from "@/conteudo/paginas";
+import { ORGANIZACAO, SITE_NODE } from "@/lib/seo/estruturados";
 
 export const metadata: Metadata = {
   "title": {
@@ -50,70 +52,8 @@ export const metadata: Metadata = {
 const DADOS_ESTRUTURADOS = {
   "@context": "https://schema.org",
   "@graph": [
-    {
-      "@type": "ProfessionalService",
-      "@id": "https://www.origamilab.com.br/#org",
-      "name": "Origami Lab",
-      "url": "https://www.origamilab.com.br/",
-      "logo": "https://www.origamilab.com.br/assets/logo-mark-color.png",
-      "email": "contato@origamilab.com.br",
-      "telephone": "+553198055189",
-      "description": "Empresa de tecnologia para indústria sediada em Formiga, Minas Gerais. Moderniza operações industriais com software sob medida, integração com ERP, automação de processos, dados em tempo real e IA aplicada, do diagnóstico à implantação, e estrutura o financiamento via Lei do Bem, FINEP e FAPEMIG.",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "R. Silviano Brandão, 156 - 2º andar",
-        "addressLocality": "Formiga",
-        "addressRegion": "MG",
-        "postalCode": "35570-112",
-        "addressCountry": "BR"
-      },
-      "sameAs": [
-        "https://www.linkedin.com/company/origamilab-br/",
-        "https://www.instagram.com/origamilab_br/"
-      ],
-      "areaServed": [
-        {
-          "@type": "AdministrativeArea",
-          "name": "Centro-Oeste de Minas Gerais"
-        },
-        {
-          "@type": "State",
-          "name": "Minas Gerais"
-        },
-        {
-          "@type": "Country",
-          "name": "Brasil"
-        }
-      ],
-      "slogan": "Tecnologia para indústria",
-      "knowsAbout": [
-        "Tecnologia para indústria",
-        "Software para indústria",
-        "Software sob medida para indústria",
-        "Integração de sistemas industriais",
-        "Integração com ERP",
-        "Automação de processos industriais",
-        "Digitalização do chão de fábrica",
-        "Apontamento de produção",
-        "Gestão industrial em tempo real",
-        "Indústria 4.0",
-        "Inteligência artificial aplicada à indústria",
-        "Consultoria de operação",
-        "Lei do Bem",
-        "FINEP",
-        "FAPEMIG"
-      ]
-    },
-    {
-      "@type": "WebSite",
-      "@id": "https://www.origamilab.com.br/#site",
-      "url": "https://www.origamilab.com.br/",
-      "name": "Origami Lab",
-      "inLanguage": "pt-BR",
-      "publisher": {
-        "@id": "https://www.origamilab.com.br/#org"
-      }
-    },
+    ORGANIZACAO,
+    SITE_NODE,
     {
       "@type": "WebPage",
       "@id": "https://www.origamilab.com.br/desenvolvimento-de-software#webpage",
@@ -130,7 +70,7 @@ const DADOS_ESTRUTURADOS = {
       "publisher": {
         "@id": "https://www.origamilab.com.br/#org"
       },
-      "dateModified": "2026-09-18"
+      "dateModified": atualizacaoDaPagina("/desenvolvimento-de-software")
     },
     {
       "@type": "Service",
@@ -193,51 +133,6 @@ const DADOS_ESTRUTURADOS = {
       }
     },
     {
-      "@type": "HowTo",
-      "@id": "https://www.origamilab.com.br/desenvolvimento-de-software#howto",
-      "name": "Como a Origami Lab conduz um projeto de software sob medida",
-      "description": "As seis etapas entre o diagnóstico da operação e o time do cliente conduzindo o sistema com autonomia.",
-      "inLanguage": "pt-BR",
-      "step": [
-        {
-          "@type": "HowToStep",
-          "position": 1,
-          "name": "Diagnóstico dentro da operação",
-          "text": "De uma a duas semanas imersos fisicamente onde o processo acontece, entendendo como ele funciona."
-        },
-        {
-          "@type": "HowToStep",
-          "position": 2,
-          "name": "Estratégia com a diretoria",
-          "text": "Definir o que move resultado primeiro e o que fica para depois, com aprovação de cada fase antes do início."
-        },
-        {
-          "@type": "HowToStep",
-          "position": 3,
-          "name": "Primeira entrega em produção",
-          "text": "Ainda no primeiro mês há software rodando e sendo usado por quem está na ponta."
-        },
-        {
-          "@type": "HowToStep",
-          "position": 4,
-          "name": "Ciclos de duas semanas",
-          "text": "Construir, medir e aprender a cada sprint, com review ao fim de cada ciclo."
-        },
-        {
-          "@type": "HowToStep",
-          "position": 5,
-          "name": "Integração com o que já existe",
-          "text": "Conectar o novo sistema ao ERP e aos sistemas em uso, pelo caminho que o fornecedor permite."
-        },
-        {
-          "@type": "HowToStep",
-          "position": 6,
-          "name": "Implantação e autonomia",
-          "text": "Treinar as pessoas da operação e acompanhar o uso até a equipe do cliente conduzir tudo sozinha, com o código documentado."
-        }
-      ]
-    },
-    {
       "@type": "FAQPage",
       "@id": "https://www.origamilab.com.br/desenvolvimento-de-software#faq",
       "mainEntity": [
@@ -270,7 +165,7 @@ const DADOS_ESTRUTURADOS = {
           "name": "Quanto custa desenvolver um sistema sob medida?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Cada projeto é dimensionado pelo escopo, sem pacote fechado de prateleira. O investimento é definido a partir do que a operação precisa e do retorno que aquilo destrava, e apresentado antes de qualquer etapa começar. O cliente aprova cada fase antes do início."
+            "text": "O custo depende das integrações necessárias, das regras e exceções do processo, do número de usuários e turnos, dos dados a migrar e do trabalho de implantação e treinamento. O diagnóstico define o escopo, as prioridades e o investimento por etapa. Você recebe a proposta antes de cada fase e aprova o que será feito."
           }
         },
         {
@@ -294,7 +189,7 @@ const DADOS_ESTRUTURADOS = {
           "name": "Dá para financiar o projeto de software com recurso de incentivo?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Na maioria dos casos, sim. Lei do Bem, FINEP e FAPEMIG existem para financiar modernização e inovação, e a Origami Lab cuida do enquadramento, da documentação e da prestação de contas."
+            "text": "Depende da empresa, do projeto e do instrumento. A Lei do Bem é um incentivo fiscal para pesquisa e desenvolvimento tecnológico, com requisitos como Lucro Real, regularidade fiscal e lucro fiscal para a exclusão adicional de dispêndios. Comprar software ou automatizar uma rotina não garante enquadramento. Crédito e subvenção têm condições próprias de elegibilidade e aprovação. A avaliação é feita antes de incluir qualquer incentivo na conta do investimento."
           }
         }
       ]
@@ -342,7 +237,7 @@ export default function PaginaDesenvolvimentoDeSoftware() {
                   Construímos soluções integradas ao seu ecossistema para que você tenha gestão em tempo real, dados assertivos e processos automatizados.
                 </h2>
                 <div className="ol-sv-hero__actions">
-                  <a className="ol-btn ol-btn--primary" data-magnet="" href="https://forms.cloud.microsoft/r/f2GGyr2vZT" target="_blank" rel="noopener">
+                  <a className="ol-btn ol-btn--primary" data-magnet="" href="/conversar">
                     {"Falar sobre o meu projeto "}
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                       <path d="M5 12h14" />
@@ -427,7 +322,12 @@ export default function PaginaDesenvolvimentoDeSoftware() {
         {/* ==================== O que construímos ==================== */}
         <section className="ol-sv-sec ol-sv-sec--light" id="solucoes">
           <div className="ol-sv-sec__inner">
-            <h2 className="ol-sv-sec__title" data-anim="">Como é ter um software feito para a sua operação</h2>
+            <h2 className="ol-sv-sec__title ol-sv-sec__title--tight" data-anim="">Como é ter um software feito para a sua operação</h2>
+            <p className="ol-sv-sec__lead">
+              Desenvolvimento de software para indústria é construir o sistema que cobre um processo específico da operação: planejamento, apontamento, pedidos,
+              cobrança ou trabalho em campo. Na Origami Lab, o serviço inclui diagnóstico, desenvolvimento, integração com o ERP, implantação e treinamento da equipe.
+              A escolha entre integrar, desenvolver ou modernizar parte do que já existe começa pelo processo que precisa melhorar.
+            </p>
             <div className="ol-paths">
               <article className="ol-path" data-anim="" data-d="1">
                 <div className="ol-path__kind">
@@ -584,6 +484,77 @@ export default function PaginaDesenvolvimentoDeSoftware() {
             </div>
           </div>
         </section>
+        {/* ==================== Decisão de contratação ==================== */}
+        <section className="ol-doc" aria-labelledby="escolher-caminho">
+          <div className="ol-doc__inner">
+            <aside className="ol-toc">
+              <div className="ol-toc__title">Antes de contratar</div>
+              <ul className="ol-toc__list">
+                <li><a href="#escolher-caminho">Qual caminho resolve</a></li>
+                <li><a href="#criterios-de-contratacao">O que comparar na proposta</a></li>
+                <li><a href="#projetos-publicados">Projetos publicados</a></li>
+              </ul>
+            </aside>
+            <article className="ol-prose">
+              <h2 id="escolher-caminho">Integrar, desenvolver ou modernizar?</h2>
+              <p>O problema que a operação enfrenta define o trabalho necessário. Um mesmo projeto pode combinar os três caminhos.</p>
+              <div className="ol-tablewrap">
+                <table className="ol-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Situação da empresa</th>
+                      <th scope="col">Caminho a avaliar</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Os sistemas atendem ao processo, mas alguém precisa exportar e redigitar os mesmos dados.</td>
+                      <td><a href="/integracao-de-sistemas">Integrar os sistemas existentes</a>, com registro de falhas e conferência dos dados.</td>
+                    </tr>
+                    <tr>
+                      <td>O processo tem regras próprias que o ERP e os produtos avaliados não cobrem.</td>
+                      <td><a href="/software-sob-medida">Desenvolver software sob medida</a> para essa parte da operação, conectado ao ERP.</td>
+                    </tr>
+                    <tr>
+                      <td>O processo depende de um sistema antigo que a empresa não consegue mais alterar com segurança.</td>
+                      <td><a href="/modernizacao-de-sistemas-legados">Modernizar o sistema legado</a>, preservando regras e migrando por etapas.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p>Se um produto pronto cobre o processo com pouca adaptação, ele também deve entrar na comparação.</p>
+
+              <p>
+                Dois recortes ajudam a detalhar essa escolha: a <a href="/mes-vs-erp">comparação entre MES e ERP</a> para a produção e a{" "}
+                <a href="/automacao-de-contas-a-receber">automação de contas a receber</a> para o financeiro.
+              </p>
+
+              <h2 id="criterios-de-contratacao">O que comparar numa proposta de desenvolvimento</h2>
+              <ul>
+                <li><strong>Escopo e aceite:</strong> qual processo será atendido, o que fica fora e como a equipe confirma que a entrega funciona.</li>
+                <li><strong>Integrações:</strong> quais sistemas trocam dados, quais acessos são necessários e quem responde quando a integração falha.</li>
+                <li><strong>Migração e implantação:</strong> como conferir o histórico, testar com usuários e manter a operação durante a mudança.</li>
+                <li><strong>Continuidade:</strong> de quem são o código, os dados e as contas de infraestrutura, e o que será entregue de documentação e treinamento.</li>
+              </ul>
+              <p>
+                O <a href="/diagnostico-de-modernizacao">diagnóstico gratuito de modernização</a> ajuda a organizar os primeiros sinais da sua operação.
+                O escopo e a proposta exigem uma avaliação com a equipe.
+              </p>
+
+              <h2 id="projetos-publicados">Como isso aparece em projetos da Origami</h2>
+              <ul>
+                <li>
+                  <a href="/cases/cobranca-automatica-whatsapp-retifica-formiguense">Retífica Formiguense:</a> a régua de cobrança via WhatsApp foi integrada ao ERP,
+                  com acompanhamento da carteira em um painel. O case descreve o problema, a implantação e o resultado observado.
+                </li>
+                <li>
+                  <a href="/cases/transportadora-cabral">Transportadora Cabral:</a> a Central do Motorista conectou solicitações, checklists e manutenção ao TripLog,
+                  com registro das interações. O case inclui o relato do cliente após o início da operação.
+                </li>
+              </ul>
+            </article>
+          </div>
+        </section>
         {/* ==================== Perguntas ==================== */}
         <section className="ol-faq ol-sv-faq" id="faq">
           <div className="ol-faq__inner">
@@ -591,7 +562,7 @@ export default function PaginaDesenvolvimentoDeSoftware() {
               <h2 className="ol-h2 ol-h2--ink">Perguntas frequentes</h2>
               <p>
                 {"Não achou a sua? "}
-                <a href="https://forms.cloud.microsoft/r/f2GGyr2vZT" target="_blank" rel="noopener">Fale com a gente</a>
+                <a href="/conversar">Fale com a gente</a>
                 .
               </p>
             </div>
@@ -660,7 +631,7 @@ export default function PaginaDesenvolvimentoDeSoftware() {
                 </button>
                 <div className="ol-faq__body" id="faq-dev-4" data-faq-body="">
                   <p>
-                    Cada projeto é dimensionado pelo escopo: não trabalhamos com pacote fechado de prateleira. O investimento é definido a partir do que a operação precisa e do retorno que aquilo destrava, e apresentado antes de qualquer etapa começar. Você aprova cada fase antes de ela ser iniciada.
+                    O custo depende das integrações necessárias, das regras e exceções do processo, do número de usuários e turnos, dos dados a migrar e do trabalho de implantação e treinamento. O diagnóstico define o escopo, as prioridades e o investimento por etapa. Você recebe a proposta antes de cada fase e aprova o que será feito.
                   </p>
                 </div>
               </div>
@@ -711,9 +682,12 @@ export default function PaginaDesenvolvimentoDeSoftware() {
                 </button>
                 <div className="ol-faq__body" id="faq-dev-7" data-faq-body="">
                   <p>
-                    {"Na maioria dos casos, sim. Lei do Bem, FINEP e FAPEMIG existem para financiar modernização e inovação, e cuidamos do enquadramento, da documentação e da prestação de contas. Veja "}
-                    <a href="/acesso-a-capital">acesso a capital</a>
-                    .
+                    Depende da empresa, do projeto e do instrumento. A Lei do Bem é um incentivo fiscal para pesquisa e desenvolvimento tecnológico, com requisitos como Lucro Real, regularidade fiscal e lucro fiscal para a exclusão adicional de dispêndios. Comprar software ou automatizar uma rotina não garante enquadramento. Crédito e subvenção têm condições próprias de elegibilidade e aprovação. A avaliação é feita antes de incluir qualquer incentivo na conta do investimento.
+                  </p>
+                  <p>
+                    Entenda os <a href="/lei-do-bem">requisitos da Lei do Bem</a> e a diferença entre os <a href="/financiamento-de-inovacao">instrumentos de financiamento da inovação</a>.
+                    {" A orientação oficial está no "}
+                    <a href="https://www.gov.br/mcti/pt-br/acompanhe-o-mcti/lei-do-bem/paginas/o-que-e-a-lei-do-bem" target="_blank" rel="noopener">MCTI</a>.
                   </p>
                 </div>
               </div>
@@ -766,7 +740,7 @@ export default function PaginaDesenvolvimentoDeSoftware() {
               O primeiro passo é uma conversa de 30 minutos sobre a sua operação. Se o caminho for produto de mercado em vez de sob medida, a gente diz.
             </p>
             <div className="ol-cta__actions">
-              <a className="ol-btn ol-btn--primary ol-btn--lg" data-magnet="" href="https://forms.cloud.microsoft/r/f2GGyr2vZT" target="_blank" rel="noopener">
+              <a className="ol-btn ol-btn--primary ol-btn--lg" data-magnet="" href="/conversar">
                 {"Falar sobre o meu projeto "}
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                   <path d="M5 12h14" />

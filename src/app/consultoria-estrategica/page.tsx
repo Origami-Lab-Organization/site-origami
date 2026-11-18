@@ -4,6 +4,8 @@ import { Rodape } from "@/components/Rodape";
 import { DadosEstruturados } from "@/components/DadosEstruturados";
 import { ScriptsDaPagina } from "@/components/ScriptsDaPagina";
 import "@/estilos/servico.css";
+import { atualizacaoDaPagina } from "@/conteudo/paginas";
+import { ORGANIZACAO, SITE_NODE } from "@/lib/seo/estruturados";
 
 export const metadata: Metadata = {
   "title": {
@@ -50,70 +52,8 @@ export const metadata: Metadata = {
 const DADOS_ESTRUTURADOS = {
   "@context": "https://schema.org",
   "@graph": [
-    {
-      "@type": "ProfessionalService",
-      "@id": "https://www.origamilab.com.br/#org",
-      "name": "Origami Lab",
-      "url": "https://www.origamilab.com.br/",
-      "logo": "https://www.origamilab.com.br/assets/logo-mark-color.png",
-      "email": "contato@origamilab.com.br",
-      "telephone": "+553198055189",
-      "description": "Empresa de tecnologia para indústria sediada em Formiga, Minas Gerais. Moderniza operações industriais com software sob medida, integração com ERP, automação de processos, dados em tempo real e IA aplicada, do diagnóstico à implantação, e estrutura o financiamento via Lei do Bem, FINEP e FAPEMIG.",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "R. Silviano Brandão, 156 - 2º andar",
-        "addressLocality": "Formiga",
-        "addressRegion": "MG",
-        "postalCode": "35570-112",
-        "addressCountry": "BR"
-      },
-      "sameAs": [
-        "https://www.linkedin.com/company/origamilab-br/",
-        "https://www.instagram.com/origamilab_br/"
-      ],
-      "areaServed": [
-        {
-          "@type": "AdministrativeArea",
-          "name": "Centro-Oeste de Minas Gerais"
-        },
-        {
-          "@type": "State",
-          "name": "Minas Gerais"
-        },
-        {
-          "@type": "Country",
-          "name": "Brasil"
-        }
-      ],
-      "slogan": "Tecnologia para indústria",
-      "knowsAbout": [
-        "Tecnologia para indústria",
-        "Software para indústria",
-        "Software sob medida para indústria",
-        "Integração de sistemas industriais",
-        "Integração com ERP",
-        "Automação de processos industriais",
-        "Digitalização do chão de fábrica",
-        "Apontamento de produção",
-        "Gestão industrial em tempo real",
-        "Indústria 4.0",
-        "Inteligência artificial aplicada à indústria",
-        "Consultoria de operação",
-        "Lei do Bem",
-        "FINEP",
-        "FAPEMIG"
-      ]
-    },
-    {
-      "@type": "WebSite",
-      "@id": "https://www.origamilab.com.br/#site",
-      "url": "https://www.origamilab.com.br/",
-      "name": "Origami Lab",
-      "inLanguage": "pt-BR",
-      "publisher": {
-        "@id": "https://www.origamilab.com.br/#org"
-      }
-    },
+    ORGANIZACAO,
+    SITE_NODE,
     {
       "@type": "WebPage",
       "@id": "https://www.origamilab.com.br/consultoria-estrategica#webpage",
@@ -130,7 +70,7 @@ const DADOS_ESTRUTURADOS = {
       "publisher": {
         "@id": "https://www.origamilab.com.br/#org"
       },
-      "dateModified": "2026-09-18"
+      "dateModified": atualizacaoDaPagina("/consultoria-estrategica")
     },
     {
       "@type": "Service",
@@ -200,51 +140,6 @@ const DADOS_ESTRUTURADOS = {
           }
         ]
       }
-    },
-    {
-      "@type": "HowTo",
-      "@id": "https://www.origamilab.com.br/consultoria-estrategica#howto",
-      "name": "Como a Origami Lab conduz um diagnóstico de operação",
-      "description": "As seis etapas entre a imersão na operação e a capacitação do time do cliente.",
-      "inLanguage": "pt-BR",
-      "step": [
-        {
-          "@type": "HowToStep",
-          "position": 1,
-          "name": "Imersão na operação",
-          "text": "De duas a quatro semanas no chão de fábrica, na obra ou no escritório, acompanhando o processo onde ele acontece e conversando com quem o executa todo dia."
-        },
-        {
-          "@type": "HowToStep",
-          "position": 2,
-          "name": "Mapeamento do fluxo real",
-          "text": "Registrar o processo como ele é, e não como o procedimento diz que é: os pontos de redigitação, os números que não batem entre sistemas e a informação que chega tarde demais para orientar a decisão."
-        },
-        {
-          "@type": "HowToStep",
-          "position": 3,
-          "name": "Avaliação de maturidade digital",
-          "text": "Situar a empresa em processo, informação e tecnologia, ante o que o setor pratica e o que a estratégia da companhia vai exigir nos próximos anos."
-        },
-        {
-          "@type": "HowToStep",
-          "position": 4,
-          "name": "Priorização do portfólio",
-          "text": "Ordenar as oportunidades por retorno e esforço, com estimativa de ROI, para a diretoria decidir o que entra primeiro com número na mão."
-        },
-        {
-          "@type": "HowToStep",
-          "position": 5,
-          "name": "Roadmap e indicadores",
-          "text": "Entregar o plano de modernização com sequência, prazo e custo, e os indicadores que vão dizer se cada etapa funcionou. Vários deles inexistentes antes."
-        },
-        {
-          "@type": "HowToStep",
-          "position": 6,
-          "name": "Capacitação do time",
-          "text": "Treinamentos e programas de inovação in-company para a empresa conduzir o ciclo seguinte com autonomia."
-        }
-      ]
     },
     {
       "@type": "FAQPage",
@@ -351,7 +246,7 @@ export default function PaginaConsultoriaEstrategica() {
                   A tecnologia não pode ser um setor de TI com projetos isolados. Ela deve ser responsável por acelerar o crescimento do seu negócio e garantir competitividade no mercado.
                 </h2>
                 <div className="ol-sv-hero__actions">
-                  <a className="ol-btn ol-btn--primary" data-magnet="" href="https://forms.cloud.microsoft/r/f2GGyr2vZT" target="_blank" rel="noopener">
+                  <a className="ol-btn ol-btn--primary" data-magnet="" href="/conversar">
                     {"Avaliar o meu portfólio "}
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                       <path d="M5 12h14" />
@@ -707,7 +602,7 @@ export default function PaginaConsultoriaEstrategica() {
               <h2 className="ol-h2 ol-h2--ink">Perguntas frequentes</h2>
               <p>
                 {"Não achou a sua? "}
-                <a href="https://forms.cloud.microsoft/r/f2GGyr2vZT" target="_blank" rel="noopener">Fale com a gente</a>
+                <a href="/conversar">Fale com a gente</a>
                 .
               </p>
             </div>
@@ -870,7 +765,7 @@ export default function PaginaConsultoriaEstrategica() {
               Olhamos a sua operação, o que já foi tentado e o que está travado hoje. Daí sai a recomendação do que atacar primeiro, mesmo que a resposta não passe por contratar a gente.
             </p>
             <div className="ol-cta__actions">
-              <a className="ol-btn ol-btn--primary ol-btn--lg" data-magnet="" href="https://forms.cloud.microsoft/r/f2GGyr2vZT" target="_blank" rel="noopener">
+              <a className="ol-btn ol-btn--primary ol-btn--lg" data-magnet="" href="/conversar">
                 {"Avaliar o meu portfólio "}
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                   <path d="M5 12h14" />

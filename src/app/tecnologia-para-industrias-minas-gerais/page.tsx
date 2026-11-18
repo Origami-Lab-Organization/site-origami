@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
 import { Navegacao } from "@/components/Navegacao";
+import { PreloadDaFonteSerifada } from "@/components/PreloadDaFonteSerifada";
 import { Rodape } from "@/components/Rodape";
 import { DadosEstruturados } from "@/components/DadosEstruturados";
 import { ScriptsDaPagina } from "@/components/ScriptsDaPagina";
+import { atualizacaoDaPagina } from "@/conteudo/paginas";
+import { ORGANIZACAO, SITE_NODE } from "@/lib/seo/estruturados";
 
 export const metadata: Metadata = {
   "title": {
@@ -51,70 +54,8 @@ export const metadata: Metadata = {
 const DADOS_ESTRUTURADOS = {
   "@context": "https://schema.org",
   "@graph": [
-    {
-      "@type": "ProfessionalService",
-      "@id": "https://www.origamilab.com.br/#org",
-      "name": "Origami Lab",
-      "url": "https://www.origamilab.com.br/",
-      "logo": "https://www.origamilab.com.br/assets/logo-mark-color.png",
-      "email": "contato@origamilab.com.br",
-      "telephone": "+553198055189",
-      "description": "Empresa de tecnologia para indústria sediada em Formiga, Minas Gerais. Moderniza operações industriais com software sob medida, integração com ERP, automação de processos, dados em tempo real e IA aplicada, do diagnóstico à implantação, e estrutura o financiamento via Lei do Bem, FINEP e FAPEMIG.",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "R. Silviano Brandão, 156 - 2º andar",
-        "addressLocality": "Formiga",
-        "addressRegion": "MG",
-        "postalCode": "35570-112",
-        "addressCountry": "BR"
-      },
-      "sameAs": [
-        "https://www.linkedin.com/company/origamilab-br/",
-        "https://www.instagram.com/origamilab_br/"
-      ],
-      "areaServed": [
-        {
-          "@type": "AdministrativeArea",
-          "name": "Centro-Oeste de Minas Gerais"
-        },
-        {
-          "@type": "State",
-          "name": "Minas Gerais"
-        },
-        {
-          "@type": "Country",
-          "name": "Brasil"
-        }
-      ],
-      "slogan": "Tecnologia para indústria",
-      "knowsAbout": [
-        "Tecnologia para indústria",
-        "Software para indústria",
-        "Software sob medida para indústria",
-        "Integração de sistemas industriais",
-        "Integração com ERP",
-        "Automação de processos industriais",
-        "Digitalização do chão de fábrica",
-        "Apontamento de produção",
-        "Gestão industrial em tempo real",
-        "Indústria 4.0",
-        "Inteligência artificial aplicada à indústria",
-        "Consultoria de operação",
-        "Lei do Bem",
-        "FINEP",
-        "FAPEMIG"
-      ]
-    },
-    {
-      "@type": "WebSite",
-      "@id": "https://www.origamilab.com.br/#site",
-      "url": "https://www.origamilab.com.br/",
-      "name": "Origami Lab",
-      "inLanguage": "pt-BR",
-      "publisher": {
-        "@id": "https://www.origamilab.com.br/#org"
-      }
-    },
+    ORGANIZACAO,
+    SITE_NODE,
     {
       "@type": "WebPage",
       "@id": "https://www.origamilab.com.br/tecnologia-para-industrias-minas-gerais#webpage",
@@ -122,7 +63,7 @@ const DADOS_ESTRUTURADOS = {
       "name": "Tecnologia para indústrias de Minas Gerais",
       "description": "Software, integração com ERP e automação de processos para indústrias de Minas Gerais, a partir de Formiga: cal, siderurgia, fundição, calçados e manufatura.",
       "inLanguage": "pt-BR",
-      "dateModified": "2026-09-29",
+      "dateModified": atualizacaoDaPagina("/tecnologia-para-industrias-minas-gerais"),
       "isPartOf": {
         "@id": "https://www.origamilab.com.br/#site"
       },
@@ -280,6 +221,7 @@ const DADOS_ESTRUTURADOS = {
 export default function PaginaTecnologiaParaIndustriasMinasGerais() {
   return (
     <>
+      <PreloadDaFonteSerifada />
       <Navegacao faqNaPagina />
       <div className="ol-root" id="conteudo">
         {/* ==================== Abertura ==================== */}
@@ -293,26 +235,34 @@ export default function PaginaTecnologiaParaIndustriasMinasGerais() {
               {" "}
               <span>Tecnologia para indústrias de Minas Gerais</span>
             </nav>
-            <h1 className="ol-page__title">Tecnologia para indústrias de Minas Gerais</h1>
-            <p className="ol-page__lead">
-              {"A Origami Lab é uma empresa de tecnologia para indústria sediada em Formiga, no Centro-Oeste de Minas Gerais (endereço: R. Silviano Brandão, 156 - 2º andar, Centro, Formiga - MG, 35570-112). Desenvolve "}
-              <strong>software sob medida</strong>
-              {", integra "}
-              <strong>ERP e chão de fábrica</strong>
-              {" e automatiza processos que hoje dependem de papel, planilha e redigitação. Atende indústrias do Centro-Oeste mineiro — Formiga, Arcos, Pains, Divinópolis, Itaúna, Nova Serrana e região —, do restante de Minas e de outros estados. O trabalho começa com um diagnóstico de duas a quatro semanas dentro da operação e não substitui o ERP que a empresa já usa."}
-            </p>
-            <div className="ol-page__actions">
-              <a className="ol-btn ol-btn--primary" href="https://forms.cloud.microsoft/r/f2GGyr2vZT" target="_blank" rel="noopener">
-                {"Falar sobre a operação da minha empresa "}
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                  <path d="M5 12h14" />
-                  <path d="m12 5 7 7-7 7" />
-                </svg>
-              </a>
-              {" "}
-              <a className="ol-btn ol-btn--ghost" href="#faq">Ir para as perguntas</a>
+            <div className="ol-page__grid">
+              <div className="ol-page__intro">
+                <span className="ol-kicker">Indústria mineira</span>
+                <h1 className="ol-page__title">Tecnologia para indústrias de <em className="ol-em">Minas Gerais</em></h1>
+              </div>
+              <div className="ol-page__resumo">
+                <p className="ol-page__rotulo">Resposta curta</p>
+                <p className="ol-page__lead">
+                  {"A Origami Lab é uma empresa de tecnologia para indústria sediada em Formiga, no Centro-Oeste de Minas Gerais (endereço: R. Silviano Brandão, 156 - 2º andar, Centro, Formiga - MG, 35570-112). Desenvolve "}
+                  <strong>software sob medida</strong>
+                  {", integra "}
+                  <strong>ERP e chão de fábrica</strong>
+                  {" e automatiza processos que hoje dependem de papel, planilha e redigitação. Atende indústrias do Centro-Oeste mineiro — Formiga, Arcos, Pains, Divinópolis, Itaúna, Nova Serrana e região —, do restante de Minas e de outros estados. O trabalho começa com um diagnóstico de duas a quatro semanas dentro da operação e não substitui o ERP que a empresa já usa."}
+                </p>
+                <p className="ol-page__meta">Origami Lab · Formiga, Minas Gerais · Software, integração e automação de processos para indústria</p>
+              </div>
+              <div className="ol-page__actions">
+                <a className="ol-btn ol-btn--primary" href="/conversar">
+                  {"Falar sobre a operação da minha empresa "}
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <path d="M5 12h14" />
+                    <path d="m12 5 7 7-7 7" />
+                  </svg>
+                </a>
+                {" "}
+                <a className="ol-btn ol-btn--ghost" href="#faq">Ir para as perguntas</a>
+              </div>
             </div>
-            <p className="ol-page__meta">Origami Lab · Formiga, Minas Gerais · Software, integração e automação de processos para indústria</p>
           </div>
         </header>
         <div className="ol-over">
@@ -324,6 +274,9 @@ export default function PaginaTecnologiaParaIndustriasMinasGerais() {
                 <ul className="ol-toc__list">
                   <li>
                     <a href="#formiga">A Origami Lab em Formiga</a>
+                  </li>
+                  <li>
+                    <a href="#avaliar-fornecedor">Como avaliar uma empresa de tecnologia</a>
                   </li>
                   <li>
                     <a href="#cal-calcario">Arcos, Pains e Formiga</a>
@@ -363,6 +316,33 @@ export default function PaginaTecnologiaParaIndustriasMinasGerais() {
                   {"O que fazemos é software: sistemas para o que o ERP não cobre, integração entre sistemas que não conversam e automação de processos administrativos e de operação. O que "}
                   <strong>não</strong>
                   {" fazemos é automação de máquina — programação de CLP, supervisório, instrumentação. Esse é trabalho de integrador de automação. Quando o equipamento já disponibiliza o dado, o software pode lê-lo; quando não disponibiliza, o caminho é outro, e dizemos isso no diagnóstico."}
+                </p>
+                <h2 id="avaliar-fornecedor">Como avaliar uma empresa de tecnologia para indústria em MG</h2>
+                <p>
+                  Compare o conhecimento do processo, as integrações necessárias e a forma de implantação. A base da Origami Lab é Formiga, com atendimento
+                  a Minas Gerais e outros estados; visitas são planejadas conforme as etapas do projeto.
+                </p>
+                <ul>
+                  <li>
+                    <strong>Peça um projeto comparável.</strong> O <a href="/cases/cobranca-automatica-whatsapp-retifica-formiguense">case da Retífica Formiguense, em Formiga</a>{" "}
+                    mostra uma régua de cobrança via WhatsApp integrada ao ERP e o acompanhamento da carteira. Avalie o problema resolvido e o que foi implantado.
+                  </li>
+                  <li>
+                    <strong>Defina o tipo de trabalho.</strong> Se falta uma função específica, avalie o <a href="/desenvolvimento-de-software">desenvolvimento de software para indústria</a>.
+                    {" Se o problema é fazer os dados circularem, avalie a "}<a href="/integracao-erp-chao-de-fabrica">integração do ERP com o chão de fábrica</a>.
+                  </li>
+                  <li>
+                    <strong>Combine como a operação continua.</strong> A proposta precisa explicar testes, migração, treinamento, suporte e responsabilidade por falhas.
+                    Código, dados e acessos também devem estar definidos antes de começar.
+                  </li>
+                  <li>
+                    <strong>Leve sinais concretos para a conversa.</strong> O <a href="/diagnostico-de-modernizacao">diagnóstico gratuito de modernização industrial</a>{" "}
+                    ajuda a organizar problemas de retrabalho, integração e dependência de sistemas.
+                  </li>
+                </ul>
+                <p>
+                  Para avaliar o investimento, veja os <a href="/lei-do-bem">requisitos da Lei do Bem para projetos de P&amp;D</a> e os{" "}
+                  <a href="/financiamento-de-inovacao">caminhos de crédito e subvenção para inovação</a>. A escolha depende da empresa e do projeto.
                 </p>
                 <h2 id="cal-calcario">Arcos, Pains e Formiga: cal, calcário e mineração</h2>
                 <p>
@@ -443,6 +423,10 @@ export default function PaginaTecnologiaParaIndustriasMinasGerais() {
                   {" e "}
                   <a href="/integracao-erp-chao-de-fabrica">integração entre ERP e chão de fábrica</a>
                   .
+                </p>
+                <p>
+                  Para transformar essas necessidades em escopo, veja os <a href="/software-para-industria-metalurgica">requisitos de software para metalúrgicas, fundição e usinagem</a>:
+                  {" "}ordens, roteiros, lotes, inspeções e custo com critérios para conferir a entrega.
                 </p>
                 <h2 id="calcados">Nova Serrana: o polo calçadista</h2>
                 <p>
@@ -565,7 +549,7 @@ export default function PaginaTecnologiaParaIndustriasMinasGerais() {
                 <h2 className="ol-h2 ol-h2--ink">Perguntas frequentes</h2>
                 <p>
                   {"Ficou alguma dúvida que não está aqui? "}
-                  <a href="https://forms.cloud.microsoft/r/f2GGyr2vZT" target="_blank" rel="noopener">Fale com a gente</a>
+                  <a href="/conversar">Fale com a gente</a>
                   .
                 </p>
               </div>
@@ -748,8 +732,8 @@ export default function PaginaTecnologiaParaIndustriasMinasGerais() {
                 A primeira conversa dura 30 minutos e serve para entender onde o dado da sua operação para. Se o caminho for simples, a gente diz — e às vezes é.
               </p>
               <div className="ol-cta__actions">
-                <a className="ol-btn ol-btn--primary ol-btn--lg" href="https://forms.cloud.microsoft/r/f2GGyr2vZT" target="_blank" rel="noopener">
-                  {"Agendar conversa de 30 minutos "}
+                <a className="ol-btn ol-btn--primary ol-btn--lg" href="/conversar">
+                  {"Solicitar conversa de 30 minutos "}
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                     <path d="M5 12h14" />
                     <path d="m12 5 7 7-7 7" />

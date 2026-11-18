@@ -1,7 +1,8 @@
 /* Canais de contato reais da Origami Lab. Um lugar só: nav, rodapé, CTAs e
    JSON-LD leem daqui. */
 
-export const FORMULARIO = "https://forms.cloud.microsoft/r/f2GGyr2vZT";
+export const FORMULARIO = "/conversar";
+export const FORMULARIO_ALTERNATIVO = "https://forms.cloud.microsoft/r/f2GGyr2vZT";
 export const EMAIL = "contato@origamilab.com.br";
 export const WHATSAPP = "https://wa.me/553198055189";
 export const WHATSAPP_ROTULO = "+55 31 9805-5189";

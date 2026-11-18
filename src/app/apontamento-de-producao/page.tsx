@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
 import { Navegacao } from "@/components/Navegacao";
+import { PreloadDaFonteSerifada } from "@/components/PreloadDaFonteSerifada";
 import { Rodape } from "@/components/Rodape";
 import { DadosEstruturados } from "@/components/DadosEstruturados";
 import { ScriptsDaPagina } from "@/components/ScriptsDaPagina";
+import { atualizacaoDaPagina } from "@/conteudo/paginas";
+import { ORGANIZACAO, SITE_NODE } from "@/lib/seo/estruturados";
 
 export const metadata: Metadata = {
   "title": {
@@ -51,70 +54,8 @@ export const metadata: Metadata = {
 const DADOS_ESTRUTURADOS = {
   "@context": "https://schema.org",
   "@graph": [
-    {
-      "@type": "ProfessionalService",
-      "@id": "https://www.origamilab.com.br/#org",
-      "name": "Origami Lab",
-      "url": "https://www.origamilab.com.br/",
-      "logo": "https://www.origamilab.com.br/assets/logo-mark-color.png",
-      "email": "contato@origamilab.com.br",
-      "telephone": "+553198055189",
-      "description": "Empresa de tecnologia para indústria sediada em Formiga, Minas Gerais. Moderniza operações industriais com software sob medida, integração com ERP, automação de processos, dados em tempo real e IA aplicada, do diagnóstico à implantação, e estrutura o financiamento via Lei do Bem, FINEP e FAPEMIG.",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "R. Silviano Brandão, 156 - 2º andar",
-        "addressLocality": "Formiga",
-        "addressRegion": "MG",
-        "postalCode": "35570-112",
-        "addressCountry": "BR"
-      },
-      "sameAs": [
-        "https://www.linkedin.com/company/origamilab-br/",
-        "https://www.instagram.com/origamilab_br/"
-      ],
-      "areaServed": [
-        {
-          "@type": "AdministrativeArea",
-          "name": "Centro-Oeste de Minas Gerais"
-        },
-        {
-          "@type": "State",
-          "name": "Minas Gerais"
-        },
-        {
-          "@type": "Country",
-          "name": "Brasil"
-        }
-      ],
-      "slogan": "Tecnologia para indústria",
-      "knowsAbout": [
-        "Tecnologia para indústria",
-        "Software para indústria",
-        "Software sob medida para indústria",
-        "Integração de sistemas industriais",
-        "Integração com ERP",
-        "Automação de processos industriais",
-        "Digitalização do chão de fábrica",
-        "Apontamento de produção",
-        "Gestão industrial em tempo real",
-        "Indústria 4.0",
-        "Inteligência artificial aplicada à indústria",
-        "Consultoria de operação",
-        "Lei do Bem",
-        "FINEP",
-        "FAPEMIG"
-      ]
-    },
-    {
-      "@type": "WebSite",
-      "@id": "https://www.origamilab.com.br/#site",
-      "url": "https://www.origamilab.com.br/",
-      "name": "Origami Lab",
-      "inLanguage": "pt-BR",
-      "publisher": {
-        "@id": "https://www.origamilab.com.br/#org"
-      }
-    },
+    ORGANIZACAO,
+    SITE_NODE,
     {
       "@type": "WebPage",
       "@id": "https://www.origamilab.com.br/apontamento-de-producao#webpage",
@@ -122,7 +63,7 @@ const DADOS_ESTRUTURADOS = {
       "name": "Como digitalizar o apontamento de produção",
       "description": "Como digitalizar o apontamento de produção: o custo escondido do papel, formas de coletar dados no chão de fábrica, integração com o ERP e por onde começar.",
       "inLanguage": "pt-BR",
-      "dateModified": "2026-09-29",
+      "dateModified": atualizacaoDaPagina("/apontamento-de-producao"),
       "isPartOf": {
         "@id": "https://www.origamilab.com.br/#site"
       },
@@ -249,6 +190,7 @@ const DADOS_ESTRUTURADOS = {
 export default function PaginaApontamentoDeProducao() {
   return (
     <>
+      <PreloadDaFonteSerifada />
       <Navegacao faqNaPagina />
       <div className="ol-root" id="conteudo">
         {/* ==================== Abertura ==================== */}
@@ -266,24 +208,32 @@ export default function PaginaApontamentoDeProducao() {
               {" "}
               <span>Apontamento de produção</span>
             </nav>
-            <h1 className="ol-page__title">Como digitalizar o apontamento de produção</h1>
-            <p className="ol-page__lead">
-              {"Digitalizar o apontamento de produção é fazer o registro do que foi produzido, parado e refugado nascer "}
-              <strong>uma única vez</strong>
-              , no posto de trabalho, no momento em que acontece, e chegar ao ERP sem ninguém redigitar. Na prática, isso é um tablet ou celular no posto com poucas telas, leitura de código de barras ou QR da ordem de produção e, onde a máquina já fornece o dado, leitura direta dela. O ERP continua o mesmo. O caminho que funciona começa por um setor-piloto e trata o operador como o usuário principal, porque a parte difícil é gente, não tecnologia.
-            </p>
-            <div className="ol-page__actions">
-              <a className="ol-btn ol-btn--primary" href="https://forms.cloud.microsoft/r/f2GGyr2vZT" target="_blank" rel="noopener">
-                {"Falar sobre a operação da minha empresa "}
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                  <path d="M5 12h14" />
-                  <path d="m12 5 7 7-7 7" />
-                </svg>
-              </a>
-              {" "}
-              <a className="ol-btn ol-btn--ghost" href="#faq">Ir para as perguntas</a>
+            <div className="ol-page__grid">
+              <div className="ol-page__intro">
+                <span className="ol-kicker">Chão de fábrica</span>
+                <h1 className="ol-page__title">Como digitalizar o <em className="ol-em">apontamento de produção</em></h1>
+              </div>
+              <div className="ol-page__resumo">
+                <p className="ol-page__rotulo">Resposta curta</p>
+                <p className="ol-page__lead">
+                  {"Digitalizar o apontamento de produção é fazer o registro do que foi produzido, parado e refugado nascer "}
+                  <strong>uma única vez</strong>
+                  , no posto de trabalho, no momento em que acontece, e chegar ao ERP sem ninguém redigitar. Na prática, isso é um tablet ou celular no posto com poucas telas, leitura de código de barras ou QR da ordem de produção e, onde a máquina já fornece o dado, leitura direta dela. O ERP continua o mesmo. O caminho que funciona começa por um setor-piloto e trata o operador como o usuário principal, porque a parte difícil é gente, não tecnologia.
+                </p>
+                <p className="ol-page__meta">Origami Lab · Formiga, Minas Gerais · Software e integração para indústria</p>
+              </div>
+              <div className="ol-page__actions">
+                <a className="ol-btn ol-btn--primary" href="/conversar">
+                  {"Falar sobre a operação da minha empresa "}
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <path d="M5 12h14" />
+                    <path d="m12 5 7 7-7 7" />
+                  </svg>
+                </a>
+                {" "}
+                <a className="ol-btn ol-btn--ghost" href="#faq">Ir para as perguntas</a>
+              </div>
             </div>
-            <p className="ol-page__meta">Origami Lab · Formiga, Minas Gerais · Software e integração para indústria</p>
           </div>
         </header>
         <div className="ol-over">
@@ -514,7 +464,7 @@ export default function PaginaApontamentoDeProducao() {
                 <h2 className="ol-h2 ol-h2--ink">Perguntas frequentes</h2>
                 <p>
                   {"Ficou alguma dúvida que não está aqui? "}
-                  <a href="https://forms.cloud.microsoft/r/f2GGyr2vZT" target="_blank" rel="noopener">Fale com a gente</a>
+                  <a href="/conversar">Fale com a gente</a>
                   .
                 </p>
               </div>
@@ -679,8 +629,8 @@ export default function PaginaApontamentoDeProducao() {
                 A primeira conversa dura 30 minutos e serve para entender como o apontamento da sua fábrica é feito hoje e onde o dado para. Se o caminho for simples, a gente diz — e às vezes é.
               </p>
               <div className="ol-cta__actions">
-                <a className="ol-btn ol-btn--primary ol-btn--lg" href="https://forms.cloud.microsoft/r/f2GGyr2vZT" target="_blank" rel="noopener">
-                  {"Agendar conversa de 30 minutos "}
+                <a className="ol-btn ol-btn--primary ol-btn--lg" href="/conversar">
+                  {"Solicitar conversa de 30 minutos "}
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                     <path d="M5 12h14" />
                     <path d="m12 5 7 7-7 7" />
