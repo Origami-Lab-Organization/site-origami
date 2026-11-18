@@ -6,6 +6,7 @@ import { ENTRADAS_VAZIAS, simular, type Entradas, type Resultado } from "@/lib/f
 import { registrarEvento } from "@/lib/medicao/eventos";
 import { CampoNumero, CampoSelecao, reais } from "./campos";
 import { CapturaDeLead } from "./CapturaDeLead";
+import { ChamadaDaOrigami } from "@/components/conteudo/ChamadaDaOrigami";
 
 const FERRAMENTA = "simulador-lei-do-bem";
 
@@ -274,6 +275,7 @@ export function SimuladorLeiDoBem() {
         </div>
       </section>
 
+      <ChamadaDaOrigami frente="inovacao" pagina={`/${FERRAMENTA}`} formulario={`#contato-${FERRAMENTA}`} />
       <div className="ol-capture">
         <CapturaDeLead
           ferramenta={FERRAMENTA}

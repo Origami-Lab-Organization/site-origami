@@ -5,6 +5,7 @@ import { aliquotasDoIbsPrevistas, exigeAliquotas, faixaDeValor, UFS, type Codigo
 import { registrarEvento } from "@/lib/medicao/eventos";
 import { CampoNumero, CampoSelecao, numero } from "./campos";
 import { CapturaDeLead } from "./CapturaDeLead";
+import { ChamadaDaOrigami } from "@/components/conteudo/ChamadaDaOrigami";
 
 /* Calculadora da reforma tributária. O cálculo é feito pela API pública da
    calculadora oficial da Receita Federal, chamada pelo nosso servidor
@@ -367,6 +368,7 @@ export function CalculadoraReformaTributaria() {
           </div>
         </div>
       </section>
+      <ChamadaDaOrigami frente="tributaria" pagina={`/${FERRAMENTA}`} formulario={`#contato-${FERRAMENTA}`} />
       <div className="ol-capture">
         <CapturaDeLead
           ferramenta={FERRAMENTA}

@@ -7,8 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "test": "tsx --test \"src/**/*.test.ts\"",
+    "test": "tsx --test \"src/**/*.test.ts\" && node --test scripts/verificar-seo.test.mjs",
     "type-check": "tsc --noEmit",
+    "seo:verificar": "node scripts/verificar-seo.mjs",
     "indexnow": "node scripts/indexnow.mjs"
   },
   "dependencies": {

@@ -59,7 +59,6 @@ const DADOS = grafoDaPagina({
   caminho: CAMINHO,
   titulo: TITULO,
   descricao: DESCRICAO,
-  atualizadaEm: "2026-11-17",
   migalhas: [
     { nome: "Ferramentas", caminho: "/ferramentas" },
     { nome: "Simulador da Lei do Bem", caminho: CAMINHO },
@@ -103,7 +102,9 @@ export default function PaginaSimuladorLeiDoBem() {
     <PaginaDeConteudo
       ativo="ferramentas"
       migalhas={[{ nome: "Ferramentas", caminho: "/ferramentas" }, { nome: "Simulador da Lei do Bem" }]}
-      titulo="Simulador da Lei do Bem"
+      rotulo="Ferramenta gratuita"
+      rotuloDoLead="Como funciona"
+      titulo={<>Simulador da <em className="ol-em">Lei do Bem</em></>}
       lead={
         <>
           Empresas no lucro real, com lucro tributável no ano e em dia com os tributos federais podem excluir da base do IRPJ e da CSLL{" "}
@@ -122,7 +123,7 @@ export default function PaginaSimuladorLeiDoBem() {
           </a>
         </>
       }
-      meta="Ferramenta gratuita · Atualizado em 17/11/2026 · Estimativa, não substitui parecer contábil"
+      meta="Ferramenta gratuita · Atualizado em 18/11/2026 · Estimativa, não substitui parecer contábil"
       dados={DADOS}
     >
       <SimuladorLeiDoBem />

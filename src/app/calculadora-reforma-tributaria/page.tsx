@@ -58,7 +58,6 @@ const DADOS = grafoDaPagina({
   caminho: CAMINHO,
   titulo: TITULO,
   descricao: DESCRICAO,
-  atualizadaEm: "2026-11-18",
   migalhas: [
     { nome: "Ferramentas", caminho: "/ferramentas" },
     { nome: "Calculadora da reforma tributária", caminho: CAMINHO },
@@ -94,14 +93,16 @@ export default function PaginaCalculadoraReformaTributaria() {
   return (
     <PaginaDeConteudo
       migalhas={[{ nome: "Ferramentas", caminho: "/ferramentas" }, { nome: "Calculadora da reforma tributária" }]}
-      titulo={TITULO}
+      rotulo="Ferramenta gratuita"
+      rotuloDoLead="Como funciona"
+      titulo={<>Calculadora da reforma tributária: <em className="ol-em">CBS e IBS</em></>}
       lead="Informe o produto (NCM) ou o serviço (NBS), o município e o valor da venda: a calculadora devolve a CBS, o IBS estadual e o IBS municipal, com a memória de cálculo, usando a calculadora oficial da Receita Federal. Em 2026, ano de teste, valem 0,9% de CBS e 0,1% de IBS. De 2027 em diante as alíquotas definitivas ainda não foram fixadas, e a ferramenta simula com as que você informar."
       acoes={
         <>
           <a className="ol-btn ol-btn--primary" href="#ferramenta">
             Calcular CBS e IBS <Seta />
           </a>{" "}
-          <a className="ol-btn ol-btn--ghost" href={FORMULARIO} target="_blank" rel="noopener">
+          <a className="ol-btn ol-btn--ghost" href={FORMULARIO}>
             Converse com um especialista
           </a>
         </>

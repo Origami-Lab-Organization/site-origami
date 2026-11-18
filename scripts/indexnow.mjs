@@ -1,8 +1,8 @@
 #!/usr/bin/env node
-// Avisa Bing/Yandex das URLs do site via IndexNow. O Bing alimenta o índice que
-// o ChatGPT Search consulta — é a única via de "pedir indexação" por API que
-// existe de verdade. No Google, o pedido continua sendo o botão da UI do Search
-// Console (a Indexing API é restrita a vagas de emprego).
+// Notifica mecanismos participantes do IndexNow sobre URLs publicadas.
+// O aceite da notificação não garante indexação nem citação por assistentes.
+// No Google, a URL Inspection API consulta o índice, sem solicitar indexação.
+// A Indexing API é restrita a JobPosting e BroadcastEvent em VideoObject.
 //
 //   node scripts/indexnow.mjs            # todas as URLs do sitemap
 //   node scripts/indexnow.mjs /calculadora-de-oee /lei-do-bem

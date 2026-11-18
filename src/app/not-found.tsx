@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Navegacao } from "@/components/Navegacao";
+import { PreloadDaFonteSerifada } from "@/components/PreloadDaFonteSerifada";
 import { Rodape } from "@/components/Rodape";
 import { ScriptsDaPagina } from "@/components/ScriptsDaPagina";
 
@@ -17,6 +18,7 @@ export const metadata: Metadata = {
 export default function NaoEncontrada() {
   return (
     <>
+      <PreloadDaFonteSerifada />
       <Navegacao />
       <div className="ol-root" id="conteudo" data-404="">
         {/* ==================== Abertura ==================== */}
@@ -30,20 +32,25 @@ export default function NaoEncontrada() {
               {" "}
               <span>Página não encontrada</span>
             </nav>
-            <h1 className="ol-page__title">Esta página não existe ou mudou de endereço</h1>
-            <p className="ol-page__lead">
-              O link pode ser de uma versão antiga do site ou do blog, que saiu do ar. O conteúdo que estava lá provavelmente está em uma das páginas abaixo. Se você procurava algo específico sobre a sua operação, fale direto com a gente.
-            </p>
-            <div className="ol-page__actions">
-              <a className="ol-btn ol-btn--primary" href="/">
-                {"Ir para o início "}
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                  <path d="M5 12h14" />
-                  <path d="m12 5 7 7-7 7" />
-                </svg>
-              </a>
-              {" "}
-              <a className="ol-btn ol-btn--ghost" href="/cases">Ver os cases</a>
+            <div className="ol-page__grid ol-page__grid--simples">
+              <div className="ol-page__intro">
+                <span className="ol-kicker">Erro 404</span>
+                <h1 className="ol-page__title">Esta página não existe ou <em className="ol-em">mudou de endereço</em></h1>
+                <p className="ol-page__lead">
+                  O link pode ser de uma versão antiga do site ou do blog, que saiu do ar. O conteúdo que estava lá provavelmente está em uma das páginas abaixo. Se você procurava algo específico sobre a sua operação, fale direto com a gente.
+                </p>
+              </div>
+              <div className="ol-page__actions">
+                <a className="ol-btn ol-btn--primary" href="/">
+                  {"Ir para o início "}
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <path d="M5 12h14" />
+                    <path d="m12 5 7 7-7 7" />
+                  </svg>
+                </a>
+                {" "}
+                <a className="ol-btn ol-btn--ghost" href="/cases">Ver os cases</a>
+              </div>
             </div>
           </div>
         </header>
@@ -104,8 +111,8 @@ export default function NaoEncontrada() {
                 Trinta minutos para entender o processo, o que já existe e onde está o ganho. Se a resposta for comprar um produto pronto em vez de desenvolver, a gente diz — já dissemos antes.
               </p>
               <div className="ol-cta__actions">
-                <a className="ol-btn ol-btn--primary ol-btn--lg" href="https://forms.cloud.microsoft/r/f2GGyr2vZT" target="_blank" rel="noopener">
-                  {"Agendar conversa de 30 minutos "}
+                <a className="ol-btn ol-btn--primary ol-btn--lg" href="/conversar">
+                  {"Solicitar conversa de 30 minutos "}
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                     <path d="M5 12h14" />
                     <path d="m12 5 7 7-7 7" />

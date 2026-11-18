@@ -13,6 +13,7 @@ import {
 import { registrarEvento } from "@/lib/medicao/eventos";
 import { CampoNumero, CampoSelecao, numero } from "./campos";
 import { CapturaDeLead } from "./CapturaDeLead";
+import { ChamadaDaOrigami } from "@/components/conteudo/ChamadaDaOrigami";
 
 const FERRAMENTA = "calculadora-custo-hora-maquina";
 
@@ -247,6 +248,7 @@ export function CalculadoraHoraMaquina() {
           <Resultado r={resultado} aproveitamento={entrada.aproveitamento} exemplo={exemplo} />
         </aside>
       </div>
+      <ChamadaDaOrigami frente="producao" pagina={`/${FERRAMENTA}`} formulario={`#contato-${FERRAMENTA}`} />
       <div className="ol-capture">
         <CapturaDeLead
           ferramenta={FERRAMENTA}

@@ -24,7 +24,7 @@ export type Dependencias = {
 export type Resposta = { status: number; corpo: Record<string, unknown> };
 
 const REMETENTE_PADRAO = "Site Origami Lab <noreply@origamipulse.com.br>";
-const ORIGENS = [/^https:\/\/(www\.)?origamilab\.com\.br$/, /^https:\/\/site-origami-[a-z0-9-]+\.vercel\.app$/, /^http:\/\/localhost:\d+$/];
+const ORIGENS = [/^https:\/\/(www\.)?origamilab\.com\.br$/, /^https:\/\/site-origami-[a-z0-9-]+\.vercel\.app$/, /^http:\/\/(localhost|127\.0\.0\.1|\[::1\]):\d+$/];
 
 export function origemPermitida(origem: string | null): boolean {
   return !!origem && ORIGENS.some((re) => re.test(origem));
@@ -33,6 +33,7 @@ export function origemPermitida(origem: string | null): boolean {
 async function enviarPeloResend(deps: Dependencias, para: string, email: ReturnType<typeof montarEmail>, responderPara: string): Promise<boolean> {
   const resp = await deps.fetch("https://api.resend.com/emails", {
     method: "POST",
+    signal: AbortSignal.timeout(10_000),
     headers: { Authorization: `Bearer ${deps.env.RESEND_API_KEY}`, "Content-Type": "application/json" },
     body: JSON.stringify({
       from: deps.env.LEADS_DE || REMETENTE_PADRAO,

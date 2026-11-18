@@ -11,7 +11,7 @@ o HTML chega pronto ao navegador, como na versão anterior em HTML puro.
 npm install
 npm run dev          # http://localhost:3000
 npm run build        # build de produção (tem que passar antes de qualquer PR)
-npm test             # testes (src/**/*.test.ts): medição e leads
+npm test             # testes de domínio, medição, leads e auditoria SEO
 npm run lint
 npm run type-check
 ```
@@ -51,6 +51,7 @@ src/app/not-found.tsx        404 (status 404, noindex, dispara page_not_found)
 src/app/sitemap.ts           sitemap gerado de src/conteudo/paginas.ts
 src/components/              Navegacao, Rodape, DadosEstruturados, ScriptsDaPagina, Medicao…
 src/conteudo/paginas.ts      páginas publicadas: fonte do sitemap e dos redirects .html
+src/conteudo/guias.ts        seleção do hub /guias e sua lista de dados estruturados
 src/conteudo/contato.ts      formulário, e-mail, WhatsApp, endereço e redes (um lugar só)
 src/lib/medicao/             classificação de canal e eventos de conversão (+ testes)
 src/lib/leads/               validação, e-mail e envio dos leads pelo Resend (+ testes)
@@ -91,6 +92,26 @@ mudou de propósito:
    `<Rodape />`. Use uma página parecida como ponto de partida.
 2. Some a rota em `src/conteudo/paginas.ts` (sitemap e redirect `.html`).
 3. Inclua a URL no `public/llms.txt`.
+
+## Operação de SEO e GEO
+
+As prioridades das três frentes (software, inovação e Minas Gerais), a rotina
+de medição e as pendências de acesso estão em [OPERACAO-SEO-GEO.md](OPERACAO-SEO-GEO.md).
+`src/conteudo/paginas.ts` também fornece a data de revisão dos dados estruturados;
+atualize-a somente quando houver mudança relevante no conteúdo da página.
+
+Depois do build, com o servidor de produção em uma porta livre:
+
+```bash
+npm run start -- --hostname 127.0.0.1 --port 4178
+# Em outro terminal:
+npm run seo:verificar -- --base-url http://127.0.0.1:4178
+```
+
+A auditoria faz somente GET e verifica o HTML servido de todas as rotas públicas,
+sitemap, canonical, indexabilidade, JSON-LD, links, âncoras e 404. Para repetir após
+um deploy: `npm run seo:verificar -- --base-url https://www.origamilab.com.br`.
+Não mede indexação, posicionamento nem citações em respostas de IA.
 
 ## Seções
 
@@ -181,16 +202,15 @@ var CONFIG = {
 
 ## Conversão
 
-Dois caminhos, ambos em nova aba com `rel="noopener"`:
+O mecanismo está em [MECANISMO-DE-CONVERSAO.md](MECANISMO-DE-CONVERSAO.md):
+conteúdo → ferramenta livre → oferta contextual → avaliação com o comercial.
 
-- **Formulário** (8 CTAs) — `https://forms.cloud.microsoft/r/f2GGyr2vZT`
-- **WhatsApp** — botão na chamada final (com mensagem pré-preenchida) e link no
-  rodapé: `+55 31 9805-5189`
-
-> Nota: a versão anterior do site **embutia** esse formulário num iframe, para o
-> visitante converter sem sair da página (o formulário permite embed — não manda
-> `X-Frame-Options` nem `frame-ancestors`). Este design abre em nova aba. Se
-> quiser voltar ao formulário embutido, é uma mudança pequena e localizada.
+- **Contato no site**: `/conversar`, na mesma aba, preservando assunto e página
+  de interesse. Usa o endpoint de leads existente quando o envio está configurado.
+- **Sem envio configurado**: WhatsApp e e-mail com contexto e formulário alternativo.
+- **Ferramentas**: os resultados ficam livres; a análise de um especialista pode
+  ser solicitada com os dados já calculados, sem digitá-los de novo.
+- **Mensuração**: início, erro e envio confirmado do formulário, além dos cliques.
 
 ## Medição
 
@@ -219,11 +239,15 @@ uma vez no layout. Substituiu o Microsoft Clarity.
     com `cta_tipo`, `cta_local` e `cta_texto`. É intenção, não lead.
   - `meeting_booking_click`: só para link de agendamento real (Bookings,
     Calendly, cal.com ou `data-cta="agendamento"`). **Hoje não existe nenhum**:
-    "Agendar conversa" leva ao formulário.
+    solicitar conversa não significa agendamento confirmado.
   - `page_not_found`: visita à 404, com o domínio de onde veio.
-- `contact_form_submit` e `qualified_lead` **não** são medidos no navegador. O
-  primeiro acontece no Microsoft Forms, que o site não enxerga; o segundo é
-  decisão do comercial. Ver `PLANO-AQUISICAO-ORGANICA.md`.
+  - `contact_form_start` e `contact_form_error`: primeira interação com o
+    formulário e tentativa não confirmada, sem nome, e-mail ou mensagem.
+  - `contact_form_submit`: envio confirmado pela API nas ferramentas e no
+    contato nativo, com `lead_id`. O formulário alternativo no Microsoft Forms
+    continua sem confirmação visível ao navegador da Origami.
+- `qualified_lead` continua sendo decisão do comercial, fora do navegador.
+  Ver `MECANISMO-DE-CONVERSAO.md`.
 - Todo evento também vai para `window.dataLayer` (GTM/GA4 no futuro sem mexer
   no arquivo). Fora de produção, os eventos ficam em `window.olMedicao.eventos`;
   com `?medicao=debug` na URL, aparecem no console.

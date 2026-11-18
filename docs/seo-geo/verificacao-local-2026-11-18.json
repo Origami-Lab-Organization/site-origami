@@ -1,0 +1,15 @@
+{
+  "verificadoEm": "2026-11-18T11:44:56.986Z",
+  "base": "http://127.0.0.1:4178",
+  "canonical": "https://www.origamilab.com.br",
+  "paginas": 28,
+  "requisicoes": 33,
+  "falhas": [],
+  "avisos": [],
+  "limitacoes": [
+    "HTTP e HTML servidos; não executa JavaScript nem mede Core Web Vitals.",
+    "Não consulta Search Console nem comprova indexação, ranking ou citação por IA.",
+    "Não verifica links externos nem elegibilidade de rich results.",
+    "Arquivos públicos locais refletem o filesystem atual; páginas HTML podem vir do build anterior."
+  ]
+}

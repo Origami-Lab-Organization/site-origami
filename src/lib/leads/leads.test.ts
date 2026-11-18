@@ -109,6 +109,9 @@ test("origens permitidas: site, previews do projeto e localhost", () => {
   assert.equal(origemPermitida("https://origamilab.com.br"), true);
   assert.equal(origemPermitida("https://site-origami-abc123-castro-italos-projects.vercel.app"), true);
   assert.equal(origemPermitida("http://localhost:3000"), true);
+  assert.equal(origemPermitida("http://127.0.0.1:4178"), true);
+  assert.equal(origemPermitida("http://[::1]:4178"), true);
+  assert.equal(origemPermitida("http://127.0.0.1.evil.com:4178"), false);
   assert.equal(origemPermitida("https://evil.com"), false);
   assert.equal(origemPermitida("https://www.origamilab.com.br.evil.com"), false);
   assert.equal(origemPermitida(null), false);

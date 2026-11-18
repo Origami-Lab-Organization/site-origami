@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
 import { Navegacao } from "@/components/Navegacao";
+import { PreloadDaFonteSerifada } from "@/components/PreloadDaFonteSerifada";
 import { Rodape } from "@/components/Rodape";
 import { DadosEstruturados } from "@/components/DadosEstruturados";
 import { ScriptsDaPagina } from "@/components/ScriptsDaPagina";
+import { atualizacaoDaPagina } from "@/conteudo/paginas";
+import { ORGANIZACAO, SITE_NODE } from "@/lib/seo/estruturados";
 
 export const metadata: Metadata = {
   "title": {
@@ -51,70 +54,8 @@ export const metadata: Metadata = {
 const DADOS_ESTRUTURADOS = {
   "@context": "https://schema.org",
   "@graph": [
-    {
-      "@type": "ProfessionalService",
-      "@id": "https://www.origamilab.com.br/#org",
-      "name": "Origami Lab",
-      "url": "https://www.origamilab.com.br/",
-      "logo": "https://www.origamilab.com.br/assets/logo-mark-color.png",
-      "email": "contato@origamilab.com.br",
-      "telephone": "+553198055189",
-      "description": "Empresa de tecnologia para indústria sediada em Formiga, Minas Gerais. Moderniza operações industriais com software sob medida, integração com ERP, automação de processos, dados em tempo real e IA aplicada, do diagnóstico à implantação, e estrutura o financiamento via Lei do Bem, FINEP e FAPEMIG.",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "R. Silviano Brandão, 156 - 2º andar",
-        "addressLocality": "Formiga",
-        "addressRegion": "MG",
-        "postalCode": "35570-112",
-        "addressCountry": "BR"
-      },
-      "sameAs": [
-        "https://www.linkedin.com/company/origamilab-br/",
-        "https://www.instagram.com/origamilab_br/"
-      ],
-      "areaServed": [
-        {
-          "@type": "AdministrativeArea",
-          "name": "Centro-Oeste de Minas Gerais"
-        },
-        {
-          "@type": "State",
-          "name": "Minas Gerais"
-        },
-        {
-          "@type": "Country",
-          "name": "Brasil"
-        }
-      ],
-      "slogan": "Tecnologia para indústria",
-      "knowsAbout": [
-        "Tecnologia para indústria",
-        "Software para indústria",
-        "Software sob medida para indústria",
-        "Integração de sistemas industriais",
-        "Integração com ERP",
-        "Automação de processos industriais",
-        "Digitalização do chão de fábrica",
-        "Apontamento de produção",
-        "Gestão industrial em tempo real",
-        "Indústria 4.0",
-        "Inteligência artificial aplicada à indústria",
-        "Consultoria de operação",
-        "Lei do Bem",
-        "FINEP",
-        "FAPEMIG"
-      ]
-    },
-    {
-      "@type": "WebSite",
-      "@id": "https://www.origamilab.com.br/#site",
-      "url": "https://www.origamilab.com.br/",
-      "name": "Origami Lab",
-      "inLanguage": "pt-BR",
-      "publisher": {
-        "@id": "https://www.origamilab.com.br/#org"
-      }
-    },
+    ORGANIZACAO,
+    SITE_NODE,
     {
       "@type": "WebPage",
       "@id": "https://www.origamilab.com.br/integracao-erp-chao-de-fabrica#webpage",
@@ -122,7 +63,7 @@ const DADOS_ESTRUTURADOS = {
       "name": "Como integrar o chão de fábrica ao ERP sem trocar o ERP",
       "description": "O que o ERP faz bem, o que ele não cobre na produção e como ligar apontamento, paradas, qualidade e lote ao ERP sem trocá-lo e sem duplicar dado.",
       "inLanguage": "pt-BR",
-      "dateModified": "2026-09-29",
+      "dateModified": atualizacaoDaPagina("/integracao-erp-chao-de-fabrica"),
       "isPartOf": {
         "@id": "https://www.origamilab.com.br/#site"
       },
@@ -241,6 +182,7 @@ const DADOS_ESTRUTURADOS = {
 export default function PaginaIntegracaoErpChaoDeFabrica() {
   return (
     <>
+      <PreloadDaFonteSerifada />
       <Navegacao faqNaPagina />
       <div className="ol-root" id="conteudo">
         {/* ==================== Abertura ==================== */}
@@ -258,24 +200,32 @@ export default function PaginaIntegracaoErpChaoDeFabrica() {
               {" "}
               <span>Integração do ERP com o chão de fábrica</span>
             </nav>
-            <h1 className="ol-page__title">Como integrar o chão de fábrica ao ERP sem trocar o ERP</h1>
-            <p className="ol-page__lead">
-              {"Você integra o chão de fábrica ao ERP construindo, em volta dele, uma camada operacional para o que ele não cobre: apontamento, sequenciamento, paradas, qualidade no posto e rastreabilidade de lote. Essa camada recebe do ERP as ordens e a estrutura de produto, registra o que acontece na produção no momento em que acontece e devolve ao ERP o consumo, a produção realizada e o refugo. O ERP continua sendo a "}
-              <strong>fonte da verdade fiscal e financeira</strong>
-              ; ninguém troca de sistema e ninguém redigita no fim do turno.
-            </p>
-            <div className="ol-page__actions">
-              <a className="ol-btn ol-btn--primary" href="https://forms.cloud.microsoft/r/f2GGyr2vZT" target="_blank" rel="noopener">
-                {"Falar sobre a produção da minha fábrica "}
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                  <path d="M5 12h14" />
-                  <path d="m12 5 7 7-7 7" />
-                </svg>
-              </a>
-              {" "}
-              <a className="ol-btn ol-btn--ghost" href="#faq">Ir para as perguntas</a>
+            <div className="ol-page__grid">
+              <div className="ol-page__intro">
+                <span className="ol-kicker">Integração com ERP</span>
+                <h1 className="ol-page__title">Como integrar o chão de fábrica ao ERP <em className="ol-em">sem trocar o ERP</em></h1>
+              </div>
+              <div className="ol-page__resumo">
+                <p className="ol-page__rotulo">Resposta curta</p>
+                <p className="ol-page__lead">
+                  {"Você integra o chão de fábrica ao ERP construindo, em volta dele, uma camada operacional para o que ele não cobre: apontamento, sequenciamento, paradas, qualidade no posto e rastreabilidade de lote. Essa camada recebe do ERP as ordens e a estrutura de produto, registra o que acontece na produção no momento em que acontece e devolve ao ERP o consumo, a produção realizada e o refugo. O ERP continua sendo a "}
+                  <strong>fonte da verdade fiscal e financeira</strong>
+                  ; ninguém troca de sistema e ninguém redigita no fim do turno.
+                </p>
+                <p className="ol-page__meta">Origami Lab · Formiga, Minas Gerais · Software e integração para indústria</p>
+              </div>
+              <div className="ol-page__actions">
+                <a className="ol-btn ol-btn--primary" href="/conversar">
+                  {"Falar sobre a produção da minha fábrica "}
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <path d="M5 12h14" />
+                    <path d="m12 5 7 7-7 7" />
+                  </svg>
+                </a>
+                {" "}
+                <a className="ol-btn ol-btn--ghost" href="#faq">Ir para as perguntas</a>
+              </div>
             </div>
-            <p className="ol-page__meta">Origami Lab · Formiga, Minas Gerais · Software e integração para indústria</p>
           </div>
         </header>
         <div className="ol-over">
@@ -501,7 +451,7 @@ export default function PaginaIntegracaoErpChaoDeFabrica() {
                 <h2 className="ol-h2 ol-h2--ink">Perguntas frequentes</h2>
                 <p>
                   {"Ficou alguma dúvida que não está aqui? "}
-                  <a href="https://forms.cloud.microsoft/r/f2GGyr2vZT" target="_blank" rel="noopener">Fale com a gente</a>
+                  <a href="/conversar">Fale com a gente</a>
                   .
                 </p>
               </div>
@@ -651,8 +601,8 @@ export default function PaginaIntegracaoErpChaoDeFabrica() {
                 A primeira conversa dura 30 minutos e serve para entender onde o dado da sua produção sai do ERP e em qual planilha ele reaparece. Se a resposta for configurar o próprio ERP, a gente diz.
               </p>
               <div className="ol-cta__actions">
-                <a className="ol-btn ol-btn--primary ol-btn--lg" href="https://forms.cloud.microsoft/r/f2GGyr2vZT" target="_blank" rel="noopener">
-                  {"Agendar conversa de 30 minutos "}
+                <a className="ol-btn ol-btn--primary ol-btn--lg" href="/conversar">
+                  {"Solicitar conversa de 30 minutos "}
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                     <path d="M5 12h14" />
                     <path d="m12 5 7 7-7 7" />

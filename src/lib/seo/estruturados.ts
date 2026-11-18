@@ -3,7 +3,8 @@
    página: FAQ com as mesmas perguntas e respostas, ferramenta com o que ela
    faz de fato. */
 
-import { SITE } from "@/conteudo/paginas";
+import { atualizacaoDaPagina, SITE } from "@/conteudo/paginas";
+import { EMAIL, INSTAGRAM, LINKEDIN, WHATSAPP } from "@/conteudo/contato";
 
 export const ORGANIZACAO = {
   "@type": "ProfessionalService",
@@ -12,8 +13,8 @@ export const ORGANIZACAO = {
   url: `${SITE}/`,
   logo: `${SITE}/assets/logo-mark-color.png`,
   image: [`${SITE}/assets/og-cover-1x1.jpg`, `${SITE}/assets/og-cover-4x3.jpg`, `${SITE}/assets/og-cover.jpg`],
-  email: "contato@origamilab.com.br",
-  telephone: "+553198055189",
+  email: EMAIL,
+  telephone: `+${WHATSAPP.split("/").at(-1)}`,
   description:
     "Empresa de tecnologia para indústria sediada em Formiga, Minas Gerais. Moderniza operações industriais com software sob medida, integração com ERP, automação de processos, dados em tempo real e IA aplicada, do diagnóstico à implantação, e estrutura o financiamento via Lei do Bem, FINEP e FAPEMIG.",
   address: {
@@ -24,7 +25,7 @@ export const ORGANIZACAO = {
     postalCode: "35570-112",
     addressCountry: "BR",
   },
-  sameAs: ["https://www.linkedin.com/company/origamilab-br/", "https://www.instagram.com/origamilab_br/"],
+  sameAs: [LINKEDIN, INSTAGRAM],
   areaServed: [
     { "@type": "AdministrativeArea", name: "Centro-Oeste de Minas Gerais" },
     { "@type": "State", name: "Minas Gerais" },
@@ -51,7 +52,7 @@ export const ORGANIZACAO = {
   slogan: "Tecnologia para indústria",
 } as const;
 
-const SITE_NODE = {
+export const SITE_NODE = {
   "@type": "WebSite",
   "@id": `${SITE}/#site`,
   url: `${SITE}/`,
@@ -92,7 +93,8 @@ export type OpcoesDoGrafo = {
   caminho: string;
   titulo: string;
   descricao: string;
-  atualizadaEm: string;
+  /** Necessária só para documentos fora do inventário de páginas indexáveis. */
+  atualizadaEm?: string;
   migalhas: Migalha[];
   perguntas?: Pergunta[];
   /** Nó principal da página (Service, WebApplication, Article…), sem @id: ele é criado aqui. */
@@ -101,6 +103,7 @@ export type OpcoesDoGrafo = {
 
 /** Grafo completo de uma página: organização, site, página, trilha, FAQ e o nó principal. */
 export function grafoDaPagina(o: OpcoesDoGrafo) {
+  const atualizadaEm = atualizacaoDaPagina(o.caminho, o.atualizadaEm);
   const idPrincipal = `${url(o.caminho)}#principal`;
   const pagina = {
     "@type": "WebPage",
@@ -112,11 +115,18 @@ export function grafoDaPagina(o: OpcoesDoGrafo) {
     isPartOf: { "@id": `${SITE}/#site` },
     publisher: { "@id": `${SITE}/#org` },
     breadcrumb: { "@id": `${url(o.caminho)}#breadcrumb` },
-    dateModified: o.atualizadaEm,
+    dateModified: atualizadaEm,
     ...(o.principal ? { mainEntity: { "@id": idPrincipal } } : { about: { "@id": `${SITE}/#org` } }),
   };
   const grafo: Record<string, unknown>[] = [ORGANIZACAO, SITE_NODE, pagina, breadcrumb(o.caminho, o.migalhas)];
-  if (o.principal) grafo.push({ ...o.principal, "@id": idPrincipal, url: url(o.caminho) });
+  if (o.principal) {
+    grafo.push({
+      ...o.principal,
+      "@id": idPrincipal,
+      url: url(o.caminho),
+      ...("dateModified" in o.principal ? { dateModified: atualizadaEm } : {}),
+    });
+  }
   if (o.perguntas?.length) grafo.push(faq(o.caminho, o.perguntas));
   return { "@context": "https://schema.org", "@graph": grafo };
 }

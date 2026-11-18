@@ -1,3 +1,4 @@
+import { ChamadaDaOrigami } from "@/components/conteudo/ChamadaDaOrigami";
 import { PaginaDeConteudo } from "@/components/conteudo/PaginaDeConteudo";
 import { ChamadaFinal, Documento, LeiturasRelacionadas, Nota, Perguntas, QuadroDeFatos, Tabela } from "@/components/conteudo/blocos";
 import { grafoDaPagina, type Pergunta } from "@/lib/seo/estruturados";
@@ -6,7 +7,7 @@ import { metadataDaPagina } from "@/lib/seo/metadata";
 /* Financiamento de inovação: Lei do Bem × subvenção econômica × crédito FINEP,
    com a saída para quem está no lucro presumido e a FAPEMIG como seção.
    Cada requisito tem fonte oficial (seção "Fontes oficiais"). Conferido em
-   17/11/2026. Sem lista de editais abertos: envelhece em semanas. */
+   18/11/2026. Sem lista de editais abertos: envelhece em semanas. */
 
 const CAMINHO = "/financiamento-de-inovacao";
 const TITULO = "Financiamento de inovação: FINEP e subvenção";
@@ -75,7 +76,6 @@ const DADOS = grafoDaPagina({
   caminho: CAMINHO,
   titulo: "Financiamento de inovação: Lei do Bem, subvenção econômica e crédito da FINEP",
   descricao: DESCRICAO,
-  atualizadaEm: ATUALIZADA_EM,
   migalhas: [{ nome: "Financiamento de inovação", caminho: CAMINHO }],
   perguntas: PERGUNTAS,
   principal: {
@@ -110,7 +110,8 @@ export default function PaginaFinanciamentoDeInovacao() {
   return (
     <PaginaDeConteudo
       migalhas={[{ nome: "Financiamento de inovação" }]}
-      titulo="Financiamento de inovação: Lei do Bem, subvenção econômica e crédito da FINEP"
+      rotulo="Inovação e capital"
+      titulo={<><em className="ol-em">Financiamento de inovação</em>: Lei do Bem, subvenção econômica e crédito da FINEP</>}
       lead={
         <>
           Há três formas de financiar inovação com recurso público, e confundi-las custa meses. A <strong>Lei do Bem</strong> é incentivo fiscal:
@@ -120,7 +121,7 @@ export default function PaginaFinanciamentoDeInovacao() {
           a Lei do Bem, mas pode buscar os outros dois, que não exigem regime tributário.
         </>
       }
-      meta="Atualizado em 17/11/2026 · Orientação geral: condições e prazos mudam a cada chamada · Origami Lab, Formiga (MG)"
+      meta="Atualizado em 18/11/2026 · Orientação geral: condições e prazos mudam a cada chamada · Origami Lab, Formiga (MG)"
       dados={DADOS}
     >
       <Documento
@@ -219,9 +220,10 @@ export default function PaginaFinanciamentoDeInovacao() {
           </li>
         </ol>
         <p>
-          Na FINEP, a subvenção é concedida por <Fonte href={FONTES.subvencao}>chamadas públicas</Fonte>. Isso tem três implicações práticas: é por
-          janela, não por balcão (a chamada abre, tem prazo e fecha); é concorrida e por mérito, com projetos pontuados e comparados; e o que diferencia
-          não é o tamanho da empresa, mas a clareza do problema técnico, do método e do resultado esperado.
+          Na FINEP, a subvenção é operada por <Fonte href={FONTES.subvencao}>chamada pública e, em alguns programas, por fluxo contínuo</Fonte>. Na
+          chamada, isso tem três implicações práticas: é por janela, não por balcão (abre, tem prazo e fecha); é concorrida e por mérito, com projetos
+          pontuados e comparados; e o que diferencia não é o tamanho da empresa, mas a clareza do problema técnico, do método e do resultado esperado.
+          Valores, contrapartidas e exemplos de chamadas estão no <a href="/finep#subvencao">guia da FINEP</a>.
         </p>
 
         <h2 id="credito">Como funciona o crédito da FINEP</h2>
@@ -236,7 +238,8 @@ export default function PaginaFinanciamentoDeInovacao() {
             patrimônio líquido acima de R$ 86 milhões, com financiamentos a partir de R$ 30 milhões.
           </li>
           <li>
-            <strong>Crédito operado por agentes.</strong> Linhas como o Finep Inovacred e o Finep Inovacred 4.0 chegam à empresa por{" "}
+            <strong>Crédito operado por agentes.</strong> Linhas como o <a href="/finep-inovacred">Finep Inovacred</a> e o Finep Inovacred 4.0
+            chegam à empresa por{" "}
             <Fonte href={FONTES.creditoAgentes}>agentes financeiros credenciados</Fonte>, que analisam, contratam e assumem o risco da operação. A FINEP
             indica esse caminho para empresas com receita operacional bruta inferior a R$ 300 milhões. Em Minas Gerais, o BDMG aparece entre os agentes
             credenciados listados pela FINEP.
@@ -245,6 +248,9 @@ export default function PaginaFinanciamentoDeInovacao() {
         <p>
           Os limites e as condições mudam; o que vale são as da data em que a empresa for pedir. O que não muda de uma rodada para a outra é o que faz
           um projeto ser bom: problema técnico bem delimitado, método crível, equipe compatível e resultado mensurável.
+          Taxas, agentes credenciados e o passo a passo do pedido estão no{" "}
+          <a href="/finep">guia completo da FINEP</a>; para compra de máquinas e digitalização, veja também o{" "}
+          <a href="/bndes-mais-inovacao">BNDES Mais Inovação</a>.
         </p>
 
         <h2 id="combinar">Dá para combinar Lei do Bem e subvenção?</h2>
@@ -266,6 +272,8 @@ export default function PaginaFinanciamentoDeInovacao() {
           Para uma indústria mineira, isso significa duas coisas. A FAPEMIG é caminho complementar, não principal, para a modernização da operação. E,
           quando o projeto envolve parceria com universidade ou centro de pesquisa, ela passa a ser uma porta provável. Prazos e valores de cada edição
           estão nas <Fonte href={FONTES.fapemigChamadas}>chamadas da FAPEMIG</Fonte>.
+          Os tetos e as contrapartidas da edição 2026, e as linhas de crédito do BDMG, estão em{" "}
+          <a href="/fomento-a-inovacao#minas-gerais">fomento à inovação em Minas Gerais</a>.
         </p>
 
         <h2 id="ordem">O erro mais caro: começar pelo edital</h2>
@@ -314,13 +322,14 @@ export default function PaginaFinanciamentoDeInovacao() {
         </ol>
       </Documento>
 
+      <ChamadaDaOrigami frente="inovacao" pagina={CAMINHO} ferramenta={{ href: "/fomento-a-inovacao", rotulo: "Ver qual fomento serve para o projeto" }} />
       <Perguntas prefixo="financiamento-de-inovacao" perguntas={PERGUNTAS} />
 
       <LeiturasRelacionadas
         leituras={[
           { href: "/lei-do-bem", titulo: "Lei do Bem: quem tem direito", texto: "Os requisitos para usar o incentivo e o que conta como P&D na indústria." },
-          { href: "/simulador-lei-do-bem", titulo: "Simulador da Lei do Bem", texto: "Estime quanto a sua empresa deixaria de pagar de IRPJ e CSLL com os dispêndios de P&D." },
-          { href: "/lei-do-bem-na-pratica", titulo: "Lei do Bem na prática", texto: "FORMP&D, prazo, documentação e por que projetos deixam de ser reconhecidos." },
+          { href: "/fomento-a-inovacao", titulo: "Qual fomento serve para o projeto", texto: "Ferramenta gratuita que cruza porte, projeto e estado com FINEP, BNDES, EMBRAPII, Lei do Bem e as linhas de Minas." },
+          { href: "/finep", titulo: "FINEP: como funciona", texto: "Crédito direto, Finep Inovacred e subvenção: quem pode pedir, taxas, garantias e passo a passo." },
           { href: "/acesso-a-capital", titulo: "Acesso a capital", texto: "O serviço completo de captação, em parceria com a PIN, do diagnóstico à prestação de contas." },
         ]}
       />

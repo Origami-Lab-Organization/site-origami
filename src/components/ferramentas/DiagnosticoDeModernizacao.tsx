@@ -13,6 +13,7 @@ import {
 } from "@/lib/ferramentas/diagnostico";
 import { registrarEvento } from "@/lib/medicao/eventos";
 import { CapturaDeLead } from "./CapturaDeLead";
+import { ChamadaDaOrigami } from "@/components/conteudo/ChamadaDaOrigami";
 
 const FERRAMENTA = "diagnostico-de-modernizacao";
 
@@ -136,6 +137,8 @@ export function DiagnosticoDeModernizacao() {
         <aside className="ol-tool__result">{resultado ? <Resultado r={resultado} /> : <Progresso feitas={respondidas(respostas)} />}</aside>
       </div>
       {resultado ? (
+        <>
+        <ChamadaDaOrigami frente="sistemas" pagina={`/${FERRAMENTA}`} formulario={`#contato-${FERRAMENTA}`} />
         <div className="ol-capture">
           <CapturaDeLead
             ferramenta={FERRAMENTA}
@@ -145,6 +148,7 @@ export function DiagnosticoDeModernizacao() {
             dados={dadosDoLead(resultado, respostas)}
           />
         </div>
+        </>
       ) : null}
     </section>
   );

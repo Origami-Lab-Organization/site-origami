@@ -3,6 +3,7 @@ import { preload } from "react-dom";
 import { Medicao } from "@/components/Medicao";
 import { SITE } from "@/conteudo/paginas";
 import "@/estilos/styles.css";
+import "@/estilos/conversao.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE),

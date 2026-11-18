@@ -1,3 +1,4 @@
+import { ChamadaDaOrigami } from "@/components/conteudo/ChamadaDaOrigami";
 import type { Metadata } from "next";
 import { ChamadaFinal, Documento, LeiturasRelacionadas, Nota, Perguntas, QuadroDeFatos, Tabela } from "@/components/conteudo/blocos";
 import { PaginaDeConteudo, Seta } from "@/components/conteudo/PaginaDeConteudo";
@@ -73,7 +74,6 @@ const DADOS = grafoDaPagina({
   caminho: CAMINHO,
   titulo: TITULO,
   descricao: DESCRICAO,
-  atualizadaEm: "2026-11-17",
   migalhas: [{ nome: "Lei do Bem", caminho: CAMINHO }],
   perguntas: PERGUNTAS,
   principal: {
@@ -96,6 +96,7 @@ const DADOS = grafoDaPagina({
 const SUMARIO = [
   { id: "quem-pode", rotulo: "Quem pode usar" },
   { id: "fora", rotulo: "Quem fica de fora" },
+  { id: "escolher-instrumento", rotulo: "Qual caminho avaliar" },
   { id: "pd", rotulo: "O que conta como P&D" },
   { id: "industria", rotulo: "Na indústria tradicional" },
   { id: "quanto", rotulo: "Quanto vale" },
@@ -122,7 +123,8 @@ export default function PaginaLeiDoBem() {
   return (
     <PaginaDeConteudo
       migalhas={[{ nome: "Lei do Bem" }]}
-      titulo="Lei do Bem: quem tem direito e o que conta como P&D"
+      rotulo="Incentivo fiscal à inovação"
+      titulo={<>Lei do Bem: quem tem direito e <em className="ol-em">o que conta como P&D</em></>}
       lead={
         <>
           A Lei do Bem (Lei nº 11.196/2005) permite que empresas tributadas pelo lucro real excluam da base do IRPJ e da CSLL, além da dedução normal,{" "}
@@ -136,12 +138,12 @@ export default function PaginaLeiDoBem() {
           <a className="ol-btn ol-btn--primary" href="/simulador-lei-do-bem">
             Simular a economia <Seta />
           </a>{" "}
-          <a className="ol-btn ol-btn--ghost" href={FORMULARIO} target="_blank" rel="noopener">
+          <a className="ol-btn ol-btn--ghost" href={FORMULARIO}>
             Converse com um especialista
           </a>
         </>
       }
-      meta="Atualizado em 17/11/2026 · Orientação geral, não substitui parecer contábil · Origami Lab, Formiga (MG)"
+      meta="Atualizado em 18/11/2026 · Orientação geral, não substitui parecer contábil · Origami Lab, Formiga (MG)"
       dados={DADOS}
     >
       <Documento sumario={SUMARIO}>
@@ -193,6 +195,36 @@ export default function PaginaLeiDoBem() {
         <p>
           <strong>Empresas na Lei de Informática.</strong> O capítulo da Lei do Bem não se aplica a quem usa os benefícios das Leis 8.248/1991, 8.387/1991 e
           10.176/2001, que têm regras próprias (Lei 11.196/2005, art. 26).
+        </p>
+
+        <h2 id="escolher-instrumento">Lei do Bem, crédito ou subvenção: qual caminho avaliar?</h2>
+        <p>
+          A Lei do Bem reduz imposto; crédito e subvenção trazem recursos para executar um projeto. Comece pela necessidade da empresa e pelos requisitos
+          que ela consegue comprovar.
+        </p>
+        <Tabela
+          cabecalho={["Sua situação", "Próximo passo", "O que preparar"]}
+          linhas={[
+            [
+              "Lucro real, lucro tributável, regularidade fiscal e atividades de P&D.",
+              <a key="simular" href="/simulador-lei-do-bem">Estimar a economia no simulador da Lei do Bem</a>,
+              "Dispêndios elegíveis, lucro do ano e documentação técnica para conferir com a contabilidade.",
+            ],
+            [
+              "A empresa precisa de recursos para executar o projeto ou não atende aos requisitos da exclusão fiscal.",
+              <a key="financiar" href="/financiamento-de-inovacao#tres-caminhos">Comparar crédito e subvenção para inovação</a>,
+              "Problema, escopo técnico, equipe, cronograma e orçamento, conforme as condições de cada linha ou chamada.",
+            ],
+            [
+              "A empresa já usou o incentivo e precisa organizar as informações do exercício.",
+              <a key="documentar" href="/lei-do-bem-na-pratica">Ver o método de documentação e envio do FormP&D</a>,
+              "Projetos, registros de execução e dispêndios conciliados com a contabilidade.",
+            ],
+          ]}
+        />
+        <p>
+          O simulador mostra a memória de cálculo, sem substituir a análise de elegibilidade. Os requisitos e a base legal estão nas{" "}
+          <a href="#fontes">fontes oficiais desta página</a>.
         </p>
 
         <h2 id="pd">O que conta como P&amp;D e inovação tecnológica</h2>
@@ -257,6 +289,11 @@ export default function PaginaLeiDoBem() {
         <p>
           O que falta nesses casos quase nunca é mérito técnico. É registro: ninguém anotou a hipótese, as alternativas testadas, quem trabalhou quantas horas
           em quê.
+        </p>
+
+        <p>
+          Para projetos digitais, veja o guia de <a href="/lei-do-bem-desenvolvimento-de-software">Lei do Bem no desenvolvimento de software</a>:
+          {" "}como distinguir um desafio tecnológico de implantação e rotina, com exemplos e evidências para preparar a avaliação.
         </p>
 
         <h2 id="quanto">Quanto vale</h2>
@@ -371,6 +408,7 @@ export default function PaginaLeiDoBem() {
         </ul>
       </Documento>
 
+      <ChamadaDaOrigami frente="inovacao" pagina={CAMINHO} />
       <Perguntas prefixo="lei-do-bem" perguntas={PERGUNTAS} />
 
       <LeiturasRelacionadas

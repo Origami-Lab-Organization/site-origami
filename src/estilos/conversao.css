@@ -1,0 +1,25 @@
+/* Ponte entre o conteúdo e a conversa: cartão escuro dentro da camada clara,
+   não uma faixa de ponta a ponta. A faixa cortava o texto no meio e, colada ao
+   formulário das ferramentas, parecia um bloco quebrado. */
+.ol-conversion { background: var(--ol-light); color: var(--ol-text); scroll-margin-top: 90px; padding: 0 var(--ol-gutter) clamp(40px, 5vw, 72px); }
+.ol-conversion__inner { position: relative; overflow: hidden; max-width: calc(var(--ol-max) - 2 * var(--ol-gutter)); margin: 0 auto; padding: clamp(32px, 4.4vw, 60px); border-radius: var(--ol-round); background: radial-gradient(60% 90% at 100% 0%, rgb(46 232 168 / 0.13), transparent 70%), var(--ol-bg); box-shadow: 0 30px 70px rgb(9 15 30 / 0.18); display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: clamp(28px, 5vw, 64px); }
+.ol-conversion__eyebrow { font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .13em; color: var(--ol-green); margin-bottom: 16px; }
+.ol-conversion__title { font-family: var(--ol-serif); font-weight: 400; font-size: clamp(1.9rem, 3.4vw, 2.8rem); line-height: 1.08; letter-spacing: -.015em; max-width: 22ch; text-wrap: balance; }
+.ol-conversion__lead { color: var(--ol-text-2); line-height: 1.7; margin-top: 20px; max-width: 58ch; }
+.ol-conversion__actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+.ol-conversion__actions .ol-btn { font-size: .9rem; padding: 14px 22px; }
+.ol-conversion__list { list-style: none; display: grid; gap: 12px; }
+.ol-conversion__list li { border: 1px solid var(--ol-border); border-radius: 14px; padding: 18px 20px; line-height: 1.6; background: rgb(255 255 255 / .03); }
+.ol-conversion__proof { margin-top: 22px; color: var(--ol-green); font-size: .9rem; }
+.ol-conversion__proof a { text-decoration: underline; text-underline-offset: 4px; }
+.ol-conversion__note { color: var(--ol-text-3); font-size: .85rem; line-height: 1.6; margin-top: 16px; }
+.ol-contact { background: var(--ol-light); color: var(--ol-ink); }
+.ol-contact__inner { max-width: var(--ol-max); margin: 0 auto; padding: clamp(44px, 6vw, 80px) var(--ol-gutter); display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: clamp(24px, 5vw, 64px); align-items: start; }
+.ol-conversation { scroll-margin-top: 100px; }
+.ol-tool .ol-conversion { margin-top: 30px; }
+@media (max-width: 900px) { .ol-conversion__inner, .ol-contact__inner { grid-template-columns: minmax(0, 1fr); } }
+/* Passos numerados da página de conversa: o reset tirava os números do <ol>
+   e sobrava só o recuo. */
+.ol-prose .ol-passos { list-style: none; padding-left: 0; counter-reset: passo; gap: 16px; }
+.ol-prose .ol-passos li { counter-increment: passo; position: relative; padding-left: 48px; }
+.ol-prose .ol-passos li::before { content: counter(passo, decimal-leading-zero); position: absolute; left: 0; top: -2px; font-family: var(--ol-serif); font-size: 1.6rem; line-height: 1.1; color: var(--ol-green-deep); }

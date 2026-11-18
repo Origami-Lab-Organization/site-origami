@@ -274,7 +274,10 @@ li {
   transition: box-shadow 0.3s ease, transform 0.25s cubic-bezier(0.2, 0.7, 0.2, 1),
     background 0.25s ease, border-color 0.25s ease;
 }
+/* border: 0 porque o botão também é <button> (formulários) e o navegador
+   desenhava uma borda cinza em volta dele. */
 .ol-btn--primary {
+  border: 0;
   background: var(--ol-green);
   color: var(--ol-on-green);
   font-size: 1rem;
@@ -1853,10 +1856,9 @@ li {
    Responsivo
    -------------------------------------------------------------------------- */
 
-/* A nav some antes do resto: com seis links mais o botão, a barra já não cabia
-   em ~880px — os links encostavam no "Agendar conversa". O resto do layout
-   continua virando em 860. */
-@media (max-width: 980px) {
+/* O menu inclui Guias. A lista vira painel antes de disputar espaço com o
+   logo e o botão; o restante do layout continua virando em 860px. */
+@media (max-width: 1200px) {
   .ol-nav__links,
   .ol-nav__right > .ol-btn--sm {
     display: none;
@@ -2004,32 +2006,123 @@ li {
    de leitura, e o movimento da home aqui só atrapalharia quem veio ler.
    ========================================================================== */
 
+/* Abertura no padrão dos cases (.ol-phero): rótulo, título serif com destaque
+   em itálico verde e, ao lado, a resposta curta num cartão. A margem lateral
+   fica no .ol-page__inner, como em todas as outras seções, para o topo alinhar
+   com o sumário e o texto logo abaixo. */
 .ol-page__hero {
   position: relative;
   overflow: clip;
   background: var(--ol-bg);
-  padding: clamp(128px, 15vw, 190px) var(--ol-gutter) clamp(64px, 8vw, 96px);
 }
 .ol-page__glow {
   position: absolute;
-  width: 70vw;
-  height: 70vw;
-  max-width: 900px;
-  max-height: 900px;
-  top: -34vw;
-  left: 50%;
-  translate: -50% 0;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgb(46 232 168 / 0.17), transparent 63%);
+  inset: 0;
+  opacity: 0.55;
+  background: radial-gradient(58% 62% at 82% 0%, rgb(46 232 168 / 0.22), transparent 68%);
+  animation: ol-glow 11s ease-in-out infinite;
   pointer-events: none;
 }
 .ol-page__hero > .ol-page__inner {
   position: relative;
   z-index: 1;
+  padding: clamp(124px, 14vw, 176px) var(--ol-gutter) clamp(56px, 7vw, 96px);
 }
 .ol-page__inner {
   max-width: var(--ol-max);
   margin: 0 auto;
+}
+/* O cartão ocupa as duas linhas; título embaixo da primeira e botões no alto
+   da segunda deixam o bloco da esquerda centrado na altura do cartão. */
+.ol-page__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+  grid-template-areas:
+    "intro resumo"
+    "acoes resumo";
+  grid-template-rows: auto auto;
+  column-gap: clamp(40px, 5.5vw, 88px);
+}
+.ol-page__grid > .ol-page__intro {
+  align-self: end;
+}
+.ol-page__grid > .ol-page__actions {
+  align-self: start;
+}
+.ol-page__grid--simples {
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas:
+    "intro"
+    "acoes"
+    "meta";
+  grid-template-rows: auto;
+}
+.ol-page__intro {
+  grid-area: intro;
+}
+.ol-page__grid > .ol-page__actions {
+  grid-area: acoes;
+}
+.ol-page__grid > .ol-page__meta {
+  grid-area: meta;
+}
+/* A camada clara sempre entra com os cantos arredondados sobre o topo escuro,
+   como no .ol-doc, também nas páginas que começam por outra seção. */
+.ol-page__hero + .ol-over > :first-child {
+  border-radius: var(--ol-round) var(--ol-round) 0 0;
+}
+.ol-page__resumo {
+  grid-area: resumo;
+  position: relative;
+  overflow: hidden;
+  margin-top: 6px;
+  padding: clamp(22px, 2.4vw, 30px);
+  border: 1px solid var(--ol-border);
+  border-radius: 22px;
+  background: linear-gradient(170deg, rgb(13 20 38 / 0.92), rgb(4 7 14 / 0.92));
+  box-shadow: 0 40px 90px rgb(0 0 0 / 0.5);
+}
+/* Filete verde no alto do cartão, o mesmo brilho do botão primário. */
+.ol-page__resumo::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 24px;
+  right: 24px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgb(46 232 168 / 0.55), transparent);
+}
+.ol-page__rotulo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ol-green);
+}
+.ol-page__rotulo::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  box-shadow: 0 0 12px rgb(46 232 168 / 0.8);
+}
+@media (max-width: 960px) {
+  .ol-page__grid:not(.ol-page__grid--simples) {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      "intro"
+      "resumo"
+      "acoes";
+    grid-template-rows: auto;
+  }
+  .ol-page__resumo {
+    margin-top: 28px;
+  }
 }
 .ol-crumb {
   display: flex;
@@ -2057,26 +2150,44 @@ li {
   font-style: normal;
 }
 .ol-page__title {
-  max-width: 19ch;
-  font-weight: 800;
-  font-size: clamp(2.1rem, 4.6vw, 3.5rem);
-  line-height: 1.06;
-  letter-spacing: -0.038em;
+  max-width: 20ch;
+  font-family: var(--ol-serif);
+  font-weight: 400;
+  font-size: clamp(2.4rem, 4.8vw, 4rem);
+  line-height: 1.04;
+  letter-spacing: -0.015em;
   text-wrap: balance;
+}
+.ol-page__grid .ol-page__title {
+  max-width: none;
+}
+.ol-page__grid--simples .ol-page__title {
+  max-width: 22ch;
 }
 .ol-page__lead {
   max-width: 62ch;
   margin-top: 22px;
-  font-size: clamp(1.0625rem, 1.5vw, 1.25rem);
-  line-height: 1.68;
-  color: var(--ol-text-1);
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  color: var(--ol-text-2);
   text-wrap: pretty;
+}
+.ol-page__resumo .ol-page__lead {
+  max-width: none;
+  margin-top: 0;
+  font-size: 1rem;
+  line-height: 1.72;
+  color: var(--ol-text-1);
+}
+.ol-page__resumo .ol-page__lead strong {
+  color: var(--ol-text);
+  font-weight: 600;
 }
 .ol-page__actions {
   display: flex;
   flex-wrap: wrap;
   gap: 14px;
-  margin-top: 34px;
+  margin-top: 36px;
 }
 .ol-page__meta {
   margin-top: 30px;
@@ -2084,6 +2195,17 @@ li {
   border-top: 1px solid var(--ol-border);
   font-size: 0.8125rem;
   color: var(--ol-text-5);
+}
+.ol-page__resumo .ol-page__meta {
+  margin-top: 22px;
+  padding-top: 16px;
+  font-size: 0.78rem;
+}
+@media (max-width: 640px) {
+  .ol-page__actions .ol-btn {
+    width: 100%;
+    justify-content: center;
+  }
 }
 
 /* ---- Corpo do texto ---- */
@@ -2113,13 +2235,6 @@ li {
   top: 108px;
   font-size: 0.9375rem;
 }
-@media (max-width: 900px) {
-  .ol-toc {
-    position: static;
-    padding-bottom: 8px;
-    border-bottom: 1px solid var(--ol-light-rule);
-  }
-}
 .ol-toc__title {
   margin-bottom: 14px;
   font-size: 0.75rem;
@@ -2143,6 +2258,43 @@ li {
 .ol-toc__list a:hover {
   border-left-color: var(--ol-green-deep);
   color: var(--ol-green-ink);
+}
+/* No celular o sumário vertical ocupava uma tela inteira antes do texto: vira
+   uma faixa de atalhos que rola para o lado, sangrando até a borda. */
+@media (max-width: 900px) {
+  .ol-toc {
+    position: static;
+    margin: 0 calc(-1 * var(--ol-gutter));
+    min-width: 0;
+  }
+  .ol-toc__title {
+    padding: 0 var(--ol-gutter);
+  }
+  .ol-toc__list {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding: 0 var(--ol-gutter) 4px;
+    scroll-padding-left: var(--ol-gutter);
+    scrollbar-width: none;
+  }
+  .ol-toc__list::-webkit-scrollbar {
+    display: none;
+  }
+  .ol-toc__list li {
+    flex: none;
+  }
+  .ol-toc .ol-toc__list a {
+    padding: 8px 14px;
+    border: 1px solid var(--ol-light-border);
+    border-radius: 100px;
+    background: var(--ol-white);
+    font-size: 0.875rem;
+    white-space: nowrap;
+  }
+  .ol-toc .ol-toc__list a:hover {
+    border-color: var(--ol-green-deep);
+  }
 }
 
 .ol-prose {
@@ -2327,22 +2479,40 @@ li {
   gap: 16px;
   list-style: none;
 }
+/* Cartão branco com seta: o cinza sobre branco não parecia clicável. A seta
+   vem do CSS para valer também nas páginas que escrevem o cartão à mão. */
 .ol-next__card {
-  display: block;
+  display: flex;
+  flex-direction: column;
   height: 100%;
-  padding: 24px;
-  background: var(--ol-light);
+  padding: 26px 26px 22px;
+  background: var(--ol-white);
   border: 1px solid var(--ol-light-border);
-  border-radius: 16px;
+  border-radius: 18px;
   color: var(--ol-ink);
+  box-shadow: 0 1px 2px rgb(9 15 30 / 0.04);
   transition: border-color 0.25s ease, transform 0.25s cubic-bezier(0.2, 0.7, 0.2, 1),
     box-shadow 0.25s ease;
+}
+.ol-next__card::after {
+  content: "";
+  flex: none;
+  width: 20px;
+  height: 20px;
+  margin-top: auto;
+  background: var(--ol-green-deep);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14'/%3E%3Cpath d='m12 5 7 7-7 7'/%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14'/%3E%3Cpath d='m12 5 7 7-7 7'/%3E%3C/svg%3E") center / contain no-repeat;
+  transition: translate 0.25s cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 .ol-next__card:hover {
   color: var(--ol-ink);
   border-color: var(--ol-green-deep);
   transform: translateY(-3px);
-  box-shadow: 0 16px 36px rgb(9 15 30 / 0.08);
+  box-shadow: 0 18px 40px rgb(9 15 30 / 0.09);
+}
+.ol-next__card:hover::after {
+  translate: 6px 0;
 }
 .ol-next__card b {
   display: block;
@@ -2353,28 +2523,38 @@ li {
 }
 .ol-next__card span {
   display: block;
+  margin-bottom: 20px;
   font-size: 0.9375rem;
   line-height: 1.6;
   color: var(--ol-ink-3);
 }
 
-/* A FAQ das páginas internas usa o mesmo componente da home, mas sem a
-   coluna fixa ao lado — aqui a pergunta já é o conteúdo principal. */
+/* A FAQ das páginas internas segue a da home: título fixo à esquerda e as
+   perguntas na largura do site. Numa coluna única centralizada ela ficava
+   solta, desalinhada do resto e cercada de vazio. */
 .ol-faq--page .ol-faq__inner {
-  grid-template-columns: minmax(0, 1fr);
-  max-width: 900px;
-}
-.ol-faq--page .ol-faq__aside .ol-h2 {
-  max-width: none;
-}
-/* Na home a coluna do título é estreita e o limite de 36ch protege a medida.
-   Aqui a coluna ocupa a largura toda, e 36ch quebrava "Fale com a gente"
-   no meio da frase. */
-.ol-faq--page .ol-faq__aside p {
-  max-width: 60ch;
+  grid-template-columns: minmax(0, 0.72fr) minmax(0, 1.28fr);
+  padding-top: clamp(64px, 8vw, 112px);
+  padding-bottom: clamp(48px, 6vw, 88px);
 }
 .ol-faq--page .ol-faq__aside {
-  margin-bottom: clamp(24px, 3vw, 36px);
+  position: sticky;
+  top: 110px;
+}
+@media (max-width: 900px) {
+  .ol-faq--page .ol-faq__inner {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+  }
+  .ol-faq--page .ol-faq__aside {
+    position: static;
+  }
+}
+/* Leituras relacionadas logo depois da FAQ: as duas são brancas, então um
+   filete separa sem somar dois respiros cheios. */
+.ol-faq--page + .ol-next .ol-next__inner {
+  padding-top: clamp(40px, 5vw, 64px);
+  border-top: 1px solid var(--ol-light-hair);
 }
 
 

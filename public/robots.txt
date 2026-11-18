@@ -3,9 +3,14 @@
 User-agent: *
 Allow: /
 
-# Crawlers de IA liberados: é o que permite a Origami ser citada como fonte
-# em respostas do ChatGPT, Perplexity, Claude e do AI Overviews do Google.
-# Para bloquear qualquer um deles, troque o Allow por Disallow: /
+# Busca, treinamento e acesso a pedido do usuário têm controles independentes.
+# OAI-SearchBot e PerplexityBot rastreiam para busca; permitir acesso não
+# garante indexação nem citação. Google Search e seus recursos de IA usam
+# Googlebot, coberto pelo grupo geral acima.
+# GPTBot/ClaudeBot são de treinamento; Google-Extended e Applebot-Extended
+# controlam outros usos dos dados. Não são requisitos para aparecer na busca.
+# ChatGPT-User e Claude-User fazem acessos iniciados por usuários; a aplicação
+# de robots.txt nesses acessos depende das regras do fornecedor.
 User-agent: GPTBot
 Allow: /
 

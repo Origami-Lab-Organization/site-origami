@@ -135,7 +135,7 @@ test("tipo da página, com e sem .html e barra final", () => {
     "/cases": "cases", "/cases/": "cases", "/cases/index.html": "cases",
     "/cases/prumo-engenharia": "case", "/cases/prumo-engenharia.html": "case",
     "/desenvolvimento-de-software": "servico", "/acesso-a-capital.html": "servico", "/consultoria-estrategica/": "servico",
-    "/integracao-de-sistemas": "conteudo", "/planejamento-de-producao": "conteudo",
+    "/integracao-de-sistemas": "conteudo", "/planejamento-de-producao": "conteudo", "/conversar": "contato",
   };
   for (const [caminho, tipo] of Object.entries(casos)) assert.equal(c.tipoDaPagina(caminho, false), tipo, caminho);
   assert.equal(c.tipoDaPagina("/qualquer", true), "404");
@@ -145,6 +145,10 @@ test("tipo da página, com e sem .html e barra final", () => {
 /* ---------------------------------------------------------- CTA */
 
 test("tipo do CTA pelo destino", () => {
+  assert.equal(c.tipoDoCta("/conversar"), "formulario");
+  assert.equal(c.tipoDoCta("/conversar?tema=inovacao&de=%2Flei-do-bem"), "formulario");
+  assert.equal(c.tipoDoCta("/conversar#formulario"), "formulario");
+  assert.equal(c.tipoDoCta("/conversar-outro"), null);
   assert.equal(c.tipoDoCta("https://forms.cloud.microsoft/r/f2GGyr2vZT"), "formulario");
   assert.equal(c.tipoDoCta("https://wa.me/553198055189?text=Ol%C3%A1"), "whatsapp");
   assert.equal(c.tipoDoCta("https://api.whatsapp.com/send?phone=55"), "whatsapp");

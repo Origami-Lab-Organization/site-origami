@@ -4,6 +4,8 @@ import { Rodape } from "@/components/Rodape";
 import { DadosEstruturados } from "@/components/DadosEstruturados";
 import { ScriptsDaPagina } from "@/components/ScriptsDaPagina";
 import "@/estilos/plataforma.css";
+import { atualizacaoDaPagina } from "@/conteudo/paginas";
+import { ORGANIZACAO, SITE_NODE } from "@/lib/seo/estruturados";
 
 export const metadata: Metadata = {
   "title": {
@@ -50,70 +52,8 @@ export const metadata: Metadata = {
 const DADOS_ESTRUTURADOS = {
   "@context": "https://schema.org",
   "@graph": [
-    {
-      "@type": "ProfessionalService",
-      "@id": "https://www.origamilab.com.br/#org",
-      "name": "Origami Lab",
-      "url": "https://www.origamilab.com.br/",
-      "logo": "https://www.origamilab.com.br/assets/logo-mark-color.png",
-      "email": "contato@origamilab.com.br",
-      "telephone": "+553198055189",
-      "description": "Empresa de tecnologia para indústria sediada em Formiga, Minas Gerais. Moderniza operações industriais com software sob medida, integração com ERP, automação de processos, dados em tempo real e IA aplicada, do diagnóstico à implantação, e estrutura o financiamento via Lei do Bem, FINEP e FAPEMIG.",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "R. Silviano Brandão, 156 - 2º andar",
-        "addressLocality": "Formiga",
-        "addressRegion": "MG",
-        "postalCode": "35570-112",
-        "addressCountry": "BR"
-      },
-      "sameAs": [
-        "https://www.linkedin.com/company/origamilab-br/",
-        "https://www.instagram.com/origamilab_br/"
-      ],
-      "areaServed": [
-        {
-          "@type": "AdministrativeArea",
-          "name": "Centro-Oeste de Minas Gerais"
-        },
-        {
-          "@type": "State",
-          "name": "Minas Gerais"
-        },
-        {
-          "@type": "Country",
-          "name": "Brasil"
-        }
-      ],
-      "slogan": "Tecnologia para indústria",
-      "knowsAbout": [
-        "Tecnologia para indústria",
-        "Software para indústria",
-        "Software sob medida para indústria",
-        "Integração de sistemas industriais",
-        "Integração com ERP",
-        "Automação de processos industriais",
-        "Digitalização do chão de fábrica",
-        "Apontamento de produção",
-        "Gestão industrial em tempo real",
-        "Indústria 4.0",
-        "Inteligência artificial aplicada à indústria",
-        "Consultoria de operação",
-        "Lei do Bem",
-        "FINEP",
-        "FAPEMIG"
-      ]
-    },
-    {
-      "@type": "WebSite",
-      "@id": "https://www.origamilab.com.br/#site",
-      "url": "https://www.origamilab.com.br/",
-      "name": "Origami Lab",
-      "inLanguage": "pt-BR",
-      "publisher": {
-        "@id": "https://www.origamilab.com.br/#org"
-      }
-    },
+    ORGANIZACAO,
+    SITE_NODE,
     {
       "@type": "WebPage",
       "@id": "https://www.origamilab.com.br/unificacao-de-produtos-digitais#webpage",
@@ -130,7 +70,7 @@ const DADOS_ESTRUTURADOS = {
       "mainEntity": {
         "@id": "https://www.origamilab.com.br/unificacao-de-produtos-digitais#article"
       },
-      "dateModified": "2026-09-18"
+      "dateModified": atualizacaoDaPagina("/unificacao-de-produtos-digitais")
     },
     {
       "@type": "Article",
@@ -154,7 +94,7 @@ const DADOS_ESTRUTURADOS = {
           "name": "Unificação de produtos digitais"
         }
       ],
-      "dateModified": "2026-09-18"
+      "dateModified": atualizacaoDaPagina("/unificacao-de-produtos-digitais")
     },
     {
       "@type": "BreadcrumbList",
@@ -460,7 +400,7 @@ export default function PaginaUnificacaoDeProdutosDigitais() {
               </h2>
               <p className="ol-cta__lead">Vamos entender as jornadas, os sistemas e as dependências que precisam se conectar na sua empresa.</p>
               <div className="ol-cta__actions">
-                <a className="ol-btn ol-btn--primary ol-btn--lg" href="https://forms.cloud.microsoft/r/f2GGyr2vZT" target="_blank" rel="noopener">Conversar sobre minha plataforma</a>
+                <a className="ol-btn ol-btn--primary ol-btn--lg" href="/conversar">Conversar sobre minha plataforma</a>
                 {" "}
                 <a className="ol-btn ol-btn--ghost" href="https://wa.me/553198055189?text=Ol%C3%A1!%20Li%20a%20experi%C3%AAncia%20de%20unifica%C3%A7%C3%A3o%20de%20produtos%20e%20quero%20conversar%20sobre%20unifica%C3%A7%C3%A3o%20de%20produtos%20digitais." target="_blank" rel="noopener">Falar no WhatsApp</a>
               </div>

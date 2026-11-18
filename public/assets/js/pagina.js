@@ -76,7 +76,7 @@
       toggle.focus();
     });
     window.addEventListener("resize", function () {
-      if (window.innerWidth > 860) setOpen(false);
+      if (window.getComputedStyle(toggle).display === "none") setOpen(false);
     });
   }
 
