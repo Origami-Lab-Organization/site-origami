@@ -1,10 +1,13 @@
 /* Validação do lead que chega pelo site (ferramentas e formulários próprios).
-   Tudo o que vem do navegador é tratado como não confiável. */
+   Tudo o que vem do navegador é tratado como não confiável. Contato: basta
+   e-mail ou WhatsApp (as ferramentas liberam o detalhamento com um dos dois). */
+
+import { problemaDeContato } from "./contato";
 
 export type Lead = {
   nome: string;
-  email: string;
-  empresa: string;
+  email?: string;
+  empresa?: string;
   cargo?: string;
   telefone?: string;
   mensagem?: string;
@@ -19,7 +22,6 @@ export type Lead = {
 
 export type ResultadoDaValidacao = { ok: true; lead: Lead } | { ok: false; erros: string[] };
 
-const EMAIL = /^[^\s@<>()[\],;:"]+@[^\s@<>()[\],;:"]+\.[a-z]{2,}$/i;
 const SLUG = /^[a-z0-9-]{2,60}$/;
 const MAX_CAMPOS = 30;
 const MAX_VALOR = 200;
@@ -55,9 +57,8 @@ function textos(valor: unknown): Record<string, string> {
 function errosObrigatorios(e: Entrada): string[] {
   const erros: string[] = [];
   if (texto(e.nome, 120).length < 2) erros.push("nome");
-  const email = texto(e.email, 254);
-  if (!EMAIL.test(email)) erros.push("email");
-  if (!texto(e.empresa, 160)) erros.push("empresa");
+  const contato = problemaDeContato(texto(e.email, 254), texto(e.telefone, 40));
+  if (contato) erros.push(contato === "falta-contato" ? "contato" : contato);
   if (!SLUG.test(texto(e.ferramenta, 60))) erros.push("ferramenta");
   if (e.consentimento !== true) erros.push("consentimento");
   return erros;
@@ -72,8 +73,8 @@ export function validarLead(entrada: unknown): ResultadoDaValidacao {
     ok: true,
     lead: {
       nome: texto(e.nome, 120),
-      email: texto(e.email, 254).toLowerCase(),
-      empresa: texto(e.empresa, 160),
+      email: opcional(e.email, 254)?.toLowerCase(),
+      empresa: opcional(e.empresa, 160),
       cargo: opcional(e.cargo, 120),
       telefone: opcional(e.telefone, 40),
       mensagem: opcional(e.mensagem, 2000),

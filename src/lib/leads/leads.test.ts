@@ -51,8 +51,8 @@ test("lead válido sai normalizado; dados aninhados e lixo são descartados", ()
 });
 
 test("campos obrigatórios e consentimento explícito", () => {
-  const r = validarLead(leadValido({ nome: "A", email: "sem-arroba", empresa: " ", ferramenta: "Nome Livre!", consentimento: "sim" }));
-  assert.deepEqual(r, { ok: false, erros: ["nome", "email", "empresa", "ferramenta", "consentimento"] });
+  const r = validarLead(leadValido({ nome: "A", email: "sem-arroba", ferramenta: "Nome Livre!", consentimento: "sim" }));
+  assert.deepEqual(r, { ok: false, erros: ["nome", "email", "ferramenta", "consentimento"] });
   assert.deepEqual(validarLead(null), { ok: false, erros: ["corpo"] });
   assert.deepEqual(validarLead("texto"), { ok: false, erros: ["corpo"] });
 });
@@ -176,4 +176,37 @@ test("Resend recusando ou rede caindo: 502", async () => {
   } finally {
     console.error = erro;
   }
+});
+
+/* ------------------------------------------- contato: e-mail ou WhatsApp */
+
+test("basta o WhatsApp: lead sem e-mail e sem empresa é aceito", () => {
+  const r = validarLead(leadValido({ email: "", empresa: "", telefone: "(37) 99999-1234" }));
+  assert.equal(r.ok, true);
+  if (!r.ok) return;
+  assert.equal(r.lead.email, undefined);
+  assert.equal(r.lead.empresa, undefined);
+  assert.equal(r.lead.telefone, "(37) 99999-1234");
+});
+
+test("sem e-mail e sem WhatsApp, o erro é de contato", () => {
+  const r = validarLead(leadValido({ email: " ", telefone: "" }));
+  assert.deepEqual(r, { ok: false, erros: ["contato"] });
+});
+
+test("WhatsApp preenchido errado é recusado mesmo com e-mail válido", () => {
+  assert.deepEqual(validarLead(leadValido({ telefone: "1234" })), { ok: false, erros: ["telefone"] });
+  assert.equal(validarLead(leadValido({ telefone: "+55 37 99999-1234" })).ok, true);
+  assert.equal(validarLead(leadValido({ telefone: "3732221234" })).ok, true);
+  assert.deepEqual(validarLead(leadValido({ email: "", telefone: "44 99999-1234 9" })), { ok: false, erros: ["telefone"] });
+});
+
+test("e-mail do lead só com WhatsApp: sem reply_to e com o número no corpo", async () => {
+  const chamadas: { url: string; corpo: Record<string, unknown> }[] = [];
+  const r = await receberLead(leadValido({ email: "", empresa: "", telefone: "37999991234" }), deps({}, chamadas));
+  assert.equal(r.status, 200);
+  assert.equal("reply_to" in chamadas[0].corpo, false);
+  assert.match(String(chamadas[0].corpo.text), /WhatsApp: 37999991234/);
+  assert.match(String(chamadas[0].corpo.html), /responda pelo número abaixo/);
+  assert.match(String(chamadas[0].corpo.subject), /Ana Souza/);
 });

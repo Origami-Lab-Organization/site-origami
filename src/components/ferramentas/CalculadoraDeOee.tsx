@@ -5,6 +5,8 @@ import { calcularOee, EXEMPLO, faixaDeOee, porcentagem, type EntradasOee, type M
 import { registrarEvento } from "@/lib/medicao/eventos";
 import { CampoNumero, numero } from "./campos";
 import { CapturaDeLead } from "./CapturaDeLead";
+import { DetalheBloqueado } from "./DetalheBloqueado";
+import { useDetalhamentoLiberado } from "./liberacao";
 import { ChamadaDaOrigami } from "@/components/conteudo/ChamadaDaOrigami";
 
 const FERRAMENTA = "calculadora-de-oee";
@@ -63,6 +65,7 @@ function Resultado({ r }: { r: ResultadoOee }) {
       <div className="ol-meter" aria-hidden="true">
         <span style={{ width: `${Math.min(100, r.oee * 100)}%` }} />
       </div>
+      <DetalheBloqueado ferramenta={FERRAMENTA} oQueLibera="Disponibilidade, desempenho, qualidade e as perdas em minutos e peças">
       <div className="ol-result__grid">
         <div className="ol-result__item">
           <b>{porcentagem(r.disponibilidade)}</b>
@@ -92,7 +95,8 @@ function Resultado({ r }: { r: ResultadoOee }) {
           Peças boas que deixaram de sair: <strong>{numero(r.pecasPerdidas)}</strong> de {numero(r.pecasPossiveis)} possíveis no ciclo ideal
         </li>
       </ul>
-      <p className="ol-result__note">O cálculo roda no seu navegador. Nada do que você digita aqui é enviado.</p>
+      </DetalheBloqueado>
+      <p className="ol-result__note">O cálculo roda no seu navegador. O que você digita só é enviado se você deixar o contato.</p>
     </div>
   );
 }
@@ -102,6 +106,7 @@ export function CalculadoraDeOee() {
   const [alterou, setAlterou] = useState(false);
   const eventos = useRef({ inicio: false, completo: false });
   const resultado = calcularOee(entradas);
+  const liberado = useDetalhamentoLiberado();
 
   function mudar(campo: keyof EntradasOee) {
     return (v: Valor) => {
@@ -180,13 +185,16 @@ export function CalculadoraDeOee() {
           <Resultado r={resultado} />
         </div>
       </section>
-      <ChamadaDaOrigami frente="producao" pagina={`/${FERRAMENTA}`} formulario={`#contato-${FERRAMENTA}`} />
       <div className="ol-capture">
         <CapturaDeLead
           ferramenta={FERRAMENTA}
-          titulo="Quer entender as perdas da sua operação?"
-          descricao="Envie o OEE que você acabou de calcular para um especialista avaliar com você onde vale aprofundar a medição. A conta segue junto ao contato. Você também recebe acesso à planilha em Excel para acompanhar os próximos turnos."
-          rotuloBotao="Quero analisar meu OEE"
+          titulo={liberado ? "Quer entender as perdas da sua operação?" : "Libere o detalhamento das perdas"}
+          descricao={
+            liberado
+              ? "Envie o OEE que você acabou de calcular para um especialista avaliar com você onde vale aprofundar a medição. A conta segue junto ao contato. Você também recebe acesso à planilha em Excel para acompanhar os próximos turnos."
+              : "Deixe seu nome e e-mail ou WhatsApp para ver disponibilidade, desempenho, qualidade e quanto cada perda custa em minutos e em peças, e baixar a planilha em Excel. O resultado também chega a um especialista da Origami."
+          }
+          rotuloBotao={liberado ? "Quero analisar meu OEE" : "Ver o detalhamento"}
           dados={dadosParaOLead(entradas, resultado)}
           mensagemDeSucesso={
             <>
@@ -199,6 +207,7 @@ export function CalculadoraDeOee() {
           }
         />
       </div>
+      <ChamadaDaOrigami frente="producao" pagina={`/${FERRAMENTA}`} formulario={`#contato-${FERRAMENTA}`} />
     </>
   );
 }

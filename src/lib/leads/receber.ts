@@ -30,7 +30,8 @@ export function origemPermitida(origem: string | null): boolean {
   return !!origem && ORIGENS.some((re) => re.test(origem));
 }
 
-async function enviarPeloResend(deps: Dependencias, para: string, email: ReturnType<typeof montarEmail>, responderPara: string): Promise<boolean> {
+/** Sem e-mail (lead só com WhatsApp), o comercial responde pelo telefone do corpo. */
+async function enviarPeloResend(deps: Dependencias, para: string, email: ReturnType<typeof montarEmail>, responderPara?: string): Promise<boolean> {
   const resp = await deps.fetch("https://api.resend.com/emails", {
     method: "POST",
     signal: AbortSignal.timeout(10_000),
@@ -38,7 +39,7 @@ async function enviarPeloResend(deps: Dependencias, para: string, email: ReturnT
     body: JSON.stringify({
       from: deps.env.LEADS_DE || REMETENTE_PADRAO,
       to: [para],
-      reply_to: responderPara,
+      ...(responderPara ? { reply_to: responderPara } : {}),
       subject: email.assunto,
       html: email.html,
       text: email.texto,

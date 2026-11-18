@@ -82,7 +82,9 @@ export default function PoliticaDePrivacidade() {
           caixa do formulário (art. 7º, I), e os procedimentos preliminares de um eventual contrato a seu pedido (art. 7º, V).
         </p>
         <p>
-          OEE, custo hora-máquina, Lei do Bem e diagnóstico são calculados no navegador e aparecem sem cadastro. Na calculadora da reforma tributária,
+          OEE, custo hora-máquina, Lei do Bem, fomento à inovação e diagnóstico são calculados no navegador. O resultado principal aparece sem
+          cadastro; para ver o detalhamento, você informa nome e e-mail ou WhatsApp, que seguem com o resultado para a equipe comercial. Na
+          calculadora da reforma tributária,
           os parâmetros da operação passam pelo servidor da Origami e seguem para a API da Receita Federal para produzir o cálculo. Quando você envia
           um formulário, o contexto e o resultado informado seguem junto ao contato para a equipe comercial.
         </p>

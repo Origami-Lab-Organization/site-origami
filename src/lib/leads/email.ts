@@ -26,13 +26,11 @@ export function escapar(valor: string): string {
 type Linha = [string, string];
 
 function contato(lead: Lead): Linha[] {
-  const linhas: Linha[] = [
-    ["Nome", lead.nome],
-    ["E-mail", lead.email],
-    ["Empresa", lead.empresa],
-  ];
+  const linhas: Linha[] = [["Nome", lead.nome]];
+  if (lead.email) linhas.push(["E-mail", lead.email]);
+  if (lead.telefone) linhas.push(["WhatsApp", lead.telefone]);
+  if (lead.empresa) linhas.push(["Empresa", lead.empresa]);
   if (lead.cargo) linhas.push(["Cargo", lead.cargo]);
-  if (lead.telefone) linhas.push(["Telefone", lead.telefone]);
   return linhas;
 }
 
@@ -59,7 +57,8 @@ function blocoTexto(titulo: string, linhas: Linha[]): string {
 }
 
 export function montarEmail(lead: Lead, leadId: string) {
-  const assunto = `Lead do site: ${lead.empresa} (${lead.ferramenta})`;
+  const assunto = `Lead do site: ${lead.empresa ?? lead.nome} (${lead.ferramenta})`;
+  const comoResponder = lead.email ? "Responder este e-mail fala direto com a pessoa." : "A pessoa deixou só o WhatsApp: responda pelo número abaixo.";
   const secoes: [string, Linha[]][] = [
     ["Contato", contato(lead)],
     ["Respostas", respostas(lead)],
@@ -68,7 +67,7 @@ export function montarEmail(lead: Lead, leadId: string) {
   const mensagem = lead.mensagem ? `<h3 style="margin:20px 0 6px;font-size:15px">Mensagem</h3><p style="font-size:14px;white-space:pre-wrap">${escapar(lead.mensagem)}</p>` : "";
   const html =
     `<div style="font-family:Arial,sans-serif;color:#111">` +
-    `<p style="font-size:14px">Novo lead pelo site, vindo de <b>${escapar(lead.ferramenta)}</b>. Responder este e-mail fala direto com a pessoa.</p>` +
+    `<p style="font-size:14px">Novo lead pelo site, vindo de <b>${escapar(lead.ferramenta)}</b>. ${comoResponder}</p>` +
     secoes.map(([t, l]) => tabelaHtml(t, l)).join("") +
     mensagem +
     `<p style="margin-top:24px;font-size:12px;color:#888">lead_id ${escapar(leadId)}</p></div>`;

@@ -746,3 +746,94 @@
   line-height: 1.55;
   color: var(--ol-ink-2);
 }
+
+/* ---- Detalhamento liberado com o contato ---- */
+
+/* As linhas borradas e a chamada ocupam a mesma célula: o bloco cresce com o
+   que for mais alto, sem cortar texto nem botão. */
+.ol-bloqueio {
+  display: grid;
+  margin-top: 20px;
+  border: 1px dashed rgb(29 122 98 / 0.35);
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--ol-white);
+}
+/* Linhas de exemplo borradas: dão a forma do que vem, sem dado real. */
+.ol-bloqueio__fantasma {
+  grid-area: 1 / 1;
+  display: grid;
+  align-content: center;
+  gap: 12px;
+  padding: 20px;
+  filter: blur(3px);
+  opacity: 0.55;
+}
+.ol-bloqueio__fantasma span {
+  display: block;
+  height: 12px;
+  border-radius: 6px;
+  background: linear-gradient(90deg, var(--ol-light-hair), #d9e4df);
+}
+.ol-bloqueio__fantasma span:nth-child(1) { width: 92%; }
+.ol-bloqueio__fantasma span:nth-child(2) { width: 74%; }
+.ol-bloqueio__fantasma span:nth-child(3) { width: 85%; }
+.ol-bloqueio__fantasma span:nth-child(4) { width: 58%; }
+.ol-bloqueio__chamada {
+  grid-area: 1 / 1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 6px;
+  padding: 18px 20px;
+  background: linear-gradient(90deg, rgb(255 255 255 / 0.96) 55%, rgb(255 255 255 / 0.75));
+}
+.ol-bloqueio__titulo {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--ol-ink);
+}
+.ol-bloqueio__texto {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--ol-ink-2);
+}
+.ol-tool .ol-bloqueio__botao,
+.ol-bloqueio__botao {
+  margin-top: 6px;
+  padding: 11px 20px;
+  font-size: 0.875rem;
+  box-shadow: 0 0 24px rgb(46 232 168 / 0.3);
+}
+
+.ol-field__opcional {
+  font-weight: 500;
+  color: var(--ol-ink-3);
+}
+.ol-lead__contato {
+  margin-top: 10px;
+  font-size: 0.8125rem;
+  color: var(--ol-ink-3);
+}
+.ol-lead__contato--erro {
+  font-weight: 600;
+  color: #b42318;
+}
+.ol-capture__liberado {
+  margin-top: 8px;
+  font-weight: 600;
+}
+
+/* Ordem nas ferramentas: resultado, formulário que libera o detalhamento,
+   chamada da Origami e o texto. Um respiro só entre cada bloco. */
+.ol-capture:has(+ .ol-conversion) {
+  padding-bottom: clamp(32px, 4vw, 48px);
+}
+.ol-conversion + .ol-doc {
+  border-radius: 0;
+}
+.ol-conversion + .ol-doc .ol-doc__inner {
+  padding-top: clamp(32px, 4vw, 56px);
+}

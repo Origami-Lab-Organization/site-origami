@@ -5,6 +5,8 @@ import { aliquotasDoIbsPrevistas, exigeAliquotas, faixaDeValor, UFS, type Codigo
 import { registrarEvento } from "@/lib/medicao/eventos";
 import { CampoNumero, CampoSelecao, numero } from "./campos";
 import { CapturaDeLead } from "./CapturaDeLead";
+import { DetalheBloqueado } from "./DetalheBloqueado";
+import { useDetalhamentoLiberado } from "./liberacao";
 import { ChamadaDaOrigami } from "@/components/conteudo/ChamadaDaOrigami";
 
 /* Calculadora da reforma tributária. O cálculo é feito pela API pública da
@@ -203,6 +205,7 @@ function PainelDeResultado({ estado, resultado, mensagem, versao }: { estado: Es
         de CBS e IBS sobre {reais(resultado.base)}, ou {percentual(resultado.carga)} da base.
       </p>
       {resultado.simulado ? <span className="ol-selo">Simulação com as alíquotas informadas</span> : null}
+      <DetalheBloqueado ferramenta={FERRAMENTA} oQueLibera="CBS, IBS estadual e IBS municipal separados, com a memória de cálculo da Receita">
       <div className="ol-result__grid">
         <Linha rotulo="CBS" t={resultado.cbs} />
         <Linha rotulo="IBS estadual" t={resultado.ibsEstadual} />
@@ -215,6 +218,7 @@ function PainelDeResultado({ estado, resultado, mensagem, versao }: { estado: Es
           ))}
         </ul>
       ) : null}
+      </DetalheBloqueado>
       <p className="ol-result__note">
         Calculado pela API pública da{" "}
         <a href="https://github.com/ReceitaFederal/calculadora-rtc-regime-regular" target="_blank" rel="noopener">
@@ -243,6 +247,7 @@ export function CalculadoraReformaTributaria() {
   const [simulacao, setSimulacao] = useState<Simulacao>({ cbs: "", ibsEstadual: "", ibsMunicipal: "" });
   const [estado, setEstado] = useState<Estado>("livre");
   const [resultado, setResultado] = useState<Resultado | null>(null);
+  const liberado = useDetalhamentoLiberado();
   const [mensagem, setMensagem] = useState("");
   const [versao, setVersao] = useState<string | null>(null);
   const tocou = useRef(false);
@@ -368,16 +373,20 @@ export function CalculadoraReformaTributaria() {
           </div>
         </div>
       </section>
-      <ChamadaDaOrigami frente="tributaria" pagina={`/${FERRAMENTA}`} formulario={`#contato-${FERRAMENTA}`} />
       <div className="ol-capture">
         <CapturaDeLead
           ferramenta={FERRAMENTA}
-          titulo="Seus sistemas estão prontos para a reforma?"
-          descricao="A nota fiscal passa a levar os grupos de IBS e CBS, e o ERP precisa conhecer a classificação tributária de cada item. Deixe o contato: um especialista da Origami olha o seu caso e diz o que muda na emissão e nas integrações."
-          rotuloBotao="Quero a análise"
+          titulo={liberado ? "Seus sistemas estão prontos para a reforma?" : "Libere o detalhamento por tributo"}
+          descricao={
+            liberado
+              ? "A nota fiscal passa a levar os grupos de IBS e CBS, e o ERP precisa conhecer a classificação tributária de cada item. Deixe o contato: um especialista da Origami olha o seu caso e diz o que muda na emissão e nas integrações."
+              : "Deixe seu nome e e-mail ou WhatsApp para ver CBS, IBS estadual e IBS municipal separados, com alíquotas e a memória de cálculo da Receita. Um especialista da Origami recebe a operação e diz o que muda na emissão e nas integrações."
+          }
+          rotuloBotao={liberado ? "Quero a análise" : "Ver o detalhamento"}
           dados={dadosDoLead}
         />
       </div>
+      <ChamadaDaOrigami frente="tributaria" pagina={`/${FERRAMENTA}`} formulario={`#contato-${FERRAMENTA}`} />
     </>
   );
 }
