@@ -15,13 +15,29 @@ const SECOES = [
   { id: "faq", rotulo: "Perguntas frequentes" },
 ];
 
-const CONTEUDO = [
-  { href: "/acesso-a-capital", rotulo: "Acesso a capital" },
+const SERVICOS = [
   { href: "/desenvolvimento-de-software", rotulo: "Desenvolvimento de software" },
+  { href: "/modernizacao-de-sistemas-legados", rotulo: "Modernização de sistemas legados" },
   { href: "/consultoria-estrategica", rotulo: "Consultoria estratégica" },
+  { href: "/acesso-a-capital", rotulo: "Acesso a capital" },
+];
+
+const GUIAS = [
   { href: "/integracao-de-sistemas", rotulo: "Integração de sistemas" },
   { href: "/software-sob-medida", rotulo: "Software sob medida" },
+  { href: "/ia-na-industria", rotulo: "IA na indústria" },
+  { href: "/lei-do-bem", rotulo: "Lei do Bem" },
+  { href: "/lei-do-bem-na-pratica", rotulo: "Lei do Bem na prática" },
+  { href: "/financiamento-de-inovacao", rotulo: "Financiamento de inovação" },
   { href: "/unificacao-de-produtos-digitais", rotulo: "Unificação de produtos digitais" },
+];
+
+const FERRAMENTAS = [
+  { href: "/calculadora-de-oee", rotulo: "Calculadora de OEE" },
+  { href: "/simulador-lei-do-bem", rotulo: "Simulador da Lei do Bem" },
+  { href: "/calculadora-custo-hora-maquina", rotulo: "Custo hora-máquina" },
+  { href: "/diagnostico-de-modernizacao", rotulo: "Diagnóstico de modernização" },
+  { href: "/ferramentas", rotulo: "Todas as ferramentas" },
 ];
 
 const SOLUCOES = [
@@ -84,8 +100,10 @@ export function Rodape({ home = false, parallax = false }: Props) {
             </a>
           </div>
           <Coluna titulo="Navegar" rotuloAria="Rodapé" links={navegar} />
-          <Coluna titulo="Entender o assunto" rotuloAria="Páginas de conteúdo" links={CONTEUDO} />
+          <Coluna titulo="Serviços" rotuloAria="Serviços" links={SERVICOS} />
+          <Coluna titulo="Guias" rotuloAria="Guias" links={GUIAS} />
           <Coluna titulo="Soluções para indústria" rotuloAria="Soluções para indústria" links={SOLUCOES} />
+          <Coluna titulo="Ferramentas grátis" rotuloAria="Ferramentas grátis" links={FERRAMENTAS} />
           <div>
             <div className="ol-footer__title">Contato</div>
             <div className="ol-footer__list">
@@ -107,7 +125,9 @@ export function Rodape({ home = false, parallax = false }: Props) {
         </div>
         <div className="ol-footer__bottom">
           <span>© {new Date().getFullYear()} Origami Lab · Formiga, MG</span>
-          <span>Conectamos a força da tradição ao poder da inovação.</span>
+          <span>
+            Conectamos a força da tradição ao poder da inovação. · <a href="/politica-de-privacidade">Política de privacidade</a>
+          </span>
         </div>
       </div>
       <img className="ol-footer__mark" src="/assets/logo-horizontal-white.svg" alt="" aria-hidden="true" {...(parallax ? { "data-px": "0.04" } : {})} />

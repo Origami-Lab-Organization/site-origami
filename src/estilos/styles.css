@@ -3094,6 +3094,9 @@ li {
   color: var(--ol-green-ink);
   margin-bottom: 20px;
 }
+.ol-sols__title--next {
+  margin-top: clamp(40px, 5vw, 56px);
+}
 .ol-sols__grid {
   list-style: none;
   margin: 0;

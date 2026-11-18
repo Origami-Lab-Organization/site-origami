@@ -239,6 +239,18 @@ test("enviar guarda o evento, alimenta o dataLayer e enfileira até o Amplitude 
   assert.deepEqual(enviados, ["a", "b"]);
 });
 
+test("registrar anexa a origem da visita e a página ao evento", async () => {
+  const { root } = janela({ pathname: "/calculadora-de-oee", referrer: "https://www.google.com/" });
+  await iniciarMedicao(root, SEM_CHAVE);
+  root.olMedicao?.registrar("tool_complete", { ferramenta: "calculadora-de-oee", faixa: "60-70" });
+  const ev = root.olMedicao?.eventos.at(-1);
+  assert.equal(ev?.evento, "tool_complete");
+  assert.equal(ev?.props.canal, "busca_organica");
+  assert.equal(ev?.props.pagina, "/calculadora-de-oee");
+  assert.equal(ev?.props.faixa, "60-70");
+  criarEnvio(janela().root).registrar("x");
+});
+
 test("?medicao=debug escreve os eventos no console", () => {
   const { root, logs } = janela({ search: "?medicao=debug" });
   criarEnvio(root).enviar("a", {});

@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   "title": {
     "absolute": "Integração de sistemas: quando o ERP não cobre | Origami Lab"
   },
-  "description": "Por que o dado volta a nascer numa planilha, os quatro caminhos técnicos para integrar sistemas que não conversam e o que fazer quando o sistema é legado e não tem API.",
+  "description": "Por que o dado volta a nascer numa planilha, os quatro caminhos para integrar sistemas que não conversam e o que fazer com sistema legado sem API.",
   "alternates": {
     "canonical": "https://www.origamilab.com.br/integracao-de-sistemas"
   },
@@ -424,6 +424,9 @@ export default function PaginaIntegracaoDeSistemas() {
                     {" E confirmar isso medindo, não perguntando."}
                   </li>
                 </ol>
+                <p>
+                  {"Quando a melhor saída é substituir o legado, e não só integrar, os caminhos (encapsular, migrar por partes ou reescrever) estão em "}<a href="/modernizacao-de-sistemas-legados">modernização de sistemas legados</a>{"."}
+                </p>
                 <h2 id="nao-tecnico">A parte que não é técnica (e costuma ser a difícil)</h2>
                 <p>
                   Integração fracassa mais por acordo do que por tecnologia. Três perguntas precisam ter dono antes da primeira linha de código:

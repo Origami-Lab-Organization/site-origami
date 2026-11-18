@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   "title": {
     "absolute": "Central do Motorista da Transportadora Cabral | Case Origami Lab"
   },
-  "description": "Atrito entre motorista e backoffice por falta de canal único. A Central do Motorista, integrada ao TripLog, trouxe manutenção, checklist e documento fiscal para um só lugar.",
+  "description": "A Central do Motorista, integrada ao TripLog, levou manutenção, checklist e documento fiscal para um canal único entre motorista e backoffice.",
   "alternates": {
     "canonical": "https://www.origamilab.com.br/cases/transportadora-cabral"
   },

@@ -495,6 +495,9 @@ export default function PaginaPlanejamentoDeProducao() {
                   <a href="/acesso-a-capital">acesso a capital</a>
                   .
                 </p>
+                <p>
+                  {"Para o custo de uma hora de máquina que entra nessa conta, inclusive o peso da ociosidade, use a "}<a href="/calculadora-custo-hora-maquina">calculadora de custo hora-máquina</a>{"."}
+                </p>
                 <h2 id="comecar">Por onde começar</h2>
                 <p>
                   Não pela programação da produção. Pelo pedido. Enquanto o pedido chegar por cinco canais, nenhum sequenciamento vai se sustentar, porque a entrada do plano está errada.

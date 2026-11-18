@@ -495,6 +495,9 @@ export default function PaginaTecnologiaParaIndustriasMinasGerais() {
                   <a href="/planejamento-de-producao">planejamento de produção</a>
                   .
                 </p>
+                <p>
+                  {"Para orçar uma peça de usinagem ou de retífica com o custo real da máquina, use a "}<a href="/calculadora-custo-hora-maquina">calculadora de custo hora-máquina</a>{"."}
+                </p>
                 <h2 id="em-comum">O que essas operações têm em comum</h2>
                 <p>Cal, aço, calçado e móvel parecem não ter nada a ver entre si. Do ponto de vista da gestão, repetem o mesmo padrão:</p>
                 <div className="ol-tablewrap">

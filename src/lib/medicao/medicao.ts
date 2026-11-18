@@ -55,6 +55,8 @@ export type OpcoesDaMedicao = {
 export type Envio = {
   eventos: { evento: string; props: Propriedades }[];
   enviar(nome: string, props: Propriedades): void;
+  /** Envia com a origem da visita e a página já anexadas (para ferramentas e formulários). */
+  registrar(nome: string, props?: Propriedades): void;
   ligarAmplitude(amp: AmplitudeMinimo): void;
 };
 
@@ -62,7 +64,7 @@ export function deveCarregarAmplitude(hostname: string): boolean {
   return HOSTS_DE_PRODUCAO.includes(hostname);
 }
 
-export function criarEnvio(root: JanelaDaMedicao): Envio {
+export function criarEnvio(root: JanelaDaMedicao, base: Propriedades = {}): Envio {
   const debug = /[?&]medicao=debug\b/.test(root.location.search);
   let amplitude: AmplitudeMinimo | null = null;
   const pendentes: [string, Propriedades][] = [];
@@ -75,6 +77,9 @@ export function criarEnvio(root: JanelaDaMedicao): Envio {
       if (debug) root.console?.info("[medicao]", nome, props);
       if (amplitude) amplitude.track(nome, props);
       else pendentes.push([nome, props]);
+    },
+    registrar(nome, props = {}) {
+      envio.enviar(nome, { ...base, ...props });
     },
     ligarAmplitude(amp) {
       amplitude = amp;
@@ -142,7 +147,7 @@ export function iniciarMedicao(root: JanelaDaMedicao, opcoes: OpcoesDaMedicao): 
     pagina: normalizarCaminho(root.location.pathname),
     pagina_tipo: tipoDaPagina(root.location.pathname, eh404),
   };
-  const envio = criarEnvio(root);
+  const envio = criarEnvio(root, base);
   root.olMedicao = envio;
   if (registro.nova && ehVisitaOrganica(registro.origem)) envio.enviar("organic_landing_view", base);
   if (eh404) envio.enviar("page_not_found", { ...base, referrer: hostDe(doc.referrer) || "(direto)" });

@@ -850,9 +850,9 @@ export default function PaginaConsultoriaEstrategica() {
                 </a>
               </li>
               <li>
-                <a className="ol-next__card" href="/cases">
-                  <b>Cases</b>
-                  <span>Projetos entregues, com o desafio, o que foi construído e o que mudou na operação.</span>
+                <a className="ol-next__card" href="/diagnostico-de-modernizacao">
+                  <b>Diagnóstico de modernização</b>
+                  <span>Perguntas rápidas para ver a maturidade da operação em dados, integração, legado, retrabalho e IA, com as três prioridades.</span>
                 </a>
               </li>
             </ul>

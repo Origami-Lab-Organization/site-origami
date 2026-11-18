@@ -393,6 +393,9 @@ export default function PaginaApontamentoDeProducao() {
                 <p>
                   Um exemplo ilustrativo, sem relação com nenhum cliente: imagine uma fábrica com três turnos em que o líder do dia seguinte passa as fichas do turno anterior para o sistema antes de começar o próprio trabalho. O custo das horas dele é visível. O custo maior é outro: durante toda a manhã, o PCP programa sem saber o que a noite produziu.
                 </p>
+                <p>
+                  {"O apontamento é a base do OEE. Para ver quanto da capacidade se perde hoje, use a "}<a href="/calculadora-de-oee">calculadora de OEE</a>{"."}
+                </p>
                 <h2 id="formas-de-coletar">Formas de coletar dados no chão de fábrica</h2>
                 <p>
                   Não há uma forma certa para a fábrica inteira. Depende do dado, do posto e do que a máquina já oferece. Quase sempre, a resposta é uma combinação.

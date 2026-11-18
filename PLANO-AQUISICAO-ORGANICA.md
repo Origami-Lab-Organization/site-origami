@@ -254,7 +254,7 @@ não-marca = ~0 e eventos de conversão = 0 (antes não eram medidos).
 |---|---|---|---|
 | 1 | Instalação do Amplitude **confirmada** na página Setup (17/11). Falta decidir a **taxa do Session Replay**, hoje ligada pela configuração remota do projeto | Quem administra o Amplitude | — |
 | 2 | **Agendamento:** criar um Microsoft Bookings "Conversa de 30 minutos" (recomendado: os botões já prometem isso) **ou** trocar o texto de ~100 botões para "Fale com um especialista" | Sócios + comercial | `meeting_booking_click` e honestidade do CTA |
-| 3 | **Leads por e-mail** (decidido: vão para o Guilherme; banco de dados só se o volume justificar). Resend escolhido no Marketplace da Vercel; **falta aceitar os termos no navegador** e configurar o DNS de envio | Quem administra a Vercel e o DNS | Seção 9 |
+| 3 | **Leads por e-mail** (decidido: vão para o Guilherme; banco de dados só se o volume justificar). `POST /api/lead` pronto, usando a conta do Resend do Pulse (domínio `origamipulse.com.br` já verificado, sem DNS novo). `LEADS_PARA` já está na Vercel; **falta `RESEND_API_KEY`** | Quem administra o Resend do Pulse | Seção 9 |
 | 4 | **Política de privacidade e aviso de cookies (LGPD)** e CNPJ/razão social no rodapé. Com o Amplitude completo (cookie, IP, replay), passa a ser urgente | Sócios / jurídico | Deploy da medição e captura própria de lead |
 | 5 | **Validação fiscal** dos parâmetros da Lei do Bem (seção 9.3) por contador ou pela PIN | PIN / contador | Simulador e hub de Lei do Bem |
 | 6 | **Trocar o DNS do blog** e conferir os redirects (passo a passo no plano de 29/09). Avaliar redirect específico para `/tendencias-inovacao-2026/` (194 impressões em 28 dias) | Quem administra o DNS | — |

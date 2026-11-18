@@ -450,6 +450,9 @@ export default function PaginaGestaoIndustrialEmTempoReal() {
                 <p>
                   O valor do OEE está na decomposição: ela diz se a perda está na parada, na velocidade ou na qualidade — problemas com donos diferentes. Há referências de “OEE de classe mundial” citadas na literatura; ajudam pouco. A comparação útil é a linha com ela mesma, mês a mês, com a mesma regra.
                 </p>
+                <p>
+                  {"Para calcular com os números de uma máquina ou linha, use a "}<a href="/calculadora-de-oee">calculadora de OEE</a>{": ela separa disponibilidade, performance e qualidade e mostra a perda em minutos e em peças boas."}
+                </p>
                 <h2 id="coleta">Como medir OEE sem depender de apontamento manual</h2>
                 <p>
                   O OEE é tão bom quanto o registro de paradas. E o registro manual tem um defeito de origem: quem aponta está ocupado produzindo. Parada curta some, o horário é arredondado. Três caminhos resolvem, e se combinam:
@@ -558,6 +561,9 @@ export default function PaginaGestaoIndustrialEmTempoReal() {
                 </ul>
                 <p>
                   Onde ainda é cedo: manutenção preditiva sem histórico de falhas, sequenciamento automático sem regras de programação escritas e qualquer projeto que comece pelo modelo em vez do problema.
+                </p>
+                <p>
+                  {"Os casos de uso por área, com o nível de maturidade de cada um e como escolher o primeiro piloto, estão no guia "}<a href="/ia-na-industria">IA na indústria</a>{"."}
                 </p>
                 <h2 id="comecar">Por onde começar</h2>
                 <p>

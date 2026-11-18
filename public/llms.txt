@@ -43,6 +43,30 @@ Sócios com passagens por Deloitte, AB InBev, Vale, Localiza, MRV, Inter e
 ESAB. Trabalhamos dentro da operação do cliente: cada entrega precisa provar
 resultado antes de a próxima começar.
 
+## Ferramentas gratuitas
+
+Calculadoras e diagnóstico com o resultado na tela, sem cadastro, e o método
+explicado na própria página. Hub: https://www.origamilab.com.br/ferramentas
+
+- [Calculadora de OEE](https://www.origamilab.com.br/calculadora-de-oee):
+  calcula disponibilidade, desempenho, qualidade e OEE de uma máquina ou linha,
+  traduz as perdas em minutos e em peças boas que deixaram de sair e avisa
+  quando o ciclo ideal informado está errado. Inclui a fórmula com exemplo
+  resolvido, erros comuns de cálculo e planilha em Excel para baixar.
+- [Calculadora de custo hora-máquina](https://www.origamilab.com.br/calculadora-custo-hora-maquina):
+  custo por hora produtiva de uma máquina (depreciação, custo do capital,
+  energia, manutenção, espaço e operador), quanto a ociosidade encarece a hora
+  em relação à hora paga e a capacidade em peças por hora, com cada fórmula
+  explicada e o uso no orçamento de usinagem e retífica.
+- [Diagnóstico de modernização](https://www.origamilab.com.br/diagnostico-de-modernizacao):
+  autoavaliação de 11 perguntas que pontua de 0 a 100 a maturidade da operação
+  em dados, integração, sistemas legados, processos manuais e prontidão para
+  IA, e indica três próximos passos. Não substitui a imersão da consultoria.
+- [Simulador da Lei do Bem](https://www.origamilab.com.br/simulador-lei-do-bem):
+  confere os requisitos (lucro real, lucro no período, regularidade fiscal) e
+  estima a economia de IRPJ e CSLL sobre o gasto com P&D, com a memória de
+  cálculo e a base legal (Lei 11.196/2005, Decreto 5.798/2006).
+
 ## Soluções para indústria
 
 Páginas de referência sobre os problemas de operação que a Origami Lab resolve em indústrias. Cada uma responde à pergunta no primeiro parágrafo e traz perguntas frequentes em JSON-LD.
@@ -109,6 +133,32 @@ pergunta no primeiro parágrafo e traz perguntas frequentes em JSON-LD.
   o critério para decidir entre produto pronto e sob medida, os cinco fatores
   que definem o custo de um projeto, e o que a empresa precisa receber ao fim
   para não ficar dependente do fornecedor.
+
+- [Modernização de sistemas legados](https://www.origamilab.com.br/modernizacao-de-sistemas-legados):
+  o que é um sistema legado e os sinais de que virou risco (dependência de uma
+  pessoa, sem fornecedor, Access, Delphi ou VB6, sem API); os caminhos (manter,
+  integrar, substituir por partes, reescrever), migração de dados com
+  conferência e operação em paralelo antes de desligar; e quando não modernizar.
+- [IA na indústria](https://www.origamilab.com.br/ia-na-industria): onde a IA
+  ajuda hoje numa operação industrial (documentos, atendimento e cobrança,
+  procedimentos, previsão, inspeção visual), onde ainda é cedo, o dado como
+  pré-requisito, agentes de IA, cinco perguntas para achar oportunidades,
+  piloto medido e riscos. Guia de método: a Origami Lab não publica case de IA.
+- [Lei do Bem](https://www.origamilab.com.br/lei-do-bem): quem tem direito
+  (lucro real, lucro no período, regularidade fiscal), o que conta como P&D e
+  inovação pelas definições do Decreto 5.798/2006, os percentuais de exclusão
+  (60% a 80%, mais até 20% por patente), os outros incentivos do capítulo, o
+  FormP&D e o risco de glosa, com links para a lei.
+- [Lei do Bem na prática](https://www.origamilab.com.br/lei-do-bem-na-pratica):
+  como a Lei do Bem é usada no ano: o benefício é declaratório e aplicado na
+  apuração, e o MCTI analisa depois, pelo FORMP&D. O que documentar durante o
+  projeto, os percentuais do Decreto 5.798/2006, o limite ao lucro real e por
+  que projetos são glosados, com links para as fontes oficiais.
+- [Financiamento de inovação](https://www.origamilab.com.br/financiamento-de-inovacao):
+  Lei do Bem (incentivo fiscal, só no lucro real), subvenção econômica (não
+  reembolsável, por chamada pública, com contrapartida) e crédito da FINEP
+  (direto ou por agentes, conforme o porte); a saída para quem está no lucro
+  presumido e o Compete Minas, da FAPEMIG.
 
 ## Experiências de projeto
 
