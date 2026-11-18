@@ -781,24 +781,9 @@ export default function PaginaAcessoACapital() {
           <div className="ol-next__inner">
             <h2 className="ol-next__title" id="relacionadas">Leituras relacionadas</h2>
             <ul className="ol-next__grid">
-              <li>
-                <a className="ol-next__card" href="/desenvolvimento-de-software">
-                  <b>Desenvolvimento de software sob medida</b>
-                  <span>Como a Origami Lab constrói e implanta sistemas para o que o ERP não cobre, do diagnóstico à autonomia do time.</span>
-                </a>
-              </li>
-              <li>
-                <a className="ol-next__card" href="/consultoria-estrategica">
-                  <b>Consultoria estratégica</b>
-                  <span>Diagnóstico dentro da operação e portfólio de projetos priorizado por retorno, com sequência, prazo e custo.</span>
-                </a>
-              </li>
-              <li>
-                <a className="ol-next__card" href="/planejamento-de-producao#roi">
-                  <b>Como calcular o ROI de um projeto de digitalização</b>
-                  <span>O método para estimar o retorno antes de investir, com o exemplo do planejamento da produção.</span>
-                </a>
-              </li>
+              <li><a className="ol-next__card" href="/simulador-lei-do-bem"><b>Simulador da Lei do Bem</b><span>Se a sua empresa pode usar o incentivo e quanto ele representa sobre o gasto com P&amp;D, com a memória de cálculo.</span></a></li>
+              <li><a className="ol-next__card" href="/lei-do-bem"><b>Lei do Bem: quem tem direito</b><span>Os requisitos, o que conta como P&amp;D na indústria e o que fazer quando a empresa não se enquadra.</span></a></li>
+              <li><a className="ol-next__card" href="/financiamento-de-inovacao"><b>FINEP, subvenção e crédito para inovação</b><span>Os três caminhos para financiar inovação e qual serve para quem está no lucro presumido.</span></a></li>
             </ul>
           </div>
         </section>

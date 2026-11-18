@@ -5,7 +5,7 @@ type Props = {
   home?: boolean;
   /** A página tem FAQ própria: "Perguntas" rola até ela em vez de ir para a da home. */
   faqNaPagina?: boolean;
-  ativo?: "cases";
+  ativo?: "cases" | "ferramentas";
   /** Texto do botão de contato. */
   cta?: string;
 };
@@ -39,6 +39,9 @@ export function Navegacao({ home = false, faqNaPagina = false, ativo, cta = "Age
             <a className={ativo === "cases" ? "ol-nav__link is-active" : "ol-nav__link"} href="/cases">
               Cases
             </a>
+            <a className={ativo === "ferramentas" ? "ol-nav__link is-active" : "ol-nav__link"} href="/ferramentas">
+              Ferramentas
+            </a>
           </div>
           <a className="ol-btn ol-btn--primary ol-btn--sm" data-magnet="" href={FORMULARIO} target="_blank" rel="noopener">
             {cta}
@@ -61,6 +64,7 @@ export function Navegacao({ home = false, faqNaPagina = false, ativo, cta = "Age
         ))}
         <a href={faq}>Perguntas frequentes</a>
         <a href="/cases">Cases</a>
+        <a href="/ferramentas">Ferramentas grátis</a>
         <a className="ol-btn ol-btn--primary" href={FORMULARIO} target="_blank" rel="noopener">
           {cta}
         </a>

@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   "title": {
     "absolute": "Intranet corporativa da Prumo Engenharia | Case Origami Lab"
   },
-  "description": "Em expansão acelerada, a Prumo Engenharia perdia documentos e comunicados entre obras e setores. Construímos uma intranet em SharePoint Online para 500+ colaboradores em 8 semanas.",
+  "description": "A Prumo Engenharia perdia documentos e comunicados entre obras e setores. Construímos uma intranet em SharePoint Online para 500+ colaboradores em 8 semanas.",
   "alternates": {
     "canonical": "https://www.origamilab.com.br/cases/prumo-engenharia"
   },

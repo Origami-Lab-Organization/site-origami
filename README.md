@@ -245,7 +245,10 @@ Todos reais, vindos do design — **não há link sem destino**:
 ## Pendências
 
 1. **CNPJ e razão social** no rodapé — procurement B2B costuma pedir.
-2. **Política de privacidade / LGPD** — o formulário coleta dados pessoais.
+2. **Política de privacidade / LGPD** — publicada em `/politica-de-privacidade`
+   (`noindex`), descrevendo o que o site faz de fato (Amplitude com cookies e
+   gravação de sessão, formulários, fornecedores). **Revisar com o jurídico** e
+   acrescentar razão social e CNPJ.
 3. **Números nos cases.** `/cases` já traz problema → intervenção → resultado
    de dois clientes, mas o resultado ainda é quase todo qualitativo: o único
    número duro é o alcance da Prumo (500+ colaboradores) e o prazo de 8

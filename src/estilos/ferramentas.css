@@ -1,0 +1,304 @@
+/* ==========================================================================
+   Ferramentas gratuitas: calculadoras, simuladores e captura de contato.
+   Só tokens de :root (styles.css). Camada clara, como .ol-doc.
+   ========================================================================== */
+
+.ol-tool {
+  background: var(--ol-light);
+  color: var(--ol-ink);
+  border-radius: var(--ol-round) var(--ol-round) 0 0;
+}
+.ol-tool + .ol-doc,
+.ol-tool + .ol-capture + .ol-doc,
+.ol-capture + .ol-doc {
+  border-radius: 0;
+}
+.ol-tool__inner {
+  max-width: var(--ol-max);
+  margin: 0 auto;
+  padding: clamp(48px, 7vw, 88px) var(--ol-gutter) clamp(24px, 4vw, 48px);
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+  gap: clamp(24px, 4vw, 52px);
+  align-items: start;
+}
+@media (max-width: 900px) {
+  .ol-tool__inner {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.ol-card {
+  background: var(--ol-white);
+  border: 1px solid var(--ol-light-border);
+  border-radius: 18px;
+  padding: clamp(20px, 3vw, 32px);
+}
+.ol-card__title {
+  font-size: clamp(1.15rem, 1.8vw, 1.35rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--ol-ink);
+}
+.ol-card__lead {
+  margin-top: 6px;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--ol-ink-3);
+}
+.ol-tool__result {
+  position: sticky;
+  top: 96px;
+}
+@media (max-width: 900px) {
+  .ol-tool__result {
+    position: static;
+  }
+}
+
+/* ---- Campos ---- */
+
+.ol-fields {
+  display: grid;
+  gap: 18px;
+  margin-top: 22px;
+}
+.ol-fields--2 {
+  grid-template-columns: repeat(auto-fit, minmax(min(210px, 100%), 1fr));
+}
+.ol-fieldset {
+  border: 0;
+  padding: 0;
+  margin: 26px 0 0;
+}
+.ol-fieldset > legend {
+  padding: 0;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--ol-green-ink);
+}
+.ol-field {
+  display: grid;
+  gap: 6px;
+  /* Sem isto, o campo sem texto de ajuda estica para a altura do vizinho. */
+  align-content: start;
+}
+.ol-field__label {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--ol-ink);
+}
+.ol-field__hint {
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--ol-ink-3);
+}
+.ol-input,
+.ol-select {
+  width: 100%;
+  min-height: 46px;
+  padding: 11px 14px;
+  border: 1px solid var(--ol-light-border);
+  border-radius: 10px;
+  background: var(--ol-white);
+  color: var(--ol-ink);
+  font: inherit;
+  font-size: 1rem;
+}
+.ol-input:focus-visible,
+.ol-select:focus-visible,
+.ol-check input:focus-visible {
+  outline: 2px solid var(--ol-green-deep);
+  outline-offset: 1px;
+}
+.ol-input-group {
+  display: flex;
+  align-items: stretch;
+}
+.ol-input-group .ol-input {
+  border-radius: 10px 0 0 10px;
+}
+.ol-input-group__suffix {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 12px;
+  border: 1px solid var(--ol-light-border);
+  border-left: 0;
+  border-radius: 0 10px 10px 0;
+  background: var(--ol-light);
+  font-size: 0.875rem;
+  color: var(--ol-ink-3);
+  white-space: nowrap;
+}
+.ol-check {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  font-size: 0.875rem;
+  line-height: 1.55;
+  color: var(--ol-ink-2);
+}
+.ol-check input {
+  margin-top: 3px;
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
+  accent-color: var(--ol-green-deep);
+}
+.ol-check a {
+  color: var(--ol-green-ink);
+  text-decoration: underline;
+}
+/* Campo-armadilha para robôs: fora da tela, fora do leitor de tela. */
+.ol-hp {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* ---- Resultado ---- */
+
+.ol-result__label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--ol-ink-3);
+}
+.ol-result__main {
+  margin-top: 6px;
+  font-size: clamp(2.5rem, 6vw, 3.5rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.035em;
+  color: var(--ol-ink);
+  font-variant-numeric: tabular-nums;
+}
+.ol-result__main--longo {
+  font-size: clamp(1.9rem, 4.2vw, 2.6rem);
+}
+.ol-tool a:not(.ol-btn),
+.ol-capture a:not(.ol-btn),
+.ol-result__verdict a,
+.ol-result__note a {
+  color: var(--ol-green-ink);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.ol-result__verdict {
+  margin-top: 10px;
+  font-size: 1rem;
+  line-height: 1.55;
+  color: var(--ol-ink-2);
+}
+.ol-meter {
+  margin-top: 16px;
+  height: 10px;
+  border-radius: 99px;
+  background: var(--ol-light-hair);
+  overflow: hidden;
+}
+.ol-meter > span {
+  display: block;
+  height: 100%;
+  border-radius: 99px;
+  background: var(--ol-green-deep);
+  transition: width 0.35s ease;
+}
+.ol-result__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(130px, 100%), 1fr));
+  gap: 12px;
+  margin-top: 20px;
+}
+.ol-result__item {
+  padding: 14px;
+  border-radius: 12px;
+  background: var(--ol-light);
+}
+.ol-result__item b {
+  display: block;
+  font-size: 1.35rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--ol-ink);
+  font-variant-numeric: tabular-nums;
+}
+.ol-result__item span {
+  display: block;
+  margin-top: 2px;
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  color: var(--ol-ink-3);
+}
+.ol-result__note {
+  margin-top: 18px;
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  color: var(--ol-ink-3);
+}
+.ol-result__list {
+  margin-top: 16px;
+  display: grid;
+  gap: 10px;
+  padding-left: 18px;
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: var(--ol-ink-2);
+}
+
+/* ---- Captura de contato ---- */
+
+/* Continua a faixa clara da ferramenta por baixo do formulário: fundo de
+   ponta a ponta, conteúdo na largura máxima do site. */
+.ol-capture {
+  background: var(--ol-light);
+  padding: 0 max(var(--ol-gutter), calc((100% - var(--ol-max)) / 2 + var(--ol-gutter))) clamp(56px, 8vw, 96px);
+}
+.ol-capture .ol-card {
+  border-left: 3px solid var(--ol-green-deep);
+}
+.ol-capture__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  margin-top: 22px;
+}
+.ol-capture__status {
+  margin-top: 14px;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--ol-ink-2);
+}
+.ol-capture__status a {
+  color: var(--ol-green-ink);
+  text-decoration: underline;
+}
+.ol-capture__ok {
+  padding: 18px 20px;
+  border-radius: 12px;
+  background: rgb(46 232 168 / 0.12);
+  color: var(--ol-ink);
+}
+
+/* Botão para superfície clara (o .ol-btn--ghost é para fundo escuro). */
+.ol-btn--claro {
+  border: 1px solid var(--ol-light-border);
+  background: var(--ol-white);
+  color: var(--ol-ink);
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 16px 28px;
+}
+.ol-btn--claro:hover {
+  border-color: var(--ol-green-deep);
+}
+.ol-btn[disabled] {
+  opacity: 0.6;
+  cursor: progress;
+}

@@ -625,6 +625,45 @@ export default function PaginaInicio() {
                   </a>
                 </li>
               </ul>
+              <h3 className="ol-sols__title ol-sols__title--next" data-anim="" id="ferramentas">Ferramentas grátis e guias</h3>
+              <ul className="ol-sols__grid">
+                <li data-anim="" data-d="1">
+                  <a href="/diagnostico-de-modernizacao">
+                    <b>Diagnóstico de modernização</b>
+                    <span>As três prioridades da sua operação, em poucos minutos.</span>
+                  </a>
+                </li>
+                <li data-anim="" data-d="2">
+                  <a href="/calculadora-de-oee">
+                    <b>Calculadora de OEE</b>
+                    <span>Quanto da capacidade a sua linha perde, em minutos e em peças.</span>
+                  </a>
+                </li>
+                <li data-anim="" data-d="3">
+                  <a href="/simulador-lei-do-bem">
+                    <b>Simulador da Lei do Bem</b>
+                    <span>Se a empresa pode usar o incentivo e quanto ele representa.</span>
+                  </a>
+                </li>
+                <li data-anim="" data-d="1">
+                  <a href="/calculadora-custo-hora-maquina">
+                    <b>Custo hora-máquina</b>
+                    <span>O custo real da hora, com o peso da ociosidade.</span>
+                  </a>
+                </li>
+                <li data-anim="" data-d="2">
+                  <a href="/modernizacao-de-sistemas-legados">
+                    <b>Modernização de sistemas legados</b>
+                    <span>Sair do sistema que só uma pessoa entende, sem parar a operação.</span>
+                  </a>
+                </li>
+                <li data-anim="" data-d="3">
+                  <a href="/ia-na-industria">
+                    <b>IA na indústria</b>
+                    <span>Onde a IA já ajuda a operação e onde ainda é cedo.</span>
+                  </a>
+                </li>
+              </ul>
             </div>
           </section>
           {/* ==================== Como trabalhamos (trilha horizontal) ==================== */}
