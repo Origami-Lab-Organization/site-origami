@@ -646,9 +646,9 @@ export default function PaginaInicio() {
                   </a>
                 </li>
                 <li data-anim="" data-d="1">
-                  <a href="/calculadora-custo-hora-maquina">
-                    <b>Custo hora-máquina</b>
-                    <span>O custo real da hora, com o peso da ociosidade.</span>
+                  <a href="/calculadora-reforma-tributaria">
+                    <b>Calculadora da reforma tributária</b>
+                    <span>CBS e IBS de uma venda, pela calculadora oficial da Receita.</span>
                   </a>
                 </li>
                 <li data-anim="" data-d="2">

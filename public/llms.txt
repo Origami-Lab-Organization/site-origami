@@ -48,6 +48,14 @@ resultado antes de a próxima começar.
 Calculadoras e diagnóstico com o resultado na tela, sem cadastro, e o método
 explicado na própria página. Hub: https://www.origamilab.com.br/ferramentas
 
+- [Calculadora da reforma tributária](https://www.origamilab.com.br/calculadora-reforma-tributaria):
+  CBS, IBS estadual e IBS municipal de uma venda (produto por NCM ou serviço
+  por NBS, município e valor), calculados pela API pública da calculadora
+  oficial da Receita Federal, com a memória de cálculo. Em 2026 usa as
+  alíquotas do ano de teste (CBS 0,9%, IBS 0,1%); de 2027 em diante simula
+  com alíquotas informadas, porque as de referência ainda serão fixadas pelo
+  Senado (ADCT, art. 130). Explica o cronograma da EC 132/2023 e CST/cClassTrib.
+  Não cobre Simples Nacional nem Imposto Seletivo.
 - [Calculadora de OEE](https://www.origamilab.com.br/calculadora-de-oee):
   calcula disponibilidade, desempenho, qualidade e OEE de uma máquina ou linha,
   traduz as perdas em minutos e em peças boas que deixaram de sair e avisa

@@ -5,7 +5,7 @@ import { metadataDaPagina } from "@/lib/seo/metadata";
 
 const CAMINHO = "/ferramentas";
 const DESCRICAO =
-  "Calculadora de OEE, simulador da Lei do Bem, custo hora-máquina e diagnóstico de modernização: ferramentas gratuitas, com resultado na hora e sem cadastro.";
+  "Calculadora da reforma tributária (CBS e IBS), OEE, Lei do Bem, custo hora-máquina e diagnóstico de modernização: grátis, com resultado na hora.";
 
 export const metadata = metadataDaPagina({
   titulo: "Ferramentas grátis para a indústria",
@@ -15,6 +15,11 @@ export const metadata = metadataDaPagina({
 });
 
 const FERRAMENTAS = [
+  {
+    href: "/calculadora-reforma-tributaria",
+    titulo: "Calculadora da reforma tributária",
+    texto: "CBS e IBS de uma venda pela calculadora oficial da Receita Federal, com NCM ou NBS, município e memória de cálculo.",
+  },
   {
     href: "/calculadora-de-oee",
     titulo: "Calculadora de OEE",
@@ -78,7 +83,7 @@ export default function PaginaFerramentas() {
     <PaginaDeConteudo
       migalhas={[{ nome: "Ferramentas" }]}
       titulo="Ferramentas grátis para a indústria"
-      lead="Calculadoras e um diagnóstico para olhar a sua operação com números: OEE, custo hora-máquina, Lei do Bem e maturidade da modernização. O resultado aparece na hora, sem cadastro, com o método explicado."
+      lead="Calculadoras e um diagnóstico para olhar a sua operação com números: CBS e IBS da reforma tributária, OEE, custo hora-máquina, Lei do Bem e maturidade da modernização. O resultado aparece na hora, sem cadastro, com o método explicado."
       acoes={
         <>
           <a className="ol-btn ol-btn--primary" href="/diagnostico-de-modernizacao">

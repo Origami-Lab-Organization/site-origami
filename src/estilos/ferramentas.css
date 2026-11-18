@@ -302,3 +302,62 @@
   opacity: 0.6;
   cursor: progress;
 }
+
+/* ---- Busca com sugestões (NCM, NBS) ---- */
+
+.ol-sugestoes {
+  margin-top: 6px;
+  max-height: 260px;
+  overflow-y: auto;
+  border: 1px solid var(--ol-light-border);
+  border-radius: 10px;
+  background: var(--ol-white);
+  list-style: none;
+  padding: 4px;
+}
+.ol-sugestoes button {
+  display: block;
+  width: 100%;
+  padding: 9px 10px;
+  border: 0;
+  border-radius: 8px;
+  background: none;
+  text-align: left;
+  font: inherit;
+  font-size: 0.875rem;
+  line-height: 1.45;
+  color: var(--ol-ink-2);
+  cursor: pointer;
+}
+.ol-sugestoes button:hover,
+.ol-sugestoes button:focus-visible {
+  background: var(--ol-light);
+  outline: none;
+}
+.ol-sugestoes b {
+  color: var(--ol-ink);
+  font-variant-numeric: tabular-nums;
+}
+.ol-selecionado {
+  margin-top: 8px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: rgb(46 232 168 / 0.1);
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--ol-ink-2);
+}
+.ol-selecionado b {
+  color: var(--ol-ink);
+}
+.ol-selo {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 4px 10px;
+  border-radius: 99px;
+  background: rgb(196 144 26 / 0.12);
+  color: var(--ol-amber-ink);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
