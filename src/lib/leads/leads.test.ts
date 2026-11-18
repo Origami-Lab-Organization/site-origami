@@ -210,3 +210,19 @@ test("e-mail do lead só com WhatsApp: sem reply_to e com o número no corpo", a
   assert.match(String(chamadas[0].corpo.html), /responda pelo número abaixo/);
   assert.match(String(chamadas[0].corpo.subject), /Ana Souza/);
 });
+
+test("páginas do envio e de entrada vão como endereço completo no e-mail", () => {
+  const r = validarLead(leadValido());
+  assert.equal(r.ok, true);
+  if (!r.ok) return;
+  const { texto, html } = montarEmail(r.lead, "lead-1");
+  assert.match(texto, /Página do envio: https:\/\/www\.origamilab\.com\.br\/calculadora-de-oee/);
+  assert.match(texto, /Página de entrada: https:\/\/www\.origamilab\.com\.br\/calculadora-de-oee/);
+  assert.match(html, /https:\/\/www\.origamilab\.com\.br\/calculadora-de-oee/);
+  const externo = validarLead(leadValido({ pagina: "//outro.site/x", origem: { pagina_entrada: "https://exemplo.com/y" } }));
+  assert.equal(externo.ok, true);
+  if (!externo.ok) return;
+  const e = montarEmail(externo.lead, "lead-2").texto;
+  assert.match(e, /Página do envio: \/\/outro\.site\/x/);
+  assert.match(e, /Página de entrada: https:\/\/exemplo\.com\/y/);
+});
