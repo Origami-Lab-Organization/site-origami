@@ -1,45 +1,84 @@
-# LP Origami Lab
+# Site da Origami Lab
 
-Landing page estática da Origami Lab. Sem build, sem npm: publica em qualquer
-hospedagem de arquivo estático (GitHub Pages inclusive).
-
-## Deploy
-
-Push na `main` dispara o workflow `.github/workflows/deploy.yml`, que publica em
-produção na Vercel. **Push nesta branch é deploy** — não é só versionamento.
-Configuração em `vercel.json` (headers de segurança e cache) e `.vercelignore`.
-
-Secrets necessários no repo (Settings → Secrets and variables → Actions):
-`VERCEL_TOKEN`, `VERCEL_ORG_ID`, `VERCEL_PROJECT_ID`.
+Site institucional da Origami Lab em **Next.js 16 (App Router)**, mesma stack do
+Projete: React 19, TypeScript, ESLint com `eslint-config-next` e testes com
+`tsx --test`. Todas as páginas são geradas estáticas no build (○ no `next build`):
+o HTML chega pronto ao navegador, como na versão anterior em HTML puro.
 
 ## Rodar
 
 ```bash
-python3 -m http.server 8000
-# abre http://localhost:8000
+npm install
+npm run dev          # http://localhost:3000
+npm run build        # build de produção (tem que passar antes de qualquer PR)
+npm test             # testes da medição (src/**/*.test.ts)
+npm run lint
+npm run type-check
 ```
 
-Prefira o servidor a abrir o `index.html` por `file://` — o vídeo do hero depende
-de origem HTTP.
+## Deploy
+
+Vercel, projeto `site-origami`. O `vercel.json` declara `"framework": "nextjs"`;
+o painel ainda mostra o preset "Other" porque a `main` publicada era estática.
+Depois do primeiro deploy do Next em produção, trocar o preset para Next.js no
+painel.
+
+Variável de ambiente (Vercel, só Production):
+`NEXT_PUBLIC_AMPLITUDE_API_KEY` (tipo Config: a chave de navegador do Amplitude
+é pública por natureza). Sem ela o site funciona e o console avisa que a
+medição está desligada.
+
+O `vercel.json` guarda os redirects do blog (host `blog.origamilab.com.br`), o
+`/about` e os cabeçalhos de segurança e de cache. O `next.config.ts` guarda os
+redirects das URLs antigas com `.html`, gerados a partir de `src/conteudo/paginas.ts`.
 
 ## Estrutura
 
 ```
-index.html                 a home (9 seções + rodapé)
-cases/index.html           listagem dos cases (/cases)
-cases/*.html               um arquivo por case (/cases/<slug>)
-assets/css/styles.css      estilos; design tokens em :root e @font-face
-assets/js/main.js          motor de scroll (nav, hero, marquees, pin, reveal, FAQ)
-assets/fonts/              Inter e Instrument Serif self-hosted (sem Google Fonts)
-assets/                    imagens, logos, vídeo e poster do hero, capa de OG
-robots.txt, sitemap.xml, llms.txt   SEO
-vercel.json, .vercelignore          hospedagem
-.github/workflows/deploy.yml        deploy automático
-LP Origami Lab.dc.html     arquivo de design original (referência)
-support.js                 runtime do Claude Design, usado só pelo .dc.html
+src/app/                     uma pasta por rota; page.tsx traz metadata, JSON-LD e conteúdo
+src/app/layout.tsx           html, CSS global, preload da Inter, link "pular", <Medicao />
+src/app/not-found.tsx        404 (status 404, noindex, dispara page_not_found)
+src/app/sitemap.ts           sitemap gerado de src/conteudo/paginas.ts
+src/components/              Navegacao, Rodape, DadosEstruturados, ScriptsDaPagina, Medicao…
+src/conteudo/paginas.ts      páginas publicadas: fonte do sitemap e dos redirects .html
+src/conteudo/contato.ts      formulário, e-mail, WhatsApp, endereço e redes (um lugar só)
+src/lib/medicao/             classificação de canal e eventos de conversão (+ testes)
+src/estilos/                 styles.css (tokens, @font-face), servico.css, plataforma.css
+public/assets/               imagens, logos, fontes, vídeo e poster do hero, capa de OG
+public/assets/js/            main.js (scroll da home e dos cases), pagina.js, servico.js
+public/robots.txt, llms.txt  SEO e GEO; a chave do IndexNow também fica em public/
+rascunhos/                   páginas fora do ar (case da Bry, aguardando o cliente)
+PLANO-AQUISICAO-ORGANICA.md  diagnóstico e plano de aquisição orgânica
+LP Origami Lab.dc.html       arquivo de design original (referência, não é servido)
+support.js                   runtime do Claude Design, usado só pelo .dc.html
 ```
 
-Os dois últimos não são carregados pela página e podem sair do deploy.
+### Como as páginas foram migradas
+
+As páginas vieram do HTML estático por conversão automática para JSX e foram
+comparadas com o original antes da troca: title, meta, canonical, Open Graph,
+JSON-LD e o conteúdo inteiro, nó a nó e atributo a atributo, saíram idênticos;
+os screenshots em 380 e 1440 px batem (altura igual em todas as páginas). O que
+mudou de propósito:
+
+- **Nav e rodapé viraram componentes.** O rodapé era o mesmo bloco copiado em
+  19 arquivos, já com divergências (link de Cases e coluna de soluções faltando
+  em algumas páginas, duas frases de assinatura, duas grafias de endereço) e
+  **quebrado no planejamento da produção**, que terminava no meio do rodapé.
+  Agora é um só, com todos os links.
+- **Os scripts de comportamento** (`public/assets/js`) continuam em JavaScript
+  puro e rodam depois da hidratação (`next/script`, `afterInteractive`), para o
+  React nunca encontrar um DOM que ele não gerou. A navegação entre páginas é
+  por `<a>` (carregamento completo), de propósito: o `main.js` inicia do zero a
+  cada página.
+
+### Página nova
+
+1. Crie `src/app/<rota>/page.tsx` com `metadata` (title, description,
+   `alternates.canonical`, Open Graph) e o conteúdo, usando `<Navegacao />` e
+   `<Rodape />`. Use uma página parecida como ponto de partida.
+2. Some a rota em `src/conteudo/paginas.ts` (sitemap e redirect `.html`).
+3. Inclua a URL no `public/llms.txt`.
 
 ## Seções
 
@@ -68,18 +107,18 @@ abertura: em vez do hero de vídeo em 100vh que fica preso, as páginas internas
 usam `.ol-phero`, um hero curto sem vídeo, porque ali o assunto é o texto.
 
 ```
-cases/index.html                     listagem + as quatro fases + CTA
-cases/plataforma-bry.html            plataforma única de confiança digital (fora do deploy, via .vercelignore)
-cases/cobranca-automatica-whatsapp-retifica-formiguense.html   cobrança automática via WhatsApp
-cases/prumo-engenharia.html          intranet corporativa em SharePoint Online
-cases/transportadora-cabral.html     Central do Motorista integrada ao TripLog
+src/app/cases/page.tsx                                              listagem + as quatro fases + CTA
+src/app/cases/cobranca-automatica-whatsapp-retifica-formiguense/    cobrança automática via WhatsApp
+src/app/cases/prumo-engenharia/                                     intranet corporativa em SharePoint Online
+src/app/cases/transportadora-cabral/                                Central do Motorista integrada ao TripLog
+rascunhos/cases/plataforma-bry.html                                 plataforma única de confiança digital (fora do ar)
 ```
 
 Prumo e Cabral vêm dos posts de `blog.origamilab.com.br/cases/`, reescritos
 para o site (não é cópia) e com link para a versão do blog na coluna lateral.
 A Bry veio do case interno em PDF. Cada página traz `Article` +
-`BreadcrumbList` em JSON-LD, e todas as URLs estão no `sitemap.xml` e no
-`llms.txt`.
+`BreadcrumbList` em JSON-LD, e todas as URLs estão em `src/conteudo/paginas.ts`
+(sitemap) e no `llms.txt`.
 
 **O que foi deixado de fora do case da Bry.** O documento de origem é interno e
 traz coisas que não vão para página pública: nomes dos stakeholders do cliente
@@ -92,17 +131,13 @@ editar essa página deve manter esse corte.
 
 **Antes de publicar a página da Bry**, validar o texto com o cliente — o
 documento de origem pede isso e sugere pedir junto um depoimento curto da
-direção, que hoje falta no case.
+direção, que hoje falta no case. Para publicar, converter o HTML de
+`rascunhos/` numa rota em `src/app/cases/`.
 
-As rotas dependem do `cleanUrls: true` do `vercel.json`: é ele que serve
-`cases/prumo-engenharia.html` em `/cases/prumo-engenharia`. Num servidor
-estático comum (o `python3 -m http.server` do "Rodar") os links internos vão
-precisar do `.html`.
-
-**Para acrescentar um case:** copie um dos dois arquivos, troque conteúdo,
-`<title>`, meta tags, canonical e JSON-LD; some um `.ol-casecard` em
-`cases/index.html`; aponte o "próximo case" do arquivo vizinho para ele; e
-inclua a URL no `sitemap.xml` e no `llms.txt`.
+**Para acrescentar um case:** copie a pasta de um case em `src/app/cases/`,
+troque conteúdo, `metadata` e JSON-LD; some um `.ol-casecard` em
+`src/app/cases/page.tsx`; aponte o "próximo case" do vizinho para ele; e inclua
+a rota em `src/conteudo/paginas.ts` e no `llms.txt`.
 
 ## Comportamento e degradação
 
@@ -123,7 +158,7 @@ escondido não fica invisível para sempre.
 
 ## Ajuste de intensidade
 
-No topo de `assets/js/main.js`:
+No topo de `public/assets/js/main.js`:
 
 ```js
 var CONFIG = {
@@ -144,6 +179,46 @@ Dois caminhos, ambos em nova aba com `rel="noopener"`:
 > visitante converter sem sair da página (o formulário permite embed — não manda
 > `X-Frame-Options` nem `frame-ancestors`). Este design abre em nova aba. Se
 > quiser voltar ao formulário embutido, é uma mudança pequena e localizada.
+
+## Medição
+
+`src/lib/medicao/` (lógica e testes) e `src/components/Medicao.tsx`, montado
+uma vez no layout. Substituiu o Microsoft Clarity.
+
+- **Amplitude** com o pacote `@amplitude/unified` (análise + Session Replay +
+  Experiment + Guides & Surveys), importado sob demanda depois da hidratação e
+  iniciado com `amplitude.initAll(chave, {"analytics":{"autocapture":true}})`,
+  como pede o assistente de instalação do Amplitude. Autocapture completo: page
+  view, sessão, atribuição, cliques, formulários, downloads, frustração e Web
+  Vitals. A taxa de gravação do Session Replay é definida no painel do Amplitude.
+- **Chave:** `NEXT_PUBLIC_AMPLITUDE_API_KEY` na Vercel, só em Production. Não
+  fica no código porque o gitleaks da esteira a trata como segredo. Sem ela, o
+  console avisa `Amplitude API key missing — analytics disabled`. O Amplitude só
+  carrega em `origamilab.com.br`: localhost e previews não enviam nada.
+- **Privacidade:** o Amplitude grava cookies (`AMP_*`, domínio
+  `.origamilab.com.br`), registra IP e pode gravar a sessão. Isso exige política
+  de privacidade e aviso de cookies (LGPD), como o Clarity já exigia.
+- **Eventos próprios**, todos com `pagina`, `pagina_tipo`, `canal`, `origem`,
+  `pagina_entrada` e as UTMs da chegada:
+  - `organic_landing_view`: primeira página da visita, quando ela veio de
+    buscador (`canal=busca_organica`) ou de assistente de IA
+    (`canal=assistente_ia`: ChatGPT, Perplexity, Gemini, Copilot, Claude…).
+  - `service_cta_click`: clique em formulário, WhatsApp, e-mail ou telefone,
+    com `cta_tipo`, `cta_local` e `cta_texto`. É intenção, não lead.
+  - `meeting_booking_click`: só para link de agendamento real (Bookings,
+    Calendly, cal.com ou `data-cta="agendamento"`). **Hoje não existe nenhum**:
+    "Agendar conversa" leva ao formulário.
+  - `page_not_found`: visita à 404, com o domínio de onde veio.
+- `contact_form_submit` e `qualified_lead` **não** são medidos no navegador. O
+  primeiro acontece no Microsoft Forms, que o site não enxerga; o segundo é
+  decisão do comercial. Ver `PLANO-AQUISICAO-ORGANICA.md`.
+- Todo evento também vai para `window.dataLayer` (GTM/GA4 no futuro sem mexer
+  no arquivo). Fora de produção, os eventos ficam em `window.olMedicao.eventos`;
+  com `?medicao=debug` na URL, aparecem no console.
+- Para marcar o local de um CTA à mão: `data-cta-local="..."` no link ou num
+  ancestral. Para forçar o tipo: `data-cta="..."`.
+
+Testes: `npm test`.
 
 ## Dados de contato
 

@@ -1,6 +1,6 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "cleanUrls": true,
+  "framework": "nextjs",
   "redirects": [
     {
       "source": "/case-tecnologia{/}?",
@@ -189,7 +189,7 @@
       ]
     },
     {
-      "source": "/assets/(.*).(css|js)",
+      "source": "/assets/js/(.*).js",
       "headers": [
         {
           "key": "Cache-Control",
