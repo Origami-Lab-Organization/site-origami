@@ -1,3 +1,4 @@
+import { SITE } from "@/conteudo/paginas";
 import type { Lead } from "./validacao";
 
 /* E-mail que o comercial recebe a cada lead. Texto e HTML com o mesmo
@@ -38,9 +39,15 @@ function respostas(lead: Lead): Linha[] {
   return Object.entries(lead.dados).map(([k, v]) => [k, String(v)]);
 }
 
+/** Rota do site vira endereço completo, para o comercial abrir com um clique.
+ *  Só caminhos do próprio site (começam com "/"); o resto fica como veio. */
+function enderecoCompleto(valor: string): string {
+  return valor.startsWith("/") && !valor.startsWith("//") ? `${SITE}${valor}` : valor;
+}
+
 function origem(lead: Lead): Linha[] {
-  const linhas: Linha[] = Object.entries(lead.origem).map(([k, v]) => [ROTULOS[k] ?? k, v]);
-  return [["Página do envio", lead.pagina], ...linhas];
+  const linhas: Linha[] = Object.entries(lead.origem).map(([k, v]) => [ROTULOS[k] ?? k, k === "pagina_entrada" ? enderecoCompleto(v) : v]);
+  return [["Página do envio", enderecoCompleto(lead.pagina)], ...linhas];
 }
 
 function tabelaHtml(titulo: string, linhas: Linha[]): string {
