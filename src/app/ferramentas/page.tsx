@@ -118,12 +118,12 @@ const FERRAMENTAS = [
 const PERGUNTAS: Pergunta[] = [
   {
     pergunta: "As ferramentas são gratuitas?",
-    resposta: "Sim. Todas são gratuitas e o resultado aparece na tela, sem cadastro.",
+    resposta: "Sim, todas são gratuitas. O resultado principal aparece na hora; o detalhamento completo é liberado quando você informa nome e e-mail ou WhatsApp.",
   },
   {
     pergunta: "Onde os cálculos são feitos e para quem os dados são enviados?",
     resposta:
-      "OEE, custo hora-máquina, Lei do Bem, fomento à inovação e diagnóstico de modernização são calculados no seu navegador. Na calculadora da reforma tributária, os parâmetros da operação, como valor, data, município e classificação tributária, passam pelo servidor da Origami e são enviados à API pública da Receita Federal para calcular CBS e IBS. Não é preciso informar nome, e-mail ou CNPJ para calcular. Se você enviar o formulário de contato ao fim de uma ferramenta, seu contato e o resultado seguem para a equipe comercial da Origami.",
+      "OEE, custo hora-máquina, Lei do Bem, fomento à inovação e diagnóstico de modernização são calculados no seu navegador. Na calculadora da reforma tributária, os parâmetros da operação, como valor, data, município e classificação tributária, passam pelo servidor da Origami e são enviados à API pública da Receita Federal para calcular CBS e IBS. O resultado principal sai sem cadastro. Para ver o detalhamento, você informa nome e e-mail ou WhatsApp; esse contato e o resultado seguem para a equipe comercial da Origami.",
   },
   {
     pergunta: "Posso usar o resultado para decidir um investimento?",
@@ -133,7 +133,7 @@ const PERGUNTAS: Pergunta[] = [
   {
     pergunta: "O que acontece se eu deixar o contato?",
     resposta:
-      "Um especialista da Origami lê o seu resultado e responde por e-mail com o que vale olhar primeiro. Se fizer sentido, propõe uma conversa de 30 minutos.",
+      "O detalhamento completo aparece na hora, na própria página, e passa a valer para todas as ferramentas neste navegador. Um especialista da Origami lê o seu resultado e, se fizer sentido, fala com você pelo contato que deixou.",
   },
 ];
 
@@ -157,7 +157,7 @@ export default function PaginaFerramentas() {
       rotulo="Ferramentas gratuitas"
       abertura="simples"
       titulo={<>Ferramentas grátis <em className="ol-em">para a indústria.</em></>}
-      lead="Calculadoras e diagnósticos para olhar a sua operação com números: CBS e IBS da reforma tributária, OEE, custo hora-máquina, Lei do Bem, o caminho de fomento à inovação e a maturidade da modernização. O resultado aparece na hora, sem cadastro, com o método explicado."
+      lead="Calculadoras e diagnósticos para olhar a sua operação com números: CBS e IBS da reforma tributária, OEE, custo hora-máquina, Lei do Bem, o caminho de fomento à inovação e a maturidade da modernização. O resultado principal aparece na hora, com o método explicado; o detalhamento completo, com o seu nome e e-mail ou WhatsApp."
       acoes={
         <>
           <a className="ol-btn ol-btn--primary" href="/diagnostico-de-modernizacao">
@@ -174,7 +174,7 @@ export default function PaginaFerramentas() {
     >
       <section className="ol-hub" id="ferramentas-lista" aria-labelledby="ferramentas-titulo">
         <div className="ol-hub__inner">
-          <span className="ol-kicker ol-kicker--ink">Grátis, sem cadastro</span>
+          <span className="ol-kicker ol-kicker--ink">Grátis, com o método explicado</span>
           <h2 className="ol-hub__title" id="ferramentas-titulo">
             Escolha uma <em className="ol-em">ferramenta</em>
           </h2>

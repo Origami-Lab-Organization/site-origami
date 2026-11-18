@@ -40,7 +40,7 @@ const PERGUNTAS: Pergunta[] = [
   },
   {
     pergunta: "Minhas respostas ficam guardadas?",
-    resposta: "Não. O cálculo é feito no seu navegador. As respostas só chegam à Origami Lab se você preencher o formulário ao fim.",
+    resposta: "Não. O cálculo é feito no seu navegador. As respostas só chegam à Origami Lab quando você deixa o contato para ver o detalhamento.",
   },
 ];
 
@@ -67,7 +67,7 @@ const DADOS = grafoDaPagina({
       "Onze perguntas de múltipla escolha",
       "Pontuação de 0 a 100 em cinco frentes e geral",
       "Três recomendações priorizadas, com o conteúdo de cada uma",
-      "Resultado na tela, sem cadastro",
+      "Maturidade geral na hora; pontuação por frente e prioridades com o contato",
       "Calcula no navegador",
     ],
   },
@@ -92,7 +92,7 @@ export default function PaginaDiagnosticoDeModernizacao() {
       lead={
         <>
           Onze perguntas, cerca de três minutos. O diagnóstico mede a maturidade da sua operação em cinco frentes (dados e indicadores, integração entre sistemas,
-          sistemas legados, processos manuais e prontidão para IA) e aponta <strong>as três por onde começar</strong>. O resultado aparece na tela, sem cadastro.
+          sistemas legados, processos manuais e prontidão para IA) e aponta <strong>as três por onde começar</strong>. A maturidade geral aparece na hora; a pontuação por frente e as prioridades, com o seu nome e e-mail ou WhatsApp.
         </>
       }
       acoes={

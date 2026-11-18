@@ -13,6 +13,8 @@ import {
 import { registrarEvento } from "@/lib/medicao/eventos";
 import { CampoNumero, CampoSelecao, numero } from "./campos";
 import { CapturaDeLead } from "./CapturaDeLead";
+import { DetalheBloqueado } from "./DetalheBloqueado";
+import { useDetalhamentoLiberado } from "./liberacao";
 import { ChamadaDaOrigami } from "@/components/conteudo/ChamadaDaOrigami";
 
 const FERRAMENTA = "calculadora-custo-hora-maquina";
@@ -163,6 +165,7 @@ function Resultado({ r, aproveitamento, exemplo }: { r: ResultadoHoraMaquina | n
     <div className="ol-card" aria-live="polite">
       <div className="ol-result__label">Custo por hora produtiva</div>
       <div className="ol-result__main">{moeda(r.porHoraProdutiva)}</div>
+      <DetalheBloqueado ferramenta={FERRAMENTA} oQueLibera="O peso de cada item na hora, o efeito da ociosidade e a capacidade em peças">
       <Ociosidade r={r} aproveitamento={aproveitamento} />
       <div className="ol-result__grid">
         {r.componentes.map((c) => (
@@ -173,6 +176,7 @@ function Resultado({ r, aproveitamento, exemplo }: { r: ResultadoHoraMaquina | n
         ))}
       </div>
       <Capacidade r={r} />
+      </DetalheBloqueado>
       <p className="ol-result__note">
         {exemplo ? "Valores de exemplo, ilustrativos: troque pelos dados da sua máquina. " : ""}
         Custo anual de {moeda(r.custoAnual)} em {numero(r.horasProdutivasAno)} horas produtivas ({numero(r.horasPagasAno)} horas pagas).
@@ -203,6 +207,7 @@ export function CalculadoraHoraMaquina() {
 
   const entrada = useMemo(() => paraEntrada(valores, modo), [valores, modo]);
   const resultado = useMemo(() => calcularHoraMaquina(entrada), [entrada]);
+  const liberado = useDetalhamentoLiberado();
 
   function medir(nova: EntradaHoraMaquina) {
     if (!eventos.current.inicio) {
@@ -248,16 +253,20 @@ export function CalculadoraHoraMaquina() {
           <Resultado r={resultado} aproveitamento={entrada.aproveitamento} exemplo={exemplo} />
         </aside>
       </div>
-      <ChamadaDaOrigami frente="producao" pagina={`/${FERRAMENTA}`} formulario={`#contato-${FERRAMENTA}`} />
       <div className="ol-capture">
         <CapturaDeLead
           ferramenta={FERRAMENTA}
-          titulo="Quer revisar o custo das suas máquinas com um especialista?"
-          descricao="Um especialista da Origami Lab revisa a conta com você e mostra como medir o aproveitamento real das máquinas, em vez de estimar."
-          rotuloBotao="Quero revisar meu custo"
+          titulo={liberado ? "Quer revisar o custo das suas máquinas com um especialista?" : "Libere a composição do custo"}
+          descricao={
+            liberado
+              ? "Um especialista da Origami Lab revisa a conta com você e mostra como medir o aproveitamento real das máquinas, em vez de estimar."
+              : "Deixe seu nome e e-mail ou WhatsApp para ver quanto cada item pesa na hora, o efeito da ociosidade e a capacidade em peças por hora. A conta também chega a um especialista da Origami."
+          }
+          rotuloBotao={liberado ? "Quero revisar meu custo" : "Ver a composição"}
           dados={dadosDoLead(resultado, entrada)}
         />
       </div>
+      <ChamadaDaOrigami frente="producao" pagina={`/${FERRAMENTA}`} formulario={`#contato-${FERRAMENTA}`} />
     </section>
   );
 }

@@ -13,6 +13,8 @@ import {
 } from "@/lib/ferramentas/diagnostico";
 import { registrarEvento } from "@/lib/medicao/eventos";
 import { CapturaDeLead } from "./CapturaDeLead";
+import { DetalheBloqueado } from "./DetalheBloqueado";
+import { useDetalhamentoLiberado } from "./liberacao";
 import { ChamadaDaOrigami } from "@/components/conteudo/ChamadaDaOrigami";
 
 const FERRAMENTA = "diagnostico-de-modernizacao";
@@ -63,6 +65,7 @@ function Resultado({ r }: { r: ResultadoDoDiagnostico }) {
       <p className="ol-result__verdict">
         <strong>{r.nivel.nome}.</strong> {r.nivel.descricao}
       </p>
+      <DetalheBloqueado ferramenta={FERRAMENTA} oQueLibera="A pontuação em cada frente e as três prioridades por onde começar">
       <div className="ol-result__grid">
         {DIMENSOES.map((d) => (
           <div key={d.id} className="ol-result__item">
@@ -82,8 +85,9 @@ function Resultado({ r }: { r: ResultadoDoDiagnostico }) {
           </li>
         ))}
       </ol>
+      </DetalheBloqueado>
       <p className="ol-result__note">
-        Parte desses projetos pode ser financiada com incentivo fiscal ou crédito para inovação: veja <a href="/acesso-a-capital">acesso a capital</a>.
+        Parte desses projetos pode ser financiada com incentivo fiscal ou crédito para inovação: veja <a href="/fomento-a-inovacao">qual fomento serve</a>.
       </p>
     </div>
   );
@@ -98,6 +102,7 @@ export function DiagnosticoDeModernizacao() {
   const [respostas, setRespostas] = useState<Respostas>({});
   const eventos = useRef({ inicio: false, resultado: false });
   const resultado = useMemo(() => diagnosticar(respostas), [respostas]);
+  const liberado = useDetalhamentoLiberado();
 
   function medir(novas: Respostas) {
     if (!eventos.current.inicio) {
@@ -138,16 +143,20 @@ export function DiagnosticoDeModernizacao() {
       </div>
       {resultado ? (
         <>
-        <ChamadaDaOrigami frente="sistemas" pagina={`/${FERRAMENTA}`} formulario={`#contato-${FERRAMENTA}`} />
         <div className="ol-capture">
           <CapturaDeLead
             ferramenta={FERRAMENTA}
-            titulo="Receba a leitura de um especialista sobre o seu resultado"
-            descricao="Um especialista da Origami Lab olha as suas respostas e volta com o que está por trás de cada frente e um primeiro passo concreto. Sem compromisso."
-            rotuloBotao="Quero a leitura do especialista"
+            titulo={liberado ? "Receba a leitura de um especialista sobre o seu resultado" : "Libere o diagnóstico completo"}
+            descricao={
+              liberado
+                ? "Um especialista da Origami Lab olha as suas respostas e volta com o que está por trás de cada frente e um primeiro passo concreto. Sem compromisso."
+                : "Deixe seu nome e e-mail ou WhatsApp para ver a pontuação em cada frente e as três prioridades por onde começar. Um especialista da Origami recebe as respostas e volta com um primeiro passo, sem compromisso."
+            }
+            rotuloBotao={liberado ? "Quero a leitura do especialista" : "Ver o diagnóstico completo"}
             dados={dadosDoLead(resultado, respostas)}
           />
         </div>
+        <ChamadaDaOrigami frente="sistemas" pagina={`/${FERRAMENTA}`} formulario={`#contato-${FERRAMENTA}`} />
         </>
       ) : null}
     </section>

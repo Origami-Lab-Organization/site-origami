@@ -51,7 +51,7 @@ const PERGUNTAS: Pergunta[] = [
   {
     pergunta: "A calculadora guarda os meus dados?",
     resposta:
-      "Não. A conta é feita no seu navegador e nada é enviado. Os dados só chegam à Origami Lab se você preencher o formulário para falar com um especialista.",
+      "Não. A conta é feita no seu navegador e nada é enviado. Os dados só chegam à Origami Lab quando você deixa o contato para ver a composição do custo.",
   },
 ];
 

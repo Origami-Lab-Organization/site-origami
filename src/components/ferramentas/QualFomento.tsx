@@ -14,6 +14,8 @@ import {
 } from "@/lib/ferramentas/fomento";
 import { registrarEvento } from "@/lib/medicao/eventos";
 import { CapturaDeLead } from "./CapturaDeLead";
+import { DetalheBloqueado } from "./DetalheBloqueado";
+import { useDetalhamentoLiberado } from "./liberacao";
 import { ChamadaDaOrigami } from "@/components/conteudo/ChamadaDaOrigami";
 
 const FERRAMENTA = "fomento-a-inovacao";
@@ -58,7 +60,8 @@ function Progresso({ feitas, total }: { feitas: number; total: number }) {
   );
 }
 
-function Caminho({ i }: { i: Indicacao }) {
+/** Sem o contato, mostra o caminho e o selo; os motivos vêm com o detalhamento. */
+function Caminho({ i, resumido }: { i: Indicacao; resumido: boolean }) {
   return (
     <li className={`ol-fom__item ol-fom__item--${i.aderencia}`}>
       <div className="ol-fom__topo">
@@ -66,20 +69,25 @@ function Caminho({ i }: { i: Indicacao }) {
         <span className="ol-fom__selo">{ROTULO_DA_ADERENCIA[i.aderencia]}</span>
       </div>
       <span className="ol-fom__natureza">{i.instrumento.natureza}</span>
-      <ul className="ol-fom__motivos">
-        {i.motivos.map((m) => (
-          <li key={m}>{m}</li>
-        ))}
-      </ul>
-      <a className="ol-fom__link" href={i.instrumento.href}>
-        Como funciona →
-      </a>
+      {resumido ? null : (
+        <>
+          <ul className="ol-fom__motivos">
+            {i.motivos.map((m) => (
+              <li key={m}>{m}</li>
+            ))}
+          </ul>
+          <a className="ol-fom__link" href={i.instrumento.href}>
+            Como funciona →
+          </a>
+        </>
+      )}
     </li>
   );
 }
 
 function Resultado({ r }: { r: ResultadoDoFomento }) {
   const provaveis = r.indicados.filter((i) => i.aderencia === "alta").length;
+  const liberado = useDetalhamentoLiberado();
   return (
     <div className="ol-card" aria-live="polite">
       <div className="ol-result__label">Caminhos para o projeto</div>
@@ -96,22 +104,24 @@ function Resultado({ r }: { r: ResultadoDoFomento }) {
       {r.indicados.length ? (
         <ol className="ol-fom__lista">
           {r.indicados.map((i) => (
-            <Caminho key={i.instrumento.id} i={i} />
+            <Caminho key={i.instrumento.id} i={i} resumido={!liberado} />
           ))}
         </ol>
       ) : null}
-      {r.descartados.length ? (
-        <details className="ol-fom__fora">
-          <summary>Por que os outros ficaram de fora ({r.descartados.length})</summary>
-          <ul>
-            {r.descartados.map((i) => (
-              <li key={i.instrumento.id}>
-                <strong>{i.instrumento.nome}.</strong> {i.motivos[0]}
-              </li>
-            ))}
-          </ul>
-        </details>
-      ) : null}
+      <DetalheBloqueado ferramenta={FERRAMENTA} oQueLibera="Por que cada caminho serve, o próximo passo e por que os outros ficaram de fora">
+        {r.descartados.length ? (
+          <details className="ol-fom__fora">
+            <summary>Por que os outros ficaram de fora ({r.descartados.length})</summary>
+            <ul>
+              {r.descartados.map((i) => (
+                <li key={i.instrumento.id}>
+                  <strong>{i.instrumento.nome}.</strong> {i.motivos[0]}
+                </li>
+              ))}
+            </ul>
+          </details>
+        ) : null}
+      </DetalheBloqueado>
       <p className="ol-result__note">
         Indica caminhos prováveis por critérios objetivos. Aprovação depende do mérito do projeto, da chamada e da análise de cada instituição, e as
         condições mudam: confira sempre na fonte oficial.
@@ -129,6 +139,7 @@ export function QualFomento() {
   const [respostas, setRespostas] = useState<Respostas>({});
   const eventos = useRef({ inicio: false, resultado: false });
   const resultado = useMemo(() => indicar(respostas), [respostas]);
+  const liberado = useDetalhamentoLiberado();
   const visiveis = perguntasVisiveis(respostas);
 
   function medir(novas: Respostas) {
@@ -155,7 +166,7 @@ export function QualFomento() {
       <div className="ol-tool__inner">
         <div className="ol-card">
           <h2 className="ol-card__title">Responda sobre a empresa e o projeto</h2>
-          <p className="ol-card__lead">Leva dois minutos. O resultado aparece ao lado assim que a última pergunta for respondida, e nada do que você marca sai do navegador.</p>
+          <p className="ol-card__lead">Leva dois minutos. Os caminhos aparecem ao lado assim que a última pergunta for respondida; os motivos de cada um, com o seu contato.</p>
           <div className="ol-fields">
             {visiveis.map((p) => (
               <Pergunta key={p.id} p={p} respostas={respostas} aoEscolher={(v) => escolher(p.id, v)} />
@@ -166,16 +177,20 @@ export function QualFomento() {
       </div>
       {resultado ? (
         <>
-          <ChamadaDaOrigami frente="inovacao" pagina={`/${FERRAMENTA}`} formulario={`#contato-${FERRAMENTA}`} />
           <div className="ol-capture">
             <CapturaDeLead
               ferramenta={FERRAMENTA}
-              titulo="Quer saber se o projeto se sustenta?"
-              descricao="Envie as respostas para um especialista da Origami. Ele cruza o projeto com os instrumentos indicados e diz por onde começar, o que precisa estar documentado e o que esperar de prazo."
-              rotuloBotao="Quero a avaliação do projeto"
+              titulo={liberado ? "Quer saber se o projeto se sustenta?" : "Libere os motivos de cada caminho"}
+              descricao={
+                liberado
+                  ? "Envie as respostas para um especialista da Origami. Ele cruza o projeto com os instrumentos indicados e diz por onde começar, o que precisa estar documentado e o que esperar de prazo."
+                  : "Deixe seu nome e e-mail ou WhatsApp para ver por que cada instrumento serve ou não, o próximo passo de cada um e os que ficaram de fora. Um especialista da Origami recebe as respostas."
+              }
+              rotuloBotao={liberado ? "Quero a avaliação do projeto" : "Ver os motivos"}
               dados={dadosDoLead(resultado, respostas)}
             />
           </div>
+          <ChamadaDaOrigami frente="inovacao" pagina={`/${FERRAMENTA}`} formulario={`#contato-${FERRAMENTA}`} />
         </>
       ) : null}
     </section>

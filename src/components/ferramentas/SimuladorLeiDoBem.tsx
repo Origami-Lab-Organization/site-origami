@@ -6,6 +6,8 @@ import { ENTRADAS_VAZIAS, simular, type Entradas, type Resultado } from "@/lib/f
 import { registrarEvento } from "@/lib/medicao/eventos";
 import { CampoNumero, CampoSelecao, reais } from "./campos";
 import { CapturaDeLead } from "./CapturaDeLead";
+import { DetalheBloqueado } from "./DetalheBloqueado";
+import { useDetalhamentoLiberado } from "./liberacao";
 import { ChamadaDaOrigami } from "@/components/conteudo/ChamadaDaOrigami";
 
 const FERRAMENTA = "simulador-lei-do-bem";
@@ -98,6 +100,7 @@ function ResultadoCalculado({ r, dispendio }: { r: Resultado; dispendio: number 
           ? "Pelos requisitos informados, a empresa pode usar a Lei do Bem. O valor depende de os projetos se sustentarem como P&D na análise do MCTI."
           : "A estimativa vale se os pontos marcados como “não sei” se confirmarem. Confira com a contabilidade antes de contar com o valor."}
       </p>
+      <DetalheBloqueado ferramenta={FERRAMENTA} oQueLibera="O percentual de exclusão, o valor excluído e a memória de cálculo com a base legal">
       <div className="ol-result__grid">
         <div className="ol-result__item">
           <b>{r.percentual}%</b>
@@ -117,6 +120,7 @@ function ResultadoCalculado({ r, dispendio }: { r: Resultado; dispendio: number 
           <li key={linha}>{linha}</li>
         ))}
       </ul>
+      </DetalheBloqueado>
     </>
   );
 }
@@ -180,6 +184,7 @@ export function SimuladorLeiDoBem() {
   const [faturamento, setFaturamento] = useState("");
   const [funcionarios, setFuncionarios] = useState("");
   const r = useMemo(() => simular(e), [e]);
+  const liberado = useDetalhamentoLiberado();
   const marcarInicio = useEventosDaFerramenta(r, e.regime);
   const dispendio = typeof e.dispendio === "number" ? e.dispendio : 0;
 
@@ -275,17 +280,21 @@ export function SimuladorLeiDoBem() {
         </div>
       </section>
 
-      <ChamadaDaOrigami frente="inovacao" pagina={`/${FERRAMENTA}`} formulario={`#contato-${FERRAMENTA}`} />
       <div className="ol-capture">
         <CapturaDeLead
           ferramenta={FERRAMENTA}
-          titulo="Receba a análise de enquadramento"
-          descricao="Um especialista da Origami revisa as suas respostas, aponta o que pode sustentar a exclusão e o que precisa de documentação. A captação é feita em parceria com a PIN, e a cobrança só acontece se o capital for liberado."
-          rotuloBotao="Quero a análise"
+          titulo={liberado ? "Receba a análise de enquadramento" : "Libere a memória de cálculo"}
+          descricao={
+            liberado
+              ? "Um especialista da Origami revisa as suas respostas, aponta o que pode sustentar a exclusão e o que precisa de documentação. A captação é feita em parceria com a PIN, e a cobrança só acontece se o capital for liberado."
+              : "Deixe seu nome e e-mail ou WhatsApp para ver o percentual de exclusão, o valor excluído e cada passo da conta com a base legal. Um especialista da Origami revisa o enquadramento com você."
+          }
+          rotuloBotao={liberado ? "Quero a análise" : "Ver a memória de cálculo"}
           dados={dados}
           pedirPorte={!faturamento || !funcionarios}
         />
       </div>
+      <ChamadaDaOrigami frente="inovacao" pagina={`/${FERRAMENTA}`} formulario={`#contato-${FERRAMENTA}`} />
     </>
   );
 }

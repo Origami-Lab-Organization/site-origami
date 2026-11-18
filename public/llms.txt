@@ -64,7 +64,8 @@ resultado antes de a próxima começar.
 
 ## Ferramentas gratuitas
 
-Calculadoras e diagnóstico com o resultado na tela, sem cadastro, e o método
+Calculadoras e diagnósticos gratuitos: o resultado principal aparece na tela
+e o detalhamento é liberado com nome e e-mail ou WhatsApp; o método fica
 explicado na própria página. Hub: https://www.origamilab.com.br/ferramentas
 
 - [Calculadora da reforma tributária](https://www.origamilab.com.br/calculadora-reforma-tributaria):

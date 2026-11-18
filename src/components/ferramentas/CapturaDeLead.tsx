@@ -3,12 +3,15 @@
 import { useEffect, useId, useRef, useState, type FormEvent, type ReactNode } from "react";
 import { EMAIL, FORMULARIO_ALTERNATIVO, WHATSAPP } from "@/conteudo/contato";
 import { FAIXAS_DE_FATURAMENTO, FAIXAS_DE_FUNCIONARIOS } from "@/conteudo/porte";
+import { problemaDeContato, type ProblemaDeContato } from "@/lib/leads/contato";
 import { registrarEvento } from "@/lib/medicao/eventos";
 import { CampoSelecao } from "./campos";
+import { liberarDetalhamento } from "./liberacao";
 
-/* Formulário de contato das ferramentas. O resultado da ferramenta nunca fica
-   atrás dele: o contato é pedido para mandar a análise de um especialista ou
-   o material completo. Envia para /api/lead; se falhar, oferece WhatsApp. */
+/* Formulário de contato das ferramentas. O número principal do resultado fica
+   aberto; o detalhamento é liberado quando a pessoa deixa nome e e-mail ou
+   WhatsApp (um dos dois basta). Envia para /api/lead; se falhar, oferece
+   WhatsApp e não libera. */
 
 type Valor = string | number | boolean;
 
@@ -33,6 +36,12 @@ type Props = {
 };
 
 type Estado = "livre" | "enviando" | "enviado" | "falhou";
+
+const AVISO_DE_CONTATO: Record<ProblemaDeContato, string> = {
+  "falta-contato": "Informe e-mail ou WhatsApp: um dos dois basta.",
+  email: "Confira o e-mail: parece incompleto.",
+  telefone: "Confira o WhatsApp: use DDD e número, só com dígitos ou no formato (37) 99999-1234.",
+};
 
 function origemDaVisita(): Record<string, string> {
   try {
@@ -59,16 +68,16 @@ async function enviarLead(corpo: Record<string, unknown>): Promise<string | null
 
 /* Mesmo compromisso da FAQ de /ferramentas ("O que acontece se eu deixar o contato?"). */
 const PASSOS_DEPOIS_DO_ENVIO = [
+  "O detalhamento completo aparece na hora, nesta página.",
   "Um especialista da Origami lê o seu resultado.",
-  "Você recebe por e-mail o que vale olhar primeiro.",
-  "Se fizer sentido, ele propõe uma conversa de 30 minutos.",
+  "Se fizer sentido, ele fala com você pelo contato que deixou.",
 ];
 
-function Alternativa({ ferramenta, mensagem }: { ferramenta: string; mensagem?: string }) {
+function Alternativa({ ferramenta, mensagem, liberou }: { ferramenta: string; mensagem?: string; liberou: boolean }) {
   const texto = mensagem ?? `Olá! Usei a ferramenta ${ferramenta} no site da Origami Lab e quero conversar.`;
   return (
     <p className="ol-capture__status" role="alert">
-      Não conseguimos enviar agora. Fale direto com a gente pelo{" "}
+      Não conseguimos registrar o seu contato agora{liberou ? ", mas o detalhamento já está liberado no resultado" : ""}. Fale direto com a gente pelo{" "}
       <a href={`${WHATSAPP}?text=${encodeURIComponent(texto)}`} target="_blank" rel="noopener">
         WhatsApp
       </a>{" "}
@@ -80,6 +89,7 @@ function Alternativa({ ferramenta, mensagem }: { ferramenta: string; mensagem?: 
 
 export function CapturaDeLead({ ferramenta, titulo, descricao, rotuloBotao, dados, pedirPorte = true, mensagemDeSucesso, aoEnviar, contatoEssencial, pedirMensagem, mensagemObrigatoria, camposAdicionais, mensagemAlternativa }: Props) {
   const [estado, setEstado] = useState<Estado>("livre");
+  const [aviso, setAviso] = useState<ProblemaDeContato | null>(null);
   const [faturamento, setFaturamento] = useState("");
   const [funcionarios, setFuncionarios] = useState("");
   const iniciadoEm = useRef<number>(0);
@@ -96,8 +106,11 @@ export function CapturaDeLead({ ferramenta, titulo, descricao, rotuloBotao, dado
   async function enviar(ev: FormEvent<HTMLFormElement>) {
     ev.preventDefault();
     if (emEnvio.current) return;
-    emEnvio.current = true;
     const form = new FormData(ev.currentTarget);
+    const problema = problemaDeContato(texto(form, "email"), texto(form, "telefone"));
+    setAviso(problema);
+    if (problema) return;
+    emEnvio.current = true;
     setEstado("enviando");
     const porte = pedirPorte ? { faturamento_faixa: faturamento, funcionarios_faixa: funcionarios } : {};
     const leadId = await enviarLead({
@@ -119,27 +132,31 @@ export function CapturaDeLead({ ferramenta, titulo, descricao, rotuloBotao, dado
       emEnvio.current = false;
       setEstado("falhou");
       registrarEvento("contact_form_error", { formulario: ferramenta });
+      /* Falha nossa (rede, envio fora do ar) não pode travar quem já deixou o
+         contato: libera o detalhamento e oferece o WhatsApp para falar com a gente. */
+      if (!contatoEssencial) liberarDetalhamento();
       return;
     }
     setEstado("enviado");
     registrarEvento("contact_form_submit", { ferramenta, lead_id: leadId, ...porte });
+    liberarDetalhamento();
     aoEnviar?.();
   }
 
   if (estado === "enviado") {
     return (
       <div className="ol-card" aria-live="polite">
-        <div className="ol-capture__ok">{mensagemDeSucesso ?? "Recebemos. Um especialista da Origami vai ler o seu resultado e responder por e-mail."}</div>
+        <div className="ol-capture__ok">
+          {mensagemDeSucesso ?? "Recebemos. Um especialista da Origami vai ler o seu resultado e falar com você pelo contato informado."}
+          {!contatoEssencial ? (
+            <p className="ol-capture__liberado">
+              O detalhamento completo já está liberado. <a href="#ferramenta">Ver o resultado</a>
+            </p>
+          ) : null}
+        </div>
       </div>
     );
   }
-
-  const campoTelefone = (rotulo: string) => (
-    <div className="ol-field">
-      <label className="ol-field__label" htmlFor={`${base}-telefone`}>{rotulo}</label>
-      <input id={`${base}-telefone`} className="ol-input" name="telefone" type="tel" autoComplete="tel" />
-    </div>
-  );
 
   return (
     <form className="ol-card ol-lead" id={`contato-${ferramenta}`} method="post" action="/api/lead" onSubmit={enviar} onFocusCapture={() => {
@@ -167,26 +184,37 @@ export function CapturaDeLead({ ferramenta, titulo, descricao, rotuloBotao, dado
           <input id={`${base}-nome`} className="ol-input" name="nome" autoComplete="name" required minLength={2} />
         </div>
         <div className="ol-field">
-          <label className="ol-field__label" htmlFor={`${base}-email`}>E-mail corporativo</label>
-          <input id={`${base}-email`} className="ol-input" name="email" type="email" autoComplete="email" required />
+          <label className="ol-field__label" htmlFor={`${base}-empresa`}>Empresa <span className="ol-field__opcional">(opcional)</span></label>
+          <input id={`${base}-empresa`} className="ol-input" name="empresa" autoComplete="organization" />
         </div>
         <div className="ol-field">
-          <label className="ol-field__label" htmlFor={`${base}-empresa`}>Empresa</label>
-          <input id={`${base}-empresa`} className="ol-input" name="empresa" autoComplete="organization" required />
+          <label className="ol-field__label" htmlFor={`${base}-email`}>E-mail</label>
+          <input id={`${base}-email`} className="ol-input" name="email" type="email" autoComplete="email" aria-describedby={`${base}-contato`} onInput={() => setAviso(null)} />
         </div>
-        {!contatoEssencial ? <div className="ol-field">
-          <label className="ol-field__label" htmlFor={`${base}-cargo`}>Cargo</label>
-          <input id={`${base}-cargo`} className="ol-input" name="cargo" autoComplete="organization-title" />
-        </div> : null}
-        {pedirPorte ? null : campoTelefone("WhatsApp (opcional)")}
+        <div className="ol-field">
+          <label className="ol-field__label" htmlFor={`${base}-telefone`}>WhatsApp</label>
+          <input id={`${base}-telefone`} className="ol-input" name="telefone" type="tel" inputMode="tel" autoComplete="tel" placeholder="(37) 99999-1234" aria-describedby={`${base}-contato`} onInput={() => setAviso(null)} />
+        </div>
       </div>
-      {pedirPorte ? (
+      <p className={aviso ? "ol-lead__contato ol-lead__contato--erro" : "ol-lead__contato"} id={`${base}-contato`} role={aviso ? "alert" : undefined}>
+        {aviso ? AVISO_DE_CONTATO[aviso] : "E-mail ou WhatsApp: um dos dois basta."}
+      </p>
+      {pedirPorte || !contatoEssencial ? (
         <fieldset className="ol-lead__opcionais">
           <legend>Opcional · ajuda o especialista a preparar a conversa</legend>
-          <div className="ol-fields ol-fields--3">
-            <CampoSelecao rotulo="Faturamento anual" valor={faturamento} aoMudar={setFaturamento} opcoes={FAIXAS_DE_FATURAMENTO} />
-            <CampoSelecao rotulo="Funcionários" valor={funcionarios} aoMudar={setFuncionarios} opcoes={FAIXAS_DE_FUNCIONARIOS} />
-            {campoTelefone("WhatsApp")}
+          <div className={pedirPorte && !contatoEssencial ? "ol-fields ol-fields--3" : "ol-fields ol-fields--2"}>
+            {!contatoEssencial ? (
+              <div className="ol-field">
+                <label className="ol-field__label" htmlFor={`${base}-cargo`}>Cargo</label>
+                <input id={`${base}-cargo`} className="ol-input" name="cargo" autoComplete="organization-title" />
+              </div>
+            ) : null}
+            {pedirPorte ? (
+              <>
+                <CampoSelecao rotulo="Faturamento anual" valor={faturamento} aoMudar={setFaturamento} opcoes={FAIXAS_DE_FATURAMENTO} />
+                <CampoSelecao rotulo="Funcionários" valor={funcionarios} aoMudar={setFuncionarios} opcoes={FAIXAS_DE_FUNCIONARIOS} />
+              </>
+            ) : null}
           </div>
         </fieldset>
       ) : null}
@@ -215,7 +243,7 @@ export function CapturaDeLead({ ferramenta, titulo, descricao, rotuloBotao, dado
           {estado === "enviando" ? "Enviando…" : rotuloBotao}
         </button>
       </div>
-      {estado === "falhou" ? <Alternativa ferramenta={ferramenta} mensagem={mensagemAlternativa} /> : null}
+      {estado === "falhou" ? <Alternativa ferramenta={ferramenta} mensagem={mensagemAlternativa} liberou={!contatoEssencial} /> : null}
       </div>
     </form>
   );
