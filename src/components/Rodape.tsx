@@ -33,6 +33,7 @@ const GUIAS = [
 ];
 
 const FERRAMENTAS = [
+  { href: "/calculadora-reforma-tributaria", rotulo: "Calculadora da reforma tributária" },
   { href: "/calculadora-de-oee", rotulo: "Calculadora de OEE" },
   { href: "/simulador-lei-do-bem", rotulo: "Simulador da Lei do Bem" },
   { href: "/calculadora-custo-hora-maquina", rotulo: "Custo hora-máquina" },

@@ -14,7 +14,7 @@ export type PaginaPublicada = {
 };
 
 export const PAGINAS: PaginaPublicada[] = [
-  { caminho: "/", atualizadaEm: "2026-11-17", frequencia: "monthly", prioridade: 1.0 },
+  { caminho: "/", atualizadaEm: "2026-11-18", frequencia: "monthly", prioridade: 1.0 },
   { caminho: "/acesso-a-capital", atualizadaEm: "2026-11-17", frequencia: "monthly", prioridade: 0.9 },
   { caminho: "/desenvolvimento-de-software", atualizadaEm: "2026-11-17", frequencia: "monthly", prioridade: 0.9 },
   { caminho: "/consultoria-estrategica", atualizadaEm: "2026-11-17", frequencia: "monthly", prioridade: 0.9 },
@@ -31,7 +31,8 @@ export const PAGINAS: PaginaPublicada[] = [
   { caminho: "/integracao-erp-chao-de-fabrica", atualizadaEm: "2026-09-29", frequencia: "yearly", prioridade: 0.8 },
   { caminho: "/automacao-de-processos-industriais", atualizadaEm: "2026-09-29", frequencia: "yearly", prioridade: 0.8 },
   { caminho: "/gestao-industrial-em-tempo-real", atualizadaEm: "2026-11-17", frequencia: "yearly", prioridade: 0.8 },
-  { caminho: "/ferramentas", atualizadaEm: "2026-11-17", frequencia: "monthly", prioridade: 0.8 },
+  { caminho: "/ferramentas", atualizadaEm: "2026-11-18", frequencia: "monthly", prioridade: 0.8 },
+  { caminho: "/calculadora-reforma-tributaria", atualizadaEm: "2026-11-18", frequencia: "monthly", prioridade: 0.9 },
   { caminho: "/diagnostico-de-modernizacao", atualizadaEm: "2026-11-17", frequencia: "monthly", prioridade: 0.9 },
   { caminho: "/calculadora-de-oee", atualizadaEm: "2026-11-17", frequencia: "monthly", prioridade: 0.9 },
   { caminho: "/simulador-lei-do-bem", atualizadaEm: "2026-11-17", frequencia: "monthly", prioridade: 0.9 },
