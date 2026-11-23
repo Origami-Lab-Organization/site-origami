@@ -311,8 +311,14 @@ export default function PaginaCasesTransportadoraCabral() {
             <ul className="ol-next__grid">
               <li>
                 <a className="ol-next__card" href="/desenvolvimento-de-software">
-                  <b>Desenvolvimento de software sob medida</b>
-                  <span>Como a Origami Lab constrói e implanta sistemas para o que o ERP não cobre, do diagnóstico à autonomia do time.</span>
+                  <b>Studio de Produto: software sob medida</b>
+                  <span>Como a Origami Lab constrói e implanta sistemas para o que o ERP não cobre, com a primeira versão em uso em até 1 mês.</span>
+                </a>
+              </li>
+              <li>
+                <a className="ol-next__card" href="/controle-de-manutencao-de-frota">
+                  <b>Controle de manutenção de frota</b>
+                  <span>Preventiva, pneus e abastecimento: o que controlar, os indicadores e uma planilha grátis para começar.</span>
                 </a>
               </li>
               <li>

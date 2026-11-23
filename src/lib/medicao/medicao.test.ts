@@ -349,3 +349,61 @@ test("fora de produção, nem o SDK é carregado", async () => {
   assert.equal(carregou, false);
   assert.equal(avisos.length, 0);
 });
+
+/* ---------------------------------------------------------- GA4 */
+
+/** Eventos que chegaram ao GA4 (chamadas gtag("event", …) no dataLayer). */
+function eventosDoGa4(root: JanelaDaMedicao) {
+  return (root.dataLayer ?? [])
+    .filter((item) => Object.prototype.toString.call(item) === "[object Arguments]")
+    .map((item) => Array.from(item as ArrayLike<unknown>))
+    .filter(([comando]) => comando === "event")
+    .map(([, nome, params]) => ({ nome, params: params as Record<string, unknown> }));
+}
+
+test("em produção, o GA4 carrega o gtag.js uma vez e recebe a visita orgânica, sem esperar o Amplitude", async () => {
+  const scripts: string[] = [];
+  const { root } = janela({ hostname: HOST, pathname: "/desenvolvimento-de-software", referrer: "https://www.google.com/" });
+  await iniciarMedicao(root, { ...SEM_CHAVE, ga4: { id: "G-TESTE1", carregarScript: (src) => scripts.push(src) } });
+  assert.deepEqual(scripts, ["https://www.googletagmanager.com/gtag/js?id=G-TESTE1"]);
+  assert.equal(typeof root.gtag, "function");
+  const [ev] = eventosDoGa4(root);
+  assert.equal(ev.nome, "organic_landing_view");
+  assert.equal(ev.params.canal, "busca_organica");
+  assert.equal(ev.params.pagina, "/desenvolvimento-de-software");
+  assert.equal("utm_source" in ev.params, false);
+});
+
+test("eventos de ferramenta e formulário chegam ao GA4 sem campo pessoal", async () => {
+  const { root } = janela({ hostname: HOST });
+  await iniciarMedicao(root, { ...SEM_CHAVE, ga4: { id: "G-TESTE1", carregarScript: () => {} } });
+  root.olMedicao?.registrar("contact_form_submit", { ferramenta: "calculadora-de-oee", lead_id: "abc", email: "a@b.com" });
+  const ev = eventosDoGa4(root).at(-1);
+  assert.equal(ev?.nome, "contact_form_submit");
+  assert.equal(ev?.params.lead_id, "abc");
+  assert.equal("email" in (ev?.params ?? {}), false);
+  assert.equal(root.olMedicao?.eventos.at(-1)?.props.email, "a@b.com");
+});
+
+test("GA4 sem ID ou com ID inválido avisa no console e não carrega o script", async () => {
+  for (const id of [undefined, "", "UA-1234-1"]) {
+    const scripts: string[] = [];
+    const { root, avisos } = janela({ hostname: HOST });
+    await iniciarMedicao(root, { chave: "k", carregar: async () => amplitudeFalso().amp, ga4: { id, carregarScript: (src) => scripts.push(src) } });
+    assert.deepEqual(scripts, []);
+    assert.equal(root.gtag, undefined);
+    assert.deepEqual(avisos, ["GA4 measurement ID missing or invalid — GA4 disabled"]);
+  }
+});
+
+test("fora de produção, o GA4 não carrega nem avisa", async () => {
+  for (const hostname of ["localhost", "site-origami-git-x.vercel.app"]) {
+    const scripts: string[] = [];
+    const { root, avisos } = janela({ hostname, referrer: "https://www.google.com/" });
+    await iniciarMedicao(root, { ...SEM_CHAVE, ga4: { id: "G-TESTE1", carregarScript: (src) => scripts.push(src) } });
+    assert.deepEqual(scripts, []);
+    assert.equal(root.gtag, undefined);
+    assert.deepEqual(eventosDoGa4(root), []);
+    assert.equal(avisos.length, 0);
+  }
+});

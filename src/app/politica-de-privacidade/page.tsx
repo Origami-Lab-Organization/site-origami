@@ -9,7 +9,7 @@ import { metadataDaPagina } from "@/lib/seo/metadata";
    social e CNPJ quando forem publicados no rodapé. */
 
 const CAMINHO = "/politica-de-privacidade";
-const ATUALIZADA_EM = "2026-11-18";
+const ATUALIZADA_EM = "2026-11-23";
 
 export const metadata = metadataDaPagina({
   titulo: "Política de privacidade",
@@ -50,7 +50,7 @@ export default function PoliticaDePrivacidade() {
           Falar sobre os meus dados
         </a>
       }
-      meta="Versão de 18/11/2026"
+      meta="Versão de 23/11/2026"
       dados={DADOS}
       faqNaPagina={false}
     >
@@ -68,6 +68,11 @@ export default function PoliticaDePrivacidade() {
           social, link de campanha), em quais botões as pessoas clicam, o desempenho de carregamento e informações técnicas do navegador e do
           dispositivo. O Amplitude pode registrar o endereço IP e derivar dele uma localização aproximada, e pode gravar a sessão de navegação (o que
           aparece na tela e as interações) para análise de usabilidade.
+        </p>
+        <p>
+          Usamos também o Google Analytics 4 para medir as mesmas visitas e os mesmos eventos (páginas vistas, origem da visita, cliques em
+          botões de contato e uso das ferramentas). O Google Analytics não guarda o endereço IP. Deixamos desligados os recursos de publicidade
+          do Google (Google Signals e personalização de anúncios), e nenhum dado preenchido em formulário é enviado a ele.
         </p>
         <p>
           A finalidade é melhorar o conteúdo e entender quais páginas ajudam empresas a encontrar a Origami. A base legal é o legítimo interesse
@@ -107,6 +112,9 @@ export default function PoliticaDePrivacidade() {
             <strong>Amplitude</strong>: análise de navegação e gravação de sessão.
           </li>
           <li>
+            <strong>Google</strong>: análise de navegação pelo Google Analytics 4.
+          </li>
+          <li>
             <strong>Resend</strong>: envio, para a equipe comercial da Origami, dos contatos deixados no site.
           </li>
           <li>
@@ -121,7 +129,7 @@ export default function PoliticaDePrivacidade() {
         <h2 id="guarda">Por quanto tempo</h2>
         <p>
           Dados de contato são mantidos enquanto houver conversa ou relacionamento comercial com a sua empresa, ou até você pedir a exclusão, salvo
-          quando a lei exigir guarda por mais tempo. Dados de navegação seguem o prazo de retenção configurado no Amplitude.
+          quando a lei exigir guarda por mais tempo. Dados de navegação seguem o prazo de retenção configurado no Amplitude e no Google Analytics.
         </p>
 
         <h2 id="direitos">Seus direitos</h2>
@@ -134,7 +142,8 @@ export default function PoliticaDePrivacidade() {
 
         <h2 id="cookies">Cookies</h2>
         <p>
-          O site usa cookies do Amplitude (nomes que começam com <code>AMP_</code>) para reconhecer a mesma visita entre páginas e medir o uso do site.
+          O site usa cookies do Amplitude (nomes que começam com <code>AMP_</code>) e do Google Analytics (<code>_ga</code> e{" "}
+          <code>_ga_</code> seguido do código da propriedade) para reconhecer a mesma visita entre páginas e medir o uso do site.
           Não usamos cookies de publicidade. Você pode bloquear ou apagar cookies nas configurações do navegador; o site continua funcionando sem
           eles.
         </p>

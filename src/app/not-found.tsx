@@ -62,8 +62,8 @@ export default function NaoEncontrada() {
               <ul className="ol-next__grid">
                 <li>
                   <a className="ol-next__card" href="/desenvolvimento-de-software">
-                    <b>Desenvolvimento de software</b>
-                    <span>Sistemas para o que o ERP não cobre, integração e dados em tempo real, do diagnóstico à implantação.</span>
+                    <b>Studio de Produto</b>
+                    <span>Software sob medida para o que o ERP não cobre, com a primeira versão em uso em até 1 mês.</span>
                   </a>
                 </li>
                 <li>

@@ -4,6 +4,19 @@ export type GrupoDeGuias = { id: string; titulo: string; descricao: string; guia
 /** A seleção visível no hub também alimenta sua lista de dados estruturados. */
 export const GRUPOS_DE_GUIAS: GrupoDeGuias[] = [
   {
+    id: "studio",
+    titulo: "Studio de Produto por setor",
+    descricao: "Os processos que costumam ficar fora do ERP em cada setor: como controlar bem, quando um sistema pronto resolve e quando vale construir sob medida.",
+    guias: [
+      { href: "/controle-de-manutencao-de-frota", titulo: "Controle de manutenção de frota", texto: "Preventiva por km ou horímetro, OS, pneus e abastecimento: indicadores com fórmula, integração com o ERP e uma planilha grátis para começar." },
+      { href: "/boletim-de-medicao", titulo: "Boletim de medição", texto: "O que o boletim de medição contém, modelo de colunas, passo a passo, regras da Lei 14.133 e como acompanhar a margem da obra durante o contrato." },
+      { href: "/rdo-diario-de-obra", titulo: "RDO: relatório diário de obra", texto: "O que registrar no diário de obra, por que ele vale como prova, o que mudou no Livro de Ordem do Confea e como o RDO alimenta medição e custo." },
+      { href: "/controle-de-expedicao-e-pesagem", titulo: "Controle de expedição e pesagem", texto: "Do caminhão na portaria à nota emitida: balança verificada, limite de peso, pesado x faturado e integração da expedição com o ERP." },
+      { href: "/registro-de-nao-conformidade", titulo: "Registro de não conformidade e rastreabilidade", texto: "Como registrar uma não conformidade com lote, causa e ação verificada, rastrear lotes para trás e para frente e saber quando a planilha deixa de bastar." },
+      { href: "/pagamento-por-qualidade-do-leite", titulo: "Recebimento de leite e pagamento por qualidade", texto: "Regras do MAPA, mapa de recebimento da SEF-MG e como montar uma tabela de bonificação que o produtor consegue conferir." },
+    ],
+  },
+  {
     id: "software",
     titulo: "Software, integração e operação",
     descricao: "Compare caminhos antes de contratar: aproveitar o ERP, integrar sistemas, desenvolver uma função ou modernizar o legado.",

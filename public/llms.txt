@@ -8,9 +8,13 @@
 
 ## O que fazemos
 
-- Software para indústria: sistemas construídos a partir do processo real,
-  para o que o ERP não cobre (planejamento de produção, apontamento, pedidos,
-  cobrança, operação de campo).
+- Studio de Produto (software sob medida): o sistema que a operação precisa
+  quando nenhum produto pronto resolve o jeito como a empresa trabalha, para o
+  que o ERP não cobre (planejamento de produção, apontamento, pedidos,
+  recebimento, despacho, frota, cobrança, operação de campo). Primeira versão
+  em uso em até 1 mês, integrada ao ERP; depois, evolução em fases com ganho
+  medido e decisão do cliente a cada fase. Projeto documentado como P&D desde
+  o início, para avaliar a Lei do Bem.
 - Integração com ERP e chão de fábrica: sistemas e planilhas que não conversam
   entre si, sem trocar o ERP.
 - Automação de processos industriais: fim da redigitação e das planilhas
@@ -34,14 +38,57 @@ Indústrias e empresas tradicionais de engenharia e serviços, tipicamente
 fundadas entre as décadas de 1960 e 1980, em Minas Gerais. Clientes incluem
 Tecno 2000, Prumo Engenharia, Retífica Formiguense, Transportadora Cabral,
 Bry, Integrar, Sindinova, Syngular e Avante, com relações com Sebrae.
-Além da modernização de operação, a Origami Lab faz discovery e
-desenvolvimento de produto digital para empresas de tecnologia.
 
 ## Quem somos
 
 Sócios com passagens por Deloitte, AB InBev, Vale, Localiza, MRV, Inter e
 ESAB. Trabalhamos dentro da operação do cliente: cada entrega precisa provar
 resultado antes de a próxima começar.
+
+## Studio de Produto por setor
+
+Guias sobre os processos que costumam ficar fora do ERP em cada setor das
+empresas de base. Cada um explica como controlar bem, quando uma planilha ou
+um sistema de mercado resolve e quando vale software sob medida integrado ao
+ERP, com fontes oficiais e perguntas frequentes em JSON-LD. Página do
+serviço: https://www.origamilab.com.br/desenvolvimento-de-software
+
+- [Controle de manutenção de frota](https://www.origamilab.com.br/controle-de-manutencao-de-frota):
+  o que controlar (preventiva por km, horímetro ou tempo, OS, pneus,
+  abastecimento, checklist), fórmulas de disponibilidade, custo por km,
+  consumo, CPK, MTBF e MTTR, origem de cada dado, integração com o ERP e
+  quando usar planilha, sistema de mercado ou software sob medida. Inclui
+  planilha Excel gratuita e cita o case da Transportadora Cabral.
+- [Boletim de medição](https://www.origamilab.com.br/boletim-de-medicao):
+  o que o boletim de medição de obras e serviços contém, modelo de colunas
+  (item, quantidade contratada, medida, acumulada, saldo, preço, glosa,
+  evidência), passo a passo, ciclo até o recebimento, erros que viram glosa,
+  margem por obra acompanhada durante o contrato e regras da Lei 14.133/2021
+  (arts. 46, 92, 117, 140, 141 e 145), conferidas no Planalto em 23/11/2026.
+- [RDO, relatório diário de obra](https://www.origamilab.com.br/rdo-diario-de-obra):
+  modelo de RDO (clima, efetivo, equipamentos, atividades e quantidades,
+  ocorrências, paralisações, fotos, assinaturas), por que o diário de obra é
+  prova em medição, pleitos e glosa, a revogação do Livro de Ordem do Confea
+  (Resolução 1.140/2023), a Lei 14.133/2021 (arts. 115, 117 e 124), RDO em
+  papel ou digital e como horas por frente viram custo e margem por obra.
+- [Controle de expedição e pesagem](https://www.origamilab.com.br/controle-de-expedicao-e-pesagem):
+  fluxo do caminhão da portaria à nota (tara, bruto, líquido, conferência
+  com o pedido), perdas por peso digitado e por pesado x faturado, Portaria
+  Inmetro nº 157/2022, tolerâncias da Resolução CONTRAN nº 882/2021 e
+  responsabilidade do embarcador no art. 257 do CTB, integração entre
+  balança, sistema e ERP, piloto com linha de base e quando vale sob medida.
+- [Registro de não conformidade (RNC) e rastreabilidade](https://www.origamilab.com.br/registro-de-nao-conformidade):
+  campos de um modelo de RNC, diferença entre correção e ação corretiva,
+  cláusulas 8.5.2, 8.7 e 10.2 da ISO 9001:2015 parafraseadas (com aviso sobre
+  a ISO 9001:2026), rastreabilidade de lotes para trás e para frente com
+  simulação de rastreio, indicadores, erros comuns e quando planilha, QMS de
+  mercado ou software integrado à produção e ao ERP resolvem.
+- [Recebimento de leite e pagamento por qualidade](https://www.origamilab.com.br/pagamento-por-qualidade-do-leite):
+  regras das IN 76 e 77/2018 do MAPA (temperatura, CPP, CCS, RBQL e
+  interrupção da coleta), Mapa de Recebimento de Leite da SEF-MG (RICMS/MG,
+  Anexo VIII, art. 324), tabela de bonificação transparente com exemplo
+  ilustrativo, conciliação de volumes e integração com ERP e fiscal. Guia;
+  não apresenta um case de laticínio.
 
 ## Guias por tema
 
@@ -150,11 +197,17 @@ pergunta no primeiro parágrafo e traz perguntas frequentes em JSON-LD.
   incentivo fiscal, recurso não reembolsável e crédito subsidiado —, descreve as
   seis etapas do serviço e registra que a cobrança só acontece se o capital for
   liberado.
-- [Desenvolvimento de software](https://www.origamilab.com.br/desenvolvimento-de-software):
-  a página do serviço de software sob medida. Cobre as três frentes — sistema
-  para o que o ERP não cobre, integração dos sistemas que não conversam e
-  informação de operação em tempo real —, as seis etapas do projeto, e registra
-  que o código sai documentado e os dados permanecem com o cliente.
+- [Studio de Produto: desenvolvimento de software sob medida](https://www.origamilab.com.br/desenvolvimento-de-software):
+  a página do serviço de software sob medida da Origami Lab, chamado Studio de
+  Produto ("Seu DNA, sua tecnologia"). Cobre as três frentes — sistema para o
+  que o ERP não cobre, integração dos sistemas que não conversam e informação
+  de operação em tempo real —, quando o sob medida faz sentido e quando um
+  produto pronto resolve melhor, e as seis etapas: discovery dentro da
+  operação, primeira versão em uso em até 1 mês, ciclos de duas semanas, fases
+  com linha de base e ganho medido, documentação como P&D desde o início e
+  implantação até a autonomia. Não faz implantação de ERP ou CRM nem alocação
+  de desenvolvedores. O código sai documentado e os dados permanecem com o
+  cliente. Atalho: https://www.origamilab.com.br/studio-de-produto
 - [Consultoria estratégica](https://www.origamilab.com.br/consultoria-estrategica):
   a página do serviço de diagnóstico e estratégia. Cobre estratégia de produto,
   gestão de portfólio com ROI, avaliação de maturidade digital e programas de

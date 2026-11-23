@@ -219,7 +219,7 @@ export default function PaginaSoftwareSobMedida() {
               {" "}
               <a className="ol-btn ol-btn--ghost" href="#faq">Ir para as perguntas</a>
             </div>
-            <p className="ol-page__meta">Origami Lab · Formiga, Minas Gerais · Desenvolvimento e implantação para indústria, engenharia e serviços</p>
+            <p className="ol-page__meta">Origami Lab · Formiga, Minas Gerais · Studio de Produto para indústria, engenharia e serviços</p>
           </div>
         </header>
         <div className="ol-over">
