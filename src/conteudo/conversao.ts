@@ -16,7 +16,7 @@ export const FRENTES = {
     descricao: "Avalie onde integrar, configurar o que já existe ou desenvolver uma função própria. O diagnóstico define a escolha.",
     entregas: ["Mapa do processo e das regras que precisam continuar.", "Integrações com tratamento de falhas e responsáveis.", "Implantação por etapas, documentação e treinamento."],
     ferramenta: { href: "/diagnostico-de-modernizacao", rotulo: "Fazer o diagnóstico gratuito" },
-    servico: { href: "/desenvolvimento-de-software", rotulo: "Como conduzimos o desenvolvimento" },
+    servico: { href: "/desenvolvimento-de-software", rotulo: "Como funciona o Studio de Produto" },
     prova: { href: "/cases/transportadora-cabral", rotulo: "Veja a integração da Central do Motorista" },
   },
   inovacao: {
@@ -47,6 +47,7 @@ const PAGINAS_POR_FRENTE: Record<string, Frente> = {
   "/integracao-erp-chao-de-fabrica": "producao", "/gestao-industrial-em-tempo-real": "producao",
   "/mes-vs-erp": "producao", "/software-para-industria-metalurgica": "producao",
   "/tecnologia-para-industrias-minas-gerais": "producao",
+  "/controle-de-expedicao-e-pesagem": "producao", "/registro-de-nao-conformidade": "producao",
   "/simulador-lei-do-bem": "inovacao", "/lei-do-bem": "inovacao",
   "/lei-do-bem-na-pratica": "inovacao", "/financiamento-de-inovacao": "inovacao",
   "/lei-do-bem-desenvolvimento-de-software": "inovacao", "/acesso-a-capital": "inovacao",

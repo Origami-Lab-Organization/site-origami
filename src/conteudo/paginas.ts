@@ -14,9 +14,9 @@ export type PaginaPublicada = {
 };
 
 export const PAGINAS: PaginaPublicada[] = [
-  { caminho: "/", atualizadaEm: "2026-11-18", frequencia: "monthly", prioridade: 1.0 },
+  { caminho: "/", atualizadaEm: "2026-11-23", frequencia: "monthly", prioridade: 1.0 },
   { caminho: "/acesso-a-capital", atualizadaEm: "2026-11-17", frequencia: "monthly", prioridade: 0.9 },
-  { caminho: "/desenvolvimento-de-software", atualizadaEm: "2026-11-18", frequencia: "monthly", prioridade: 0.9 },
+  { caminho: "/desenvolvimento-de-software", atualizadaEm: "2026-11-23", frequencia: "monthly", prioridade: 0.9 },
   { caminho: "/consultoria-estrategica", atualizadaEm: "2026-11-17", frequencia: "monthly", prioridade: 0.9 },
   { caminho: "/integracao-de-sistemas", atualizadaEm: "2026-11-17", frequencia: "yearly", prioridade: 0.8 },
   { caminho: "/software-sob-medida", atualizadaEm: "2026-11-17", frequencia: "yearly", prioridade: 0.8 },
@@ -47,11 +47,18 @@ export const PAGINAS: PaginaPublicada[] = [
   { caminho: "/embrapii", atualizadaEm: "2026-11-18", frequencia: "monthly", prioridade: 0.8 },
   { caminho: "/modernizacao-de-sistemas-legados", atualizadaEm: "2026-11-18", frequencia: "monthly", prioridade: 0.9 },
   { caminho: "/ia-na-industria", atualizadaEm: "2026-11-18", frequencia: "monthly", prioridade: 0.8 },
-  { caminho: "/guias", atualizadaEm: "2026-11-18", frequencia: "monthly", prioridade: 0.8 },
+  { caminho: "/guias", atualizadaEm: "2026-11-23", frequencia: "monthly", prioridade: 0.8 },
   { caminho: "/mes-vs-erp", atualizadaEm: "2026-11-18", frequencia: "yearly", prioridade: 0.8 },
   { caminho: "/automacao-de-contas-a-receber", atualizadaEm: "2026-11-18", frequencia: "yearly", prioridade: 0.8 },
   { caminho: "/lei-do-bem-desenvolvimento-de-software", atualizadaEm: "2026-11-18", frequencia: "monthly", prioridade: 0.8 },
   { caminho: "/software-para-industria-metalurgica", atualizadaEm: "2026-11-18", frequencia: "yearly", prioridade: 0.8 },
+  /* Studio de Produto por setor (dores da operação com demanda medida em 23/11/2026) */
+  { caminho: "/controle-de-manutencao-de-frota", atualizadaEm: "2026-11-23", frequencia: "yearly", prioridade: 0.8 },
+  { caminho: "/boletim-de-medicao", atualizadaEm: "2026-11-23", frequencia: "yearly", prioridade: 0.8 },
+  { caminho: "/rdo-diario-de-obra", atualizadaEm: "2026-11-23", frequencia: "yearly", prioridade: 0.8 },
+  { caminho: "/controle-de-expedicao-e-pesagem", atualizadaEm: "2026-11-23", frequencia: "yearly", prioridade: 0.8 },
+  { caminho: "/registro-de-nao-conformidade", atualizadaEm: "2026-11-23", frequencia: "yearly", prioridade: 0.8 },
+  { caminho: "/pagamento-por-qualidade-do-leite", atualizadaEm: "2026-11-23", frequencia: "yearly", prioridade: 0.8 },
 ];
 
 /** A mesma revisão alimenta o sitemap e os dados estruturados.

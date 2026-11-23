@@ -278,7 +278,7 @@ export default function PaginaInicio() {
               </a>
             </div>
             <div className="ol-services__stack">
-              {/* 01 Desenvolvimento e implantação */}
+              {/* 01 Studio de Produto */}
               <article className="ol-stack" data-stack="">
                 <div className="ol-stack__card" data-spot="">
                   <div className="ol-stack__spot" aria-hidden="true" />
@@ -288,15 +288,15 @@ export default function PaginaInicio() {
                       {" "}
                       <span className="ol-stack__rule" aria-hidden="true" />
                     </div>
-                    <h3 className="ol-stack__title">Desenvolvimento e implantação</h3>
-                    <p className="ol-stack__lead">Software personalizado para a sua operação, integrado ao ERP e implantado por nós.</p>
+                    <h3 className="ol-stack__title">Studio de Produto</h3>
+                    <p className="ol-stack__lead">O software que a sua operação precisa quando nenhum sistema pronto resolve, integrado ao ERP e implantado por nós.</p>
                     <ul className="ol-stack__list">
+                      <li>Primeira versão em uso em até 1 mês</li>
+                      <li>Fases com ganho medido</li>
                       <li>Gestão da operação em tempo real</li>
-                      <li>Dados e processos mais assertivos</li>
-                      <li>Metodologia focada em resultado</li>
-                      <li>Menor time-to-market</li>
+                      <li>Documentado como P&amp;D desde o início</li>
                     </ul>
-                    <a className="ol-inline-link" href="/desenvolvimento-de-software" aria-label="Como funciona o desenvolvimento de software">
+                    <a className="ol-inline-link" href="/desenvolvimento-de-software" aria-label="Como funciona o Studio de Produto">
                       {"Como funciona "}
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                         <path d="M5 12h14" />
@@ -519,9 +519,48 @@ export default function PaginaInicio() {
                 </div>
               </article>
             </div>
-            {/* Soluções para indústria: links para as páginas de cada problema */}
+            {/* Studio de Produto por setor e soluções para indústria: links para as páginas de cada problema */}
             <div className="ol-sols" id="solucoes">
-              <h3 className="ol-sols__title" data-anim="">Soluções para indústria</h3>
+              <h3 className="ol-sols__title" data-anim="" id="studio-por-setor">Studio de Produto por setor</h3>
+              <ul className="ol-sols__grid">
+                <li data-anim="" data-d="1">
+                  <a href="/controle-de-manutencao-de-frota">
+                    <b>Manutenção de frota</b>
+                    <span>Preventiva, pneus e abastecimento sem caderno nem planilha solta.</span>
+                  </a>
+                </li>
+                <li data-anim="" data-d="2">
+                  <a href="/boletim-de-medicao">
+                    <b>Boletim de medição</b>
+                    <span>Do serviço executado ao faturamento, com a margem da obra no caminho.</span>
+                  </a>
+                </li>
+                <li data-anim="" data-d="3">
+                  <a href="/rdo-diario-de-obra">
+                    <b>RDO: diário de obra</b>
+                    <span>O registro do canteiro que vira prova, medição e custo.</span>
+                  </a>
+                </li>
+                <li data-anim="" data-d="1">
+                  <a href="/controle-de-expedicao-e-pesagem">
+                    <b>Expedição e pesagem</b>
+                    <span>Da balança ao faturamento, sem peso digitado à mão.</span>
+                  </a>
+                </li>
+                <li data-anim="" data-d="2">
+                  <a href="/registro-de-nao-conformidade">
+                    <b>Não conformidade e rastreabilidade</b>
+                    <span>RNC ligado à ordem e ao lote, com a causa tratada.</span>
+                  </a>
+                </li>
+                <li data-anim="" data-d="3">
+                  <a href="/pagamento-por-qualidade-do-leite">
+                    <b>Recebimento e pagamento do leite</b>
+                    <span>Qualidade, volume e bonificação que o produtor consegue conferir.</span>
+                  </a>
+                </li>
+              </ul>
+              <h3 className="ol-sols__title ol-sols__title--next" data-anim="">Soluções para indústria</h3>
               <ul className="ol-sols__grid">
                 <li data-anim="" data-d="1">
                   <a href="/planejamento-de-producao">

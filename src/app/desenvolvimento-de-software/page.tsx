@@ -9,9 +9,9 @@ import { ORGANIZACAO, SITE_NODE } from "@/lib/seo/estruturados";
 
 export const metadata: Metadata = {
   "title": {
-    "absolute": "Desenvolvimento de software sob medida | Origami Lab"
+    "absolute": "Studio de Produto: software sob medida | Origami Lab"
   },
-  "description": "Software personalizado para a sua operação, integrado ao ERP e implantado por nós. Primeira entrega em produção no primeiro mês, em ciclos de duas semanas.",
+  "description": "Studio de Produto: o software que a sua operação precisa quando nenhum sistema pronto resolve. Primeira versão em uso em até 1 mês, integrada ao ERP.",
   "alternates": {
     "canonical": "https://www.origamilab.com.br/desenvolvimento-de-software"
   },
@@ -26,8 +26,8 @@ export const metadata: Metadata = {
     "locale": "pt_BR",
     "url": "https://www.origamilab.com.br/desenvolvimento-de-software",
     "siteName": "Origami Lab",
-    "title": "Desenvolvimento de software sob medida | Origami Lab",
-    "description": "O ERP não cobre o que a sua empresa faz de específico. É esse pedaço que construímos — integrado ao que você já tem.",
+    "title": "Studio de Produto: software sob medida | Origami Lab",
+    "description": "Seu DNA, sua tecnologia. O software feito para o jeito de operar da sua empresa, em uso em até 1 mês e integrado ao que você já tem.",
     "images": [
       {
         "url": "https://www.origamilab.com.br/assets/og-cover.jpg",
@@ -58,8 +58,8 @@ const DADOS_ESTRUTURADOS = {
       "@type": "WebPage",
       "@id": "https://www.origamilab.com.br/desenvolvimento-de-software#webpage",
       "url": "https://www.origamilab.com.br/desenvolvimento-de-software",
-      "name": "Desenvolvimento de software sob medida",
-      "description": "Software personalizado para a sua operação, integrado ao ERP e implantado pela Origami Lab. Primeira entrega em produção no primeiro mês e ciclos de duas semanas.",
+      "name": "Studio de Produto: desenvolvimento de software sob medida",
+      "description": "Studio de Produto da Origami Lab: o software que a operação precisa quando nenhum sistema pronto resolve, com a primeira versão em uso em até 1 mês, integrada ao ERP, e evolução em fases com ganho medido.",
       "inLanguage": "pt-BR",
       "isPartOf": {
         "@id": "https://www.origamilab.com.br/#site"
@@ -75,14 +75,16 @@ const DADOS_ESTRUTURADOS = {
     {
       "@type": "Service",
       "@id": "https://www.origamilab.com.br/desenvolvimento-de-software#service",
-      "name": "Desenvolvimento de software sob medida",
+      "name": "Studio de Produto",
       "alternateName": [
+        "Desenvolvimento de software sob medida",
         "Desenvolvimento de sistemas personalizados",
         "Desenvolvimento e implantação de software",
         "Software sob encomenda para empresas"
       ],
-      "serviceType": "Desenvolvimento, integração e implantação de software personalizado para a operação",
-      "description": "Desenvolvimento de software personalizado para o que o ERP não cobre, integração dos sistemas que não conversam entre si e informação de operação em tempo real. Diagnóstico dentro da operação, primeira entrega em produção no primeiro mês, ciclos de duas semanas, implantação e treinamento até a autonomia do time do cliente. O código é entregue documentado e os dados permanecem com o cliente.",
+      "slogan": "Seu DNA, sua tecnologia.",
+      "serviceType": "Desenvolvimento de software sob medida para a operação",
+      "description": "Studio de Produto é o serviço de desenvolvimento de software sob medida da Origami Lab, para quando nenhum sistema pronto resolve o jeito de operar da empresa: o que o ERP não cobre, os sistemas que não conversam entre si e a informação da operação em tempo real. O discovery acontece dentro da operação e faz parte do projeto. A primeira versão entra em uso em até 1 mês, integrada ao ERP; depois o software evolui em fases, cada uma com linha de base, meta e ganho medido, e o cliente decide a cada fase se continua. O projeto é documentado como P&D desde o início, para avaliar o uso da Lei do Bem. O código é entregue documentado e os dados permanecem com o cliente.",
       "provider": {
         "@id": "https://www.origamilab.com.br/#org"
       },
@@ -98,7 +100,7 @@ const DADOS_ESTRUTURADOS = {
       ],
       "audience": {
         "@type": "BusinessAudience",
-        "name": "Indústria, engenharia, logística, agronegócio e serviços com operação apoiada em ERP e planilhas"
+        "name": "Indústria, agroindústria, transporte, mineração e engenharia com operação apoiada em ERP, planilhas e WhatsApp"
       },
       "url": "https://www.origamilab.com.br/desenvolvimento-de-software",
       "hasOfferCatalog": {
@@ -138,6 +140,14 @@ const DADOS_ESTRUTURADOS = {
       "mainEntity": [
         {
           "@type": "Question",
+          "name": "O que é o Studio de Produto da Origami Lab?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "É o serviço de desenvolvimento de software sob medida da Origami Lab. Construímos o sistema que a operação precisa quando nenhum produto pronto resolve o jeito como a empresa trabalha, integrado ao ERP e ao que já existe. A primeira versão entra em uso em até 1 mês; depois o software evolui em fases, cada uma com ganho medido e uma decisão do cliente para continuar."
+          }
+        },
+        {
+          "@type": "Question",
           "name": "A Origami Lab substitui o ERP da empresa?",
           "acceptedAnswer": {
             "@type": "Answer",
@@ -146,10 +156,18 @@ const DADOS_ESTRUTURADOS = {
         },
         {
           "@type": "Question",
-          "name": "Precisamos ter uma equipe de TI para contratar desenvolvimento sob medida?",
+          "name": "Quando não vale contratar um software sob medida?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Não é necessário. Quando existe, a Origami Lab trabalha junto com ela; quando não existe, conduz a implantação e prepara as pessoas da operação para usar e manter o que foi entregue."
+            "text": "Quando um produto de mercado cobre o processo com pouca adaptação. Fiscal, contábil e folha, por exemplo, seguem regras de mercado e obrigação legal, e um sistema pronto costuma resolver melhor. O Studio de Produto faz sentido quando o processo é o que diferencia a empresa e hoje vive em planilha, WhatsApp e redigitação em volta do ERP. A Origami Lab também não faz implantação de ERP ou CRM nem alocação de desenvolvedores na equipe do cliente."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Precisamos ter uma equipe de TI? E se já tivermos uma?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Não é necessário ter. Quando a empresa tem TI, ela participa do projeto: dá o parecer técnico, cuida do ERP e da infraestrutura e recebe o que foi construído, sem que o projeto dispute a fila de demandas dela. Quando não tem, a Origami Lab conduz a implantação e prepara as pessoas da operação para usar e manter o que foi entregue."
           }
         },
         {
@@ -157,7 +175,7 @@ const DADOS_ESTRUTURADOS = {
           "name": "De quem é o código e os dados do sistema desenvolvido?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Do cliente. O que é construído para a empresa é da empresa, com o código entregue e documentado. Os dados permanecem sob a titularidade do cliente, em ambiente de nuvem contratado por ele. A Origami Lab é credenciada AWS."
+            "text": "Do cliente. O que é construído para a empresa é da empresa, com o código entregue e documentado. Os dados permanecem sob a titularidade do cliente, em ambiente de nuvem contratado por ele. A Origami Lab é credenciada AWS. Se a relação terminar, o sistema continua funcionando e a documentação permite que outra equipe o mantenha."
           }
         },
         {
@@ -165,7 +183,7 @@ const DADOS_ESTRUTURADOS = {
           "name": "Quanto custa desenvolver um sistema sob medida?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "O custo depende das integrações necessárias, das regras e exceções do processo, do número de usuários e turnos, dos dados a migrar e do trabalho de implantação e treinamento. O diagnóstico define o escopo, as prioridades e o investimento por etapa. Você recebe a proposta antes de cada fase e aprova o que será feito."
+            "text": "O custo depende das integrações necessárias, das regras e exceções do processo, do número de usuários e turnos, dos dados a migrar e do trabalho de implantação e treinamento. O discovery, que faz parte do projeto, define o escopo, as prioridades e o investimento por fase. Você recebe a proposta antes de cada fase e aprova o que será feito."
           }
         },
         {
@@ -173,7 +191,15 @@ const DADOS_ESTRUTURADOS = {
           "name": "Quanto tempo até ver o software funcionando?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Software em produção já no primeiro mês, e ciclos de duas semanas daí em frente. O prazo total depende do escopo priorizado no diagnóstico, mas não é preciso esperar o fim do projeto para ver resultado."
+            "text": "A primeira versão entra em uso em até 1 mês, com quem está na ponta, e os ciclos de duas semanas seguem daí em frente. O prazo total depende do que for priorizado em cada fase, mas não é preciso esperar o fim do projeto para ver resultado."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Com IA, desenvolver software não ficou mais simples?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A IA acelera a escrita do código, e ela está na base da execução da Origami Lab: é parte do motivo de a primeira versão entrar em uso em até 1 mês. Mas o código é só uma parte do trabalho. Entender o processo, integrar ao ERP, colocar o sistema em uso com quem está na ponta e medir o ganho continuam definindo o resultado, e é pelo resultado que a Origami Lab responde."
           }
         },
         {
@@ -189,7 +215,7 @@ const DADOS_ESTRUTURADOS = {
           "name": "Dá para financiar o projeto de software com recurso de incentivo?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Depende da empresa, do projeto e do instrumento. A Lei do Bem é um incentivo fiscal para pesquisa e desenvolvimento tecnológico, com requisitos como Lucro Real, regularidade fiscal e lucro fiscal para a exclusão adicional de dispêndios. Comprar software ou automatizar uma rotina não garante enquadramento. Crédito e subvenção têm condições próprias de elegibilidade e aprovação. A avaliação é feita antes de incluir qualquer incentivo na conta do investimento."
+            "text": "Depende da empresa, do projeto e do instrumento. Os projetos do Studio de Produto são documentados desde o início como a Lei do Bem pede, com o registro técnico das incertezas, das tentativas e dos dispêndios, para que o enquadramento possa ser avaliado sem reconstruir o histórico depois. A Lei do Bem é um incentivo fiscal para pesquisa e desenvolvimento tecnológico, com requisitos como Lucro Real, regularidade fiscal e lucro fiscal para a exclusão adicional de dispêndios. Comprar software ou automatizar uma rotina não garante enquadramento. Crédito e subvenção têm condições próprias de elegibilidade e aprovação. A avaliação é feita antes de incluir qualquer incentivo na conta do investimento."
           }
         }
       ]
@@ -206,7 +232,7 @@ const DADOS_ESTRUTURADOS = {
         {
           "@type": "ListItem",
           "position": 2,
-          "name": "Desenvolvimento de software sob medida",
+          "name": "Studio de Produto",
           "item": "https://www.origamilab.com.br/desenvolvimento-de-software"
         }
       ]
@@ -227,14 +253,14 @@ export default function PaginaDesenvolvimentoDeSoftware() {
           <div className="ol-sv-hero__inner">
             <div className="ol-sv-hero__grid">
               <div>
-                <span className="ol-kicker">Desenvolvimento e implantação</span>
+                <span className="ol-kicker">Studio de Produto</span>
                 <h1 className="ol-sv-hero__title">
                   {"Software feito "}
                   <em className="ol-em">sob medida</em>
                   {" para a sua operação."}
                 </h1>
                 <h2 className="ol-sv-hero__lead">
-                  Construímos soluções integradas ao seu ecossistema para que você tenha gestão em tempo real, dados assertivos e processos automatizados.
+                  Colocamos em uso, em até 1 mês, a primeira versão do software que a sua operação precisa, integrado ao que você já tem. Depois evoluímos em fases, cada uma com ganho medido e uma decisão sua para continuar.
                 </h2>
                 <div className="ol-sv-hero__actions">
                   <a className="ol-btn ol-btn--primary" data-magnet="" href="/conversar">
@@ -322,11 +348,12 @@ export default function PaginaDesenvolvimentoDeSoftware() {
         {/* ==================== O que construímos ==================== */}
         <section className="ol-sv-sec ol-sv-sec--light" id="solucoes">
           <div className="ol-sv-sec__inner">
-            <h2 className="ol-sv-sec__title ol-sv-sec__title--tight" data-anim="">Como é ter um software feito para a sua operação</h2>
+            <h2 className="ol-sv-sec__title ol-sv-sec__title--tight" data-anim="">Seu DNA, sua tecnologia</h2>
             <p className="ol-sv-sec__lead">
-              Desenvolvimento de software para indústria é construir o sistema que cobre um processo específico da operação: planejamento, apontamento, pedidos,
-              cobrança ou trabalho em campo. Na Origami Lab, o serviço inclui diagnóstico, desenvolvimento, integração com o ERP, implantação e treinamento da equipe.
-              A escolha entre integrar, desenvolver ou modernizar parte do que já existe começa pelo processo que precisa melhorar.
+              O Studio de Produto é o serviço de desenvolvimento de software sob medida da Origami Lab. Construímos o sistema que cobre um processo específico da
+              operação quando nenhum produto pronto resolve o jeito como a empresa trabalha: planejamento, apontamento, pedidos, recebimento, despacho, frota,
+              cobrança ou trabalho em campo. O serviço inclui o discovery dentro da operação, o desenvolvimento, a integração com o ERP, a implantação e o
+              treinamento da equipe, para indústria, agroindústria, transporte, mineração e engenharia.
             </p>
             <div className="ol-paths">
               <article className="ol-path" data-anim="" data-d="1">
@@ -388,6 +415,7 @@ export default function PaginaDesenvolvimentoDeSoftware() {
                 <li>Integrado ao ERP</li>
                 <li>Código e dados seus</li>
                 <li>Implantação e treinamento</li>
+                <li>Documentado como P&amp;D</li>
               </ul>
             </div>
           </div>
@@ -399,34 +427,34 @@ export default function PaginaDesenvolvimentoDeSoftware() {
             <div className="ol-flow">
               <div className="ol-flow__aside">
                 <span className="ol-kicker">Como funciona</span>
-                <h2 data-anim="">Do diagnóstico à implantação</h2>
-                <p data-anim="" data-d="1">Ciclos de entrega rápida e entregas de valor no primeiro mês do projeto.</p>
+                <h2 data-anim="">Da primeira versão às fases com ganho medido</h2>
+                <p data-anim="" data-d="1">A primeira versão entra em uso em até 1 mês. Depois o software evolui em fases, e você decide a cada uma se seguimos.</p>
               </div>
               <ol className="ol-flow__steps">
                 <li data-anim="">
                   <b>01</b>
-                  <h3>Diagnóstico dentro da operação</h3>
-                  <p>De uma a duas semanas imersos fisicamente onde o processo acontece, entendendo como ele funciona.</p>
+                  <h3>Discovery dentro da operação</h3>
+                  <p>De uma a duas semanas imersos onde o processo acontece, com a diretoria definindo o que move resultado primeiro. O discovery faz parte do projeto.</p>
                 </li>
                 <li data-anim="">
                   <b>02</b>
-                  <h3>Estratégia com a diretoria</h3>
-                  <p>Definimos juntos o que move resultado primeiro e o que fica para depois. Você aprova cada fase antes de ela começar.</p>
+                  <h3>Primeira versão em uso em até 1 mês</h3>
+                  <p>Software rodando e sendo usado por quem está na ponta, não em ambiente de teste, integrado ao ERP pelo caminho que o fornecedor permite.</p>
                 </li>
                 <li data-anim="">
                   <b>03</b>
-                  <h3>Primeira entrega em produção</h3>
-                  <p>Ainda no primeiro mês há software rodando e sendo usado por quem está na ponta, não em ambiente de teste.</p>
-                </li>
-                <li data-anim="">
-                  <b>04</b>
                   <h3>Ciclos de duas semanas</h3>
                   <p>Construir, medir e aprender a cada sprint, com review ao fim de cada ciclo e um ponto de contato fixo com você.</p>
                 </li>
                 <li data-anim="">
+                  <b>04</b>
+                  <h3>Fases com ganho medido</h3>
+                  <p>Cada fase começa com a linha de base e a meta do ganho na operação e termina com o resultado medido. A decisão de seguir para a próxima é sua.</p>
+                </li>
+                <li data-anim="">
                   <b>05</b>
-                  <h3>Integração com o que já existe</h3>
-                  <p>Conectamos o novo sistema ao ERP e aos sistemas que a empresa já usa, pelo caminho que o fornecedor permite.</p>
+                  <h3>Documentado como P&amp;D desde o início</h3>
+                  <p>Registramos incertezas, tentativas e dispêndios enquanto construímos, para que a empresa possa avaliar a Lei do Bem sem reconstruir o histórico.</p>
                 </li>
                 <li data-anim="">
                   <b>06</b>
@@ -490,12 +518,80 @@ export default function PaginaDesenvolvimentoDeSoftware() {
             <aside className="ol-toc">
               <div className="ol-toc__title">Antes de contratar</div>
               <ul className="ol-toc__list">
+                <li><a href="#quando-faz-sentido">Quando o Studio faz sentido</a></li>
+                <li><a href="#por-setor">O Studio por setor</a></li>
                 <li><a href="#escolher-caminho">Qual caminho resolve</a></li>
                 <li><a href="#criterios-de-contratacao">O que comparar na proposta</a></li>
                 <li><a href="#projetos-publicados">Projetos publicados</a></li>
               </ul>
             </aside>
             <article className="ol-prose">
+              <h2 id="quando-faz-sentido">Quando o Studio de Produto faz sentido</h2>
+              <p>
+                Software sob medida vale quando o processo é o que diferencia a empresa e nenhum sistema de mercado o cobre sem virar adaptação em cima de
+                adaptação. Os sinais costumam ser os mesmos:
+              </p>
+              <ul>
+                <li>A operação roda em planilha, WhatsApp e redigitação em volta do ERP.</li>
+                <li>O ERP cuida bem do fiscal e do financeiro, mas não acompanha a produção, o campo, a frota ou o despacho como eles acontecem.</li>
+                <li>O mesmo número aparece diferente em cada sistema, e a diretoria só enxerga a margem no fim do mês.</li>
+              </ul>
+              <p>O que o Studio de Produto não faz:</p>
+              <ul>
+                <li><strong>Implantação de ERP ou CRM.</strong> Integramos ao que a empresa já usa.</li>
+                <li><strong>Alocação de desenvolvedores</strong> na equipe do cliente. O Studio responde pelo software em uso e pelo ganho medido.</li>
+                <li><strong>Sistema que um produto pronto resolve bem.</strong> Se for o caso, a gente diz na primeira conversa.</li>
+              </ul>
+
+              <h2 id="por-setor">O Studio de Produto por setor</h2>
+              <p>
+                Cada setor tem um processo que costuma ficar fora do ERP. Os guias abaixo mostram como controlar bem cada um, quando uma planilha ou um sistema
+                de mercado resolve e quando vale construir sob medida.
+              </p>
+              <div className="ol-tablewrap">
+                <table className="ol-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Setor</th>
+                      <th scope="col">Onde a operação costuma travar</th>
+                      <th scope="col">Guia</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Indústria</td>
+                      <td>Programação, apontamento e qualidade em planilha, sem ligação com a ordem e o lote.</td>
+                      <td>
+                        <a href="/planejamento-de-producao">PCP</a>, <a href="/apontamento-de-producao">apontamento de produção</a> e{" "}
+                        <a href="/registro-de-nao-conformidade">registro de não conformidade</a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Mineração, cal e calcário</td>
+                      <td>Produção e despacho soltos, peso digitado à mão e diferença entre o pesado e o faturado.</td>
+                      <td><a href="/controle-de-expedicao-e-pesagem">Controle de expedição e pesagem</a></td>
+                    </tr>
+                    <tr>
+                      <td>Agroindústria</td>
+                      <td>Recebimento da matéria-prima e pagamento do produtor por regras que só uma pessoa entende.</td>
+                      <td><a href="/pagamento-por-qualidade-do-leite">Recebimento de leite e pagamento por qualidade</a></td>
+                    </tr>
+                    <tr>
+                      <td>Transporte e frota própria</td>
+                      <td>Manutenção, pneus e abastecimento controlados à mão, com o veículo parado sem aviso.</td>
+                      <td><a href="/controle-de-manutencao-de-frota">Controle de manutenção de frota</a></td>
+                    </tr>
+                    <tr>
+                      <td>Engenharia e manutenção industrial</td>
+                      <td>Margem por obra que só aparece no fim, medição sem evidência e diário de obra em papel.</td>
+                      <td>
+                        <a href="/boletim-de-medicao">Boletim de medição</a> e <a href="/rdo-diario-de-obra">RDO, o diário de obra</a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
               <h2 id="escolher-caminho">Integrar, desenvolver ou modernizar?</h2>
               <p>O problema que a operação enfrenta define o trabalho necessário. Um mesmo projeto pode combinar os três caminhos.</p>
               <div className="ol-tablewrap">
@@ -544,6 +640,10 @@ export default function PaginaDesenvolvimentoDeSoftware() {
               <h2 id="projetos-publicados">Como isso aparece em projetos da Origami</h2>
               <ul>
                 <li>
+                  Prumo Engenharia: o apontamento de campo foi digitalizado, e a intranet descrita no <a href="/cases/prumo-engenharia">case publicado</a> virou o canal
+                  único entre obra e administrativo. A relação segue em fases sucessivas, e a Prumo está hoje na quarta fase com a Origami.
+                </li>
+                <li>
                   <a href="/cases/cobranca-automatica-whatsapp-retifica-formiguense">Retífica Formiguense:</a> a régua de cobrança via WhatsApp foi integrada ao ERP,
                   com acompanhamento da carteira em um painel. O case descreve o problema, a implantação e o resultado observado.
                 </li>
@@ -568,6 +668,23 @@ export default function PaginaDesenvolvimentoDeSoftware() {
             </div>
             <div className="ol-faq__list">
               <div className="ol-faq__item" data-faq="">
+                <button className="ol-faq__trigger" type="button" aria-expanded="false" aria-controls="faq-dev-studio">
+                  <span>O que é o Studio de Produto?</span>
+                  {" "}
+                  <span className="ol-faq__icon" aria-hidden="true">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                      <path d="M12 5v14" />
+                      <path d="M5 12h14" />
+                    </svg>
+                  </span>
+                </button>
+                <div className="ol-faq__body" id="faq-dev-studio" data-faq-body="">
+                  <p>
+                    É o nosso serviço de desenvolvimento de software sob medida. Construímos o sistema que a operação precisa quando nenhum produto pronto resolve o jeito como a sua empresa trabalha, integrado ao ERP e ao que já existe. A primeira versão entra em uso em até 1 mês; depois o software evolui em fases, cada uma com ganho medido e uma decisão sua para continuar.
+                  </p>
+                </div>
+              </div>
+              <div className="ol-faq__item" data-faq="">
                 <button className="ol-faq__trigger" type="button" aria-expanded="false" aria-controls="faq-dev-1">
                   <span>Vocês substituem o nosso ERP?</span>
                   {" "}
@@ -585,8 +702,25 @@ export default function PaginaDesenvolvimentoDeSoftware() {
                 </div>
               </div>
               <div className="ol-faq__item" data-faq="">
+                <button className="ol-faq__trigger" type="button" aria-expanded="false" aria-controls="faq-dev-quando-nao">
+                  <span>Quando não vale contratar um software sob medida?</span>
+                  {" "}
+                  <span className="ol-faq__icon" aria-hidden="true">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                      <path d="M12 5v14" />
+                      <path d="M5 12h14" />
+                    </svg>
+                  </span>
+                </button>
+                <div className="ol-faq__body" id="faq-dev-quando-nao" data-faq-body="">
+                  <p>
+                    Quando um produto de mercado cobre o processo com pouca adaptação. Fiscal, contábil e folha, por exemplo, seguem regras de mercado e obrigação legal, e um sistema pronto costuma resolver melhor. O Studio de Produto faz sentido quando o processo é o que diferencia a sua empresa e hoje vive em planilha, WhatsApp e redigitação em volta do ERP. Também não fazemos implantação de ERP ou CRM nem alocação de desenvolvedores na sua equipe.
+                  </p>
+                </div>
+              </div>
+              <div className="ol-faq__item" data-faq="">
                 <button className="ol-faq__trigger" type="button" aria-expanded="false" aria-controls="faq-dev-2">
-                  <span>Precisamos ter uma equipe de TI?</span>
+                  <span>Precisamos ter uma equipe de TI? E se já tivermos uma?</span>
                   {" "}
                   <span className="ol-faq__icon" aria-hidden="true">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
@@ -597,7 +731,7 @@ export default function PaginaDesenvolvimentoDeSoftware() {
                 </button>
                 <div className="ol-faq__body" id="faq-dev-2" data-faq-body="">
                   <p>
-                    Não é necessário. Quando existe, trabalhamos junto com ela; quando não existe, conduzimos a implantação e preparamos as pessoas da operação para usar e manter o que foi entregue.
+                    Não é necessário ter. Quando a sua empresa tem TI, ela participa do projeto: dá o parecer técnico, cuida do ERP e da infraestrutura e recebe o que construímos, sem que o projeto dispute a fila de demandas dela. Quando não tem, conduzimos a implantação e preparamos as pessoas da operação para usar e manter o que foi entregue.
                   </p>
                 </div>
               </div>
@@ -614,7 +748,7 @@ export default function PaginaDesenvolvimentoDeSoftware() {
                 </button>
                 <div className="ol-faq__body" id="faq-dev-3" data-faq-body="">
                   <p>
-                    Seus. O que construímos para a sua empresa é da sua empresa, com o código entregue e documentado. Os dados permanecem sob a sua titularidade, em ambiente de nuvem contratado por você. Somos credenciados AWS.
+                    Seus. O que construímos para a sua empresa é da sua empresa, com o código entregue e documentado. Os dados permanecem sob a sua titularidade, em ambiente de nuvem contratado por você. Somos credenciados AWS. Se a relação terminar, o sistema continua funcionando e a documentação permite que outra equipe o mantenha.
                   </p>
                 </div>
               </div>
@@ -631,7 +765,7 @@ export default function PaginaDesenvolvimentoDeSoftware() {
                 </button>
                 <div className="ol-faq__body" id="faq-dev-4" data-faq-body="">
                   <p>
-                    O custo depende das integrações necessárias, das regras e exceções do processo, do número de usuários e turnos, dos dados a migrar e do trabalho de implantação e treinamento. O diagnóstico define o escopo, as prioridades e o investimento por etapa. Você recebe a proposta antes de cada fase e aprova o que será feito.
+                    O custo depende das integrações necessárias, das regras e exceções do processo, do número de usuários e turnos, dos dados a migrar e do trabalho de implantação e treinamento. O discovery, que faz parte do projeto, define o escopo, as prioridades e o investimento por fase. Você recebe a proposta antes de cada fase e aprova o que será feito.
                   </p>
                 </div>
               </div>
@@ -648,7 +782,24 @@ export default function PaginaDesenvolvimentoDeSoftware() {
                 </button>
                 <div className="ol-faq__body" id="faq-dev-5" data-faq-body="">
                   <p>
-                    Software em produção já no primeiro mês, e ciclos de duas semanas daí em frente. O prazo total depende do escopo priorizado no diagnóstico, mas você não espera o fim do projeto para ver resultado.
+                    A primeira versão entra em uso em até 1 mês, com quem está na ponta, e os ciclos de duas semanas seguem daí em frente. O prazo total depende do que for priorizado em cada fase, mas você não espera o fim do projeto para ver resultado.
+                  </p>
+                </div>
+              </div>
+              <div className="ol-faq__item" data-faq="">
+                <button className="ol-faq__trigger" type="button" aria-expanded="false" aria-controls="faq-dev-ia">
+                  <span>Com IA, desenvolver software não ficou mais simples?</span>
+                  {" "}
+                  <span className="ol-faq__icon" aria-hidden="true">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                      <path d="M12 5v14" />
+                      <path d="M5 12h14" />
+                    </svg>
+                  </span>
+                </button>
+                <div className="ol-faq__body" id="faq-dev-ia" data-faq-body="">
+                  <p>
+                    A IA acelera a escrita do código, e ela está na base da nossa execução: é parte do motivo de a primeira versão entrar em uso em até 1 mês. Mas o código é só uma parte do trabalho. Entender o processo, integrar ao ERP, colocar o sistema em uso com quem está na ponta e medir o ganho continuam definindo o resultado, e é pelo resultado que respondemos.
                   </p>
                 </div>
               </div>
@@ -682,10 +833,10 @@ export default function PaginaDesenvolvimentoDeSoftware() {
                 </button>
                 <div className="ol-faq__body" id="faq-dev-7" data-faq-body="">
                   <p>
-                    Depende da empresa, do projeto e do instrumento. A Lei do Bem é um incentivo fiscal para pesquisa e desenvolvimento tecnológico, com requisitos como Lucro Real, regularidade fiscal e lucro fiscal para a exclusão adicional de dispêndios. Comprar software ou automatizar uma rotina não garante enquadramento. Crédito e subvenção têm condições próprias de elegibilidade e aprovação. A avaliação é feita antes de incluir qualquer incentivo na conta do investimento.
+                    Depende da empresa, do projeto e do instrumento. Os projetos do Studio de Produto são documentados desde o início como a Lei do Bem pede, com o registro técnico das incertezas, das tentativas e dos dispêndios, para que o enquadramento possa ser avaliado sem reconstruir o histórico depois. A Lei do Bem é um incentivo fiscal para pesquisa e desenvolvimento tecnológico, com requisitos como Lucro Real, regularidade fiscal e lucro fiscal para a exclusão adicional de dispêndios. Comprar software ou automatizar uma rotina não garante enquadramento. Crédito e subvenção têm condições próprias de elegibilidade e aprovação. A avaliação é feita antes de incluir qualquer incentivo na conta do investimento.
                   </p>
                   <p>
-                    Entenda os <a href="/lei-do-bem">requisitos da Lei do Bem</a> e a diferença entre os <a href="/financiamento-de-inovacao">instrumentos de financiamento da inovação</a>.
+                    Entenda os <a href="/lei-do-bem">requisitos da Lei do Bem</a>, <a href="/lei-do-bem-desenvolvimento-de-software">como ela se aplica ao desenvolvimento de software</a> e a diferença entre os <a href="/financiamento-de-inovacao">instrumentos de financiamento da inovação</a>.
                     {" A orientação oficial está no "}
                     <a href="https://www.gov.br/mcti/pt-br/acompanhe-o-mcti/lei-do-bem/paginas/o-que-e-a-lei-do-bem" target="_blank" rel="noopener">MCTI</a>.
                   </p>

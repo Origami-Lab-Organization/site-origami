@@ -16,7 +16,7 @@ const SECOES = [
 ];
 
 const SERVICOS = [
-  { href: "/desenvolvimento-de-software", rotulo: "Desenvolvimento de software" },
+  { href: "/desenvolvimento-de-software", rotulo: "Studio de Produto" },
   { href: "/modernizacao-de-sistemas-legados", rotulo: "Modernização de sistemas legados" },
   { href: "/consultoria-estrategica", rotulo: "Consultoria estratégica" },
   { href: "/acesso-a-capital", rotulo: "Acesso a capital" },
@@ -48,6 +48,15 @@ const FERRAMENTAS = [
   { href: "/calculadora-custo-hora-maquina", rotulo: "Custo hora-máquina" },
   { href: "/diagnostico-de-modernizacao", rotulo: "Diagnóstico de modernização" },
   { href: "/ferramentas", rotulo: "Todas as ferramentas" },
+];
+
+const STUDIO_POR_SETOR = [
+  { href: "/controle-de-manutencao-de-frota", rotulo: "Manutenção de frota" },
+  { href: "/boletim-de-medicao", rotulo: "Boletim de medição" },
+  { href: "/rdo-diario-de-obra", rotulo: "RDO: diário de obra" },
+  { href: "/controle-de-expedicao-e-pesagem", rotulo: "Expedição e pesagem" },
+  { href: "/registro-de-nao-conformidade", rotulo: "Não conformidade (RNC)" },
+  { href: "/pagamento-por-qualidade-do-leite", rotulo: "Pagamento do leite" },
 ];
 
 const SOLUCOES = [
@@ -112,6 +121,7 @@ export function Rodape({ home = false, parallax = false }: Props) {
           </div>
           <Coluna titulo="Navegar" rotuloAria="Rodapé" links={navegar} />
           <Coluna titulo="Serviços" rotuloAria="Serviços" links={SERVICOS} />
+          <Coluna titulo="Studio por setor" rotuloAria="Studio de Produto por setor" links={STUDIO_POR_SETOR} />
           <Coluna titulo="Guias" rotuloAria="Guias" links={GUIAS} />
           <Coluna titulo="Soluções para indústria" rotuloAria="Soluções para indústria" links={SOLUCOES} />
           <Coluna titulo="Ferramentas grátis" rotuloAria="Ferramentas grátis" links={FERRAMENTAS} />

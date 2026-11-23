@@ -337,8 +337,20 @@ export default function PaginaCasesPrumoEngenharia() {
             <ul className="ol-next__grid">
               <li>
                 <a className="ol-next__card" href="/desenvolvimento-de-software">
-                  <b>Desenvolvimento de software sob medida</b>
-                  <span>Como a Origami Lab constrói e implanta sistemas para o que o ERP não cobre, do diagnóstico à autonomia do time.</span>
+                  <b>Studio de Produto: software sob medida</b>
+                  <span>Como a Origami Lab constrói e implanta sistemas para o que o ERP não cobre, com a primeira versão em uso em até 1 mês.</span>
+                </a>
+              </li>
+              <li>
+                <a className="ol-next__card" href="/boletim-de-medicao">
+                  <b>Boletim de medição</b>
+                  <span>Do serviço executado ao faturamento, com evidência e a margem da obra acompanhada durante o contrato.</span>
+                </a>
+              </li>
+              <li>
+                <a className="ol-next__card" href="/rdo-diario-de-obra">
+                  <b>RDO: relatório diário de obra</b>
+                  <span>O registro do canteiro que vira prova, medição e custo, em papel ou no celular.</span>
                 </a>
               </li>
               <li>

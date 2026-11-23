@@ -37,7 +37,8 @@ export default function PaginaGuias() {
       lead="O que vale integrar, quando desenvolver e como financiar a inovação. Escolha a pergunta da sua operação e encontre critérios para decidir, fontes para conferir e um próximo passo concreto."
       acoes={
         <>
-          <a className="ol-btn ol-btn--primary" href="#software">Software e operação <Seta /></a>{" "}
+          <a className="ol-btn ol-btn--primary" href="#studio">Studio de Produto por setor <Seta /></a>{" "}
+          <a className="ol-btn ol-btn--ghost" href="#software">Software e operação</a>{" "}
           <a className="ol-btn ol-btn--ghost" href="#inovacao">Inovação e financiamento</a>{" "}
           <a className="ol-btn ol-btn--ghost" href="#industria">Indústria em Minas</a>
         </>
